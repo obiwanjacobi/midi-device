@@ -1,0 +1,46 @@
+﻿<Window x:Class="CannedBytes.Midi.DeviceTestApp.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cmd="clr-namespace:CannedBytes.Midi.DeviceTestApp.Commands"
+        xmlns:ui="clr-namespace:CannedBytes.Midi.DeviceTestApp.UI"
+        Title="Midi Device Test App" Height="500" Width="800">
+
+    <DockPanel LastChildFill="True">
+        <ToolBar Name ="MidiToolbar" DockPanel.Dock="Top">
+            <Label>In:</Label>
+            <ComboBox Name="MidiInPorts" ItemsSource="{Binding MidiInPorts}" Width="200" SelectedItem="{Binding SelectedMidiInPort, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Separator />
+            <Label>Out:</Label>
+            <ComboBox Name="MidiOutPorts" ItemsSource="{Binding MidiOutPorts}" Width="200" SelectedItem="{Binding SelectedMidiOutPort, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Separator />
+            <Button Name="StartStop" Content="{Binding Mode=OneWay, Path=Command.Text, RelativeSource={RelativeSource self} }" Command="cmd:AppCommands.StartStop" />
+        </ToolBar>
+
+        <Grid>
+            <TabControl TabStripPlacement="Bottom">
+                <TabItem Header="Schema">
+                    <ui:MidiDeviceSchemaTab DataContext="{Binding DeviceSchemaData}" />
+                </TabItem>
+                <TabItem Header="Edit">
+                    <ui:MidiDeviceEditTab DataContext="{Binding LogicalData}" />
+                </TabItem>
+            </TabControl>
+
+        </Grid>
+    </DockPanel>
+
+</Window>

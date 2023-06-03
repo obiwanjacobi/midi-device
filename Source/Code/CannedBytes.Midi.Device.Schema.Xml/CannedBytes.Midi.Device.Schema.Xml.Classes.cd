@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.MidiDeviceSchema">
+    <Position X="0.5" Y="3" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAAAAA=</HashCode>
+      <FileName>MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.MidiDeviceSchemaDataType">
+    <Position X="7.25" Y="3.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAgAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MidiDeviceSchemaDataType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Schema" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.MidiDeviceSchemaRecordType">
+    <Position X="3.5" Y="6" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="BaseType" Type="CannedBytes.Midi.Device.Schema.Xml.MidiDeviceSchemaRecordType" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.062" Y="7.537" />
+        <Point X="4.062" Y="8.042" />
+        <Point X="5.257" Y="8.042" />
+        <Point X="5.257" Y="7.537" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAgAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>MidiDeviceSchemaRecordType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BaseType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.DeviceSchema">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.RecordType">
+    <Position X="3.75" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.DataType">
+    <Position X="7.5" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Field">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.MidiDeviceSchemaField">
+    <Position X="10.75" Y="5.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="DataType" Type="CannedBytes.Midi.Device.Schema.Xml.MidiDeviceSchemaDataType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.75" Y="6.162" />
+        <Point X="8.375" Y="6.162" />
+        <Point X="8.375" Y="5.037" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RecordType" Type="CannedBytes.Midi.Device.Schema.Xml.MidiDeviceSchemaRecordType" FixedFromPoint="true">
+      <Path>
+        <Point X="10.75" Y="6.523" />
+        <Point X="5.75" Y="6.523" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAIAAABAAgAAAAAAEAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>MidiDeviceSchemaField.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataType" />
+      <Property Name="RecordType" />
+      <Property Name="DeclaringRecord" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

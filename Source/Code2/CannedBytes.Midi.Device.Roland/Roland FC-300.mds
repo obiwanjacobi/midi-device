@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/FC-300/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/Roland/FC-300/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:r="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+>
+  <mds:annotation>
+    <mds:documentation>Midi Device Schema for the Roland FC-300 Midi foot controller.</mds:documentation>
+  </mds:annotation>
+
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
+
+  <mds:recordType name="AddressMap">
+    <mds:extension base="m:midiAddressMap">
+      <mds:sequence>
+        <!-- Read/Write -->
+        <mds:field name="ModeStatus" type="ModeStatus" mds:address="10-00H" />
+        <!-- Read -->
+        <mds:field name="PedalStatus" type="PedalStatus20" mds:address="20-00H" />
+        <mds:field name="CtlPedalStatus" type="PedalStatus21" mds:address="21-00H" />
+        <mds:field name="ExpPedalSwitch" type="PedalStatus20" mds:address="22-00H" />
+        <mds:field name="ExpPedalStatus" type="PedalStatus24" mds:address="24-00H" />
+        <mds:field name="UpDownPedalStatus" type="PedalStatus25" mds:address="25-00H" />
+        <!-- Write -->
+        <mds:field name="PedalLedStatus" type="PedalLedStatus30" mds:address="30-00H" />
+        <mds:field name="CtlPedalLedStatus" type="PedalLedStatus31" mds:address="31-00H" />
+        <mds:field name="ExpPedalLedStatus" type="PedalLedStatus32" mds:address="32-00H" />
+        <mds:field name="UpDownPedalLedStatus" type="PedalLedStatus35" mds:address="35-00H" />
+        <!-- Write -->
+        <mds:field name="BankNumberDisplayStatus" type="BankNumberDisplayStatus" mds:address="40-00H" />
+        <!-- Read/Write -->
+        <mds:field name="ControllerStatus" type="ControllerStatus" mds:address="50-00H" />
+        <!-- Write -->
+        <mds:field name="MessageDisplayStatus1" type="MessageDisplayStatus" mds:address="60-00H" />
+        <mds:field name="MessageDisplayStatus2" type="MessageDisplayStatus" mds:address="64-00H" />
+        <!-- Write -->
+        <mds:field name="MessageDisplayStatusUserFont" type="MessageDisplayStatusUserFont" mds:address="68-00H" />
+        <!-- Write -->
+        <mds:field name="TunerDisplayStatus" type="TunerDisplayStatus" mds:address="70-00H" />
+        <!-- Write -->
+        <mds:field name="TunerPitchStatus" type="TunerPitchStatus" mds:address="71-00H" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="ModeStatus">
+    <mds:sequence>
+      <mds:field name="SysExModeStatus1" type="SysExModeOnOff">
+        <mds:annotation>
+          <mds:documentation>
+            Outputs on power-up or when Mode change is made.
+            Also outputs upon receiving Data Request (RQ1).
+            Data Set (DT1) is ignored.
+          </mds:documentation>
+        </mds:annotation>
+      </mds:field>
+      <mds:field name="SysExModeStatus2" type="SysExModeOnOff">
+        <mds:annotation>
+          <mds:documentation>
+            Mode Status is changed when Data Set (DT1) is received.
+            Changes the System Exclusive Mode when On is received.
+            MODE pedal is pressed same operation when Off is received in
+            System Exclusive Mode.
+          </mds:documentation>
+        </mds:annotation>
+      </mds:field>
+      <mds:field name="FunctionModeStatus" type="FunctionPlayTuner">
+        <mds:annotation>
+          <mds:documentation>
+            Changes the display of LCD in System Exclusive Mode when
+            Data Set (DT1) is received.
+            Appears the received data in Message Display Status Address
+            when PLAY is received.
+            Appears the TUNER screen and received data in Tuner Pitch
+            Status Address when TUNER is received. (FC-300 has not
+            TUNER function.)
+            Outputs when Data Request (RQ1) is received.
+          </mds:documentation>
+        </mds:annotation>
+      </mds:field>
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalStatus20">
+    <mds:sequence>
+      <mds:field name="Pedal1-6Status" type="PedalStatusOnOff" />
+      <mds:field name="Pedal2-7Status" type="PedalStatusOnOff" />
+      <mds:field name="Pedal3-8Status" type="PedalStatusOnOff" />
+      <mds:field name="Pedal4-9Status" type="PedalStatusOnOff" />
+      <mds:field name="Pedal5-10Status" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalStatus21">
+    <mds:sequence>
+      <mds:field name="CtlPedal1Status" type="PedalStatusOnOff" />
+      <mds:field name="CtlPedal2Status" type="PedalStatusOnOff" />
+      <mds:field name="CtlPedal4Status" type="PedalStatusOnOff" />
+      <mds:field name="CtlPedal6Status" type="PedalStatusOnOff" />
+      <mds:field name="CtlPedal8Status" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalStatus22">
+    <mds:sequence>
+      <mds:field name="ExpPedalSw1Status" type="PedalStatusOnOff" />
+      <mds:field name="ExpPedalSw2Status" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalStatus24">
+    <mds:sequence>
+      <mds:field name="ExpPedal1Status" type="m:midiData" />
+      <mds:field name="ExpPedal2Status" type="m:midiData" />
+      <mds:field name="Ctl3Exp3PedalStatus" type="m:midiData" />
+      <mds:field name="Ctl5Exp4PedalStatus" type="m:midiData" />
+      <mds:field name="Ctl7Exp5PedalStatus" type="m:midiData" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalStatus25">
+    <mds:sequence>
+      <mds:field name="UpPedalStatus" type="PedalStatusOnOff" />
+      <mds:field name="DownPedalStatus" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalLedStatus30">
+    <mds:sequence>
+      <mds:field name="Pedal1-6RedLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal2-7RedLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal3-8RedLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal4-9RedLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal5-10RedLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal1-6GreenLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal2-7GreenLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal3-8GreenLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal4-9GreenLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="Pedal5-10GreenLedStatus" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalLedStatus31">
+    <mds:sequence>
+      <mds:field name="CtlPedal1LedStatus" type="PedalStatusOnOff" />
+      <mds:field name="CtlPedal2LedStatus" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalLedStatus32">
+    <mds:sequence>
+      <mds:field name="ExpPedalSw1LedStatus" type="PedalStatusOnOff" />
+      <mds:field name="ExpPedalSw2LedStatus" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PedalLedStatus35">
+    <mds:sequence>
+      <mds:field name="UpPedalLedStatus" type="PedalStatusOnOff" />
+      <mds:field name="DownPedalLedStatus" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="BankNumberDisplayStatus">
+    <mds:sequence>
+      <mds:field name="RightDigit-a" type="m:midiBit6" />
+      <mds:field name="RightDigit-b" type="m:midiBit5" />
+      <mds:field name="RightDigit-c" type="m:midiBit4" />
+      <mds:field name="RightDigit-d" type="m:midiBit3" />
+      <mds:field name="RightDigit-e" type="m:midiBit2" />
+      <mds:field name="RightDigit-f" type="m:midiBit1" />
+      <mds:field name="RightDigit-g" type="m:midiBit0" />
+      <mds:field name="RightDigit-h" type="m:midiBit0" />
+
+      <mds:field name="CenterDigit-a" type="m:midiBit6" />
+      <mds:field name="CenterDigit-b" type="m:midiBit5" />
+      <mds:field name="CenterDigit-c" type="m:midiBit4" />
+      <mds:field name="CenterDigit-d" type="m:midiBit3" />
+      <mds:field name="CenterDigit-e" type="m:midiBit2" />
+      <mds:field name="CenterDigit-f" type="m:midiBit1" />
+      <mds:field name="CenterDigit-g" type="m:midiBit0" />
+      <mds:field name="CenterDigit-h" type="m:midiBit0" />
+
+      <mds:field name="LeftDigit-a" type="m:midiBit6" />
+      <mds:field name="LeftDigit-b" type="m:midiBit5" />
+      <mds:field name="LeftDigit-c" type="m:midiBit4" />
+      <mds:field name="LeftDigit-d" type="m:midiBit3" />
+      <mds:field name="LeftDigit-e" type="m:midiBit2" />
+      <mds:field name="LeftDigit-f" type="m:midiBit1" />
+      <mds:field name="LeftDigit-g" type="m:midiBit0" />
+      <mds:field name="LeftDigit-h" type="m:midiBit0" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="ControllerStatus">
+    <mds:sequence>
+      <mds:field name="AmpControl1Status" type="PedalStatusOnOff" />
+      <mds:field name="AmpControl2Status" type="PedalStatusOnOff" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="MessageDisplayStatus60">
+    <mds:sequence>
+      <mds:field name="Line" type="DisplayLine" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="MessageDisplayStatus64">
+    <mds:sequence>
+      <mds:field name="Line" type="DisplayLine" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="MessageDisplayStatusUserFont">
+    <mds:sequence>
+      <mds:field name="Char1" type="UserFontChar" />
+      <mds:field name="Char2" type="UserFontChar" />
+      <mds:field name="Char3" type="UserFontChar" />
+      <mds:field name="Char4" type="UserFontChar" />
+      <mds:field name="Char5" type="UserFontChar" />
+      <mds:field name="Char6" type="UserFontChar" />
+      <mds:field name="Char7" type="UserFontChar" />
+      <mds:field name="Char8" type="UserFontChar" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="UserFontChar">
+    <mds:sequence>
+      <mds:field name="Line0" type="UserFontCharData" />
+      <mds:field name="Line1" type="UserFontCharData" />
+      <mds:field name="Line2" type="UserFontCharData" />
+      <mds:field name="Line3" type="UserFontCharData" />
+      <mds:field name="Line4" type="UserFontCharData" />
+      <mds:field name="Line5" type="UserFontCharData" />
+      <mds:field name="Line6" type="UserFontCharData" />
+      <mds:field name="Line7" type="UserFontCharData" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="TunerDisplayStatus">
+    <mds:sequence>
+      <mds:field name="C-SharpDisplayStatus" type="TunerNoteC-Sharp" />
+      <mds:field name="D-SharpDisplayStatus" type="TunerNoteD-Sharp" />
+      <mds:field name="F-SharpDisplayStatus" type="TunerNoteF-Sharp" />
+      <mds:field name="G-SharpDisplayStatus" type="TunerNoteG-Sharp" />
+      <mds:field name="A-SharpDisplayStatus" type="TunerNoteA-Sharp" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="TunerPitchStatus">
+    <mds:sequence>
+      <mds:field name="StringNumber" type="TunerStringNumber" />
+      <mds:field name="TunerNoteStatus" type="TunerNoteStatus" />
+      <mds:field name="TunerCentStatus" type="TunerCentStatus" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <!-- TODO: value 0 means NoSignal (now -51) -->
+  <mds:dataType name="TunerCentStatus" valueOffset="-51" >
+    <mds:restriction base="m:midiSigned8">
+      <!--<mds:enumeration name="NoSignal" value="0" />
+      <mds:enumeration name="Value" value="*" />-->
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TunerNoteStatus">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration name="NoSignal" value="0" />
+      <mds:enumeration name="C" value="1" />
+      <mds:enumeration name="C#" value="2" />
+      <mds:enumeration name="D" value="3" />
+      <mds:enumeration name="D#" value="4" />
+      <mds:enumeration name="E" value="5" />
+      <mds:enumeration name="F" value="6" />
+      <mds:enumeration name="F#" value="7" />
+      <mds:enumeration name="G" value="8" />
+      <mds:enumeration name="G#" value="9" />
+      <mds:enumeration name="A" value="10" />
+      <mds:enumeration name="A#" value="11" />
+      <mds:enumeration name="B" value="12" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TunerStringNumber">
+    <mds:restriction base="m:midiBi0-2">
+      <mds:enumeration name="Off" value="0" />
+      <mds:enumeration name="1" value="1" />
+      <mds:enumeration name="2" value="2" />
+      <mds:enumeration name="3" value="3" />
+      <mds:enumeration name="4" value="4" />
+      <mds:enumeration name="5" value="5" />
+      <mds:enumeration name="6" value="6" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TunerNoteC-Sharp">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration name="C#" value="0" />
+      <mds:enumeration name="Db" value="7FH" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TunerNoteD-Sharp">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration name="D#" value="0" />
+      <mds:enumeration name="Eb" value="7FH" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TunerNoteF-Sharp">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration name="F#" value="0" />
+      <mds:enumeration name="Gb" value="7FH" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TunerNoteG-Sharp">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration name="G#" value="0" />
+      <mds:enumeration name="Ab" value="7FH" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TunerNoteA-Sharp">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration name="A#" value="0" />
+      <mds:enumeration name="Bb" value="7FH" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="UserFontCharData">
+    <mds:restriction base="m:midiBit0-4" />
+  </mds:dataType>
+
+  <mds:dataType name="DisplayLine">
+    <mds:restriction base="m:midiString16" />
+  </mds:dataType>
+
+  <mds:dataType name="PedalStatusOnOff">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration name="Off" value="0"/>
+      <mds:enumeration name="On" value="7FH" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="SysExModeOnOff">
+    <mds:restriction base="m:midiBit0">
+      <mds:enumeration name="Off" value="0" />
+      <mds:enumeration name="On" value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="FunctionPlayTuner">
+    <mds:restriction base="m:midiBit0">
+      <mds:enumeration name="Play" value="0" />
+      <mds:enumeration name="Tuner" value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:recordType name="RQ1ChecksumScope">
+    <mds:extension base="r:rolandChecksum">
+      <mds:sequence>
+        <mds:field name="AddressSize" type="r:AddressSizeBE2" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="RQ1">
+    <mds:extension base="m:midiSysEx">
+      <mds:sequence>
+        <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+        <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+        <mds:field name="ModelId" type="RolandFC300ModelId" />
+        <mds:field name="CommandId" type="r:RQ1CommandId" />
+        <mds:field name="body" type="RQ1ChecksumScope" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="DT1ChecksumScope">
+    <mds:extension base="r:rolandChecksum">
+      <mds:sequence>
+        <mds:field name="Address" type="r:AddressBE2" />
+        <mds:field name="AddressMap" type="AddressMap" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="DT1">
+    <mds:extension base="m:midiSysEx">
+      <mds:sequence>
+        <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+        <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+        <mds:field name="ModelId" type="RolandFC300ModelId" />
+        <mds:field name="CommandId" type="r:DT1CommandId" />
+        <mds:field name="body" type="DT1ChecksumScope" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:dataType name="RolandFC300ModelId">
+    <mds:restriction base="r:RolandId3">
+      <mds:enumeration name="FC300" value="00-00-20H" />
+      <mds:enumeration name="FC300_Bulk" value="00-00-1EH" />
+    </mds:restriction>
+  </mds:dataType>
+
+</mds:deviceSchema>

@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.deviceSchema" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.annotation" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.recordExtensionType" Collapsed="true">
+    <Position X="1.5" Y="8.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAUAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sequence" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.fieldSequence">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="field" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.localField" Collapsed="true">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.field" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAQIAAAAAAgAoFAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.annotated" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.openAttrs" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.dataType" Collapsed="true">
+    <Position X="19.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEQAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.extension" Collapsed="true">
+    <Position X="23" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.enumFacet" Collapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.facet" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.intFacet" Collapsed="true">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.uintFacet" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.restriction" Collapsed="true">
+    <Position X="25.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.union" Collapsed="true">
+    <Position X="14" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.localDataType" Collapsed="true">
+    <Position X="20.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.recordType" Collapsed="true">
+    <Position X="16.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAEwAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.recordRestrictionType" Collapsed="true">
+    <Position X="1.5" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAUAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sequence" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.import" Collapsed="true">
+    <Position X="27.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAEBAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.topLevelDataType" Collapsed="true">
+    <Position X="18.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.topLevelRecordType" Collapsed="true">
+    <Position X="16" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>CannedBytes.Midi.Device</AssemblyTitle>
+    <Product>CannedBytes.Midi.Device</Product>
+    <Copyright>Copyright © CannedBytes 2014</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MidiTypes.mds" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
+  </ItemGroup>
+</Project>

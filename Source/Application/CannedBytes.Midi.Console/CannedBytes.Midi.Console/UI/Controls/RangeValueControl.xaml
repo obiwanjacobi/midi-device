@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="CannedBytes.Midi.Console.UI.Controls.RangeValueControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding ElementName=RangeSlider, Path=RangeStopSelected}" HorizontalAlignment="Right" />
+        <TextBlock Text="{Binding ElementName=RangeSlider, Path=RangeStartSelected}" HorizontalAlignment="Left" />
+
+        <metro:RangeSlider Grid.Row="1" Name="RangeSlider" VerticalAlignment="Center" Height="19"
+                           RangeStart="0" RangeStop="100"
+                           RangeStartSelected="{Binding ValueModels[0].IntValue, Mode=TwoWay}"
+                           RangeStopSelected="{Binding ValueModels[1].IntValue, Mode=TwoWay}" />
+    </Grid>
+</UserControl>

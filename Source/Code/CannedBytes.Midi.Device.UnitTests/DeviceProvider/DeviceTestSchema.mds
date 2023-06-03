@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/DeviceTestSchema.mds"
+    xmlns="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/DeviceTestSchema.mds"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:a="http://schemas.cannedbytes.com/midi-device-schema/message-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="AddressMap">
+    <mds:sequence>
+      <mds:field name="DummyField" type="m:midiByte" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="RQ1Payload">
+    <mds:sequence>
+      <mds:field name="address" type="m:midiData" m:property="address" />
+      <mds:field name="size" type="m:midiData" m:property="size" />
+      <mds:field name="checksum" type="m:midiChecksum" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="RQ1">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="m:midiData" m:property="ManufacturerId" />
+      <mds:field name="DeviceId" type="m:midiData" m:property="DeviceId" />
+      <mds:field name="ModelId" type="m:midiData" fixed="43" m:property="ModelId" />
+      <mds:field name="CommandId" type="m:midiData" fixed="17" m:property="CommandId" />
+      <mds:field name="payload" type="RQ1Payload" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="DT1Payload">
+    <mds:sequence>
+      <mds:field name="Address" type="m:midiData" m:property="address" />
+      <mds:field name="AddressMap" type="AddressMap" />
+      <mds:field name="checksum" type="m:midiData" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="DT1">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="m:midiData" m:property="ManufacturerId" />
+      <mds:field name="DeviceId" type="m:midiData" m:property="DeviceId" />
+      <mds:field name="ModelId" type="m:midiData" fixed="43" m:property="ModelId" />
+      <mds:field name="CommandId" type="m:midiData" fixed="18" m:property="CommandId" />
+      <mds:field name="payload" type="DT1Payload" />
+    </mds:sequence>
+  </mds:recordType>
+
+</mds:deviceSchema>

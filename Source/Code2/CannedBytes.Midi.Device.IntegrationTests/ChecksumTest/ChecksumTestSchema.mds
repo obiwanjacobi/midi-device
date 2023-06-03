@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/ChecksumTestSchema.mds"
+    xmlns="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/ChecksumTestSchema.mds"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="checksumTest">
+    <mds:extension base="m:midiSysEx">
+      <mds:sequence>
+        <mds:field name="SysExData" type="m:midiData" />
+        <mds:field name="checksumGroup" type="checksumGroup" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="checksumGroup">
+    <mds:extension base="m:midiChecksum">
+      <mds:sequence>
+        <mds:field name="ChecksumData1" type="m:midiData" />
+        <mds:field name="ChecksumData2" type="m:midiData" />
+        <mds:field name="ChecksumData3" type="m:midiData" />
+        <mds:field name="ChecksumData4" type="m:midiData" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+</mds:deviceSchema>

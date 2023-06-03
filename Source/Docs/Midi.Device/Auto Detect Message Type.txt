@@ -1,0 +1,78 @@
+﻿Auto Detect Message Type
+------------------------
+
+When an unknown (physical) SysEx message comes in, some sort of detection
+mechanism has to determine what message RecordType it represents. Certain 
+marker fields in the message RecordType can be tagged with special attributes
+and indicate what conditions must be fulfilled by the incoming message to 
+select that particular message RecordType.
+
+Each manufacturer (or even model) uses its own message structure. So we need to
+have a provider model where each provider implements the specifics for each 
+type of mechanism. This provider has the job of interpreting the physical data
+stream and coming up with the identifying attributes that would select *one* 
+message RecordType. Currently this provider is called an IMessageProvider.
+
+The schema manager has to be extended with search functionality. With a list of
+identifying attributes, the schema manager should be able to locate the correct
+message record type. The message provider specifies the device schemas to the 
+schema manager it wants to use in order to satisfy the identifying attributes.
+
+The order of the identifying attributes is important as well as at what fields
+these attributes can be found. Perhaps it is possible to declare templates that
+define a certain order and structure to these attributes. For some schemas it 
+is simple: for example Roland specifies a command id in all of its messages. So
+just read up to the command id and you'll know exactly what RecordType to pick.
+
+The identifying attributes are declared as xml attributes on the fields of a 
+device schema. Some default attributes will be supplied, but ultimately the 
+message provider has to generate the identifying attributes that match up with 
+those specified in the device schema (or not). So not all devices will use 
+these default attributes.
+
+manufacturer	-	the field that identifies the manufacturer (can be a composite field).
+model/device	-	the field that identifies the model of the device (can be a composite field).
+sysexchannel	-	the field that identifies the device instance.
+command			-	the field(s) that identify the command (sysex type id).
+
+All bytes read by the message providers from the incoming sysex message are
+buffered in order to be able to rewind the stream before it is passed to the 
+next message provider. The interpretation of the incoming physical message can
+be done through the use of Converters and the MidiDeviceDataContext. The 
+logical reader is supplied by the message provider and it interprets the 
+values. A message provider might also decide to interpret the raw physical 
+bytes directly (faster).
+
+The first message provider that is able to resolve the physical stream of the 
+incoming message, thru identifying attributes to a message RecordType is 
+selected to provide the MidiDeviceMessageInfo structure.
+
+The MidiDeviceMessageStructure contains the identifying attributes as well as
+two RecordType references. One RecordType is to identify the envelope of the 
+message. Some manufacturers (Roland and Yamaha) use a structured messaging 
+scheme where "all" devices use the same envelopes. The envelope usually 
+contains identifying information and other meta data. The other RecordType 
+identifies the body (or payload) of the message. This is the part that contains
+the actual information.
+
+Note that the requirement of needing to identify two RecordTypes can lead to
+multiple searches in the schema manager by the message provider.
+
+
+Universal SysEx Message Structure:
+F0H		SOX				Fixed value
+UID		7EH/7FH			Non-Realtime/Realtime
+DEV		DeviceID		SysEx Channel/Device number
+CMD1	CommandID		Identification of the message (type)
+CMD2	SubCommandID	Sub-identification of the message (type) Optional.
+...
+F7H		EOX				Fixed value		
+
+Roland Message Structure:
+F0H		SOX				Fixed value
+41H		Manufacturer	Fixed value (for Roland)
+DEV		DeviceID		SysEx Channel/Device number
+MDL		ModelID			Identification of the device model
+CMD		CommandID		Identification of the message (type)
+...
+F7H		EOX				Fixed value		

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8475F0E8-0E40-4505-A9FF-352D7A212694}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CannedBytes.Midi.DeviceTestApp</RootNamespace>
+    <AssemblyName>CannedBytes.Midi.DeviceTestApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CannedBytes">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.IO">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Device">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Device.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Device.Message">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Device.Message.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Device.Roland, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Device.Roland.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Device.Roland.A880">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Device.Roland.A880.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Device.Roland.D110">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Device.Roland.D110.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Device.Roland.U220">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Device.Roland.U220.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Device.Schema">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Device.Schema.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Message">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Message.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Commands\ClearLogicalDataCommandHandler.cs" />
+    <Compile Include="Commands\CommandHandler.cs" />
+    <Compile Include="Commands\SendDataRequestCommandHandler.cs" />
+    <Compile Include="Commands\SendDataSetCommandHandler.cs" />
+    <Compile Include="Commands\StartMidiPortsCommandHandler.cs" />
+    <Compile Include="Commands\UpdatingRoutedUICommand.cs" />
+    <Compile Include="Midi\DeviceLogicalData.cs" />
+    <Compile Include="Midi\DeviceLogicalReader.cs" />
+    <Compile Include="Midi\DeviceManager.cs" />
+    <Compile Include="Midi\MidiToLogicalProcess.cs" />
+    <Compile Include="UI\EditFieldKeyPathControl.xaml.cs">
+      <DependentUpon>EditFieldKeyPathControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LogicalValueControl.xaml.cs">
+      <DependentUpon>LogicalValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MidiDeviceEditTab.xaml.cs">
+      <DependentUpon>MidiDeviceEditTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MidiDeviceSchemaDataContext.cs" />
+    <Compile Include="UI\MidiDeviceSchemaTab.xaml.cs">
+      <DependentUpon>MidiDeviceSchemaTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MidiDeviceSchemaView.xaml.cs">
+      <DependentUpon>MidiDeviceSchemaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Model\SchemaField.cs" />
+    <Compile Include="UI\Model\SchemaMessage.cs" />
+    <Compile Include="UI\Model\SchemaModel.cs" />
+    <Compile Include="UI\TreeListView.cs" />
+    <Compile Include="UI\WindowFrame.xaml.cs">
+      <DependentUpon>WindowFrame.xaml</DependentUpon>
+    </Compile>
+    <Page Include="UI\EditFieldKeyPathControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\LogicalValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppData.cs" />
+    <Compile Include="Midi\MidiSysExBuffer.cs" />
+    <Compile Include="Midi\MidiSysExReceiver.cs" />
+    <Compile Include="Midi\MidiSysExSender.cs" />
+    <Compile Include="Commands\AppCommands.cs" />
+    <Compile Include="UI\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UI\MidiDeviceEditTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MidiDeviceSchemaTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MidiDeviceSchemaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WindowFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

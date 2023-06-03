@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/D-110/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/Roland/D-110/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:r="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
+
+  <mds:recordType name="AddressMap">
+    <mds:extension base="m:midiAddressMap">
+      <mds:sequence>
+        <mds:field name="ToneTempSynthPart" type="Tone" mds:address="02-00-00H"/>
+        <mds:field name="TimbreTemp" type="TimbreTempArea" mds:address="03-00-00H"/>
+        <mds:field name="ToneTemp" type="Tone" mds:address="04-00-00H"/>
+        <mds:field name="Timbre" type="Timbre" mds:address="05-00-00H" repeats="128"/>
+        <mds:field name="Patch" type="Patch" mds:address="06-00-00H" repeats="64"/>
+        <mds:field name="Tone" type="Tone" mds:address="08-00-00H" repeats="64"/>
+        <mds:field name="System" type="System" mds:address="10-00-00H"/>
+        <!--<mds:field name="Display" type="Display" mds:address="20-00-00H"/>
+        <mds:field name="WriteReq" type="WriteReq" mds:address="40-00-00H"/>-->
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Tone">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="Name" type="m:midiString10"/>
+        <!-- TODO: These fields could be split up more -->
+        <mds:field name="StructureOfPartials1and2" type="m:midiBit0-3" />
+        <mds:field name="StructureOfPartials3and4" type="m:midiBit0-3" />
+        <mds:field name="PartialMuteBits" type="m:midiBit0-3"/>
+        <mds:field name="EnvelopeMode" type="m:midiBit0"/>
+        <mds:field name="TonePartialParameter" type="TonePartialParameter" repeats="4"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="TonePartialParameter">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="WgPitchCoarse" type="m:midiData"/>
+        <mds:field name="WgPitchFine" type="m:midiData"/>
+        <mds:field name="WgPitchKeyFollow" type="m:midiBit0-3"/>
+        <mds:field name="WgPitchBenderSwitch" type="m:midiBit0"/>
+        <mds:field name="WgWaveformPcmBankSwitch" type="m:midiBit0"/>
+        <mds:field name="WgPcmWave" type="m:midiData"/>
+        <mds:field name="WgPulseWidth" type="m:midiData"/>
+        <mds:field name="WgPwVeloSense" type="m:midiBit0-3"/>
+        <!--  -->
+        <mds:field name="P-EnvDepth" type="m:midiBit0-3"/>
+        <mds:field name="P-EnvVeloSense" type="m:midiData"/>
+        <mds:field name="P-EnvTimeKeyFollow" type="m:midiBit0-3"/>
+        <mds:field name="P-EnvTime1" type="m:midiData"/>
+        <mds:field name="P-EnvTime2" type="m:midiData"/>
+        <mds:field name="P-EnvTime3" type="m:midiData"/>
+        <mds:field name="P-EnvTime4" type="m:midiData"/>
+        <mds:field name="P-EnvLevel0" type="m:midiData"/>
+        <mds:field name="P-EnvLevel1" type="m:midiData"/>
+        <mds:field name="P-EnvLevel2" type="m:midiData"/>
+        <mds:field name="P-EnvSustainLevel" type="m:midiData"/>
+        <mds:field name="EndLevel" type="m:midiData"/>
+        <!--  -->
+        <mds:field name="P-LfoRate" type="m:midiData"/>
+        <mds:field name="P-LfoDepth" type="m:midiData"/>
+        <mds:field name="P-LfoModSense" type="m:midiData"/>
+        <!--  -->
+        <mds:field name="TvfCutoffFreq" type="m:midiData"/>
+        <mds:field name="TvfResonance" type="m:midiBit0-4"/>
+        <mds:field name="TvfKeyFollow" type="m:midiBit0-3"/>
+        <mds:field name="TvfBiasPointDir" type="m:midiData"/>
+        <mds:field name="TvfBiasLevel" type="m:midiBit0-3"/>
+        <!--  -->
+        <mds:field name="TvfEnvDepth" type="m:midiData"/>
+        <mds:field name="TvfEnvVeloSense" type="m:midiData"/>
+        <mds:field name="TvfEnvDepthKeyFollow" type="m:midiBit0-2"/>
+        <mds:field name="TvfEnvTimeKeyFollow" type="m:midiBit0-2"/>
+        <mds:field name="TvfEnvTime1" type="m:midiData"/>
+        <mds:field name="TvfEnvTime2" type="m:midiData"/>
+        <mds:field name="TvfEnvTime3" type="m:midiData"/>
+        <mds:field name="TvfEnvTime4" type="m:midiData"/>
+        <mds:field name="TvfEnvTime5" type="m:midiData"/>
+        <mds:field name="TvfEnvLevel1" type="m:midiData"/>
+        <mds:field name="TvfEnvLevel2" type="m:midiData"/>
+        <mds:field name="TvfEnvLevel3" type="m:midiData"/>
+        <mds:field name="TvfEnvSustainLevel" type="m:midiData"/>
+        <!-- -->
+        <mds:field name="TvaLevel" type="m:midiData"/>
+        <mds:field name="TvaVeloSense" type="m:midiData"/>
+        <mds:field name="TvaBiasPoint1" type="m:midiData"/>
+        <mds:field name="TvaBiasLevel1" type="m:midiBit0-3"/>
+        <mds:field name="TvaBiasPoint2" type="m:midiData"/>
+        <mds:field name="TvaBiasLevel2" type="m:midiBit0-3"/>
+        <!--  -->
+        <mds:field name="TvaEnvTimeKeyFollow" type="m:midiBit0-2"/>
+        <mds:field name="TvaEnvTimeVFollow" type="m:midiBit0-2"/>
+        <mds:field name="TvaEnvTime1" type="m:midiData"/>
+        <mds:field name="TvaEnvTime2" type="m:midiData"/>
+        <mds:field name="TvaEnvTime3" type="m:midiData"/>
+        <mds:field name="TvaEnvTime4" type="m:midiData"/>
+        <mds:field name="TvaEnvTime5" type="m:midiData"/>
+        <mds:field name="TvaEnvLevel1" type="m:midiData"/>
+        <mds:field name="TvaEnvLevel2" type="m:midiData"/>
+        <mds:field name="TvaEnvLevel3" type="m:midiData"/>
+        <mds:field name="TvaEnvSustainLevel" type="m:midiData"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="TimbreTempArea">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="Timbre" type="TimbreTemp" repeats="8"/>
+        <mds:field name="Rhythm" type="TimbreTemp"/>
+        <mds:field name="RhythmSetup" type="RhythmKeySetup" repeats="84"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Timbre">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="ToneGroup" type="m:midiBit0-2"/>
+        <mds:field name="ToneNumber" type="m:midiBit0-5"/>
+        <mds:field name="KeyShift" type="m:midiBit0-5"/>
+        <mds:field name="FineTune" type="m:midiData"/>
+        <mds:field name="BenderRange" type="m:midiBit0-4"/>
+        <mds:field name="AssignMode" type="m:midiBit0-1"/>
+        <mds:field name="OutputAssign" type="m:midiBit0-2"/>
+        <mds:field name="Dummy1" type="m:midiNull"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="TimbreTemp">
+    <mds:extension base="Timbre">
+      <mds:sequence>
+        <mds:field name="OutputLevel" type="m:midiData"/>
+        <mds:field name="PanPot" type="m:midiBit0-3"/>
+        <mds:field name="KeyRangeLower" type="m:midiData"/>
+        <mds:field name="KeyRangeUpper" type="m:midiData"/>
+        <mds:field name="Dummy1" type="m:midiNull"/>
+        <mds:field name="Dummy2" type="m:midiNull"/>
+        <mds:field name="Dummy3" type="m:midiNull"/>
+        <mds:field name="Dummy4" type="m:midiNull"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="RhythmKeySetup">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="Tone" type="m:midiData"/>
+        <mds:field name="OutputLevel" type="m:midiData"/>
+        <mds:field name="PanPot" type="m:midiBit0-3"/>
+        <mds:field name="OutputAssign" type="m:midiBit0-2"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="PartialReserve">
+    <mds:annotation>
+      <mds:documentation lang="en">
+        The total number of Partial reserves for 9 parts must be 32 or less.
+        All Partial reservers must be sent in a package of 9 parts.
+      </mds:documentation>
+    </mds:annotation>
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="ReservePart1" type="m:midiBit0-5"/>
+        <mds:field name="ReservePart2" type="m:midiBit0-5"/>
+        <mds:field name="ReservePart3" type="m:midiBit0-5"/>
+        <mds:field name="ReservePart4" type="m:midiBit0-5"/>
+        <mds:field name="ReservePart5" type="m:midiBit0-5"/>
+        <mds:field name="ReservePart6" type="m:midiBit0-5"/>
+        <mds:field name="ReservePart7" type="m:midiBit0-5"/>
+        <mds:field name="ReservePart8" type="m:midiBit0-5"/>
+        <mds:field name="ReservePartR" type="m:midiBit0-5"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Patch">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="Name" type="m:midiString10"/>
+        <!--  -->
+        <mds:field name="ReverbMode" type="m:midiBit0-1"/>
+        <mds:field name="ReverbTime" type="m:midiBit0-2"/>
+        <mds:field name="ReverbLevel" type="m:midiBit0-2"/>
+        <!--  -->
+        <mds:field name="PartialReservers" type="PartialReserve"/>
+        <!--  -->
+        <mds:field name="MidiChannelPart1" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPart2" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPart3" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPart4" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPart5" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPart6" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPart7" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPart8" type="m:midiBit0-4"/>
+        <mds:field name="MidiChannelPartR" type="m:midiBit0-4"/>
+        <!--  -->
+        <mds:field name="PatchParametersPart1" type="PatchParameter"/>
+        <mds:field name="PatchParametersPart2" type="PatchParameter"/>
+        <mds:field name="PatchParametersPart3" type="PatchParameter"/>
+        <mds:field name="PatchParametersPart4" type="PatchParameter"/>
+        <mds:field name="PatchParametersPart5" type="PatchParameter"/>
+        <mds:field name="PatchParametersPart6" type="PatchParameter"/>
+        <mds:field name="PatchParametersPart7" type="PatchParameter"/>
+        <mds:field name="PatchParametersPart8" type="PatchParameter"/>
+        <!--  -->
+        <mds:field name="OutputLevelRhythmPart" type="m:midiData"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="PatchParameter">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="ToneGroup" type="m:midiBit0-2"/>
+        <mds:field name="ToneNumber" type="m:midiBit0-5"/>
+        <mds:field name="KeyShift" type="m:midiBit0-5"/>
+        <mds:field name="FinTune" type="m:midiData"/>
+        <mds:field name="BenderRange" type="m:midiBit0-4"/>
+        <mds:field name="AssignMode" type="m:midiBit0-1"/>
+        <mds:field name="OutputAssign" type="m:midiBit0-2"/>
+        <mds:field name="Dummy1" type="m:midiNull"/>
+        <mds:field name="OutputLevel" type="m:midiData"/>
+        <mds:field name="PanPot" type="m:midiBit0-3"/>
+        <mds:field name="KeyRangeLower" type="m:midiData"/>
+        <mds:field name="KeyRangeUpper" type="m:midiData"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="System">
+    <mds:extension base="m:midiLittleEndian">
+      <mds:sequence>
+        <mds:field name="MasterTune" type="m:midiData"/>
+        <!--  -->
+        <mds:field name="ReverbMode" type="m:midiBit0-3"/>
+        <mds:field name="ReverbTime" type="m:midiBit0-2"/>
+        <mds:field name="ReverbLevel" type="m:midiBit0-2"/>
+        <!--  -->
+        <mds:field name="PartialReservers" type="PartialReserve"/>
+        <!--  -->
+
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="RQ1ChecksumScope">
+    <mds:extension base="r:rolandChecksum">
+      <mds:sequence>
+      <mds:field name="AddressSize" type="r:AddressSizeBE3" />
+    </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+  
+  <mds:recordType name="RQ1">
+    <mds:extension base="m:midiSysEx">
+      <mds:sequence>
+        <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+        <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+        <mds:field name="ModelId" type="RolandD110ModelId" />
+        <mds:field name="CommandId" type="r:RQ1CommandId" />
+        <mds:field name="body" type="RQ1ChecksumScope" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="DT1ChecksumScope">
+    <mds:extension base="r:rolandChecksum">
+      <mds:sequence>
+        <mds:field name="Address" type="r:AddressBE3" />
+        <mds:field name="AddressMap" type="AddressMap" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+  
+  <mds:recordType name="DT1">
+    <mds:extension base="m:midiSysEx">
+      <mds:sequence>
+        <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+        <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+        <mds:field name="ModelId" type="RolandD110ModelId" />
+        <mds:field name="CommandId" type="r:DT1CommandId" />
+        <mds:field name="body" type="DT1ChecksumScope" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:dataType name="RolandD110ModelId">
+    <mds:restriction base="r:RolandId1">
+      <mds:enumeration value="22" name="D110" />
+    </mds:restriction>
+  </mds:dataType>
+  
+</mds:deviceSchema>

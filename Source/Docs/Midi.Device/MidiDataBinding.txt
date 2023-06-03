@@ -1,0 +1,37 @@
+
+The DataValues are the central places were a midi settings value live. They can
+be read in through Midi (using a schema) and they can be controlled through a 
+UI control. 
+
+UI Control <-> BindingSource <-> DataValues <-> LogicalMidiMgr <-> MidiDevice
+
+The UI Controls publish the number of values and the type of values they can 
+handle. Based on this information a BindingSource will provide exactly what the
+control needs. The BindingSource is responsible getting and setting the values
+of midi data. The user should be able to swap UI Controls with the same or 
+similar published data requirements (a slider can be switched to a knob).
+
+Some UI Controls manipulate multiple values together, for instance a sound 
+envelope control takes the attack, decay, sustain and release midi data values.
+Other UI controls, like the slider, just manipulate one value.
+
+The type of data a UI control manipulates also varies. A checkbox takes a bool
+value while a slider control takes an integer value. 
+
+The range of a midi data value is dictated by the schema definition for the 
+field the data value represents. Most values are 0-127 but the field definition
+dictates the actual range to be used.
+
+UI Control implements:
+- IControlValueRange.
+An interface that publishes min and max (and current?) value information the 
+control can handle. Button controls will use 0-1, while sliders might use 
+0-MaxInt. Controls that do not implement this interface should be able to adapt
+to any min and max value set on the IControlValueSource.
+- IControlValueSource.
+This interface accepts min-max information the control should use to initialize
+its internal value range with. Also the Value data source is exposed. 
+
+The BindingSource might not be necessary with WPF DataContext binding...?
+Instead the BindingSource would be a Presentation or View Model the WPF 
+controls bind directly against.

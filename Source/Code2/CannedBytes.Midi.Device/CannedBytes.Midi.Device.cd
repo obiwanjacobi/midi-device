@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CannedBytes.Midi.Device.DeviceProvider">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAgAAAAAAIAEAAEAAEgAEAAAAAgAAAA=</HashCode>
+      <FileName>DeviceProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="BinaryMaps" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.SchemaNodeMap">
+    <Position X="3.25" Y="1" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>FAAQAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SchemaNodeMap.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RootNode" />
+      <Property Name="LastNode" />
+      <Property Name="AddressMap" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.SchemaNode">
+    <Position X="6.25" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CannedBytes.Midi.Device.SchemaNode.SchemaNodeCollection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>SchemaNode.Collection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AoCyAAAICAgBAgRkAEAHQAAAAAgUAAACAQASGAAQsAA=</HashCode>
+      <FileName>SchemaNode.Collection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.DeviceDataContext">
+    <Position X="1" Y="7.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CannedBytes.Midi.Device.DeviceDataContext.ConverterState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DeviceDataContext.ConverterState.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CannedBytes.Midi.Device.DeviceDataContext.FieldContext" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DeviceDataContext.FieldContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQQQDKAAAAABAAAAAAgAAAgAQAAAAAAAAACQAAAAAAA=</HashCode>
+      <FileName>DeviceDataContext.ConverterState.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StreamManager" />
+      <Property Name="RecordManager" />
+      <Property Name="RootNode" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="DeviceProperties" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.SchemaNodeMapFactory">
+    <Position X="3" Y="2.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAABBAAAAAAAAEAEAAAIAAAAAhEgCAIgAAAAAEAA=</HashCode>
+      <FileName>SchemaNodeMapFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.StreamManager">
+    <Position X="3" Y="12.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CannedBytes.Midi.Device.StreamManager.StreamOwner" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>StreamManager.StreamOwner.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CannedBytes.Midi.Device.StreamManager.SysExStream" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>StreamManager.SysExStream.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAECAAAQAAAAAQAIAAAAAAAAAE=</HashCode>
+      <FileName>StreamManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.DeviceProperty">
+    <Position X="4.25" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAAAAAAAAAAAEgAAAAQEA=</HashCode>
+      <FileName>DeviceProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.DataRecordManager">
+    <Position X="0.5" Y="12.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CannedBytes.Midi.Device.DataRecordManager.DataRecordEntry" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DataRecordManager.DataRecordEntry.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CannedBytes.Midi.Device.DataRecordManager.DataRecordScope" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DataRecordManager.DataRecordScope.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQRCEEAAAAAAAAAAAAAAAACAAAgAAEAEA=</HashCode>
+      <FileName>DataRecordManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.LogicalFieldNode">
+    <Position X="9.25" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CannedBytes.Midi.Device.LogicalFieldNode.LogicalValue" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LogicalFieldNode.Value.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAgAAAxQAAAAAQAABAAAAAAAAAAAgYAAQgAA=</HashCode>
+      <FileName>LogicalFieldNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

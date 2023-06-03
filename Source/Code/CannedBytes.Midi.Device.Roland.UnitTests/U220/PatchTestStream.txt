@@ -1,0 +1,55 @@
+000000  F0 41 10 2B 12 03 00 00 01 04 03 06 0F 06 05 07  .A.+............
+000010  03 07 04 07 00 02 00 05 09 06 01 06 0E 06 0F 06  ................
+000020  00 0D 04 02 04 02 00 03 0F 08 0A 07 0A 0A 07 04  ................
+000030  0F 03 00 0E 0F 03 01 0E 0F 03 02 0E 02 00 09 0E  ................
+000040  0F 0F 0F 0F 00 08 06 02 00 0E 0F 02 00 08 04 0A  ................
+000050  00 00 01 00 00 08 06 02 00 0E 0F 04 05 0A 0D 0A  ................
+000060  00 00 01 00 00 08 04 02 00 0E 0F 06 0E 0A 07 0B  ................
+000070  00 00 01 00 00 08 04 02 00 0E 0F 08 08 0B 0C 0B  ................
+000080  00 00 01 00 00 08 04 02 72 F7 F0 41 10 2B 12 03  ........r..A.+..
+000090  01 00 00 0E 0F 0A 0D 0B 01 0D 00 00 01 00 00 08  ................
+0000A0  04 02 00 0E 0F 0C 02 0D 0F 0F 00 00 01 00 06 05  ................
+0000B0  03 03 38 F7
+
+Patch:Name = 'Acoust Piano'
+
+ChorusRate(16)-Level(19)-Depth(4) = 9424 (0x24D0) 0011-0100-1101-0000
+           10000     10011     100
+RevDelay-ChorusFeedback-Type = 12324 (0x3024)
+ChorusDelayTime-DelayFeedback = 31375 (0x7A8F)
+RevDelayLevel-PreTime-Type-ChorusOutMode = 18346 (0x47AA)
+Ctrl1-Parameter1 = 57407 (0xE03F)
+Ctrl2-Parameter2 = 57663 (0xE13F)
+Ctrl3-Parameter3 = 57919 (0xE23F)
+VoiceRsv-Setup-Channel-RxHold-Volume = 59650 (0xE902)
+PartLevel-Boost = 65535 (0xFFFF)
+
+[0]
+Timbre-RxVolume-VoiceRsv-OutputAssign = 9856 (0x2680)
+RecvChannel-PartLevel-Pan = 12256 (0x2FE0)
+KeyRangeLo-RxHold-KeyRangeHi-RxPan = 42112 (0xA480)
+VeloLevel-Threshold = 256 (0x0100)
+
+[1]
+Timbre-RxVolume-VoiceRsv-OutputAssign = 9856 (0x2680)
+RecvChannel-PartLevel-Pan = 20448 (0x4FE0)
+KeyRangeLo-RxHold-KeyRangeHi-RxPan = 44453 (0xADA5)
+VeloLevel-Threshold = 256 (0x0100)
+
+[2]
+Timbre-RxVolume-VoiceRsv-OutputAssign = 9344 (0x2480)
+RecvChannel-PartLevel-Pan = 28640 (0x6FE0)
+KeyRangeLo-RxHold-KeyRangeHi-RxPan = 47022 (0xB7AE)
+VeloLevel-Threshold = 256 (0x0100)
+
+[3]
+Timbre-RxVolume-VoiceRsv-OutputAssign = 9344 (0x2480)
+RecvChannel-PartLevel-Pan = 36832 (0x8FE0)
+KeyRangeLo-RxHold-KeyRangeHi-RxPan = 48312 (0xBCB8)
+VeloLevel-Threshold = 256 (0x0100)
+
+[4]
+Timbre-RxVolume-VoiceRsv-OutputAssign = ?? (0x2480)
+
+
+

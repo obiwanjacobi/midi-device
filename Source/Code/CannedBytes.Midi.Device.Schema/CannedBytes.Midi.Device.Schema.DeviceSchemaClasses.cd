@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CannedBytes.Midi.Device.Schema.DataType">
+    <Position X="6" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgEABAIgAAYAAQAgAA=</HashCode>
+      <FileName>DataType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BaseType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="BaseTypes" />
+      <Property Name="Constraints" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.RecordType">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Fields" Type="CannedBytes.Midi.Device.Schema.Field" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.562" Y="2.365" />
+        <Point X="6.562" Y="4.108" />
+        <Point X="5" Y="4.108" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAABAQACAAAACAAAAAAAAAAAAIAAAAAAAAgAA=</HashCode>
+      <FileName>RecordType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BaseType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Fields" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Constraint">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAIACAAAAAAAAAAAQAAAEEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constraint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Field">
+    <Position X="3.5" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="DataType" Type="CannedBytes.Midi.Device.Schema.DataType" FixedFromPoint="true">
+      <Path>
+        <Point X="5" Y="4.6" />
+        <Point X="6.235" Y="4.6" />
+        <Point X="6.235" Y="5.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="RecordType" Type="CannedBytes.Midi.Device.Schema.RecordType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.25" Y="3.75" />
+        <Point X="4.25" Y="2.2" />
+        <Point X="5.75" Y="2.2" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="DeclaringRecord" Type="CannedBytes.Midi.Device.Schema.RecordType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.938" Y="3.75" />
+        <Point X="3.938" Y="1.882" />
+        <Point X="5.75" Y="1.882" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Constraints" Type="CannedBytes.Midi.Device.Schema.Constraint" ManuallyRouted="true">
+      <Path>
+        <Point X="5" Y="4.354" />
+        <Point X="10.25" Y="4.354" />
+        <Point X="10.25" Y="5.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAEACICBABIAAAAAAAAQAAAAEAAAABAgQAAAAAEAEAA=</HashCode>
+      <FileName>Field.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataType" />
+      <Property Name="RecordType" />
+      <Property Name="DeclaringRecord" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Constraints" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.DeviceSchema">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="RootRecordTypes" Type="CannedBytes.Midi.Device.Schema.RecordType" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="1.297" />
+        <Point X="5.75" Y="1.297" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAQAAAAgAAAARAAAAEAAAAAAAABABAEAA=</HashCode>
+      <FileName>DeviceSchema.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AllRecordTypes" />
+      <Property Name="AllDataTypes" />
+      <Property Name="RootRecordTypes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

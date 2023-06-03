@@ -1,0 +1,61 @@
+Dynamic Type Creation
+---------------------
+When an address and a size are to be de-referenced to a specific RecordType it
+is possible that this RecordType is not defined as is in the original device 
+schema. Assuming the ToPhysical and ToLogical conversions operate based on a 
+RecordType, we need to create a RecordType on the fly containing the Fields and
+other (sub) RecordTypes requested for by the address/size combination.
+
+Certain rules should apply to generating a RecordType dynamically. One problem
+is the type of the RecordType(s) that contain the fragmented content (Fields).
+Say we request through an address/size value a sequence of Fields that span 
+three RecordTypes as defined in the device schema, we may need to modify the 
+first and the last RecordType in such a way that they only contain the Fields
+that were requested. Consider the following example where the a: is the start
+of the address requested and s: is the end of the size (including).
+
+<RecordType1>
+    <Field1.1>
+a:  <Field1.2>
+    <Field1.3>
+</RecordType1>
+<RecordType2>
+    <Field2.1>
+s:  <Field2.2>
+    <Field2.3>
+</RecordType2>
+
+Clearly we cannot use the RecordType1 and RecordType2 type without 
+modification. We should create a new RecordType that contains all the fields.
+Or perhaps two RecordTypes that contain the fields to be included from 
+RecordType1 and RecordType2. Below the adjusted types:
+
+<RecordType1'>
+a:  <Field1.2>
+    <Field1.3>
+</RecordType1'>
+<RecordType2'>
+    <Field2.1>
+s:  <Field2.2>
+</RecordType2'>
+
+NOTE: Below is not feasible or wanted. This has to do with byte-unpacking logic
+that has been assigned to the GroupConverter (RecordType). The fact that records
+need to be chopped up does not excuse the burden of group processing.
+
+NOTE: This is the current implementation (which need to change).
+Creating two types in this scenario is not necessary if we can prohibit address
+map RecordTypes to be 'complex'. No derivation or special processing (and no 
+extensibility). That would allow us to create one dynamic RecordType that 
+simply contains all the Fields requested through the address/size.
+ 
+<DynaRecordType>
+a:  <Field1.2>
+    <Field1.3>
+    <Field2.1>
+s:  <Field2.2> 
+</DynaRecordType>
+
+Fields will still be extensible but group-level extensibility will not be 
+possible in this case because we cannot combine the logic of multiple 
+RecordType-GroupConverters to one dynamic RecordType/GroupConverter.

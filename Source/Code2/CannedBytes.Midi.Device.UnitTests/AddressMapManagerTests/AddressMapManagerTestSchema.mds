@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/midi-device-schema/AddressMapManagerTestSchema"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/AddressMapManagerTestSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="AddressMap">
+    <mds:extension base="m:midiAddressMap">
+      <mds:sequence>
+        <mds:field name="Field1" type="Record1" repeats="2" mds:address="10H" mds:size="10H" />
+        <mds:field name="Field2" type="Record2" repeats="2" mds:address="100H" mds:size="10H" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Record1">
+    <mds:sequence>
+      <mds:field name="Field1a" type="m:midiData" />
+      <mds:field name="Field1b" type="m:midiData" />
+      <mds:field name="Field1c" type="m:midiData" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="Record2">
+    <mds:sequence>
+      <mds:field name="Field2a" type="m:midiData" />
+      <mds:field name="Field2b" type="m:midiData" />
+    </mds:sequence>
+  </mds:recordType>
+  
+  <mds:recordType name="RootMessage">
+    <mds:extension base="m:midiSysEx">
+      <mds:sequence>
+        <mds:field name="Address" type="m:midiData" mds:property="address" />
+        <mds:field name="Size" type="m:midiData" mds:property="size" />
+        <mds:field name="AddressMap" type="AddressMap" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+</mds:deviceSchema>

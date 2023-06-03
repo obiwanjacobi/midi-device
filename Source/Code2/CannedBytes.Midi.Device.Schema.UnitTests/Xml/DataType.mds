@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1" version="1.0"
+  xmlns="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1"
+  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <mds:annotation>
+    <mds:documentation xml:lang="en">This is the DataType schema.</mds:documentation>
+  </mds:annotation>
+  
+  <mds:dataType name="midiByte">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiByte is the base type for all (simple) midi types. It represents an unsigned 8-bit byte.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="xs:unsignedByte" />
+  </mds:dataType>
+
+  <mds:dataType name="midiData">
+    <mds:restriction base="midiByte">
+      <mds:minimum value="0" />
+      <mds:maximum value="127" />
+    </mds:restriction>
+  </mds:dataType>
+  
+</mds:deviceSchema>

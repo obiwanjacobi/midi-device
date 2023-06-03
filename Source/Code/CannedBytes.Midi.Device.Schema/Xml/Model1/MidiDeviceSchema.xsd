@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MidiDeviceSchema" elementFormDefault="qualified" version="1.0"
+    targetNamespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:complexType name="openAttrs">
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="annotated">
+    <xs:complexContent>
+      <xs:extension base="openAttrs">
+        <xs:sequence>
+          <xs:element ref="annotation" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!--
+    Represents a complete device schema.
+
+    Import: import other device schemas.
+    Documentation:
+  -->
+
+  <xs:element name="deviceSchema">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="openAttrs">
+          <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element ref="import"/>
+              <xs:element ref="annotation"/>
+            </xs:choice>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element ref="dataType"/>
+              <xs:element ref="recordType"/>
+            </xs:choice>
+          </xs:sequence>
+          <xs:attribute name="schema" type="xs:anyURI"/>
+          <xs:attribute name="version" type="xs:token"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="import">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="annotated">
+          <xs:attribute name="schema" type="xs:anyURI"/>
+          <xs:attribute name="name" type="xs:anyURI"/>
+          <xs:attribute name="assembly" type="xs:anyURI"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <!--
+    Represents a grouping of fields and a GroupConverter
+
+    Inheritance: inherit from other RecordTypes.
+    Documentation:
+  -->
+
+  <xs:group name="typeDefParticle">
+    <xs:choice>
+      <xs:element ref="sequence"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:element name="sequence" type="fieldSequence"/>
+
+  <xs:complexType name="fieldSequence">
+    <xs:sequence>
+      <xs:element name="field" type="localField" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="recordRestrictionType">
+    <xs:sequence>
+      <xs:group ref="typeDefParticle" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="base" type="xs:QName" use="required"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+
+  <xs:complexType name="recordExtensionType">
+    <xs:sequence>
+      <xs:group ref="typeDefParticle" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="base" type="xs:QName" use="required"/>
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:complexType>
+
+  <xs:group name="recordTypeModel">
+    <xs:choice>
+      <xs:element name="restriction" type="recordRestrictionType"/>
+      <xs:element name="extension" type="recordExtensionType"/>
+      <xs:group ref="typeDefParticle" minOccurs="0" maxOccurs="1"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:complexType name="recordType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="annotated">
+        <xs:group ref="recordTypeModel"/>
+        <xs:attribute name="name" type="xs:NCName"/>
+        <xs:attribute ref="width" use="optional"/>
+        <xs:attribute name="abstract" type="xs:boolean" use="optional" default="false"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="topLevelRecordType">
+    <xs:complexContent>
+      <xs:restriction base="recordType">
+        <xs:sequence>
+          <xs:element ref="annotation" minOccurs="0"/>
+          <xs:group ref="recordTypeModel"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:NCName" use="required"/>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="recordType" type="topLevelRecordType"/>
+
+  <!--
+    Field:
+  -->
+
+  <xs:complexType name="field" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="annotated">
+        <xs:attribute name="name" type="xs:NCName" use="required"/>
+        <xs:attribute name="type" type="xs:QName" use="required"/>
+        <xs:attribute name="fixed" type="xs:string" use="optional"/>
+        <xs:attribute name="repeats" type="xs:nonNegativeInteger" use="optional" default="1"/>
+        <xs:attribute ref="width" use ="optional"/>
+        <xs:attribute ref="property" use="optional"/>
+        <xs:attribute ref="address" use="optional"/>
+        <xs:attribute ref="size" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="localField">
+    <xs:complexContent>
+      <xs:restriction base="field">
+        <xs:sequence>
+          <xs:element ref="annotation" minOccurs="0"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!--
+    Represent a data type and a DataConverter
+
+    Constraints: min, max, length, fixed, enum and offset.
+    Inheritance (restrict/extend):
+    Union:
+    Documentation:
+  -->
+
+  <xs:element name="dataType" type="topLevelDataType"/>
+
+  <xs:simpleType name="bitOrder">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LittleEndian" />
+      <xs:enumeration value ="BigEndian" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="dataType" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="annotated">
+        <xs:group ref="dataTypeDerivation"/>
+        <xs:attribute name="name" type="xs:NCName"/>
+        <xs:attribute name="abstract" type="xs:boolean" use="optional" default="false"/>
+        <xs:attribute name="valueOffset" type="xs:int" use="optional" default="0"/>
+        <xs:attribute name="bitOrder" type="bitOrder" use="optional" default="BigEndian"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="topLevelDataType">
+    <xs:complexContent>
+      <xs:restriction base="dataType">
+        <xs:sequence>
+          <xs:element ref="annotation" minOccurs="0"/>
+          <xs:group ref="dataTypeDerivation"/>
+        </xs:sequence>
+        <xs:attribute name="name" use="required" type="xs:NCName"/>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="localDataType">
+    <xs:complexContent>
+      <xs:restriction base="dataType">
+        <xs:sequence>
+          <xs:element ref="annotation" minOccurs="0"/>
+          <xs:group ref="dataTypeDerivation"/>
+        </xs:sequence>
+        <xs:attribute name="name" use="prohibited"/>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:group name="dataTypeDerivation">
+    <xs:choice>
+      <xs:element ref="extension"/>
+      <xs:element ref="restriction"/>
+      <xs:element ref="union"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:element name="extension">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="annotated">
+          <xs:group ref="dataTypeExtensionModel"/>
+          <xs:attribute name="baseTypes">
+            <xs:simpleType>
+              <xs:list itemType="xs:QName"/>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="dataTypeExtensionModel">
+    <xs:sequence>
+      <!--<xs:element name="dataType" type="localDataType" minOccurs="0"/>-->
+      <xs:group ref="constraints" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:element name="restriction">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="annotated">
+          <xs:group ref="dataTypeRestrictionModel"/>
+          <xs:attribute name="base" type="xs:QName" use="optional"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="dataTypeRestrictionModel">
+    <xs:sequence>
+      <!--<xs:element name="dataType" type="localDataType" minOccurs="0"/>-->
+      <xs:group ref="constraints" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:element name="union">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="annotated">
+          <xs:sequence>
+            <xs:element name="dataType" type="localDataType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+          <xs:attribute name="memberTypes" use="optional">
+            <xs:simpleType>
+              <xs:list itemType="xs:QName"/>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:group name="constraints">
+    <xs:choice>
+      <xs:element ref="minimum"/>
+      <xs:element ref="maximum"/>
+      <xs:element ref="fixed"/>
+      <xs:element ref="length"/>
+      <xs:element ref="enumeration"/>
+    </xs:choice>
+  </xs:group>
+
+  <xs:complexType name="facet">
+    <xs:complexContent>
+      <xs:extension base="annotated">
+        <xs:attribute name="value" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="uintFacet">
+    <xs:complexContent>
+      <xs:restriction base="facet">
+        <xs:sequence>
+          <xs:element ref="annotation" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:nonNegativeInteger" use="required"/>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="intFacet">
+    <xs:complexContent>
+      <xs:restriction base="facet">
+        <xs:sequence>
+          <xs:element ref="annotation" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:integer" use="required"/>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="enumFacet">
+    <xs:complexContent>
+      <xs:extension base="facet">
+        <xs:attribute name="name" use="required" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="minimum" type="facet"/>
+  <xs:element name="maximum" type="facet"/>
+  <xs:element name="length" type="uintFacet"/>
+  <xs:element name="enumeration" type="enumFacet"/>
+  <xs:element name="fixed" type="facet"/>
+
+  <xs:element name="documentation">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:any processContents="lax"/>
+      </xs:sequence>
+      <xs:attribute name="source" type="xs:anyURI"/>
+      <xs:attribute name="lang" type="xs:string"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="annotation">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="openAttrs">
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="appInfo"/>
+            <xs:element ref="documentation"/>
+          </xs:choice>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="appInfo">
+    <xs:complexType mixed="true">
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:any processContents="lax"/>
+      </xs:sequence>
+      <xs:attribute name="source" type="xs:anyURI"/>
+      <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- ************************************************************************************************* -->
+
+  <xs:attribute name="width" type="xs:unsignedInt">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        The width attribute is used on multi byte operations on record level (group converter) to indicate how many bytes represent one logical unit.
+        Similar to the length constraint on (simple) data types.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+
+  <xs:attribute name="property" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        The property attribute is used on a single field in a sysex message schema to indicate the field that (uniquely?) identifies
+        some property of that schema (property="manufacturer"). These properties will be available in the MidiDeviceDataContext when
+        the schema is interpreted (DeviceProperties).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+
+  <xs:attribute name="address" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        The address attribute is used on the address map entries (fields) to position them in the address space.
+        Needed when (big) gaps are in the address map or the first entry does not start on 0. Also useful for partial
+        implementations of a device's address map. The value is specified in either a decimal value (eg. '2143') or
+        a hex-byte value - usually taken from the documentation. Uses spaces or minusus to separate the bytes
+        (eg. '00-06-00')
+      </xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+
+  <xs:attribute name="size" type="xs:string">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        The size attribute is used on the address map entries (fields) to position the next clone in the address space.
+        The value is specified in either a decimal value (eg. '2143') or
+        a hex-byte value - usually taken from the documentation. Uses spaces or minusus to separate the bytes
+        (eg. '00-06-00')
+      </xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+</xs:schema>

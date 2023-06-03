@@ -1,0 +1,38 @@
+Several sysex checksum calculations exist:
+------------------------------------------
+
+Universal SysEx Checksum calculation:
+-------------------------------------
+The checksum field, where present, is calculated by successively XOR'ing the
+bytes in the message, excluding the F0, F7, and the checksum field. The 
+resulting value is then AND'ed with 7F, to create a 7 bit value.
+
+
+Roland SysEx Checksum calculation:
+----------------------------------
+Add the 'data' bytes in the message (starting after the command Id up to -but 
+not including the checksum) and devide by 80(h). Then subtract the value from
+80(h) to calculate the checksum value.
+
+Official Roland Documentation:
+The checksum is a value derived by adding the address, size and checksum itself and
+inverting the lower 7 bits. Here's an example of how the checksum is calculated. We will
+assume that in the exclusive message we are transmitting, the address is aa bb and the data
+or size is ccH.
+aa + bb + cc = sum
+sum / 128 = quotient ... remainder
+128 - remainder = checksum
+<Example> Setting DETUNE to DEPTH 4
+According to the “Parameter Address Map,” the DETUNE Address is 01 20H, and DEPTH 4
+is a value of 40H. Thus,
+F0 41 00 1A 12 01 20 40 ?? F7
+(1) (2) (3) (4) (5) address data checksum (6)
+(1) Exclusive Status, (2) ID (Roland), (3) Device ID (UNIT#-1),
+(4) Model ID (C-80), (5) Command ID (DT1), (6) End of Exclusive
+* UNIT# must be set to the same channel as the basic channel. The basic channel is ch. 1 in
+the example message above.
+Next we calculate the checksum.
+01H + 20H + 40H = 1 + 32 + 64 = 97 (sum)
+97 (sum) / 128 = 0 (quotient) ... 97 (remainder)
+checksum = 128 - 97 (remainder) = 31 = 1FH
+This means that F0 41 00 1A 12 01 20 40 1F F7 is the message we transmit.

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/A-880/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/Roland/A-880/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:a="http://schemas.cannedbytes.com/midi-device-schema/message-types/10"
+    xmlns:r="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+>
+  <mds:annotation>
+    <mds:documentation>Midi Device Schema for the Roland A-880 Midi 8x8 Patchbay.</mds:documentation>
+  </mds:annotation>
+  
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/message-types/10" assembly="CannedBytes.Midi.Device.Message" name="MidiMessageTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
+
+  <!--  -->
+  <mds:recordType name="AddressMap">
+    <mds:extension base="a:midiAddressMap">
+      <mds:sequence>
+        <mds:field name="MixMaster" type="mixMaster" />
+        <mds:field name="MixSlave" type="mixSlave" />
+        <mds:field name="MidiOut1" type="midiOut" />
+        <mds:field name="MidiOut2" type="midiOut" />
+        <mds:field name="MidiOut3" type="midiOut" />
+        <mds:field name="MidiOut4" type="midiOut" />
+        <mds:field name="MidiOut5" type="midiOut" />
+        <mds:field name="MidiOut6" type="midiOut" />
+        <mds:field name="MidiOut7" type="midiOut" />
+        <mds:field name="MidiOut8" type="midiOut" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+  
+  <mds:dataType name="mixMaster">
+    <mds:restriction base="m:midiBit0-2">
+      <mds:enumeration name="MidiIn1" value="0" />
+      <mds:enumeration name="MidiIn2" value="1" />
+      <mds:enumeration name="MidiIn3" value="2" />
+      <mds:enumeration name="MidiIn4" value="3" />
+      <mds:enumeration name="MidiIn5" value="4" />
+      <mds:enumeration name="MidiIn6" value="5" />
+      <mds:enumeration name="MidiIn7" value="6" />
+      <mds:enumeration name="MidiIn8" value="7" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="mixSlave">
+    <mds:restriction base="m:midiBit4-6">
+      <mds:enumeration name="MidiIn1" value="0" />
+      <mds:enumeration name="MidiIn2" value="1" />
+      <mds:enumeration name="MidiIn3" value="2" />
+      <mds:enumeration name="MidiIn4" value="3" />
+      <mds:enumeration name="MidiIn5" value="4" />
+      <mds:enumeration name="MidiIn6" value="5" />
+      <mds:enumeration name="MidiIn7" value="6" />
+      <mds:enumeration name="MidiIn8" value="7" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiOut">
+    <mds:restriction base="m:midiBit0-4">
+      <mds:enumeration name="NotConnected" value="0" />
+      <mds:enumeration name="MidiIn1" value="1" />
+      <mds:enumeration name="MidiIn2" value="2" />
+      <mds:enumeration name="MidiIn3" value="3" />
+      <mds:enumeration name="MidiIn4" value="4" />
+      <mds:enumeration name="MidiIn5" value="5" />
+      <mds:enumeration name="MidiIn6" value="6" />
+      <mds:enumeration name="MidiIn7" value="7" />
+      <mds:enumeration name="MidiIn8" value="8" />
+      <mds:enumeration name="MixedIns" value="9" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:recordType name="RQ1ChecksumScope">
+    <mds:sequence>
+      <mds:field name="AddressSize" type="r:AddressSize1" />
+      <mds:field name="checksum" type="r:rolandChecksum" />
+    </mds:sequence>
+  </mds:recordType>
+  
+  <mds:recordType name="RQ1">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+      <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+      <mds:field name="ModelId" type="RolandA880ModelId" />
+      <mds:field name="CommandId" type="r:RQ1CommandId" />
+      <mds:field name="body" type="RQ1ChecksumScope" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="DT1ChecksumScope">
+    <mds:sequence>
+      <mds:field name="Address" type="r:Address1" />
+      <mds:field name="AddressMap" type="AddressMap" />
+      <mds:field name="checksum" type="r:rolandChecksum" />
+    </mds:sequence>
+  </mds:recordType>
+  
+  <mds:recordType name="DT1">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+      <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+      <mds:field name="ModelId" type="RolandA880ModelId" />
+      <mds:field name="CommandId" type="r:DT1CommandId" />
+      <mds:field name="body" type="DT1ChecksumScope" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:dataType name="RolandA880ModelId">
+    <mds:restriction base="r:RolandId1">
+      <mds:enumeration value="32" name="A880" />
+    </mds:restriction>
+  </mds:dataType>
+  
+</mds:deviceSchema>

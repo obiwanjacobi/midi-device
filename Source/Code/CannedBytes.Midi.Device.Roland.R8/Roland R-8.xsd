@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Roland_R-8" elementFormDefault="qualified" version="1.0.0.0"
+           targetNamespace="urn:midi-device-schema:Roland:R-8.xsd"
+           xmlns="urn:midi-device-schema:Roland:R-8.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:r="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+           xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <xs:import namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" schemaLocation="CannedBytes.Midi.Device/MidiTypes.xsd" />
+  <xs:import namespace="http://schemas.cannedbytes.com/midi-device-schema/Roland/10" schemaLocation="CannedBytes.Midi.Device.Roland/Roland.xsd" />
+
+  <xs:complexType name="AddressMap">
+    <xs:sequence>
+      <xs:element name="SoundParameter" type="SoundParameter" minOccurs="0" maxOccurs="120" />
+      <xs:element name="PerformanceParameter" type="PerformanceParameter" minOccurs="0" maxOccurs="96" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SoundParameter">
+    <xs:sequence>
+      <xs:element name="Pitch" type="pitch" />
+      <xs:element name="SignPitch" type="sign" />
+      <xs:element name="DecayPartial1" type="xs:string" />
+      <xs:element name="DecayPartial2" type="xs:string" />
+      <xs:element name="Nuance" type="xs:string" />
+      <xs:element name="Output" type="xs:string" />
+      <xs:element name="AssignType" type="xs:string" />
+      <xs:element name="Curve" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PerformanceParameter">
+    <xs:sequence>
+      <xs:element name="Pitch" type="pitch" />
+      <xs:element name="SignPitch" type="sign" />
+      <xs:element name="Decay" type="xs:byte" />
+      <xs:element name="Nuance" type="xs:byte" />
+      <xs:element name="Pan" type="xs:byte" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="pitch">
+    <xs:restriction base="m:midiUnsigned16">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="480" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="sign">
+    <xs:restriction base="m:midiBit0" />
+  </xs:simpleType>
+
+</xs:schema>

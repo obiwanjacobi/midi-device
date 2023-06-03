@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="AddressBE2" mds:width="2">
+    <mds:extension base="m:midiBigEndian">
+      <mds:sequence>
+        <mds:field name="Address" type="Address2" mds:property="address" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="AddressBE3" mds:width="3">
+    <mds:extension base="m:midiBigEndian">
+      <mds:sequence>
+        <mds:field name="Address" type="Address3" mds:property="address" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="AddressSize1" mds:width="1">
+    <mds:sequence>
+      <mds:field name="Address" type="Address1" mds:property="address" />
+      <mds:field name="Size" type="Size1" mds:property="size" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="AddressSizeBE2" mds:width="2">
+    <mds:extension base="m:midiBigEndian">
+      <mds:sequence>
+        <mds:field name="Address" type="Address2" mds:property="address" />
+        <mds:field name="Size" type="Size2" mds:property="size" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="AddressSizeBE3" mds:width="3">
+    <mds:extension base="m:midiBigEndian">
+      <mds:sequence>
+        <mds:field name="Address" type="Address3" mds:property="address" />
+        <mds:field name="Size" type="Size3" mds:property="size" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="rolandChecksum">
+    <mds:extension base="m:midiChecksum" />
+  </mds:recordType>
+  
+  <mds:dataType name="Address1">
+    <mds:restriction base="m:midiData" />
+  </mds:dataType>
+
+  <mds:dataType name="Address2">
+    <mds:restriction base="m:midiUnsigned16" />
+  </mds:dataType>
+
+  <mds:dataType name="Address3">
+    <mds:restriction base="m:midiUnsigned24" />
+  </mds:dataType>
+
+  <mds:dataType name="Size1">
+    <mds:restriction base="m:midiData" />
+  </mds:dataType>
+
+  <mds:dataType name="Size2">
+    <mds:restriction base="m:midiUnsigned16" />
+  </mds:dataType>
+
+  <mds:dataType name="Size3">
+    <mds:restriction base="m:midiUnsigned24" />
+  </mds:dataType>
+
+  <mds:dataType name="RolandManufacturer">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration value="65" name="RolandId" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="RQ1CommandId">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration value="17" name="RQ1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="DT1CommandId">
+    <mds:restriction base="m:midiData">
+      <mds:enumeration value="18" name="DT1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="RolandId1">
+    <mds:restriction base="m:midiData" />
+  </mds:dataType>
+
+  <mds:dataType name="RolandId2">
+    <mds:restriction base="m:midiUnsigned16" />
+  </mds:dataType>
+
+  <mds:dataType name="RolandId3">
+    <mds:restriction base="m:midiUnsigned24" />
+  </mds:dataType>
+
+</mds:deviceSchema>

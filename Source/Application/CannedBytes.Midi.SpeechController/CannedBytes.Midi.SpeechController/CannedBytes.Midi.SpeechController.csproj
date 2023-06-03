@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B004D14-76F2-4435-BE99-9280971DF149}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CannedBytes.Midi.SpeechController</RootNamespace>
+    <AssemblyName>CannedBytes.Midi.SpeechController</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CannedBytes">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Components">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.Midi.Message">
+      <HintPath>..\..\..\_SharedAssemblies\CannedBytes.Midi.Message.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AboutTabControl.xaml.cs">
+      <DependentUpon>AboutTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BindingContextData.cs" />
+    <Compile Include="ComponentFramework\IServiceContainer.cs" />
+    <Compile Include="ComponentFramework\IServiceContainerHost.cs" />
+    <Compile Include="ComponentFramework\IServiceProvider.cs" />
+    <Compile Include="ComponentFramework\ServiceContainer.cs" />
+    <Compile Include="EditTabControl.xaml.cs">
+      <DependentUpon>EditTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FileTabControl.xaml.cs">
+      <DependentUpon>FileTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HasSelectionConverter.cs" />
+    <Compile Include="MidiCommandTemplateSelector.cs" />
+    <Compile Include="RunTabControl.xaml.cs">
+      <DependentUpon>RunTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Serialization\FileReader.cs" />
+    <Compile Include="Serialization\FileSchemaManager.cs" />
+    <Compile Include="Serialization\FileWriter.cs" />
+    <Compile Include="Serialization\IDeserializer.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
+    <Compile Include="Serialization\Version10\Deserializer.cs" />
+    <Compile Include="Serialization\Version10\MidiSchema10_DocumentSchema10.cs" />
+    <Compile Include="Serialization\Version10\Serializer.cs" />
+    <Compile Include="Service\AudioService.cs" />
+    <Compile Include="Service\BinaryTextService.cs" />
+    <Compile Include="Service\IAudioService.cs" />
+    <Compile Include="Service\IBinaryTextService.cs" />
+    <Compile Include="Service\IMidiMessageFactory.cs" />
+    <Compile Include="Service\IMidiOutPortService.cs" />
+    <Compile Include="Service\IPatchExecuter.cs" />
+    <Compile Include="Service\ISpeechInitializionService.cs" />
+    <Compile Include="Service\ISpeechRecognizerService.cs" />
+    <Compile Include="Service\ITextToSpeechService.cs" />
+    <Compile Include="Service\MidiMessageFactory.cs" />
+    <Compile Include="Service\MidiOutPortService.cs" />
+    <Compile Include="Service\PatchExecuter.cs" />
+    <Compile Include="Service\SpeechInitializationService.cs" />
+    <Compile Include="Service\SpeechRecognizerService.cs" />
+    <Compile Include="Service\TextToSpeechService.cs" />
+    <Page Include="AboutTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="EditTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FileTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dependencies\DependencyLoader.cs" />
+    <Compile Include="DomainModel\AudioFeedbackType.cs" />
+    <Compile Include="DomainModel\MidiCommand.cs" />
+    <Compile Include="DomainModel\MidiCommandCollection.cs" />
+    <Compile Include="DomainModel\MidiCommandType.cs" />
+    <Compile Include="DomainModel\ObservableObject.cs" />
+    <Compile Include="DomainModel\Patch.cs" />
+    <Compile Include="DomainModel\PatchCollection.cs" />
+    <Compile Include="DomainModel\PatchView.cs" />
+    <Compile Include="DomainModel\Preset.cs" />
+    <Compile Include="DomainModel\PresetCollection.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="RunTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <EmbeddedResource Include="TestDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Serialization\FileSchema10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Serialization\MidiSchema10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Serialization\Version10\DocumentSchema10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Serialization\Version10\GenerateClasses.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Speech.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchemaTypes" version="1.0"
+  xmlns="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchemaTypes"
+  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+
+  <mds:dataType name="midiByte">
+    <mds:restriction base="xs:unsignedByte" />
+  </mds:dataType>
+
+  <mds:dataType name="midiData">
+    <mds:restriction base="midiByte">
+      <mds:minimum value="0" />
+      <mds:maximum value="127" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiStatus">
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="8" name="NoteOff" />
+      <mds:enumeration value="9" name="NoteOn" />
+      <mds:enumeration value="10" name="AfterTouch" />
+      <mds:enumeration value="11" name="ControlChange" />
+      <mds:enumeration value="12" name="ProgramChange" />
+      <mds:enumeration value="13" name="ChannelPresure" />
+      <mds:enumeration value="14" name="PitchWheel" />
+      <mds:enumeration value="15" name="System" />
+      <mds:minimum value="8" />
+      <mds:maximum value="15" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiString">
+    <mds:restriction base="xs:string">
+      <mds:length value="10" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="modelId">
+    <mds:restriction base="xs:string">
+      <mds:fixed value="16" />
+    </mds:restriction>
+  </mds:dataType>
+  
+</mds:deviceSchema>

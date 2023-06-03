@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FileSchema" version="1.0.0.0" elementFormDefault="qualified"
+    targetNamespace="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/FileSchema/10"
+    xmlns="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/FileSchema/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="File" type="File"/>
+
+  <xs:complexType name="File">
+    <xs:sequence>
+      <xs:element name="Properties" type="Properties" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Document" type="Document" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Properties">
+    <xs:sequence>
+      <xs:element name="FileVersion" type="xs:string" />
+      <!--<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded" />-->
+    </xs:sequence>
+    <!--<xs:anyAttribute processContents="lax" />-->
+  </xs:complexType>
+
+  <xs:complexType name="Document" abstract="true">
+    <xs:sequence>
+      <!--<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded" />-->
+    </xs:sequence>
+    <!--<xs:anyAttribute processContents="lax" />-->
+  </xs:complexType>
+</xs:schema>

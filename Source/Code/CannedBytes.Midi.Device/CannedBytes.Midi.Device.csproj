@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{27A16EC8-EC6A-466D-9B79-E69BABD63EC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CannedBytes.Midi.Device</RootNamespace>
+    <AssemblyName>CannedBytes.Midi.Device</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CannedBytes">
+      <HintPath>..\..\_SharedAssemblies\CannedBytes.dll</HintPath>
+    </Reference>
+    <Reference Include="CannedBytes.IO">
+      <HintPath>..\..\_SharedAssemblies\CannedBytes.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BigEndianStreamReader.cs" />
+    <Compile Include="BigEndianStreamWriter.cs" />
+    <Compile Include="BitFlags.cs" />
+    <Compile Include="Carry.cs" />
+    <Compile Include="Converters\BigEndianStream.cs" />
+    <Compile Include="Converters\BitConverter.ConverterProcess.cs" />
+    <Compile Include="Converters\CachedStream.cs" />
+    <Compile Include="Converters\ConverterExtension.cs" />
+    <Compile Include="Converters\ConverterFactoryAttribute.cs" />
+    <Compile Include="Converters\BigEndianGroupConverter.cs" />
+    <Compile Include="Converters\ConverterProcess.cs" />
+    <Compile Include="Converters\FieldData.cs" />
+    <Compile Include="Converters\IConverterExtension.cs" />
+    <Compile Include="Converters\IConverterProcess.cs" />
+    <Compile Include="Converters\SevenByteShift56GroupConverter.cs" />
+    <Compile Include="Converters\SevenByteShift56Stream.cs" />
+    <Compile Include="Converters\SignedConverter.ConverterProcess.cs" />
+    <Compile Include="Converters\SignedConverter.cs" />
+    <Compile Include="Converters\SplitNibbleBEGroupConverter.cs" />
+    <Compile Include="Converters\SplitNibbleLEGroupConverter.cs" />
+    <Compile Include="Converters\SplitNibbleStream.cs" />
+    <Compile Include="Converters\UnsignedConverter.ConverterProcess.cs" />
+    <Compile Include="MidiDevicePropertiesLogicalReader.cs" />
+    <Compile Include="FieldPathKey.cs" />
+    <Compile Include="LittleEndianStreamReader.cs" />
+    <Compile Include="LittleEndianStreamWriter.cs" />
+    <Compile Include="SysExStream.cs" />
+    <Compile Include="Converters\UnsignedConverter.cs" />
+    <Compile Include="DeviceConstants.cs" />
+    <Compile Include="Converters\BitConverter.cs" />
+    <Compile Include="Converters\BufferedGroupConverter.cs" />
+    <Compile Include="Converters\ByteConverter.cs" />
+    <Compile Include="Converters\ChecksumConverter.cs" />
+    <Compile Include="Converters\Converter.cs" />
+    <Compile Include="Converters\ConverterFactory.cs" />
+    <Compile Include="Converters\ConverterManager.cs" />
+    <Compile Include="Converters\FieldConverterMap.cs" />
+    <Compile Include="Converters\FieldConverterPair.cs" />
+    <Compile Include="Converters\GroupConverter.cs" />
+    <Compile Include="Converters\IConverter.cs" />
+    <Compile Include="Converters\MidiTypesConverterFactory.cs" />
+    <Compile Include="Converters\NullByteConverter.cs" />
+    <Compile Include="Converters\StringConverter.cs" />
+    <Compile Include="DevicePropertyCollection.cs" />
+    <Compile Include="DeviceProviderAttribute.cs" />
+    <Compile Include="FieldConverterEnumerator.cs" />
+    <Compile Include="IMidiDeviceProvider.cs" />
+    <Compile Include="IMidiLogicalReader.cs" />
+    <Compile Include="IMidiLogicalWriter.cs" />
+    <Compile Include="MidiBinaryStreamReader.cs" />
+    <Compile Include="MidiBinaryStreamWriter.cs" />
+    <Compile Include="MidiDeviceDataContext.cs" />
+    <Compile Include="MidiDeviceDataException.cs" />
+    <Compile Include="MidiDeviceDataRecord.cs" />
+    <Compile Include="MidiDeviceDataRecordList.cs" />
+    <Compile Include="MidiDevicePropertiesLogicalWriter.cs" />
+    <Compile Include="MidiDeviceProvider.cs" />
+    <Compile Include="MidiLogicalContext.cs" />
+    <Compile Include="MidiLogicalStreamReader.cs" />
+    <Compile Include="MidiLogicalStreamWriter.cs" />
+    <Compile Include="MidiLogicalXmlReader.cs" />
+    <Compile Include="MidiLogicalXmlWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Converters\CannedBytes.Midi.Device.Converters.Classes.cd" />
+    <EmbeddedResource Include="MidiTypes.mds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj">
+      <Project>{203e5be6-ed33-450a-94b3-791c99b6f8ea}</Project>
+      <Name>CannedBytes.Midi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj">
+      <Project>{29B41C20-E43B-42A7-AD23-DA6060A33825}</Project>
+      <Name>CannedBytes.Midi.Device.Schema</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\_SharedAssemblies\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

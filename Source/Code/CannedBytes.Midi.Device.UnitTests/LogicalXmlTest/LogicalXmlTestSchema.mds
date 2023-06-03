@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+           schema="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/LogicalXmlTestSchema.xsd"
+           xmlns="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/LogicalXmlTestSchema.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+           xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="deviceSchemaTest">
+    <mds:sequence>
+      <mds:field name="SysExData" type="m:midiData" />
+      <mds:field name="Bit0" type="m:midiBit0" />
+      <mds:field name="Bit1" type="m:midiBit1" />
+      <mds:field name="Bit2" type="m:midiBit2" />
+      <mds:field name="Bit3" type="m:midiBit3" />
+      <mds:field name="Bit4" type="m:midiBit4" />
+      <mds:field name="Bit5" type="m:midiBit5" />
+      <mds:field name="Bit6" type="m:midiBit6" />
+      <mds:field name="LowNibble" type="m:midiLSNibble" />
+      <mds:field name="HiNibble" type="m:midiMSNibble" />
+      <mds:field name="Name" type="ProductName" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:dataType name="ProductName">
+    <mds:restriction base="m:midiString">
+      <mds:length value="5" />
+    </mds:restriction>
+  </mds:dataType>
+
+</mds:deviceSchema>

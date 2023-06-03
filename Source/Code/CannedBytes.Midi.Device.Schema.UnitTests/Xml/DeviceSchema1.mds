@@ -1,0 +1,449 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1" version="1.0"
+  xmlns="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1"
+  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <mds:annotation>
+    <mds:documentation xml:lang="en">The midiTypes schema represents the base types used in a midi device schema.</mds:documentation>
+  </mds:annotation>
+
+  <mds:dataType name="midiByte">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiByte is the base type for all (simple) midi types. It represents an unsigned 8-bit byte.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="xs:unsignedByte" />
+  </mds:dataType>
+
+  <mds:dataType name="midiData">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiData represents a data byte in a midi system exclusive message. Bit-7 -the most significant bit- is always zero.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:minimum value="0" />
+      <mds:maximum value="127" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiNull">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiNull is an indication that the field is a dummy or a filler.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiLSNibble">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiLSNibble represents the least significant nibble - the lower 4 bits (0-3).</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiNibble">
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiChannel">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiChannel represents the part of a midi status byte that contains the midi channel number.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiLSNibble">
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiStatus">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiStatus represents the part of a midi status byte that contains the midi event type.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiMSNibble">
+      <mds:enumeration value="8" name="NoteOff" />
+      <mds:enumeration value="9" name="NoteOn" />
+      <mds:enumeration value="10" name="AfterTouch" />
+      <mds:enumeration value="11" name="ControlChange" />
+      <mds:enumeration value="12" name="ProgramChange" />
+      <mds:enumeration value="13" name="ChannelPresure" />
+      <mds:enumeration value="14" name="PitchWheel" />
+      <mds:enumeration value="15" name="System" />
+      <mds:minimum value="8" />
+      <mds:maximum value="15" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiMSNibble">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiMSNibble represents the most significant nibble - the upper 4 bits (4-7).</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiNibble">
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiNibble">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiNibble represents 4 bits of data (abstract).</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:minimum value="0" />
+      <mds:maximum value="15" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit0">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit0 marks the first bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit1">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit1 marks the second bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit2">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit2 marks the third bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit3">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit3 marks the fourth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit4">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit4 marks the fifth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit5">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit5 marks the sixth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit6">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit6 marks the seventh bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit7">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit7 marks the eighth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit8">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit8 marks the nineth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit9">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit9 marks the tenth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit10">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit10 marks the eleventh bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit11">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit11 marks the twelveth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit12">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit12 marks the thirteenth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit13">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit13 marks the fourteenth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit14">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit14 marks the fifteenth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiBit15">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBit15 marks the sixteenth bit.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiByte">
+      <mds:enumeration value="0" name="Off" />
+      <mds:enumeration value="1" name="On" />
+      <mds:minimum value="0" />
+      <mds:maximum value="1" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiComposite">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiComposite is used as an abstract base type. It represents a single logical value that is made up of multiple physical bytes (abstract).</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="xs:string">
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiString">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiString can be used as a base type for character string fields. The derived type must specify the length contraint.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiComposite" />
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned is an abstract composite for forming an unsigned integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiComposite" />
+  </mds:dataType>
+
+  <mds:dataType name="midiSigned">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiSigned is an abstract composite for forming a signed integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiComposite" />
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned16">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned16 is a composite of 2 bytes forming an unsigned 16-bit integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiUnsigned">
+      <mds:length value="2" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned24">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned24 is a composite of 3 bytes forming an unsigned 24-bit integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiUnsigned">
+      <mds:length value="3" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned32">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned32 is a composite of 4 bytes forming an unsigned 32-bit integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiUnsigned">
+      <mds:length value="4" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned40">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned40 is a composite of 5 bytes forming an unsigned 40-bit integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiUnsigned">
+      <mds:length value="5" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned48">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned48 is a composite of 6 bytes forming an unsigned 48-bit integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiUnsigned">
+      <mds:length value="6" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned56">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned56 is a composite of 7 bytes forming an unsigned 56-bit integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiUnsigned">
+      <mds:length value="7" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiUnsigned64">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiUnsigned64 is a composite of 8 bytes forming an unsigned 64-bit long integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiUnsigned">
+      <mds:length value="8" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiSigned16">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiSigned16 is a composite of 2 bytes forming a signed 16-bit short integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiSigned">
+      <mds:length value="2" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiSigned32">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiSigned32 is a composite of 4 bytes forming a signed 32-bit integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiSigned">
+      <mds:length value="4" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiSigned64">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiSigned64 is a composite of 8 bytes forming a signed 64-bit long integer.</mds:documentation>
+    </mds:annotation>
+    <mds:restriction base="midiSigned">
+      <mds:length value="8" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="midiChecksum">
+    <mds:restriction base="midiData" />
+  </mds:dataType>
+
+  <mds:recordType name="midiSplitNibbleBE" abstract="true">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiSplitNibbleBE represents a data block that writes the most significat nibble first.</mds:documentation>
+    </mds:annotation>
+    <mds:extension base="midiBigEndian" />
+  </mds:recordType>
+
+  <mds:recordType name="midiSplitNibbleLE" abstract="true">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiSplitNibbleLE represents a data block that writes the least significat nibble first.</mds:documentation>
+    </mds:annotation>
+    <mds:extension base="midiLittleEndian" />
+  </mds:recordType>
+
+  <mds:recordType name="midiBigEndian" abstract="true">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiBigEndian represents a data block that writes the most significat byte first.</mds:documentation>
+    </mds:annotation>
+  </mds:recordType>
+
+  <mds:recordType name="midiLittleEndian" abstract="true">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">midiLittleEndian represents a data block that writes the least significat byte first.</mds:documentation>
+    </mds:annotation>
+  </mds:recordType>
+
+  <!--<mds:attribute name="width" type="xs:unsignedInt">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">
+        The width attribute is used on multi byte operations on record level (group converter) to indicate how many bytes represent one logical unit.
+        Similar to the length constraint on (simple) data types.
+      </mds:documentation>
+    </mds:annotation>
+  </mds:attribute>
+
+  <mds:attribute name="property" type="xs:string">
+    <mds:annotation>
+      <mds:documentation xml:lang="en">
+        The property attribute is used on a single field in a sysex message schema to indicate the field that (uniquely?) identifies
+        some property of that schema (property="manufacturer"). These properties will be available in the MidiDeviceDataContext when
+        the schema is interpreted (DeviceProperties).
+      </mds:documentation>
+    </mds:annotation>
+  </mds:attribute>-->
+
+</mds:deviceSchema>

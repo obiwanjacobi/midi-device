@@ -1,0 +1,149 @@
+Midi Converter classes
+-----------------------
+
+The conversion from logical midi to physical midi and visa versa is done 
+through a chain of converters. The data-types of each field in the Midi Device
+Schema implies a specific data converter. All of the midi types available in 
+the schema language (expressed in Xml schema) is hardwired to a specific 
+converter implementation class (CLR type). 
+
+The order of converter execution is exactly the same as the field definition in
+the midi device schema (based on the data-types of those fields).
+
+The types of conversion that should be supported listed below are a result of a
+short study of the different flavors of sys ex implementations of various 
+manufacturers. Note that bit 7 of a sys ex data byte must always be zero. 
+
+During conversion of logical midi to physical or visa versa the conversion 
+context maintains the status and conversion info between converter calls.
+The context has a carry byte and a field that marks what data of the carry has 
+been read. The carry byte is cleared when the last converter read the final 
+bit(s). Converters have free access to the carry byte. Especially the bit 
+converters should check the carry byte before accessing the stream. 
+NOTE: This is now handled transparently through a reader and writer impl.
+
+Hierarchy of Converters
+-----------------------
+The hierarchy of the record and field definitions is followed by the 
+converters. For all records (RecordType) a group converter is created and its
+children are the converters for the fields (DataType) of that record. This 
+structure can be nested. Each (group) converter saves the writer's stream 
+position of its value or the start of its value-block. This way each converter
+(or other converters walking the hierarchy) can always rewind the stream and 
+find the converters value (NOTE: we need to keep the converters themselves 
+stateless, so we may need to build a transaction record into the data context).
+
+TODO: When RecordTypes derive from one another their respective GroupConverters
+should be nested in some way (containment). All calls for logical transformation
+will go through the 'top' GroupConverter. Each nested GroupConverter is able
+to manipulate the (physical) 'stream' before it is used by the GroupConverter
+that is nesting it. This means that a 'little endian' GroupConverter can be nested
+inside a 'Split Nibble' GroupConverter to implement a split nibble little endian
+GroupConverter. Currently there is no easy place to chain together these stream
+processors - a change in the interfaces may be required.
+
+One key-aspect to analyze is the use of the Carry. Does each GroupConverter need
+its own Carry instance or should we have only one Carry - but at which level is
+it used? 
+- My 'guess' is that each level could need a Carry. Whenever the GroupConverter
+reads 'complex' bit patterns it benefits from the Carry. If it doesn't, the Carry
+does not hinder either. For instance reading repeated lower nibble data would 
+automatically flush the Carry with each read.
+
+Also, how do the GroupConverters logic impact the logic of their fields?
+For instance if the field is a string of a certain length (say 10), inside a 
+ConverterGroup that processes split nibbles, does this value mean characters or 
+bytes? It is 'logical' (less close to the implementation details) to let it mean
+characters. But how about other data type behaviors? How are they affected when
+the GroupConverter pre-processes the physical stream. 
+BTW: we never process (pre- or post) the logical stream.
+
+Also, should GroupConverters be allowed to take part in the creation process of 
+the Converters of their fields? This appears to be useful for implementing 
+automatic message recognition where a few identifying bytes are read from the 
+physical stream and their values determine what (Dynamic) RecordType should be 
+used.
+
+-------------------------------------------------------------------------------
+The following problems must be solved by the converters. These problems were
+discovered during a short analysis of several midi devices (Roland, Yamaha and 
+other). At this time it is not understood if some of these problems should be
+solved in the device's vocabulary definitions. Also standard Midi (Bank, 
+Program and Control changes) needs to be incorporated. MMA has a standard for 
+this.
+
+1) Address Map - Address based indexing. Address info is in header of the sysex 
+message and has to be calculated based on the fields that has to be sent or 
+interpreted when received when repeating records are used.
+
+2) Repeating Records - More than one record of the exact same type (layout of 
+fields) represent multiple instances of a setting or setting group. (for 
+instance voice settings- for each voice a record exists). This only applies to
+address mapped schemas.
+
+3) String - Multiple bytes that contain ascii characters. The string has a max 
+length which is the same as the number of physical bytes. See also Composite 
+Value.
+
+4) Dummy - One or more bytes that are ignored and have no meaning. Used as 
+fillers. Dummies will always use zero as a value. A special data type indicates
+the field is to be treated as a dummy.
+
+5) Composite Value - Multiple bytes that make up one logical value. Not all 
+bits of these bytes have to be used (for instance there might be 3 bytes that 
+each contains a (low) nibble and these three nibbles make up a 12bit value).
+The data types of each byte will be specified as a union in a new data type 
+used for the composite field.
+
+6) Boolean Value - One bit at any position within the byte that represents a 
+logical Boolean value. See also Enumerated Value. One of eight data types that
+each represent a bit in the midi byte can be used to indicate the Boolean 
+value.
+
+7) Constrained Value - The range of the value is constrained using a max value.
+A custom dataType derived from one of the standard midi data types can specify
+a restriction (min- max values and length).
+
+8) Merged Value - One byte that contains multiple logical values spanning one 
+or more bits. See also Composite Value. Each field specifies a midi data type
+to indicate the bits. Carry functionality in the converters will not advance 
+the stream position until the full byte is read (or until a field uses a data
+type that does not support a Carry or already read bits are requested again).
+TODO: An issue might exist here to escape Carry-mode and go back to byte-mode.
+
+9) Logical Value Transform - A transformation on the physical value to come to 
+a logical value. For instance go from a zero-based value to a one-based value.
+Will this function be implemented by the vocabulary item for this field?
+
+10) Enumeration - A sequence of values is represented as named options. A 
+custom data type derived from a standard midi data type can specify enumeration
+facets. The id of each facet can be used to display a 'name' for each value. 
+The vocabulary item for this field can provide a localized (translated) name 
+based on the id.
+Will this function be implemented by the vocabulary item for this field?
+
+11) Block shift - Multiple 8-bit bytes are packed into multiple 7-bit bytes.
+	Shifted: |x|a7|a6|a5|a4|a3|a2|a1| |x|a0|b7|b6|b5|b4|b3|b2| |x|b1|b0|c6|c...
+	Grouped: |x|a6|a5|a4|a3|a2|a1|a0| |x|b6|b5|b4|b3|b2|b1|b0| |x|---|b7|a7|
+	NibbleSplit:|x|x|x|x|a7|a6|a5|a4| |x|x|x|x|a3|a2|a1|a0| |x|x|x|x|b7|b6|...
+	 - or -		|x|x|x|x|a3|a2|a1|a0| |x|x|x|x|a7|a6|a5|a4| |x|x|x|x|b3|b2|...
+	
+This converter is implemented at the group level. This group converter will 
+intercept the stream used by its child converters and apply the shifting logic 
+on those.
+TODO: Does this mean that the "bit-7 must be cleared" rule has to be enforced
+by (group) converters and not by the mechanism itself?
+
+12) Checksum - A math operation on a portion of the sysex message byte values.
+The checksum field has to be defined in the parent to calculate the checksum 
+for. All siblings of the Checksum field are included in the checksum. Each 
+checksum converter implementation defines a custom data type derived from a 
+standard data type and a converter factory. Whenever the custom data type is
+encountered the converter factory will create a checksum converter instance.
+-Or the checksum converter can be implemented as a group converter and intercept
+the streams passed to the child converters.
+
+13) Schema Validation - The validity of the data bytes is checked against the 
+midi device schema fields. Enumerations (in the schema), fixed values and min-
+and max values. Each converter implementation provides a Validate (both for 
+logical and physical values) to check the data type's constraints.

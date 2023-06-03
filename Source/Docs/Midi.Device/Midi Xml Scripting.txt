@@ -1,0 +1,8 @@
+Midi Scripting
+
+Using Xml to construct a language for scripting midi tasks (similar to (N)ant and MSBuild).
+Perhaps we could use Xaml (object instantiation script) to implement it?
+
+Performing operations is based on Xml tags that are implemented by code handlers.
+Data is stored in a 'var' tag that also stored the data type and can cast or convert.
+

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CannedBytes.Midi.Device.Schema.SchemaObject" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIABAAAAAAAAAAACAAAQEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SchemaObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Schema" />
+      <Property Name="Name" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.SchemaCollection&lt;T&gt;">
+    <Position X="9.5" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAACAAAAAAAAEAAAIAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>SchemaCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.SchemaObjectName">
+    <Position X="6" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAIAEAABAAAYAAAAAAAAAAAAAAAAAwAA=</HashCode>
+      <FileName>SchemaObjectName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.AttributedSchemaObject">
+    <Position X="3" Y="3.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAACAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AttributedSchemaObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Attributes" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.DataType">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="BaseType" Type="CannedBytes.Midi.Device.Schema.DataType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2" Y="6.875" />
+        <Point X="2.25" Y="6.875" />
+        <Point X="2.25" Y="7.25" />
+        <Point X="2" Y="7.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Constraints" Type="CannedBytes.Midi.Device.Schema.Constraint">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.115" Y="0.077" Height="0.16" Width="0.992" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAACBAAAAAAgEABAYgACYAAQAAAA=</HashCode>
+      <FileName>DataType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BaseType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="BaseTypes" />
+      <Property Name="Constraints" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.DataTypeCollection" Collapsed="true">
+    <Position X="8.25" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataTypeCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Field">
+    <Position X="3.25" Y="5.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAEAAICBABIIiAAECAAAAEAAEAAAABACQAAAAAEAEAQ=</HashCode>
+      <FileName>Field.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataType" />
+      <Property Name="RecordType" />
+      <Property Name="DeclaringRecord" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Constraints" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.FieldCollection" Collapsed="true">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FieldCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.RecordType">
+    <Position X="6.75" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACQAAAAAABAQACAAAACAAEAAAAAAAAAIAAAIAAAAgAA=</HashCode>
+      <FileName>RecordType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BaseType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Fields" />
+      <Property Name="FlattenedFields" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.RecordTypeCollection" Collapsed="true">
+    <Position X="10.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecordTypeCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.SchemaAttribute">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>SchemaAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.SchemaAttributeCollection" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SchemaAttributeCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Constraint">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAIACAAAAAAAAAAAQAAAEEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Constraint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.DeviceSchema">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>IAAAAgAAAAAAQAAAAgAAAARAAAAEAAAAAAAABABAEAA=</HashCode>
+      <FileName>DeviceSchema.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

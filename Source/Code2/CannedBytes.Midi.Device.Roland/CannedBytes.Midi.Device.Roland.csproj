@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>CannedBytes.Midi.Device.Roland</AssemblyTitle>
+    <Product>CannedBytes.Midi.Device.Roland</Product>
+    <Copyright>Copyright ©  2014</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Roland A-880.mds" />
+    <EmbeddedResource Include="Roland D-110.mds" />
+    <EmbeddedResource Include="Roland FC-300.mds" />
+    <None Update="Roland R-8.mds">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="Roland U-220.mds" />
+    <EmbeddedResource Include="Roland.mds" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj" />
+  </ItemGroup>
+</Project>

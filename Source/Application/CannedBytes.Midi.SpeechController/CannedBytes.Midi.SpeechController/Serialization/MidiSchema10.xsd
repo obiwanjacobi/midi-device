@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MidiSchema" version="1.0.0.0" elementFormDefault="qualified"
+    targetNamespace="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/MidiSchema/10"
+    xmlns="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/MidiSchema/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:complexType name="MidiPort">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:int" />
+      <xs:element name="Name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="MidiChannels">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MidiControllerTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BankSelect" />
+      <xs:enumeration value="ModulationWheel" />
+      <xs:enumeration value="BreathControl" />
+      <xs:enumeration value="FootPedal" />
+      <xs:enumeration value="PortamentoTime" />
+      <xs:enumeration value="DataEntrySlider" />
+      <xs:enumeration value="Volume" />
+      <xs:enumeration value="Balance" />
+      <xs:enumeration value="Pan" />
+      <xs:enumeration value="Expression" />
+      <xs:enumeration value="EffectControl1" />
+      <xs:enumeration value="EffectControl2" />
+      <xs:enumeration value="GeneralPurposeSlider1" />
+      <xs:enumeration value="GeneralPurposeSlider2" />
+      <xs:enumeration value="GeneralPurposeSlider3" />
+      <xs:enumeration value="GeneralPurposeSlider4" />
+      <xs:enumeration value="BankSelectFine" />
+      <xs:enumeration value="ModulationWheelFine" />
+      <xs:enumeration value="BreathControlFine" />
+      <xs:enumeration value="FootPedalFine" />
+      <xs:enumeration value="PortamentoTimeFine" />
+      <xs:enumeration value="DataEntrySliderFine" />
+      <xs:enumeration value="VolumeFine" />
+      <xs:enumeration value="BalanceFine" />
+      <xs:enumeration value="PanFine" />
+      <xs:enumeration value="ExpressionFine" />
+      <xs:enumeration value="EffectControl1Fine" />
+      <xs:enumeration value="EffectControl2Fine" />
+      <xs:enumeration value="HoldPedal" />
+      <xs:enumeration value="Portamento" />
+      <xs:enumeration value="SustenutoPedal" />
+      <xs:enumeration value="SoftPedal" />
+      <xs:enumeration value="LegatoPedal" />
+      <xs:enumeration value="HoldPedal2" />
+      <xs:enumeration value="SoundVariation" />
+      <xs:enumeration value="SoundTimbre" />
+      <xs:enumeration value="SoundReleaseTime" />
+      <xs:enumeration value="SoundAttackTime" />
+      <xs:enumeration value="SoundBrightness" />
+      <xs:enumeration value="SoundControl6" />
+      <xs:enumeration value="SoundControl7" />
+      <xs:enumeration value="SoundControl8" />
+      <xs:enumeration value="SoundControl9" />
+      <xs:enumeration value="SoundControl10" />
+      <xs:enumeration value="GeneralPurposeButton1" />
+      <xs:enumeration value="GeneralPurposeButton2" />
+      <xs:enumeration value="GeneralPurposeButton3" />
+      <xs:enumeration value="GeneralPurposeButton4" />
+      <xs:enumeration value="EffectsLevel" />
+      <xs:enumeration value="TremeloLevel" />
+      <xs:enumeration value="ChorusLevel" />
+      <xs:enumeration value="CelesteLevel" />
+      <xs:enumeration value="PhaserLevel" />
+      <xs:enumeration value="DataButtonIncrement" />
+      <xs:enumeration value="DataButtonDecrement" />
+      <xs:enumeration value="NonRegisteredParameterFine" />
+      <xs:enumeration value="NonRegisteredParameterCoarse" />
+      <xs:enumeration value="RegisteredParameterFine" />
+      <xs:enumeration value="RegisteredParameterCoarse" />
+      <xs:enumeration value="AllSoundOff" />
+      <xs:enumeration value="AllControllersOff" />
+      <xs:enumeration value="LocalKeyboard" />
+      <xs:enumeration value="AllNotesOff" />
+      <xs:enumeration value="OmniModeOff" />
+      <xs:enumeration value="OmniModeOn" />
+      <xs:enumeration value="MonoOperation" />
+      <xs:enumeration value="PolyOperation" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

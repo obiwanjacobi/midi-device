@@ -1,0 +1,32 @@
+﻿<Window x:Class="CannedBytes.Midi.SpeechController.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:CannedBytes.Midi.SpeechController"
+    xmlns:srcDomain="clr-namespace:CannedBytes.Midi.SpeechController.DomainModel"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+
+	Title="Midi Speech Controller" WindowStartupLocation="CenterScreen"
+    WindowStyle="SingleBorderWindow" Width="640" Height="480"
+        >
+
+    <Grid x:Name="LayoutRoot">
+        <TabControl Name="TabCtrl" IsSynchronizedWithCurrentItem="True" Margin="8,8,8,8" TabStripPlacement="Bottom">
+            <TabItem Header="Run" x:Name="RunTab" ToolTip="Begin talking after pressing the Start button.">
+                <src:RunTabControl />
+            </TabItem>
+
+            <TabItem Header="Edit" x:Name="EditTab" ToolTip="Manage Presets, Patches and Midi Commands.">
+                <src:EditTabControl />
+            </TabItem>
+
+            <TabItem Header="File" x:Name="FileTab" ToolTip="Load from file. Save to file.">
+                <src:FileTabControl />
+            </TabItem>
+
+            <TabItem Header="About" x:Name="AboutTab" ToolTip="Version, Copyright and Credits.">
+                <src:AboutTabControl />
+            </TabItem>
+        </TabControl>
+        <Label Margin="170,0,8,8" HorizontalContentAlignment="Right" VerticalAlignment="Bottom" Content="{Binding ElementName=TabCtrl,Path=SelectedItem.ToolTip}" Foreground="#FF808080"/>
+    </Grid>
+</Window>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+           schema="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/BinaryMapTest.mds"
+           xmlns="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/BinaryMapTest.mds"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+           xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+           xmlns:a="http://schemas.cannedbytes.com/midi-device-schema/message-types/10"
+>
+
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/message-types/10" assembly="CannedBytes.Midi.Device.Message" name="MidiMessageTypes.mds" />
+
+  <mds:recordType name="RecordOne">
+    <mds:sequence>
+      <mds:field name="Field1One" type="m:midiData" />
+      <mds:field name="Field1Two" type="m:midiData" />
+      <mds:field name="Field1Three" type="m:midiData" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="RecordTwo">
+    <mds:sequence>
+      <mds:field name="Field2One" type="m:midiData" />
+      <mds:field name="Field2Two" type="m:midiData" />
+      <mds:field name="Field2Three" type="m:midiData" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="RecordThree">
+    <mds:sequence>
+      <mds:field name="NestedRecord" type="RecordOne" repeats="2" />
+      <mds:field name="Field" type="m:midiData" />
+      <mds:field name="Record" type="RecordTwo" repeats="3" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="AddressMap">
+    <mds:extension base="a:midiAddressMap">
+      <mds:sequence>
+        <mds:field name="Section" type="RecordThree" repeats="2" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="RootMessage">
+    <mds:sequence>
+      <mds:field name="address" type="address" />
+      <mds:field name="size" type="m:midiData" />
+      <mds:field name="AddressMap" type="AddressMap" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:dataType name="address">
+    <mds:restriction base="m:midiData" />
+  </mds:dataType>
+
+</mds:deviceSchema>

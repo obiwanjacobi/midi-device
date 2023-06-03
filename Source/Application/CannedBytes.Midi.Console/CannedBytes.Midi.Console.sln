@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Console", "CannedBytes.Midi.Console\CannedBytes.Midi.Console.csproj", "{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Windows", "CannedBytes.Windows\CannedBytes.Windows.csproj", "{1AC50E12-21E2-425B-AFAE-2215A2586444}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://cannedbytes.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CannedBytes.Midi.Console\\CannedBytes.Midi.Console.csproj
+		SccProjectName1 = CannedBytes.Midi.Console
+		SccLocalPath1 = CannedBytes.Midi.Console
+		SccProjectUniqueName2 = CannedBytes.Windows\\CannedBytes.Windows.csproj
+		SccProjectName2 = CannedBytes.Windows
+		SccLocalPath2 = CannedBytes.Windows
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Debug|x86.ActiveCfg = Debug|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Debug|x86.Build.0 = Debug|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Release|Any CPU.ActiveCfg = Release|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Release|x86.ActiveCfg = Release|x86
+		{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}.Release|x86.Build.0 = Release|x86
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1AC50E12-21E2-425B-AFAE-2215A2586444}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

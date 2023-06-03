@@ -1,0 +1,30 @@
+Xml Schema Parser
+
+We use one XmlSchemaSet instance for one midi device definition. The base types
+defined by the system are loaded into the XmlSchemaSet as well to create one 
+coherent and fully qualified Xml Schema Object Model. 
+
+The Midi Device Definition is expected to be in one Xml Schema and is
+identified by its (target) namespace. This XmlSchema is processed to create a
+MidiDeviceSchema. All global xml types are iterated and for each complex type 
+two paths are navigated. First the inheritance hierarchy is determined for the
+complex type - base types only - while the default xml complex base class 
+<anyType> is ignored. Then the type elements are iterated and will produce 
+Fields on the current type. 
+
+The Compile of a Midi Device Schema first gathers all types from the Xml 
+Schema. Complex Types are device 'records' and simple types are data types.
+Then the class hierarchy is established by iterating through the collected
+complex types and binding derived to base class. The same is done for simple 
+types resulting in a data type hierarchy. 
+Then the xml elements (fields) are iterated for each complex type. Each complex
+type maintains an ordered list of fields. Fields that are defined as a simple 
+type reference their data type and fields that are defined as a complex type 
+reference their schema type. Complex type fields are merely placeholders for 
+more fields (those of the complex type itself) and are not reflected in the
+physical or logical data representation.
+
+Finally the type hierarchy is flattened for all types and their total combined 
+field collection is assembled (flattened fields). All inheritance mechanisms are
+represented in the flattened fields collection. Type hierarchy and overridden 
+fields.

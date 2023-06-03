@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema version="1.0"
+    schema="http://schemas.cannedbytes.com/midi-device-schema/message-types/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/message-types/10"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="midiAddressMap" abstract="true">
+    <mds:annotation>
+      <mds:documentation lang="en">
+        A base type for address maps that injects the Address Map group converter.
+        Derive your (root) address map from this type.
+      </mds:documentation>
+    </mds:annotation>
+  </mds:recordType>
+
+</mds:deviceSchema>

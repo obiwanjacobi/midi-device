@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema2" version="1.0"
+  xmlns="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema2"
+  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+  xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1" name="DeviceSchema1.mds" />
+
+  <mds:dataType name="unknownDataType">
+    <mds:restriction base="nonExistant">
+
+    </mds:restriction>
+  </mds:dataType>
+
+</mds:deviceSchema>

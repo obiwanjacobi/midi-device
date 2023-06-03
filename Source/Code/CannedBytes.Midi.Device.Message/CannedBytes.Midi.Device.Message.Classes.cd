@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CannedBytes.Midi.Device.Message.AddressMapHierarchicalFieldNavigator">
+    <Position X="0.75" Y="14.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAEAEAIEQAABkAQQAAAAAAAAAgARAAAAAAAEAA=</HashCode>
+      <FileName>AddressMapHierarchicalFieldNavigator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Message.AddressMapSequentialFieldNavigator">
+    <Position X="0.75" Y="12.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAABABAAAIAAAAAAAAAAAAABAAQBAAAEAA=</HashCode>
+      <FileName>AddressMapSequentialFieldNavigator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Message.DynamicGroupConverter" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DynamicGroupConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.GroupConverter">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Message.DynamicRecordType" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAABACAAAAAAgAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DynamicRecordType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.RecordType">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Message.DynamicField">
+    <Position X="3.75" Y="4.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="OriginalField" Type="CannedBytes.Midi.Device.Schema.Field" FixedFromPoint="true">
+      <Path>
+        <Point X="4.312" Y="4.25" />
+        <Point X="4.312" Y="3.68" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="DynamicDeclaringRecord" Type="CannedBytes.Midi.Device.Message.DynamicRecordType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="5.049" />
+        <Point X="1.5" Y="5.049" />
+        <Point X="1.5" Y="3.88" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="DynamicRecordType" Type="CannedBytes.Midi.Device.Message.DynamicRecordType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.75" Y="4.961" />
+        <Point X="2.031" Y="4.961" />
+        <Point X="2.031" Y="3.88" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.382" Y="0.127" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABIAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>DynamicField.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OriginalField" />
+      <Property Name="DynamicDeclaringRecord" />
+      <Property Name="DynamicRecordType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Schema.Field">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Message.AddressMapGroupConverter" Collapsed="true">
+    <Position X="6.5" Y="5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAABAAQBAAAAAAAAAAAAAAAAAAAAAAAAAEAI=</HashCode>
+      <FileName>AddressMapGroupConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Message.MessageTypeFactory">
+    <Position X="0.5" Y="6" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAEAIAAAAAAAAAAAAAAAAAAGAgAAABAAAABAAA=</HashCode>
+      <FileName>MessageTypeFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

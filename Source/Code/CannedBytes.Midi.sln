@@ -1,0 +1,180 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device", "CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj", "{27A16EC8-EC6A-466D-9B79-E69BABD63EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Schema", "CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj", "{29B41C20-E43B-42A7-AD23-DA6060A33825}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Private", "CannedBytes.Private\CannedBytes.Private.csproj", "{83C8B153-152E-4E55-9267-31C9325574EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.UnitTests", "CannedBytes.Midi.Device.UnitTests\CannedBytes.Midi.Device.UnitTests.csproj", "{FD3C709C-BD45-4B56-807D-39386980C073}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6221DC3-6489-4592-BC0F-FDE05C0E016C}"
+	ProjectSection(SolutionItems) = preProject
+		CannedBytes.Midi.vsmdi = CannedBytes.Midi.vsmdi
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Schema.UnitTests", "CannedBytes.Midi.Device.Schema.UnitTests\CannedBytes.Midi.Device.Schema.UnitTests.csproj", "{A4CCA123-B69A-482E-9F56-3F56FC643A40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Message", "CannedBytes.Midi.Device.Message\CannedBytes.Midi.Device.Message.csproj", "{79F8D8D7-E6A4-4593-B627-5FB4195EB41F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Message.UnitTests", "CannedBytes.Midi.Device.Message.UnitTests\CannedBytes.Midi.Device.Message.UnitTests.csproj", "{DB52C1A0-B6E5-4234-B9DC-6DC21B9D0744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Roland", "CannedBytes.Midi.Device.Roland\CannedBytes.Midi.Device.Roland.csproj", "{17B60BDD-1F36-4C92-9AF3-CBCCF39AA298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Roland.U220", "CannedBytes.Midi.Device.Roland.U220\CannedBytes.Midi.Device.Roland.U220.csproj", "{F0ED930A-7286-48A6-9865-797E4A3F95EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Roland.UnitTests", "CannedBytes.Midi.Device.Roland.UnitTests\CannedBytes.Midi.Device.Roland.UnitTests.csproj", "{67F07078-22CD-4EFF-9E0A-87EBED77ADBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Roland.D110", "CannedBytes.Midi.Device.Roland.D110\CannedBytes.Midi.Device.Roland.D110.csproj", "{C7224616-1D55-4441-B45F-E6E653246435}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Roland.R8", "CannedBytes.Midi.Device.Roland.R8\CannedBytes.Midi.Device.Roland.R8.csproj", "{BDE7F78D-6645-4C79-ADAB-D859E199B8FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Roland.A880", "CannedBytes.Midi.Device.Roland.A880\CannedBytes.Midi.Device.Roland.A880.csproj", "{C37AB4EE-42AA-4CBF-824C-32FF134BEF02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Roland", "Roland", "{058BEA22-921D-44EB-AAFA-E40241EBB6C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Core", "CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj", "{203E5BE6-ED33-450A-94B3-791C99B6F8EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Core.UnitTests", "CannedBytes.Midi.Core.UnitTests\CannedBytes.Midi.Core.UnitTests.csproj", "{C6B20AA2-0A34-4B45-B7FB-FA98BFF1D8CA}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 16
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://cannedbytes.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CannedBytes.Midi.Device\\CannedBytes.Midi.Device.csproj
+		SccProjectName1 = CannedBytes.Midi.Device
+		SccLocalPath1 = CannedBytes.Midi.Device
+		SccProjectUniqueName2 = CannedBytes.Midi.Device.Schema\\CannedBytes.Midi.Device.Schema.csproj
+		SccProjectName2 = CannedBytes.Midi.Device.Schema
+		SccLocalPath2 = CannedBytes.Midi.Device.Schema
+		SccProjectUniqueName3 = CannedBytes.Midi.Device.UnitTests\\CannedBytes.Midi.Device.UnitTests.csproj
+		SccProjectName3 = CannedBytes.Midi.Device.UnitTests
+		SccLocalPath3 = CannedBytes.Midi.Device.UnitTests
+		SccProjectUniqueName4 = CannedBytes.Midi.Device.Schema.UnitTests\\CannedBytes.Midi.Device.Schema.UnitTests.csproj
+		SccProjectName4 = CannedBytes.Midi.Device.Schema.UnitTests
+		SccLocalPath4 = CannedBytes.Midi.Device.Schema.UnitTests
+		SccProjectUniqueName5 = CannedBytes.Midi.Device.Message\\CannedBytes.Midi.Device.Message.csproj
+		SccProjectName5 = CannedBytes.Midi.Device.Message
+		SccLocalPath5 = CannedBytes.Midi.Device.Message
+		SccProjectUniqueName6 = CannedBytes.Midi.Device.Message.UnitTests\\CannedBytes.Midi.Device.Message.UnitTests.csproj
+		SccProjectName6 = CannedBytes.Midi.Device.Message.UnitTests
+		SccLocalPath6 = CannedBytes.Midi.Device.Message.UnitTests
+		SccProjectUniqueName7 = CannedBytes.Midi.Device.Roland\\CannedBytes.Midi.Device.Roland.csproj
+		SccProjectTopLevelParentUniqueName7 = CannedBytes.Midi.sln
+		SccProjectName7 = CannedBytes.Midi.Device.Roland
+		SccLocalPath7 = CannedBytes.Midi.Device.Roland
+		SccProjectUniqueName8 = CannedBytes.Midi.Device.Roland.U220\\CannedBytes.Midi.Device.Roland.U220.csproj
+		SccProjectTopLevelParentUniqueName8 = CannedBytes.Midi.sln
+		SccProjectName8 = CannedBytes.Midi.Device.Roland.U220
+		SccLocalPath8 = CannedBytes.Midi.Device.Roland.U220
+		SccProjectUniqueName9 = CannedBytes.Midi.Device.Roland.UnitTests\\CannedBytes.Midi.Device.Roland.UnitTests.csproj
+		SccProjectTopLevelParentUniqueName9 = CannedBytes.Midi.sln
+		SccProjectName9 = CannedBytes.Midi.Device.Roland.UnitTests
+		SccLocalPath9 = CannedBytes.Midi.Device.Roland.UnitTests
+		SccProjectUniqueName10 = CannedBytes.Midi.Device.Roland.D110\\CannedBytes.Midi.Device.Roland.D110.csproj
+		SccProjectTopLevelParentUniqueName10 = CannedBytes.Midi.sln
+		SccProjectName10 = CannedBytes.Midi.Device.Roland.D110
+		SccLocalPath10 = CannedBytes.Midi.Device.Roland.D110
+		SccProjectUniqueName11 = CannedBytes.Midi.Device.Roland.R8\\CannedBytes.Midi.Device.Roland.R8.csproj
+		SccProjectTopLevelParentUniqueName11 = CannedBytes.Midi.sln
+		SccProjectName11 = CannedBytes.Midi.Device.Roland.R8
+		SccLocalPath11 = CannedBytes.Midi.Device.Roland.R8
+		SccProjectUniqueName12 = CannedBytes.Midi.Device.Roland.A880\\CannedBytes.Midi.Device.Roland.A880.csproj
+		SccProjectTopLevelParentUniqueName12 = CannedBytes.Midi.sln
+		SccProjectName12 = CannedBytes.Midi.Device.Roland.A880
+		SccLocalPath12 = CannedBytes.Midi.Device.Roland.A880
+		SccProjectUniqueName13 = CannedBytes.Private\\CannedBytes.Private.csproj
+		SccProjectName13 = CannedBytes.Private
+		SccLocalPath13 = CannedBytes.Private
+		SccProjectUniqueName14 = CannedBytes.Midi.Core.UnitTests\\CannedBytes.Midi.Core.UnitTests.csproj
+		SccProjectName14 = CannedBytes.Midi.Core.UnitTests
+		SccLocalPath14 = CannedBytes.Midi.Core.UnitTests
+		SccProjectUniqueName15 = CannedBytes.Midi.Core\\CannedBytes.Midi.Core.csproj
+		SccProjectName15 = CannedBytes.Midi.Core
+		SccLocalPath15 = CannedBytes.Midi.Core
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = CannedBytes.Midi.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27A16EC8-EC6A-466D-9B79-E69BABD63EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27A16EC8-EC6A-466D-9B79-E69BABD63EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27A16EC8-EC6A-466D-9B79-E69BABD63EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27A16EC8-EC6A-466D-9B79-E69BABD63EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B41C20-E43B-42A7-AD23-DA6060A33825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B41C20-E43B-42A7-AD23-DA6060A33825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B41C20-E43B-42A7-AD23-DA6060A33825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B41C20-E43B-42A7-AD23-DA6060A33825}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C8B153-152E-4E55-9267-31C9325574EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C8B153-152E-4E55-9267-31C9325574EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C8B153-152E-4E55-9267-31C9325574EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C8B153-152E-4E55-9267-31C9325574EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD3C709C-BD45-4B56-807D-39386980C073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3C709C-BD45-4B56-807D-39386980C073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3C709C-BD45-4B56-807D-39386980C073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3C709C-BD45-4B56-807D-39386980C073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CCA123-B69A-482E-9F56-3F56FC643A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CCA123-B69A-482E-9F56-3F56FC643A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CCA123-B69A-482E-9F56-3F56FC643A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CCA123-B69A-482E-9F56-3F56FC643A40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F8D8D7-E6A4-4593-B627-5FB4195EB41F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F8D8D7-E6A4-4593-B627-5FB4195EB41F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F8D8D7-E6A4-4593-B627-5FB4195EB41F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F8D8D7-E6A4-4593-B627-5FB4195EB41F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB52C1A0-B6E5-4234-B9DC-6DC21B9D0744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB52C1A0-B6E5-4234-B9DC-6DC21B9D0744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB52C1A0-B6E5-4234-B9DC-6DC21B9D0744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB52C1A0-B6E5-4234-B9DC-6DC21B9D0744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17B60BDD-1F36-4C92-9AF3-CBCCF39AA298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17B60BDD-1F36-4C92-9AF3-CBCCF39AA298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17B60BDD-1F36-4C92-9AF3-CBCCF39AA298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17B60BDD-1F36-4C92-9AF3-CBCCF39AA298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0ED930A-7286-48A6-9865-797E4A3F95EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0ED930A-7286-48A6-9865-797E4A3F95EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0ED930A-7286-48A6-9865-797E4A3F95EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0ED930A-7286-48A6-9865-797E4A3F95EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F07078-22CD-4EFF-9E0A-87EBED77ADBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F07078-22CD-4EFF-9E0A-87EBED77ADBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F07078-22CD-4EFF-9E0A-87EBED77ADBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F07078-22CD-4EFF-9E0A-87EBED77ADBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7224616-1D55-4441-B45F-E6E653246435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7224616-1D55-4441-B45F-E6E653246435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7224616-1D55-4441-B45F-E6E653246435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7224616-1D55-4441-B45F-E6E653246435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE7F78D-6645-4C79-ADAB-D859E199B8FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE7F78D-6645-4C79-ADAB-D859E199B8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE7F78D-6645-4C79-ADAB-D859E199B8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE7F78D-6645-4C79-ADAB-D859E199B8FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C37AB4EE-42AA-4CBF-824C-32FF134BEF02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37AB4EE-42AA-4CBF-824C-32FF134BEF02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37AB4EE-42AA-4CBF-824C-32FF134BEF02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37AB4EE-42AA-4CBF-824C-32FF134BEF02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203E5BE6-ED33-450A-94B3-791C99B6F8EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203E5BE6-ED33-450A-94B3-791C99B6F8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203E5BE6-ED33-450A-94B3-791C99B6F8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203E5BE6-ED33-450A-94B3-791C99B6F8EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6B20AA2-0A34-4B45-B7FB-FA98BFF1D8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6B20AA2-0A34-4B45-B7FB-FA98BFF1D8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6B20AA2-0A34-4B45-B7FB-FA98BFF1D8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6B20AA2-0A34-4B45-B7FB-FA98BFF1D8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F0ED930A-7286-48A6-9865-797E4A3F95EC} = {058BEA22-921D-44EB-AAFA-E40241EBB6C4}
+		{67F07078-22CD-4EFF-9E0A-87EBED77ADBA} = {058BEA22-921D-44EB-AAFA-E40241EBB6C4}
+		{C7224616-1D55-4441-B45F-E6E653246435} = {058BEA22-921D-44EB-AAFA-E40241EBB6C4}
+		{BDE7F78D-6645-4C79-ADAB-D859E199B8FE} = {058BEA22-921D-44EB-AAFA-E40241EBB6C4}
+		{C37AB4EE-42AA-4CBF-824C-32FF134BEF02} = {058BEA22-921D-44EB-AAFA-E40241EBB6C4}
+		{17B60BDD-1F36-4C92-9AF3-CBCCF39AA298} = {058BEA22-921D-44EB-AAFA-E40241EBB6C4}
+	EndGlobalSection
+EndGlobal

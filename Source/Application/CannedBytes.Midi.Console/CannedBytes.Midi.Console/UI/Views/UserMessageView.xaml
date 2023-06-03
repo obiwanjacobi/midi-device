@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="CannedBytes.Midi.Console.UI.Views.UserMessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="#9f000000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Width="20" Height="20" Margin="20,10,20,10">
+            <Rectangle.Fill>
+                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_information}" />
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <TextBlock Grid.Column="1" Text="{Binding MessageText}" VerticalAlignment="Center" />
+
+        <Button Grid.Column="2" Style="{DynamicResource MetroCircleButtonStyle}" Height="45" Width="45"
+                cal:Message.Attach="CloseUserMessage($dataContext)"
+                HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Rectangle Width="20" Height="20">
+                <Rectangle.Fill>
+                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cancel}" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+
+        <Button Grid.Column="3" Style="{DynamicResource MetroCircleButtonStyle}" Height="45" Width="45"
+                cal:Message.Attach="CloseUserMessage($dataContext)"
+                HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Rectangle Width="20" Height="20">
+                <Rectangle.Fill>
+                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_check}" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+    </Grid>
+</UserControl>

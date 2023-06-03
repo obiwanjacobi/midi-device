@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://tempuri.org/TestMessageProvider.mds"
+    xmlns="http://tempuri.org/TestMessageProvider.mds"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:mt="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="SysExMessage" abstract="true">
+    <mds:sequence>
+      <mds:field name="Body" type="AbstractSysExBody" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="AbstractSysExBody" abstract="true">
+    <mds:sequence>
+      <xs:any namespace="##any" processContents="lax" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="EnvelopeMessage">
+    <mds:extension base="SysExMessage">
+      <mds:sequence>
+        <mds:field name="Body" type="SysExBody" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="SysExBody">
+    <mds:extension base="AbstractSysExBody">
+      <mds:sequence>
+        <mds:field name="Header" type="SysExHeader" />
+        <mds:field name="Payload" type="MsgPayload" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="SysExHeader">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="mt:midiData" fixed="10" />
+      <mds:field name="DeviceId" type="mt:midiData" />
+      <mds:field name="ModelId" type="mt:midiData" fixed="11" />
+      <mds:field name="CommandId" type="mt:midiData" fixed="12" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="MsgPayload">
+    <mds:sequence>
+      <mds:field name="SomeData" type="mt:midiData" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="SomeOtherMessage">
+    <mds:extension base="SysExMessage">
+      <mds:sequence>
+        <mds:field name="Body" type="OtherSysExBody" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="OtherSysExBody">
+    <mds:extension base="AbstractSysExBody">
+      <mds:sequence>
+        <mds:field name="Header" type="OtherSysExHeader" />
+        <mds:field name="Payload" type="MsgPayload" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="OtherSysExHeader">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="mt:midiData" fixed="10" />
+      <mds:field name="DeviceId" type="mt:midiData" />
+      <mds:field name="ModelId" type="mt:midiData" fixed="11" />
+      <mds:field name="CommandId" type="mt:midiData" fixed="22" />
+    </mds:sequence>
+  </mds:recordType>
+
+</mds:deviceSchema>

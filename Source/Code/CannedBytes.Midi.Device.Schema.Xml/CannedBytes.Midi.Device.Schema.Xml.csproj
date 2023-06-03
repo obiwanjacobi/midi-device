@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF49B105-E65E-423F-A281-F98C9F4C9D97}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CannedBytes.Midi.Device.Schema.Xml</RootNamespace>
+    <AssemblyName>CannedBytes.Midi.Device.Schema.Xml</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CannedBytes">
+      <HintPath>..\..\_SharedAssemblies\CannedBytes.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_old\MidiDeviceSchema.cs" />
+    <None Include="_old\MidiDeviceSchemaAttribute.cs" />
+    <None Include="_old\MidiDeviceSchemaCompiler.cs" />
+    <None Include="_old\MidiDeviceSchemaConstraint.cs" />
+    <None Include="_old\MidiDeviceSchemaDataType.cs" />
+    <None Include="_old\MidiDeviceSchemaDocumentationAttribute.cs" />
+    <None Include="_old\MidiDeviceSchemaField.cs" />
+    <None Include="_old\MidiDeviceSchemaManager.cs" />
+    <None Include="_old\MidiDeviceSchemaRecordType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="_old\XmlResourceResolver.cs" />
+    <None Include="_old\XmlSchemaManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CannedBytes.Midi.Device.Schema.Xml.Classes.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj">
+      <Project>{29B41C20-E43B-42A7-AD23-DA6060A33825}</Project>
+      <Name>CannedBytes.Midi.Device.Schema</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CannedBytes.Xml\CannedBytes.Xml.csproj">
+      <Project>{5DEDAD73-0E14-4506-A0E0-F34E969A4438}</Project>
+      <Name>CannedBytes.Xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)..\_SharedAssemblies\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

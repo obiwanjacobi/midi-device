@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/DevicePropertiesTestSchema.mds"
+    xmlns="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/DevicePropertiesTestSchema.mds"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="RQ1">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="m:midiData" mds:property="ManufacturerId" />
+      <mds:field name="DeviceId" type="m:midiData" mds:property="SysExChannel" />
+      <mds:field name="ModelId" type="m:midiData" fixed="43" mds:property="ModelId" />
+      <mds:field name="CommandId" type="m:midiData" fixed="17" mds:property="CommandId" />
+    </mds:sequence>
+  </mds:recordType>
+
+</mds:deviceSchema>

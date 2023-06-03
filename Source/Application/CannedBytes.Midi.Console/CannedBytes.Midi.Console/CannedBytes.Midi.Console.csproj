@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3AC98170-30AD-4A24-9F7D-CB5017ECB90C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CannedBytes.Midi.Console</RootNamespace>
+    <AssemblyName>CannedBytes.Midi.Console</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\packages\Caliburn.Micro.1.4.1\lib\net40\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.10.0.1\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.0.10.0.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.9.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.9.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Model\Schema\AddressMap.cs" />
+    <Compile Include="Model\Schema\DataType.cs" />
+    <Compile Include="Model\Schema\DeviceSchema.cs" />
+    <Compile Include="Model\Schema\Field.cs" />
+    <Compile Include="Model\Schema\RecordType.cs" />
+    <Compile Include="Model\Schema\SchemaObject.cs" />
+    <Compile Include="RandomNameGenerator.cs" />
+    <Compile Include="UI\Command\AppCommands.cs" />
+    <Compile Include="UI\Command\RightClickCommandHandler.cs" />
+    <Compile Include="UI\Command\ShowPropertiesCommandHandler.cs" />
+    <Compile Include="UI\Controls\RangeValueControl.xaml.cs">
+      <DependentUpon>RangeValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\SingleTextControl.xaml.cs">
+      <DependentUpon>SingleTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ValueDataType.cs" />
+    <Compile Include="UI\Controls\ValueControlModel.cs" />
+    <Compile Include="UI\ViewModels\AppBarViewModel.cs" />
+    <Compile Include="UI\ViewModels\PropertiesViewModel.cs" />
+    <Compile Include="UI\ViewModels\Schema\SchemaEditorPageViewModel.cs" />
+    <Compile Include="UI\ViewModels\UserMessageViewModel.cs" />
+    <Compile Include="UI\Views\AppBarView.xaml.cs">
+      <DependentUpon>AppBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Device\FourValueGroupControl.xaml.cs">
+      <DependentUpon>FourValueGroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\IValueControlInfo.cs" />
+    <Compile Include="UI\Controls\ValueControlInfo.cs" />
+    <Compile Include="Model\ValueGroupType.cs" />
+    <Compile Include="UI\Controls\SingleValueControl.xaml.cs">
+      <DependentUpon>SingleValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewModels\AppViewModel.cs" />
+    <Compile Include="UI\ViewModels\DevicePageViewModel.cs" />
+    <Compile Include="UI\ViewModels\Device\DeviceCategoryViewModel.cs" />
+    <Compile Include="UI\ViewModels\Device\DeviceInstancesViewModel.cs" />
+    <Compile Include="UI\Controls\ValueControlFactory.cs" />
+    <Compile Include="UI\ViewModels\Device\DeviceValueGroupViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\ValueModel.cs" />
+    <Compile Include="UI\ViewModels\Device\DeviceViewModel.cs" />
+    <Compile Include="UI\ViewModels\FilePageViewModel.cs" />
+    <Compile Include="UI\ViewModels\OverviewPageViewModel.cs" />
+    <Compile Include="UI\ViewModels\PageViewModel.cs" />
+    <Compile Include="UI\ViewModels\Patch\PatchInstancesViewModel.cs" />
+    <Compile Include="UI\ViewModels\Patch\PatchViewModel.cs" />
+    <Compile Include="UI\ViewModels\Schema\SchemaInstancesViewModel.cs" />
+    <Compile Include="UI\ViewModels\Schema\SchemaViewModel.cs" />
+    <Compile Include="UI\ViewModels\ViewModel.cs" />
+    <Compile Include="UI\Views\DevicePage.xaml.cs">
+      <DependentUpon>DevicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Device\DeviceCategoryView.xaml.cs">
+      <DependentUpon>DeviceCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Device\DeviceValueGroupView.xaml.cs">
+      <DependentUpon>DeviceValueGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Device\DeviceView.xaml.cs">
+      <DependentUpon>DeviceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\FilePage.xaml.cs">
+      <DependentUpon>FilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Patch\PatchInstancesView.xaml.cs">
+      <DependentUpon>PatchInstancesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Patch\PatchView.xaml.cs">
+      <DependentUpon>PatchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\PropertiesView.xaml.cs">
+      <DependentUpon>PropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Schema\SchemaEditorPage.xaml.cs">
+      <DependentUpon>SchemaEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Schema\SchemaInstancesView.xaml.cs">
+      <DependentUpon>SchemaInstancesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\Schema\SchemaView.xaml.cs">
+      <DependentUpon>SchemaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\OverviewPage.xaml.cs">
+      <DependentUpon>OverviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\UserMessageView.xaml.cs">
+      <DependentUpon>UserMessageView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\RangeValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\SingleTextControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\AppBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Device\FourValueGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\SingleValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\DevicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Device\DeviceCategoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Device\DeviceInstancesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\AppView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\Views\Device\DeviceInstancesView.xaml.cs">
+      <DependentUpon>DeviceInstancesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Views\AppView.xaml.cs">
+      <DependentUpon>AppView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UI\Views\Device\DeviceValueGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Device\DeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\FilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Patch\PatchInstancesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Patch\PatchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\PropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Schema\SchemaEditorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Schema\SchemaInstancesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\Schema\SchemaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\OverviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Views\UserMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CannedBytes.Windows\CannedBytes.Windows.csproj">
+      <Project>{1AC50E12-21E2-425B-AFAE-2215A2586444}</Project>
+      <Name>CannedBytes.Windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

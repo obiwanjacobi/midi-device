@@ -1,0 +1,10 @@
+A1 - loByte(0-6): 21
+F2 - hiByte(12-15): F0 -> 0F
+4C - loPart(0-4): 0C
+   - midPart(6-10): 01101 -> 0D
+0B - hiPart(12-15) : 00
+74 - firstLo(0-6): 74
+23 - secondLo(0-4): 03
+E6 - firstHi(12-15): 0E
+5A - secondHi(12-15) = 175A
+17                  : 01

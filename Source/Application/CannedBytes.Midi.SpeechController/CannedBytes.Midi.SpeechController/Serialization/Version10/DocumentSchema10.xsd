@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FileSchema10" elementFormDefault="qualified"
+    targetNamespace="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/DocumentSchema/10"
+    xmlns="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/DocumentSchema/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ms="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/MidiSchema/10"
+    xmlns:fs="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/FileSchema/10"
+>
+  <xs:import namespace="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/FileSchema/10" schemaLocation="..\FileSchema10.xsd" />
+  <xs:import namespace="http://schemas.cannedbytes.com/CannedBytes.Midi.SpeechController/MidiSchema/10" schemaLocation="..\MidiSchema10.xsd" />
+
+  <xs:complexType name="Document">
+    <xs:complexContent>
+      <xs:extension base="fs:Document">
+        <xs:sequence>
+          <xs:element name="Presets" type="Presets" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Presets">
+    <xs:sequence>
+      <xs:element name="Preset" type="Preset" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Preset">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" />
+      <xs:element name="SuccessAudioFeedbackType" type="AudioFeedbackTypes" />
+      <xs:element name="FailureAudioFeedbackType" type="AudioFeedbackTypes" />
+      <xs:element name="Patches" type="Patches" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="AudioFeedbackTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None"/>
+      <xs:enumeration value="Beep"/>
+      <xs:enumeration value="Speech"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Patches">
+    <xs:sequence>
+      <xs:element name="Patch" type="Patch" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Patch">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" />
+      <xs:element name="TextPhrase" type="xs:string" />
+      <xs:element name="MidiCommands" type="MidiCommands" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MidiCommands">
+    <xs:sequence>
+      <xs:element name="MidiCommand" type="MidiCommand" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MidiCommand">
+    <xs:sequence>
+      <xs:element name="Port" type="ms:MidiPort"/>
+      <xs:element name="Channel" type="ms:MidiChannels" />
+      <xs:element name="CommandType" type="MidiCommandTypes"/>
+      <xs:element name="ControllerType" type="ms:MidiControllerTypes" minOccurs="0" />
+      <xs:element name="ControllerValue" type="xs:int" minOccurs="0" />
+      <xs:element name="ProgramValue" type="xs:int" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="MidiCommandTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ProgramChange"/>
+      <xs:enumeration value="ControlChange" />
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

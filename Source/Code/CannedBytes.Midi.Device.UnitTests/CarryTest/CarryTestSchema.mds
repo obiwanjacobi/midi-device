@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/CarryTestSchema.mds"
+    xmlns="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/CarryTestSchema.mds"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="carryTest">
+    <mds:sequence>
+      <mds:field name="loByte" type="m:midiData" />
+      <mds:field name="hiByte" type="m:midiBit12-15" />
+
+      <mds:field name="loPart" type="m:midiBit0-4" />
+      <mds:field name="midPart" type="m:midiBit6-10" />
+      <mds:field name="hiPart" type="m:midiBit12-15" />
+
+      <mds:field name="firstLo" type="m:midiData" />
+      <mds:field name="secondLo" type="m:midiBit0-4" />
+
+      <mds:field name="firstHi" type="m:midiBit12-15" />
+      <mds:field name="secondHi" type="m:midiBit12-15" />
+    </mds:sequence>
+  </mds:recordType>
+
+</mds:deviceSchema>

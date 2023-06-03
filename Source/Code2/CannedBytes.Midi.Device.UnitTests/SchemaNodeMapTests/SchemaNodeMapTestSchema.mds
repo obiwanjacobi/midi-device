@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/midi-device-schema/BinaryConverterMapTest"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/BinaryConverterMapTest"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="rootRecord">
+    <mds:sequence>
+      <mds:field name="Field1" type="m:midiData" />
+      <mds:field name="Field2" type="subRecord" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="subRecord">
+    <mds:sequence>
+      <mds:field name="Field1" type="m:midiData" mds:property="address" />
+      <mds:field name="Field2" type="AdressMap" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="AdressMap">
+    <mds:extension base="m:midiAddressMap">
+      <mds:sequence>
+        <mds:field name="Patch" type="Patch" repeats="2" mds:size="10H" />
+        <mds:field name="Timbre" type="Timbre" repeats="4" mds:size="10H" mds:address="100H" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Patch">
+    <mds:sequence>
+      <mds:field name="Name" type="m:midiData" />
+      <mds:field name="Field1" type="m:midiBit0-3" />
+      <mds:field name="Field2" type="m:midiBit4-6" />
+      <mds:field name="Field3" type="m:midiBit7-13" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="Timbre">
+    <mds:sequence>
+      <mds:field name="Name" type="m:midiData" />
+      <mds:field name="Field1" type="m:midiBit0-6" />
+      <mds:field name="Field2" type="m:midiBit7-11" />
+      <mds:field name="Field3" type="m:midiBit12-14" />
+    </mds:sequence>
+  </mds:recordType>
+</mds:deviceSchema>

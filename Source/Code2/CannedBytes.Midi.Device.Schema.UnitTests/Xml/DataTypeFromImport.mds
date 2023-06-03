@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DataTypeFromImport" version="1.0"
+  xmlns="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DataTypeFromImport"
+  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+  xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchemaTypes"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchemaTypes" name="DeviceSchemaTypes.mds" />
+
+  <mds:dataType name="derivedDataType">
+    <mds:restriction base="m:midiByte">
+
+    </mds:restriction>
+  </mds:dataType>
+
+</mds:deviceSchema>

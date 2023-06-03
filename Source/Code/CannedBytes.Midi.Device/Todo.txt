@@ -1,0 +1,82 @@
+* Implement Logging/Tracing (service) (TraceSource). Switch certain aspects on/off: ConverterTypes, ToLogical/ToPhysical, AddressMap etc.
+
+[Converter]
+* Build a Converter-iterator that can be reused and is called by the GroupConverter. 
+  This iterator should also support address maps.
+* Derive from Bit0-4 union type and constraint derived type. How to implement a signed value? 
+  Should we allow for cascading data converters?
+* Little/Big Endian order applies to multiple levels of data: stream bytes, split-nibble and bits. 
+	Note that at stream level these orderings can be stacked (LE byte stream reading Split Nibbles in BE-bit order).
+	Unified way of expressing ordering and processing that ordering? Or just specify a unique RecordType for each (with GroupConverter)?
+	Stream: a dedicated GroupConverter for each combination. Reuse stream impl.s.
+	Split-Nibble: can be handled with choosing the correct LE/BE stream and width.
+	Bit: order of union types?
+	At Field level indicate byte and/or bit ordering?
+* Have a ConvertorFactory that uses code attributes to find the Convertor implementations based on schema name and type name (MEF?).
+* Refactor IConvertorExtension. Perhaps more like a method object (one for ToLogical, one for ToPhysical).
+  See also the Decorator pattern. This would allow DataConverters to be stacked.
+* Add IsStateless to IConvertor to allow (especially Group)Convertors to maintain state during transformation. Only stateless convertors are pooled.
+* NullByteConverter can be replaced by a schema attribute that indicates a dummy. No Logical call will be made.
+* How to handle a Union (DataType) covering different factories? Currently it is the Factory that handles it, not the ConverterManager.
+  Perhaps we could manage this also with Extensions/Process?
+
+[StreamConverter]
+* IsAddressMap
+* IsDynamic (=RecordType.IsDynamic)
+* SchemaNavigator (Dynamic AddressMapConverter needs to rebuild the contents of its records).
+* ICalculateDataLength
+* INavigationEvents
+* Manipulates stream stack
+* Allow a (Group?)Converter to 'upgrade' the RecordType and continue based on
+  that new type. This is needed for auto-detection of SysEx message types. (MessageExchange)
+* Decide if the ChecksumConverter is a field converter or a group converter. Or support both?
+  At least we need a group converter to calculate the scope of the checksum. So that seems a logical choice.
+* How to implement 8-bits bytes using midi-types when using a group converter that shifts to 7 bit (sysex data).
+	- BigEndian and SplitNibble implemented. (by default little endian is assumed - for 2 byte carry support).
+* Have a formalized way for GroupConvertors to manage the stream-stack. Is it part of the Context? - Context is bloated.
+* Let GroupConvertors process custom field attributes in the .mds. Recurse towards parent to locate handler.
+
+[General]
+* Integrate MEF in a uniform way.
+  Use MEF to provide the Little/BigEndian reader/writers and the signed/unsigned reader/writers (how to make this extensible and combine feature -litteEndian signed value)?
+* Rethink what objects are needed for the client for working with MDS's. What providers are there? We need a simple API on the outside.
+* Do we need the separation between Midi.Device and Midi.Device.Message? Will separate MessageExchange (flows)?
+* Make a DeviceProvider that works from files.
+* MidiDeviceDataContext is bloated.
+* Mechanism should check if the next converter will flush the carry and do it for them so the converter impl. does not have to do it.
+* Logic in ToLogical/ToPhysical methods now on DeviceDataContext should be handled by the mechanism.
+
+
+[Schema]
+* Validate base record types on overridden fields.
+* Validate data type inheritance prerequisites (like the length constraint being available for a midiString derived data type)
+  This validation should also be part of the convertor interface.
+* How to define a RecordType that must be sent and received as a whole? Special Group that indicates it cannot be split?
+* How to define a field that is always used and filled out with zero if empty? (Sample Dump Standard)
+* The constraints of data types in a union are now discarded. Should we try to make something of them?
+  The number of bits in the union suggest a min (always zero - valueOffset) and a max value.
+
+[Schema] enhancements?
+* Field validation logic against other fields. (lower key range <= upper key range)
+  Have group validation rules? Might get tricky with DynamicGroup Convertors.
+* String value (data-type) that excludes certain characters / custom character tables.
+* Optimization: For a schema all its convertors are created and paired up with their RecordType or DataType.
+  Then a MidiDeviceBinaryMap is created to allow easy navigation over the schema including a possible addressMap. 
+  - Make the MidiDeviceBinaryMap also support resolving schema types based on incoming data (MessageExchange).
+  Also FieldData should be incorporated in this cached version of the objects required to perform a ToLogical/ToPhysical.
+  Use this cached representation to perform the actual ToLogical/ToPhysical conversion. We need one holistic view.
+  DynamicConverters cannot be cached because they're message content based.
+
+[Schema-Non-SysEx]
+* Add normal midi messages to the schema. Find some way to relate the message to semantics.
+* Add message exchange patterns in the schema.
+* Add device parameters: Max message size, timeout values, pause times etc. Also model numbers etc.
+
+[AddressMap]
+* Not all address map entries can be requested - write-only, or written to - read-only (Roland). 
+  Do we need an indicator/attribute for that?
+  A GroupConverter that reflects that could be enough but an attribute that is processed by the mechanism would be even better.
+
+[MessageExchangeManager]
+* How to divide the total data packet to be sent into DataSet messages? (how many bytes max? 256? ->device specific)
+* 

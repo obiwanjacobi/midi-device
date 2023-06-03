@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MessageExchangePattern" elementFormDefault="qualified" version="1.0.0.0"
+    targetNamespace="urn:midi-device-schema:MessageExchangePattern"
+    xmlns="urn:midi-device-schema:MessageExchangePattern"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="state" type="rootstate" />
+  
+  <xs:complexType name="rootstate">
+    <xs:sequence>
+      <xs:element name="events" minOccurs="0" maxOccurs="1" />
+      <xs:element name="states" minOccurs="0" maxOccurs="0" type="states" />
+    </xs:sequence>
+    <xs:attribute ref="name" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="state">
+    <xs:complexContent>
+      <xs:extension base="rootstate">
+        <xs:attribute ref="msg-id" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="event">
+    <xs:attribute ref="name" use="required" />
+    <xs:attribute ref="msg-id" use="required" />
+    <xs:attribute ref="next-state" />
+  </xs:complexType>
+  
+  <xs:complexType name="states">
+    <xs:sequence>
+      <xs:element name="state" type="state" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="events">
+    <xs:sequence>
+      <xs:element name="event" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:attribute name="name" type="xs:string" />
+  <xs:attribute name="msg-id" type="xs:string" />
+  <xs:attribute name="next-state" type="xs:string" />
+  
+</xs:schema>

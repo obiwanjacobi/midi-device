@@ -1,0 +1,23 @@
+﻿<src:PresetCollection xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:CannedBytes.Midi.SpeechController.DomainModel;assembly=CannedBytes.Midi.SpeechController"
+        >
+    <src:Preset Name="Preset 1" FailureAudioFeedbackType="Beep" SuccessAudioFeedbackType="Speak">
+        <src:Preset.Patches>
+            <src:Patch Name="Piano Patch" Text="Piano">
+                <src:Patch.MidiCommands>
+                    <src:MidiCommand Port="0" Channel="1" Type="ProgramChange" ProgramValue="1" />
+                </src:Patch.MidiCommands>
+            </src:Patch>
+            <src:Patch Name="Organ Patch" Text="Organ">
+                <src:Patch.MidiCommands>
+                    <src:MidiCommand Port="0" Channel="1" Type="ProgramChange" ProgramValue="0" />
+                </src:Patch.MidiCommands>
+            </src:Patch>
+        </src:Preset.Patches>
+    </src:Preset>
+    <src:Preset Name="Preset 2" FailureAudioFeedbackType="Beep" SuccessAudioFeedbackType="Speak">
+        <src:Preset.Patches>
+        </src:Preset.Patches>
+    </src:Preset>
+</src:PresetCollection>

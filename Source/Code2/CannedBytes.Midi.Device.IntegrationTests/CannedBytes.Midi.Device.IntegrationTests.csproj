@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<AssemblyTitle>CannedBytes.Midi.Device.IntegrationTests</AssemblyTitle>
+		<Product>CannedBytes.Midi.Device.IntegrationTests</Product>
+		<Copyright>Copyright © CannedBytes 2014</Copyright>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj" />
+		<ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj" />
+		<ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="CarryTest\CarryTestSchema.mds">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="CarryTest\CarryTestStream.bin">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="ChecksumTest\ChecksumTestSchema.mds">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="ChecksumTest\ChecksumTestStream.bin">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DevicePropertiesTest\DevicePropertiesTestSchema.mds">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DevicePropertiesTest\DevicePropertiesTestStream.bin">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="CarryTest\SchemaText.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="6.11.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
+		<PackageReference Include="xunit" Version="2.5.0-pre.22" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.0-pre.15">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="coverlet.collector" Version="6.0.0">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
+</Project>

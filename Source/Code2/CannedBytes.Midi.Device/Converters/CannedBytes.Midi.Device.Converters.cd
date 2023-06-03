@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CannedBytes.Midi.Device.Converters.DataConverter">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CannedBytes.Midi.Device.Converters.DataConverter.LogicalWriteAccessor&lt;ValueT&gt;" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Converters\DataConverter.LogicalWriteAccessor.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="InnerConverter" Type="CannedBytes.Midi.Device.Converters.DataConverter" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.032" Y="5.5" />
+        <Point X="1.032" Y="5.25" />
+        <Point X="1.277" Y="5.25" Type="JumpStart" />
+        <Point X="1.443" Y="5.25" Type="JumpEnd" />
+        <Point X="1.688" Y="5.25" />
+        <Point X="1.688" Y="5.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.415" Y="0.318" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAABAAAAQAAAAAAgAAAAAAQAAAEAI=</HashCode>
+      <FileName>Converters\DataConverter.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InnerConverter" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.BitConverter">
+    <Position X="0.5" Y="8.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="CannedBytes.Midi.Device.Converters.BitConverter.ProcessPart" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Converters\MidiTypes.BitConverter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAABAAAAAAAAQAIgAAAAAAAAAAEAA=</HashCode>
+      <FileName>Converters\MidiTypes.BitConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.StreamConverter">
+    <Position X="6" Y="5.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAABADAAAAAAAAAAwIAAAAAgAAAAAAAAEAAAA=</HashCode>
+      <FileName>Converters\StreamConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.AddressMapConverter" Collapsed="true">
+    <Position X="3.5" Y="8.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAACAAQAAAAAAAAIEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\MidiTypes.AddressMapConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.ChecksumStreamConverter" Collapsed="true">
+    <Position X="5.75" Y="8.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAgAAAAAAAAAAAAAgIAAAAAAAEAAAAAgAAAAA=</HashCode>
+      <FileName>Converters\MidiTypes.ChecksumStreamConverter.AutoPositioningSubStream.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.SysExStreamConverter" Collapsed="true">
+    <Position X="8.25" Y="8.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\MidiTypes.SysExStreamConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.ConverterManager">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CannedBytes.Midi.Device.Converters.ConverterManager.AttributedConverterFactory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Converters\ConverterManager.AttributedConverterFactory.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CannedBytes.Midi.Device.Converters.ConverterManager.FactoryManager" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Converters\ConverterManager.FactoryManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="_dataConverters" Type="CannedBytes.Midi.Device.Converters.DataConverter">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.065" Y="0.318" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BCEAAYAAAAAAgAEAAAAAAAAAAQAAAAAAAEQAAAAACAA=</HashCode>
+      <FileName>Converters\ConverterManager.AttributedConverterFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_dataConverters" />
+      <Field Name="_fieldConverterPairs" />
+      <Field Name="_streamConverters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.FieldConverterPair">
+    <Position X="3" Y="4" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAQAAAAAAEACAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Converters\FieldConverterPair.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DataConverter" />
+      <Property Name="StreamConverter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.ConverterFactory" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAQAA=</HashCode>
+      <FileName>Converters\ConverterFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CannedBytes.Midi.Device.Converters.MidiTypesConverterFactory" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Converters\MidiTypes.ConverterFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

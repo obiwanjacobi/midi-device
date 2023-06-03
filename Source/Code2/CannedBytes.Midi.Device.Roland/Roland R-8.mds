@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema 
+    schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/R-8/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/Roland/R-8/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:r="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
+
+  <mds:recordType name="AddressMap">
+    <mds:extension base="m:midiAddressMap">
+      <mds:sequence>
+        <mds:field name="SoundParameter" type="SoundParameter" repeats="120" />
+        <mds:field name="PerformanceParameter" type="PerformanceParameter" repeats="96" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="SoundParameter">
+    <mds:sequence>
+      <mds:field name="Pitch" type="pitch" />
+      <mds:field name="SignPitch" type="sign" />
+      <mds:field name="DecayPartial1" type="mds:string" />
+      <mds:field name="DecayPartial2" type="mds:string" />
+      <mds:field name="Nuance" type="mds:string" />
+      <mds:field name="Output" type="mds:string" />
+      <mds:field name="AssignType" type="mds:string" />
+      <mds:field name="Curve" type="mds:string" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="PerformanceParameter">
+    <mds:sequence>
+      <mds:field name="Pitch" type="pitch" />
+      <mds:field name="SignPitch" type="sign" />
+      <mds:field name="Decay" type="mds:byte" />
+      <mds:field name="Nuance" type="mds:byte" />
+      <mds:field name="Pan" type="mds:byte" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:dataType name="pitch">
+    <mds:restriction base="m:midiUnsigned16">
+      <mds:minimum value="0" />
+      <mds:maximum value="480" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="sign">
+    <mds:restriction base="m:midiBit0" />
+  </mds:dataType>
+
+</mds:deviceSchema>

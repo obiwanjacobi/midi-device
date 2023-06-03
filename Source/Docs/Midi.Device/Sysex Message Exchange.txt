@@ -1,0 +1,212 @@
+Midi Sysex Message Exchange
+---------------------------
+
+Idea: use workflow to implement message exchange patterns?
+
+Even the simplest midi sysex implementations have a concept of a request- 
+response message exchange. Although a dump (fire and forget) exchange usually 
+also exists, the other types of message exchange needs to be described. 
+
+Message exchange patterns live between the device schema definitions and the 
+device's vocabulary definitions. An application must be able to use a simple 
+mechanism for knowing what type of message will result in sending another type 
+of message.
+
+Basically three types of sysex message exchange patterns have been identified.
+Important issues in message exchange are: 1) A wait timeout in between multiple
+message of data. This gives the receiving device time to clear the buffers. Not
+used for handshake exchange patterns.
+2) A request for data does not necessary lead to only one response. Multiple
+messages may be sent to the device requesting data.
+
+1) Dump (Fire and forget)
+A device just sends its information to another device in one or more messages.
+
+2) Request - Response
+A device first sends a request for data to another device. This message holds 
+information on what type of information is requested. The other device responds
+by sending one or more messages containing the requested information.
+
+3) Handshake
+The handshake exchange pattern is a more elaborate request-response exchange 
+that aims to increase reliability and data transfer speed. An Acknowledge 
+message is used to give the other device a sign that all is well and the next 
+message can be sent. For sending data a "Want to send" message first ask the 
+receiving device if its ready. When a device is unable to make sense of a 
+message it can ask for a "Retry" of the last message or sent a "Rejection" 
+(or Abort) message to cancel the whole data transfer.
+
+Each type of message supported by the device is defined in its Midi Device 
+Schema. Additionally we have to define the exchange patterns that exist for 
+those messages. The same message types might participate in multiple exchange 
+patterns. A message exchange pattern in general looks like a (sequential) 
+workflow with alternate paths and error handling. But it is more likely we just
+predefine the known message flows and allow the user to assign messageTypes for
+each class of message used in the exchange pattern.
+
+
+Message Header
+--------------
+Each manufacturer chooses its own message header structure to identify the 
+sysex message sent or received (besides the SOX/EOX). These message headers can
+contain calculated data when -for instance- the device uses an address map. 
+Although the structure of these message headers can be defined using the Midi 
+Device Schema definitions, extra processing is probably necessary for correctly
+generating the values for these dynamic header fields. For now we will not try 
+to make this extensible and bake an address map provider into the system.
+
+The MessageExchangeManager is initialized at the beginning of each midi
+data transfer. The MessageExchangePattern dictates what possible messages can 
+be sent or received and possibly an order. The intended message exchange 
+pattern is 'played out' after the initial message has been sent or received. 
+Each instance of the MessageExchangeManager represents one instance of a 
+MessageExchangePattern. An event is raised when an instance receives its first 
+message (for an incoming pattern) and the application should react by sending a
+message back. The correct Device Schema information is passed with the event.
+
+Each received message is checked against the message types in the device schema
+to determine the exact type. In order to check the message identifying fields 
+must be read from the physical stream and interpreted. Only fixed values in the 
+midi device schema are considered a message header and compared against the in-
+coming message data (except for the sysex-channel). This special process of 
+matching incoming messages to device declarations is done by a MessageProvider.
+
+The messaging system works with two concepts: envelopes and records. The record
+contains the actual data the sysex message is trying to communicate. The 
+envelope contains header/meta information concerning the message payload. The 
+minimum envelope always contains the F0 and F7 midi protocol bytes.
+
+For some addressable devices (Roland and Yamaha) the envelope and record schema
+types are different. The envelope in a Roland sysex message would contain 
+information about the type of message (Data Request or Data Set, etc.). The 
+record schema type would contain information about the payload inside the 
+envelope. Some message might not even contain any record data at all. This type
+of messages are usually control messages that are part of the MessageExchange-
+Pattern. Examples are Acknowledge, Retry, Abort and Error messages.
+
+For simpler devices only one or two sysex messages are defined and it is 
+therefore possible that the envelope schema type also contains the record data 
+declarations. Although it is still possible to separate these into envelope and
+record types, this should not be forced upon the schema author.
+
+The MessageProvider should be able to fill in the message envelope based on the
+record schema type and the actual record data. This means that for addressable 
+messages that are received the MessageProvider should be able to do the math on
+the addresses and field sizes. For incoming messages might only contain address 
+and size information and from that a record schema type must be 'calculated' 
+and visa versa (for sending).
+
+The MessageProvider also decides on how to interpret a minimum valid record.
+For Roland (and Yamaha?) devices almost all settings can be addressed 
+separately. But some settings are required to be changed in batch (voice 
+reservations is a typical batch). For this purpose a record schema type can be
+marked as such. Without such a mark a MessageProvider will allow individual 
+Fields to be used as data record. This means that a data record schema type 
+identification should contain a root, a (leave) record and an optional field.
+
+A message exchange pattern can be defined by a state table in xml. All the
+states for all exchanged messages for one device is defined in one table.
+Normal state table concepts would map to device messages as follows:
+
+state		- send a message
+event		- received a message
+next-state	- refers to another state
+
+There is one central/neutral state that an instance of a message exchange 
+pattern can be in. This is the starting point when the input is listening for
+messages to come in. It is also the state that is selected when each handshake
+message exchange is finished. This neutral state contains the definitions for
+all events that can be responded to, which start of new state "paths".
+
+When a message needs to be sent (the program takes the initiative to start the
+message exchange) the current state is changed to the state that represents the
+corresponding message (to be sent). From that point on the state's events 
+dictate what messages can be received and how the exchange proceeds.
+
+A special condition is when the message exchange is interrupted by either an
+(user) abort or an (programmatic) error.
+
+TODO: How to define retry logic (on for instance a checksum error)?
+TODO: How to define data transfer using multiple messages?
+
+It is probable that manufactures of devices that support a 'complex' handshake
+protocol only use one message exchange pattern state table. For example Roland
+uses a set of standard messages that are implemented by all devices they make.
+So once this state table is defined it is reusable for all devices -or at least
+can be the default fallback state table if a device specific state table was
+not declared.
+
+
+<state name="idle">		// root state represents the idle/neutral/listening state
+	<events>
+		<event name="WSD" next-state="DS" msg-id="" />
+		<event name="RQD" next-state="DS" msg-id="" />
+	</events>
+	
+	<states>
+		<state name="DS" msg-id="" >
+			<events>
+				<event name="ACK" msg-id="" />	// TODO: send next data message?
+				<event name="ERR" msg-id="" />	// TODO: possible retry or abort.
+			</events>
+			
+			<states>
+				<state name="EOD" msg-id="" />	// a state without events is terminating.
+			</states>
+		</state>
+	</states>
+</state>
+
+TODO: 
+- how to define multiple messages of the same type coming in one after the other?
+- how to define the basic handshake messages in order for the manager to perform 
+	some tasks automatically. Such as retries on error or throttling when processing is slow.
+
+MessageExchangeManager
+.ctor(mepConfig);
+Xxxx CurrentState { get; }
+Receive(MidiDeviceSchemaType type);
+Send(MidiDeviceSchemaType type);
+Cancel();
+
+The MessageExchangeManager needs to provide some way for the application logic
+to indicate what message to send after a message was received. For instance 
+when an error occurs during parsing of the sysex message or a checksum error, 
+the MessageExchangeProvider can automatically send out a retry request for the 
+last message to be resent. But it must also be possible when a bulk is sent 
+from the device in successive data messages for the application to request a 
+wait or a pause in order to process the information. Although its very unlikely
+that the modern PC will not be fast enough to keep up with a Midi SysEx 
+message. This throttling could also be automatic and build into the manager 
+itself. At least the Abort function should be present on the manager in order
+for the application to cancel a lengthy handshake message exchange.
+
+MessageProvider
+.ctor(MidiDeviceSchema schema);
+MidiDeviceSchemaType DetermineEnvelope(Stream physicalStream);
+MidiDeviceSchemaType DetermineRecord(Stream physicalStream);
+Stream WriteEnvelope(MidiDeviceSchemaType type, Stream physicalStream);
+
+But before this can be brought in place we need to cover the following topics:
+
+1) Automatic detection of the schema of the incoming message.
+	The manufacturer ID of the message determines the type of AIP used. Other 
+	fields inside the message may yield more information on the actual message
+	RecordType or Field. Once the provider is determined it has to identify the
+	message type. It returns a RecordType or Field of the contained in a 
+	general purpose GroupConverter. The Provider also has to determine the type of
+	Address Map to use based on the type of device (Model ID).
+2) Allow the ToLogical and ToPhysical operations to be performed based on a 
+	Field (instead of a RecordType). Or allow RecordTypes to be created 
+	dynamically to contain the Field(s) that need to be processed.
+
+
+TODO: analyze the case of universal sysex messages. Where "all" messages have
+the same layout/structure and only some the values determine what type of
+universal sysex message it really is.
+
+NOTE
+An orchestration/workflow type approach might be more suitable. Also taking 
+into account that some 'steps' also require sending normal midi messages (PC's)
+or displaying text to the user to perform some manual action.
+

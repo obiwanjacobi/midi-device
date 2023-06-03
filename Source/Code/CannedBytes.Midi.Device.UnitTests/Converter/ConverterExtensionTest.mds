@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/UnitTests/ConverterExtensionTests.mds"
+  xmlns="http://schemas.cannedbytes.com/midi-device-schema/UnitTests/ConverterExtensionTests.mds"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+  xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="ExtensionTest">
+    <mds:sequence>
+      <mds:field name="StackField" type="SignedRange" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:dataType name="SignedRange" valueOffset="-16">
+    <mds:extension baseTypes="m:midiSigned m:midiBit0-4" />
+  </mds:dataType>
+
+</mds:deviceSchema>

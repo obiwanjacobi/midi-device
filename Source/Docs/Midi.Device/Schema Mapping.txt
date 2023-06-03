@@ -1,0 +1,76 @@
+
+Physical Midi Data
+-------------------
+Physical Midi data is midi as it is received from or sent to a midi device. The
+device dictates for SysEx messages the content and structure and meaning for 
+each message. Some devices implement some weird mapping algorithms to go from a
+normal 8-bit byte to a 7-bit SysEx data byte. Or one physical SysEx data byte
+is home to more than one (logical) setting (usually for small enumerators or
+boolean values).
+
+Logical Midi Data
+------------------
+Logical Midi data is semantically equivalent to the physical midi data. The 
+logical SysEx data lists each device setting as a separate field. Software
+clients to midi SysEx data will find Logical SysEx easier to work with than
+physical SysEx data.
+
+Midi Device Schema
+-------------------
+In order to come to a generic SysEx implementation for "all" devices, we need
+to be able to describe the SysEx content. Once a description for all SysEx 
+for a specific device is available we can fully control that device with the
+same code that would control any other device. Such a logical device 
+description we call a Midi Device Schema.
+
+A Midi Device Schema is built up of records. Each record can have sub records 
+and so on. A record indicates total size and/or byte offset. A record can occur
+one or many times. A record is the smallest entity (and the biggest) that can
+be sent individually. A record can also contain fields. Each field is a logical
+setting for the device. A field is always sent as part of a record, never 
+alone. The data type of the field signals how big the data is (in bits or 
+bytes) and how this field is represented in physical midi data. Ordering of 
+fields is important because logical fields can be merged into one physical 
+byte.
+
+We (mis)use Xml Schema (xsd) to describe a SysEx schema. There are certain 
+slightly different interpretations to the Xml Schema elements.
+
+Xml Schema   | Midi Device Schema
+-------------+-------------------
+simpleType   | data type
+complexType  | logical field record
+element      | logical field
+union        | mask, shift and bit-or a byte (most significant first)
+fixed        | literal (protocol) byte
+annotation   | documentation
+abstract     | record placeholder
+facet        | physical constraints on logical fields
+
+
+The Midi Device Schema 'language' also provides several base Types that are to 
+be used as simpleType base classes. These Midi Types serve two purposes. First
+they define standard (constant) values for the Midi Protocol (such as Note On)
+and the layout of (standard) midi messages. And second they are hardwired to 
+code that performs the transformation to go from Logical to Physical Midi data 
+and visa versa. Sometimes a conversion needs to be performed on the data value
+(such as true/false for a Boolean bit 0/1). Midi Types can also perform these
+conversions.
+
+Midi Types
+-----------
+These types represent the mapping from logical to physical midi data. The Midi 
+Types are represented in code by 'operators'. Types of operators are Mask, 
+Shift and ChangeType (convert). Operators can be extended by using a custom 
+attribute to specify a custom operator CLR class. [TODO: this now works with
+Converters and ConverterFactories.]
+
+A transformation of byte data from logical midi to physical midi can involve 
+one or more operations. Also one or more logical positions can map to one 
+physical position (bits that represent logical fields) or one or more physical 
+positions can map to one logical position (a logical field is stored in 
+multiple bytes). When more than one logical fields map to more than one 
+physical bytes special block operators are called to do the translation (some 
+devices use byte packing algorithms to fit 8bit bytes into 7 bit sysex data 
+bytes).
+

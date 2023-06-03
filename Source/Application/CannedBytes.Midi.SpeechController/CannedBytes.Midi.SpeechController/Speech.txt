@@ -1,0 +1,14 @@
+﻿How to install and configure speech recognition in Windows XP
+http://support.microsoft.com/kb/306537
+
+How to Install Speech Recognition (Word 2003)
+To install speech recognition, follow these steps: 
+1. Click Start , and then click Control Panel. 
+2. Double-click Add/Remove Programs.  
+3. Click Change or Remove Programs.  
+4. In the list of installed programs, click Microsoft Office 2003, and then click Change.  
+5. Click Add or Remove Features, and then click Next.  
+6. In the Features to install list, expand Office Shared Features.  
+7. Expand Alternative User Input.  
+8. Click the Speech icon, and then click Run all from my computer.  
+9. Click Update to install speech components. 

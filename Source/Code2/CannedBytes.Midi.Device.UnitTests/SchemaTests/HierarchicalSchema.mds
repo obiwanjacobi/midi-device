@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/HierarchicalSchema" version="1.0"
+  xmlns="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/HierarchicalSchema"
+  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <mds:annotation>
+    <mds:documentation xml:lang="en">This is HierarchicalSchema.mds.</mds:documentation>
+  </mds:annotation>
+
+  <mds:dataType name="midiByte">
+    <mds:restriction base="xs:unsignedByte" />
+  </mds:dataType>
+
+  <mds:dataType name="midiData">
+    <mds:restriction base="midiByte">
+      <mds:minimum value="0" />
+      <mds:maximum value="127" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:recordType name="rootRecord">
+    <mds:sequence>
+      <mds:field name="Field1" type="midiData" />
+      <mds:field name="Field2" type="subRecord" repeats="2" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="subRecord">
+    <mds:sequence>
+      <mds:field name="subField1" type="midiData" />
+      <mds:field name="subField2" type="sub2Record" />
+    </mds:sequence>
+  </mds:recordType>
+  
+  <mds:recordType name="sub2Record">
+    <mds:sequence>
+      <mds:field name="sub2Field1" type="midiData" />
+      <mds:field name="sub2Field2" type="midiData" />
+    </mds:sequence>
+  </mds:recordType>
+  
+</mds:deviceSchema>

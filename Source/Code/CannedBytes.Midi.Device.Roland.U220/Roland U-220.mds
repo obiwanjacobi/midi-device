@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/U-220/10"
+    xmlns="http://schemas.cannedbytes.com/midi-device-schema/Roland/U-220/10"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:a="http://schemas.cannedbytes.com/midi-device-schema/message-types/10"
+    xmlns:r="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+>
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/message-types/10" assembly="CannedBytes.Midi.Device.Message" name="MidiMessageTypes.mds" />
+  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
+
+  <mds:recordType name="AddressMap">
+    <mds:extension base="a:midiAddressMap">
+      <mds:sequence>
+        <!-- Bulk Dump Area -->
+        <mds:field name="SetupParameter" type="SetupParameter" mds:address="00-00-00H" />
+        <mds:field name="PatchTemp" type="Patch" mds:address="00-06-00H"/>
+        <mds:field name="TimbreTemp" type="Timbre" repeats="6" mds:address="00-10-00H" mds:size="01-00H"/>
+        <!--<mds:field name="RythmSetupTemp" type="RythmSetup" mds:address="00-20-00H" />-->
+        <mds:field name="Timbre" type="Timbre" repeats="128" mds:address="02-00-00H" mds:size="01-00H" />
+        <mds:field name="Patch" type="Patch" repeats="64" mds:address="03-00-00H"/>
+        <!--<mds:field name="RythmSetup" type="RythmSetup" repeats="4" mds:address="05-00-00H" />
+          <mds:field name="PatchMap" type="Map" mds:address="07-00-00H" />
+          <mds:field name="TimbreMap" type="Map" mds:address="07-08-00H" />
+          <mds:field name="RythmMap" type="Map" mds:address="07-10-00H" />
+          <mds:field name="R.InstMap" type="Map" mds:address="07-18-00H" />-->
+
+        <!-- Temp Area -->
+
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="SetupParameter" mds:width="4">
+    <mds:extension base="m:midiSplitNibbleLE">
+      <mds:sequence>
+        <mds:field name="MasterTune" type="m:midiData" />
+        <mds:field name="LcdContrast" type="m:midiBit8-11" />
+        <mds:field name="ReverbSwitch" type="m:midiBit12" />
+        <mds:field name="ChorusSwitch" type="m:midiBit13" />
+        <mds:field name="SetupEmpty1" type="m:midiNull" />
+        <mds:field name="SetupEmpty2" type="m:midiNull" />
+        <mds:field name="RxCtrlChannel" type="m:midiLSNibble" />
+        <mds:field name="SetupEmpty3" type="m:midiNull" />
+        <mds:field name="PatchChange" type="m:midiBit0-2" />
+        <mds:field name="TimbreChange" type="m:midiBit4-6" />
+        <mds:field name="RythmChange" type="m:midiBit8-10" />
+        <mds:field name="RInstAssign" type="m:midiBit12-14" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Patch" mds:width="4">
+    <mds:extension base="m:midiSplitNibbleLE">
+      <mds:sequence>
+        <mds:field name="Name" type="PatchName" mds:width="2" />
+
+        <mds:field name="ChorusRate" type="m:midiBit0-4" />
+        <mds:field name="ChorusLevel" type="m:midiBit6-10" />
+        <mds:field name="ChorusDepth" type="m:midiBit11-15" />
+
+        <mds:field name="RevDelayTime" type="m:midiBit0-5" />
+        <mds:field name="ChorusFeedback" type="m:midiBit7-12" />
+        <mds:field name="ChorusType" type="m:midiBit13-15" />
+
+        <mds:field name="ChorusDelayTime" type="m:midiBit0-4" />
+        <mds:field name="DummyTestField1" type="m:midiBit5-10" />
+        <mds:field name="DelayFeedBack" type="m:midiBit11-15" />
+
+        <mds:field name="RevDelayLevel" type="m:midiBit0-4" />
+        <mds:field name="RevPreDelayTime" type="m:midiBit6-10" />
+        <mds:field name="RevDelayType" type="m:midiBit12-14" />
+        <mds:field name="ChorusOutMode" type="m:midiBit15" />
+
+        <mds:field name="CtrlParameters" type="CtrlParameter" repeats="3" />
+
+        <mds:field name="RythmPartVoiceReserve" type="m:midiBit0-4" />
+        <mds:field name="RythmSetupNo" type="m:midiBit5-6" />
+        <mds:field name="RyhtmPartChannel" type="m:midiBit0-5" />
+        <mds:field name="RxHold" type="m:midiBit6" />
+        <mds:field name="RxVolume" type="m:midiBit7" />
+
+        <mds:field name="RythmPartLevel" type="m:midiData" />
+        <mds:field name="RythmPartLevelBoostSwitch" type="m:midiBit7" />
+        <mds:field name="PatchEmpty1" type="m:midiNull" />
+
+        <mds:field name="Part" type="Part" repeats="6" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="CtrlParameter" mds:width="4">
+    <mds:extension base="m:midiSplitNibbleLE">
+      <mds:sequence>
+        <mds:field name="Ctrl" type="m:midiData" />
+        <mds:field name="Parameter" type="m:midiBit0-4" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Part" mds:width="4">
+    <mds:extension base="m:midiSplitNibbleLE">
+      <mds:sequence>
+        <mds:field name="TimbreNo" type="m:midiData" />
+        <mds:field name="RxVolume" type="m:midiBit7" />
+        <mds:field name="VoiceReserve" type="m:midiBit0-4" />
+        <mds:field name="OutputAssign" type="m:midiBit5-7" />
+
+        <mds:field name="ReceiveChannel" type="m:midiBit0-4" />
+        <mds:field name="PartLevel" type="m:midiBit5-11" />
+        <mds:field name="Panning" type="m:midiBit12-15" />
+
+        <mds:field name="KeyRangeLo" type="m:midiData" />
+        <mds:field name="RxHold" type="m:midiBit7" />
+        <mds:field name="KeyRangeHi" type="m:midiData" />
+        <mds:field name="RxPan" type="m:midiBit7" />
+
+        <mds:field name="VeloLevel" type="m:midiBit0" />
+        <mds:field name="VeloThreshold" type="m:midiData" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Timbre" mds:width="4">
+    <mds:extension base="m:midiSplitNibbleLE">
+      <mds:sequence>
+        <mds:field name="Name" type="TimbreName" />
+
+        <mds:field name="ToneNumber" type="m:midiData" />
+        <mds:field name="ToneMedia" type="m:midiBit7-11" />
+        <mds:field name="DetuneDepth" type="m:midiBit12-15" />
+
+        <mds:field name="LevelVeloSens" type="m:midiBit0-3" />
+        <mds:field name="LevelChannelPressSens" type="m:midiBit4-7" />
+        <mds:field name="TimbreLevel" type="m:midiData" />
+
+        <mds:field name="EnvAttack" type="m:midiLSNibble" />
+        <mds:field name="EnvDecay" type="m:midiMSNibble" />
+        <mds:field name="EnvSustain" type="m:midiLSNibble" />
+        <mds:field name="EnvRelease" type="m:midiMSNibble" />
+
+        <mds:field name="PitchShiftFine" type="m:midiBit0-5" />
+        <mds:field name="PitchShiftCoarse" type="m:midiBit0-4" />
+
+        <mds:field name="BendRangeLower" type="m:midiBit0-4" />
+        <mds:field name="BendRangeUpper" type="m:midiBit5-11" />
+        <mds:field name="AutoBendDepth" type="m:midiBit9-13" />
+
+        <mds:field name="PitchPolyPressSens" type="m:midiBit0-4" />
+        <mds:field name="PitchChannelPressSens" type="m:midiBit5-9" />
+        <mds:field name="AutoBendRate" type="m:midiBit10-13" />
+
+        <mds:field name="VibModulationDepth" type="m:midiBit4-7" />
+        <mds:field name="VibDelay" type="m:midiBit8-11" />
+        <mds:field name="VibDepth" type="m:midiBit12-15" />
+
+        <mds:field name="VibRate" type="m:midiBit0-5" />
+        <mds:field name="VibWaveform" type="m:midiBit8-11" />
+
+        <mds:field name="VibRiseTime" type="m:midiBit0-3" />
+        <mds:field name="VibChannelPressSens" type="m:midiBit8-11" />
+        <mds:field name="VibPolyPressSens" type="m:midiBit12-15" />
+
+        <mds:field name="TimbreDummy1" type="m:midiNull" />
+        <mds:field name="TimbreDummy2" type="m:midiNull" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="RQ1ChecksumScope">
+    <mds:sequence>
+      <mds:field name="AddressSize" type="r:AddressSizeBE3" />
+      <mds:field name="checksum" type="r:rolandChecksum" />
+    </mds:sequence>
+  </mds:recordType>
+  
+  <mds:recordType name="RQ1">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+      <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+      <mds:field name="ModelId" type="RolandU220ModelId" />
+      <mds:field name="CommandId" type="r:RQ1CommandId" />
+      <mds:field name="body" type="RQ1ChecksumScope" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:recordType name="DT1ChecksumScope">
+    <mds:sequence>
+      <mds:field name="Address" type="r:AddressBE3" />
+      <mds:field name="AddressMap" type="AddressMap" />
+      <mds:field name="checksum" type="r:rolandChecksum" />
+    </mds:sequence>
+  </mds:recordType>
+  
+  <mds:recordType name="DT1">
+    <mds:sequence>
+      <mds:field name="ManufacturerId" type="r:RolandManufacturer" />
+      <mds:field name="DeviceId" type="m:midiData" mds:property="DeviceId" />
+      <mds:field name="ModelId" type="RolandU220ModelId" />
+      <mds:field name="CommandId" type="r:DT1CommandId" />
+      <mds:field name="body" type="DT1ChecksumScope" />
+    </mds:sequence>
+  </mds:recordType>
+
+  <mds:dataType name="RolandU220ModelId">
+    <mds:restriction base="r:RolandId1">
+      <mds:enumeration value="2BH" name="U220" />
+    </mds:restriction>
+  </mds:dataType>
+  
+  <mds:dataType name="PatchName">
+    <mds:restriction base="m:midiString">
+      <mds:length value="12" />
+    </mds:restriction>
+  </mds:dataType>
+
+  <mds:dataType name="TimbreName">
+    <mds:restriction base="m:midiString">
+      <mds:length value="10" />
+    </mds:restriction>
+  </mds:dataType>
+  
+</mds:deviceSchema>
