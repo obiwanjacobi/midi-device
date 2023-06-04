@@ -1,6 +1,6 @@
 ﻿using System;
 using CannedBytes.Midi.Device.Schema;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests
 {
@@ -8,11 +8,11 @@ namespace CannedBytes.Midi.Device.UnitTests
     {
         internal static void AssertDeviceSchema(DeviceSchema schema)
         {
-            Assert.IsNotNull(schema, "DeviceSchema reference is null.");
-            //Assert.IsTrue(schema.AllDataTypes.Count > 0, "DeviceSchema has no DataTypes.");
-            Assert.IsTrue(schema.AllRecordTypes.Count > 0, "DeviceSchema has no RecordTypes.");
-            Assert.IsTrue(schema.RootRecordTypes.Count > 0, "DeviceSchema has no root RecordTypes.");
-            Assert.IsFalse(String.IsNullOrEmpty(schema.SchemaName), "DeviceSchema has no name.");
+            Assert.NotNull(schema);
+            //Assert.True(schema.AllDataTypes.Count > 0, "DeviceSchema has no DataTypes.");
+            Assert.True(schema.AllRecordTypes.Count > 0, "DeviceSchema has no RecordTypes.");
+            Assert.True(schema.RootRecordTypes.Count > 0, "DeviceSchema has no root RecordTypes.");
+            Assert.False(String.IsNullOrEmpty(schema.SchemaName), "DeviceSchema has no name.");
 
             AssertDataTypeCollection(schema, schema.AllDataTypes);
             AssertRecordTypeCollection(schema, schema.AllRecordTypes);
@@ -59,12 +59,12 @@ namespace CannedBytes.Midi.Device.UnitTests
                 AssertRecordType(schema, field.RecordType);
             }
 
-            Assert.IsNotNull(field.DeclaringRecord, "Field does not have a declaring RecordType.");
+            Assert.NotNull(field.DeclaringRecord);
 
             // causes recursion
             //AssertRecordType(schema, field.DeclaringRecord);
 
-            Assert.IsTrue(field.Repeats >= 1, "Field has an invalid Repeats value.");
+            Assert.True(field.Repeats >= 1, "Field has an invalid Repeats value.");
         }
 
         internal static void AssertDataTypeCollection(DeviceSchema schema, DataTypeCollection dataTypes)
@@ -82,11 +82,11 @@ namespace CannedBytes.Midi.Device.UnitTests
             AssertSchemaObject(schema, dataType);
             AssertSchemaObjectCollection(schema, dataType.Attributes);
 
-            Assert.AreEqual(dataType.HasBaseTypes, dataType.BaseType != null, "DataType.HasBaseTypes does not report correct state.");
+            Assert.Equal(dataType.HasBaseTypes, dataType.BaseType != null);
 
             if (dataType.HasBaseTypes)
             {
-                Assert.IsTrue(dataType.BaseTypes.Count > 0, "DataType has a BaseType but BaseTypes collection is empty.");
+                Assert.True(dataType.BaseTypes.Count > 0, "DataType has a BaseType but BaseTypes collection is empty.");
 
                 foreach (DataType baseType in dataType.BaseTypes)
                 {
@@ -100,11 +100,11 @@ namespace CannedBytes.Midi.Device.UnitTests
             AssertSchemaObject(null, dataType);
             AssertSchemaObjectCollection(null, dataType.Attributes);
 
-            Assert.AreEqual(dataType.HasBaseTypes, dataType.BaseType != null, "Imported DataType.HasBaseTypes does not report correct state.");
+            Assert.Equal(dataType.HasBaseTypes, dataType.BaseType != null);
 
             if (dataType.HasBaseTypes)
             {
-                Assert.IsTrue(dataType.BaseTypes.Count > 0, "Imported DataType has a BaseType but BaseTypes collection is empty.");
+                Assert.True(dataType.BaseTypes.Count > 0, "Imported DataType has a BaseType but BaseTypes collection is empty.");
 
                 foreach (DataType baseType in dataType.BaseTypes)
                 {
@@ -115,13 +115,13 @@ namespace CannedBytes.Midi.Device.UnitTests
 
         internal static void AssertSchemaObjectName(DeviceSchema schema, SchemaObjectName name)
         {
-            Assert.IsFalse(String.IsNullOrEmpty(name.FullName), "SchemaObjectName has no FullName.");
-            Assert.IsFalse(String.IsNullOrEmpty(name.Name), "SchemaObjectName has no Name.");
-            Assert.IsFalse(String.IsNullOrEmpty(name.SchemaName), "SchemaObjectName has no SchemaName.");
+            Assert.False(String.IsNullOrEmpty(name.FullName), "SchemaObjectName has no FullName.");
+            Assert.False(String.IsNullOrEmpty(name.Name), "SchemaObjectName has no Name.");
+            Assert.False(String.IsNullOrEmpty(name.SchemaName), "SchemaObjectName has no SchemaName.");
 
             if (schema != null)
             {
-                Assert.AreSame(schema.SchemaName, name.SchemaName, "SchemaObjectName does not belong to the correct DeviceSchema.");
+                Assert.Same(schema.SchemaName, name.SchemaName);
             }
         }
 
@@ -129,9 +129,9 @@ namespace CannedBytes.Midi.Device.UnitTests
         {
             if (schema != null)
             {
-                Assert.IsNotNull(schemaObj.Schema, "SchemaObject does not belong to a DeviceSchema.");
-                Assert.AreEqual(schema, schemaObj.Schema, "SchemaObject does not belong to correct DeviceSchema (ref).");
-                Assert.AreSame(schema.SchemaName, schemaObj.Schema.SchemaName, "SchemaObject does not belong to correct DeviceSchema (name).");
+                Assert.NotNull(schemaObj.Schema);
+                Assert.Equal(schema, schemaObj.Schema);
+                Assert.Same(schema.SchemaName, schemaObj.Schema.SchemaName);
             }
 
             AssertSchemaObjectName(schema, schemaObj.Name);
@@ -139,12 +139,12 @@ namespace CannedBytes.Midi.Device.UnitTests
 
         internal static void AssertSchemaObjectCollection<T>(DeviceSchema schema, SchemaCollection<T> collection) where T : SchemaObject
         {
-            Assert.IsNotNull(collection.Schema, "SchemaCollection does not belong to a DeviceSChema.");
+            Assert.NotNull(collection.Schema);
 
             if (schema != null)
             {
-                Assert.AreEqual(schema, collection.Schema, "SchemaCollection does not belong to correct DeviceSchema (ref).");
-                Assert.AreSame(schema.SchemaName, collection.Schema.SchemaName, "SchemaCollection does not belong to correct DeviceSchema (name).");
+                Assert.Equal(schema, collection.Schema);
+                Assert.Same(schema.SchemaName, collection.Schema.SchemaName);
             }
         }
     }

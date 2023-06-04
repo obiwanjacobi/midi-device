@@ -1,11 +1,11 @@
 ﻿using CannedBytes.Midi.Device.UnitTests.Stubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests.LittleEndianTest
 {
-    [TestClass]
-    [DeploymentItem("BigEndianTest/BigEndianTestSchema.mds")]
-    [DeploymentItem("BigEndianTest/BigEndianTestStream.bin")]
+    
+    //[DeploymentItem("BigEndianTest/BigEndianTestSchema.mds")]
+    //[DeploymentItem("BigEndianTest/BigEndianTestStream.bin")]
     public class BigEndianTest
     {
         public static readonly string TestSchemaFileName = "BigEndianTestSchema.mds";
@@ -14,33 +14,33 @@ namespace CannedBytes.Midi.Device.UnitTests.LittleEndianTest
         public const string FieldName = "http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/BigEndianTestSchema.mds:SwappedChars";
         public const string FieldNameIndexed = "http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/BigEndianTestSchema.mds:SwappedChars[0]";
 
-        [TestMethod]
+        [Fact]
         public void Read_BigEndianWidth2_StringCharsSwapped()
         {
             var writer = new DictionaryBasedLogicalStub();
 
             DeviceHelper.ReadLogical(TestSchemaFileName, TestStreamFileName, "bigEndianTest", writer);
 
-            Assert.IsTrue(writer.FieldValues.ContainsKey(FieldNameIndexed));
+            Assert.True(writer.FieldValues.ContainsKey(FieldNameIndexed));
 
             var actual = writer.FieldValues[FieldNameIndexed];
-            Assert.AreEqual("cAuots", actual);
+            Assert.Equal("cAuots", actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Read_BigEndianFieldWidth3_StringCharsSwapped()
         {
             var writer = new DictionaryBasedLogicalStub();
 
             DeviceHelper.ReadLogical(TestSchemaFileName, TestStreamFileName, "bigEndianFieldTest", writer);
 
-            Assert.IsTrue(writer.FieldValues.ContainsKey(FieldNameIndexed));
+            Assert.True(writer.FieldValues.ContainsKey(FieldNameIndexed));
 
             var actual = writer.FieldValues[FieldNameIndexed];
-            Assert.AreEqual("ocAtsu", actual);
+            Assert.Equal("ocAtsu", actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Write_BigEndianWidth2_StringCharsSwapped()
         {
             var stub = new DictionaryBasedLogicalStub();
@@ -50,13 +50,13 @@ namespace CannedBytes.Midi.Device.UnitTests.LittleEndianTest
             var stream = ctx.PhysicalStream;
             stream.Position = 1; // skip F0
 
-            Assert.AreEqual(8, stream.Length);
+            Assert.Equal(8, stream.Length);
 
             var reader = new MidiBinaryStreamReader(stream);
 
             var value = reader.ReadString(6);
 
-            Assert.AreEqual("cAuots", value);
+            Assert.Equal("cAuots", value);
         }
     }
 }

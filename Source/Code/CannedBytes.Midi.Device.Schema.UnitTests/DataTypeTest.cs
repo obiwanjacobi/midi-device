@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Schema.UnitTests
 {
@@ -6,13 +7,13 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
     ///This is a test class for Jacobi.Midi.Device.Schema.DataType and is intended
     ///to contain all Jacobi.Midi.Device.Schema.DataType Unit Tests
     ///</summary>
-    [TestClass()]
+    
     public class DataTypeTest
     {
         private const string SchemaName = "urn:midi-test-schema";
         private const string TypeName = "TestType";
 
-        [TestMethod()]
+        [Fact]
         public void DataType_ConstructorTest()
         {
             string fullName = SchemaName + ":" + TypeName;
@@ -22,7 +23,7 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
             SchemaObjectTest.AssertName(target, SchemaName, TypeName);
         }
 
-        [TestMethod()]
+        [Fact]
         public void DataType_BaseTypeTest()
         {
             string fullName = SchemaName + ":" + TypeName;
@@ -35,13 +36,13 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
 
             target.BaseTypes.Add(baseType);
 
-            Assert.IsTrue(target.HasBaseTypes);
-            Assert.IsNotNull(target.BaseType);
-            Assert.AreSame(baseType, target.BaseType);
-            Assert.AreEqual(1, target.BaseTypes.Count);
+            target.HasBaseTypes.Should().BeTrue();
+            target.BaseType.Should().NotBeNull();
+            target.BaseType.Should().Be(baseType);
+            target.BaseTypes.Should().HaveCount(1);
         }
 
-        [TestMethod()]
+        [Fact]
         public void DataType_IsTypeTest()
         {
             string fullName = SchemaName + ":" + TypeName;
@@ -55,11 +56,11 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
             target.BaseTypes.Add(baseType);
 
             // own type should be found with/w-out recursive.
-            Assert.IsTrue(target.IsType(fullName, false));
-            Assert.IsTrue(target.IsType(fullName, true));
+            target.IsType(fullName, false).Should().BeTrue();
+            target.IsType(fullName, true).Should().BeTrue();
             // immediate base type should be found with/w-out recursive.
-            Assert.IsTrue(target.IsType(SchemaName + ":BaseType", true));
-            Assert.IsTrue(target.IsType(SchemaName + ":BaseType", false));
+            target.IsType(SchemaName + ":BaseType", true).Should().BeTrue();
+            target.IsType(SchemaName + ":BaseType", false).Should().BeTrue();
         }
     }
 }

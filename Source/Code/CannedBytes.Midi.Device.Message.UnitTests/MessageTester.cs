@@ -6,7 +6,7 @@ using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests;
 using CannedBytes.Midi.Device.UnitTests.Stubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device.Message.UnitTests
@@ -25,15 +25,15 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
         public void SetCurrentMessage(string messageName)
         {
-            Assert.IsNotNull(DeviceProvider, "DeviceProvider property not set.");
+            Assert.NotNull(DeviceProvider);
 
             CurrentPair = DeviceProvider.RootTypes.Find(DeviceProvider.Schema.SchemaName + ":" + messageName);
-            Assert.IsNotNull(CurrentPair, "Message not found: " + messageName);
+            Assert.NotNull(CurrentPair);
 
             Log("Current FieldConverterPair: " + CurrentPair.Field.ToString());
 
             CurrentBinaryMap = DeviceProvider.FindBinaryMap(CurrentPair);
-            Assert.IsNotNull(CurrentBinaryMap, "BinaryMap not found for: " + messageName);
+            Assert.NotNull(CurrentBinaryMap);
 
             //Log(CurrentBinaryMap.ToString());
         }
@@ -48,12 +48,12 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
         public MidiMessageDataContext ReadLogicalData(Stream physicalStream, IMidiLogicalWriter writer)
         {
-            Assert.IsNotNull(physicalStream, "ReadLogicalData - physicalStream");
-            Assert.IsNotNull(writer, "ReadLogicalData - writer");
-            Assert.IsNotNull(CompositionContainer, "CompositionContainer property not set.");
-            Assert.IsNotNull(DeviceProvider, "DeviceProvider property not set.");
-            Assert.IsNotNull(CurrentPair, "CurrentPair property not set.");
-            Assert.IsNotNull(CurrentBinaryMap, "BinaryMap property not set.");
+            Assert.NotNull(physicalStream);
+            Assert.NotNull(writer);
+            Assert.NotNull(CompositionContainer);
+            Assert.NotNull(DeviceProvider);
+            Assert.NotNull(CurrentPair);
+            Assert.NotNull(CurrentBinaryMap);
 
             var ctx = new MidiMessageDataContext(CurrentPair);
             ctx.CompositionContainer = CompositionContainer;
@@ -84,12 +84,12 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
         public MidiMessageDataContext WritePhysicalData(IMidiLogicalReader reader, Stream outputStream)
         {
-            Assert.IsNotNull(reader, "WritePhysicalData - reader");
-            Assert.IsNotNull(outputStream, "WritePhysicalData - outputStream");
-            Assert.IsNotNull(CompositionContainer, "CompositionContainer property not set.");
-            Assert.IsNotNull(DeviceProvider, "DeviceProvider property not set.");
-            Assert.IsNotNull(CurrentPair, "CurrentPair property not set.");
-            Assert.IsNotNull(CurrentBinaryMap, "BinaryMap property not set.");
+            Assert.NotNull(reader);
+            Assert.NotNull(outputStream);
+            Assert.NotNull(CompositionContainer);
+            Assert.NotNull(DeviceProvider);
+            Assert.NotNull(CurrentPair);
+            Assert.NotNull(CurrentBinaryMap);
 
             var ctx = new MidiMessageDataContext(CurrentPair);
             ctx.CompositionContainer = CompositionContainer;
@@ -115,12 +115,12 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
         public bool Lookup(Field firstField, FieldPathKey firstKey, Field lastField, FieldPathKey lastKey,
             out SevenBitUInt32 address, out SevenBitUInt32 size)
         {
-            Assert.IsNotNull(firstField, "Lookup - firstField");
-            Assert.IsNotNull(firstKey, "Lookup - firstKey");
-            Assert.IsNotNull(lastField, "Lookup - lastField");
-            Assert.IsNotNull(lastKey, "Lookup - lastKey");
-            Assert.IsNotNull(CompositionContainer, "CompositionContainer property not set.");
-            Assert.IsNotNull(CurrentBinaryMap, "BinaryMap property not set.");
+            Assert.NotNull(firstField);
+            Assert.NotNull(firstKey);
+            Assert.NotNull(lastField);
+            Assert.NotNull(lastKey);
+            Assert.NotNull(CompositionContainer);
+            Assert.NotNull(CurrentBinaryMap);
 
             var converterMgr = CompositionContainer.GetExportedValue<ConverterManager>();
             var schemaProvider = CompositionContainer.GetExportedValue<IDeviceSchemaProvider>();
@@ -178,8 +178,8 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
                              where node.IsAddressMap
                              select field).FirstOrDefault();
 
-            Assert.IsNotNull(startField);
-            Assert.IsNotNull(lastField);
+            Assert.NotNull(startField);
+            Assert.NotNull(lastField);
 
             return Lookup(startField.Field, startField.Key, lastField.Field, lastField.Key, out address, out size);
         }
@@ -187,10 +187,10 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
         public MidiMessageDataContext WritePhysicalData(IMidiLogicalReader reader,
             SevenBitUInt32 address, SevenBitUInt32 size, Stream outputStream)
         {
-            Assert.IsNotNull(reader, "WritePhysicalData - reader");
-            Assert.IsNotNull(outputStream, "WritePhysicalData - outputStream");
-            Assert.IsNotNull(CompositionContainer, "CompositionContainer property not set.");
-            Assert.IsNotNull(DeviceProvider, "DeviceProvider property not set.");
+            Assert.NotNull(reader);
+            Assert.NotNull(outputStream);
+            Assert.NotNull(CompositionContainer);
+            Assert.NotNull(DeviceProvider);
 
             var ctx = new MidiMessageDataContext(CurrentPair);
             ctx.CompositionContainer = CompositionContainer;
@@ -217,7 +217,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
             return ctx;
         }
 
-        public void ReadWriteComaparePhysicalData(string streamFileName)
+        public void ReadWriteComparePhysicalData(string streamFileName)
         {
             var logicalData = new DictionaryBasedLogicalStub();
 
@@ -254,7 +254,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
             }
         }
 
-        public void ReadWriteReadComapareLogicalData(string streamFileName)
+        public void ReadWriteReadCompareLogicalData(string streamFileName)
         {
             using (var fileStream = File.OpenRead(streamFileName))
             {
@@ -283,7 +283,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
                         Console.WriteLine("M: " + DeviceHelper.StreamToString(sysExStream));
                     }
 
-                    Assert.AreEqual(writeCtx.PhysicalStream.Length, memStream.Length, "Physical streams are not of the same length.");
+                    Assert.Equal(writeCtx.PhysicalStream.Length, memStream.Length);
 
                     long pos = 0;
 
@@ -304,7 +304,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
                     var fieldInfo = DeviceHelper.CompareLogicalData(logicalData, logicalWriter);
 
-                    Assert.IsNull(fieldInfo, "Logical Data Comparison failed for field {0}.", fieldInfo);
+                    Assert.Null(fieldInfo);
                 }
             }
             else
@@ -313,7 +313,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
             }
         }
 
-        public void ReadWriteReadAllComapareLogicalData(string streamFileName)
+        public void ReadWriteReadAllCompareLogicalData(string streamFileName)
         {
             using (var fileStream = File.OpenRead(streamFileName))
             {
@@ -345,7 +345,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
                     }
                 }
 
-                Assert.AreEqual(0, errorCount, "ReadWriteReadAllComapareLogicalData failed for " + errorCount + " buffers.");
+                Assert.Equal(0, errorCount);
             }
         }
     }

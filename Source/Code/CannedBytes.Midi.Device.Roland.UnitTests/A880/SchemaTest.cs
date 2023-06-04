@@ -3,11 +3,11 @@ using System.Diagnostics;
 using CannedBytes.Midi.Device.Roland.A880;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Message.UnitTests.A880Test
 {
-    [TestClass]
+    
     public class SchemaTest
     {
         public const string SchemaFileName = "CannedBytes.Midi.Device.Roland.A880/Roland A-880.mds";
@@ -20,8 +20,8 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.A880Test
             messageTester.DeviceProvider = messageTester.CompositionContainer.GetExportedValue<Roland.A880.DeviceProvider>();
             messageTester.SetCurrentMessage("DT1");
 
-            Assert.IsNotNull(messageTester.CurrentPair);
-            Assert.IsNotNull(messageTester.DeviceProvider);
+            Assert.NotNull(messageTester.CurrentPair);
+            Assert.NotNull(messageTester.DeviceProvider);
 
             return messageTester;
         }
@@ -34,7 +34,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.A880Test
             {
                 if (prevNode != null)
                 {
-                    Assert.IsTrue(node.Address >= prevNode.Address,
+                    Assert.True(node.Address >= prevNode.Address,
                         String.Format("Field '{0}' has an invalid address {1}", node.FieldConverterPair.Field.Name, node.Address));
                 }
 
@@ -43,24 +43,24 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.A880Test
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void DeviceProvider_Construct_NoErrors()
         {
             var provider = new DeviceProvider();
 
-            Assert.AreEqual("Roland", provider.Manufacturer);
-            Assert.AreEqual("A-880", provider.ModelName);
+            Assert.Equal("Roland", provider.Manufacturer);
+            Assert.Equal("A-880", provider.ModelName);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadSchema_SchemaValidation()
         {
             DeviceSchema schema = DeviceHelper.OpenDeviceSchema(SchemaFileName);
 
-            Assert.AreEqual(2, schema.RootRecordTypes.Count);
+            Assert.Equal(2, schema.RootRecordTypes.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadBinaryMap_Validation()
         {
             var messageTester = CreateMessageTester();

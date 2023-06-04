@@ -6,7 +6,7 @@ using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.Schema.Xml;
 using CannedBytes.Midi.Device.UnitTests.Stubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests
 {
@@ -24,17 +24,17 @@ namespace CannedBytes.Midi.Device.UnitTests
         public static MidiDeviceDataContext ReadLogical(string schemaFile, string testStreamFile, string recordTypeName, IMidiLogicalWriter logicalWriter)
         {
             DeviceSchema schema = DeviceHelper.OpenDeviceSchema(schemaFile);
-            Assert.IsNotNull(schema);
+            Assert.NotNull(schema);
 
             RecordType recordType = schema.RootRecordTypes.Find(recordTypeName);
-            Assert.IsNotNull(recordType, "RecordType '" + recordTypeName + "' was not found.");
+            Assert.NotNull(recordType);
 
             var container = CreateContainer();
             ConverterManager converterManager = new ConverterManager();
             converterManager.InitializeFrom(container);
 
             GroupConverter baseConverter = converterManager.GetConverter(recordType);
-            Assert.IsNotNull(baseConverter);
+            Assert.NotNull(baseConverter);
 
             MidiDeviceDataContext ctx = new MidiDeviceDataContext(recordType, baseConverter);
             ctx.CompositionContainer = container;
@@ -60,17 +60,17 @@ namespace CannedBytes.Midi.Device.UnitTests
         public static MidiDeviceDataContext WritePhysical(string schemaFile, string recordTypeName, IMidiLogicalReader logicalReader)
         {
             DeviceSchema schema = DeviceHelper.OpenDeviceSchema(schemaFile);
-            Assert.IsNotNull(schema);
+            Assert.NotNull(schema);
 
             RecordType recordType = schema.RootRecordTypes.Find(recordTypeName);
-            Assert.IsNotNull(recordType, "RecordType '" + recordTypeName + "' was not found.");
+            Assert.NotNull(recordType);
 
             var container = CreateContainer();
             ConverterManager converterManager = new ConverterManager();
             converterManager.InitializeFrom(container);
 
             GroupConverter baseConverter = converterManager.GetConverter(recordType);
-            Assert.IsNotNull(baseConverter);
+            Assert.NotNull(baseConverter);
 
             MidiDeviceDataContext ctx = new MidiDeviceDataContext(recordType, baseConverter);
             ctx.CompositionContainer = container;

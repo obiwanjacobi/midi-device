@@ -1,34 +1,34 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests.FieldPathKeyTest
 {
-    [TestClass]
+    
     public class FieldPathKeyTest
     {
-        [TestMethod]
+        [Fact]
         public void DefCtor_DepthAndIsZero_AllZero()
         {
             var key = new FieldPathKey();
 
-            Assert.AreEqual(0, key.Depth);
-            Assert.AreEqual(true, key.IsZero);
-            Assert.AreEqual(0, key.Values.Count());
-            Assert.AreEqual("", key.ToString());
+            Assert.Equal(0, key.Depth);
+            Assert.Equal(true, key.IsZero);
+            Assert.Equal(0, key.Values.Count());
+            Assert.Equal("", key.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void IndexCtor_DepthAndIsZero_AllOne()
         {
             var key = new FieldPathKey(1);
 
-            Assert.AreEqual(1, key.Depth);
-            Assert.AreEqual(false, key.IsZero);
-            Assert.AreEqual(1, key.Values.Count());
-            Assert.AreEqual("1", key.ToString());
+            Assert.Equal(1, key.Depth);
+            Assert.Equal(false, key.IsZero);
+            Assert.Equal(1, key.Values.Count());
+            Assert.Equal("1", key.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void Add_DepthAndIsZero_CorrectValues()
         {
             var key = new FieldPathKey();
@@ -36,10 +36,10 @@ namespace CannedBytes.Midi.Device.UnitTests.FieldPathKeyTest
             key.Add(1);
             key.Add(0);
 
-            Assert.AreEqual(3, key.Depth);
-            Assert.AreEqual(false, key.IsZero);
-            Assert.AreEqual(3, key.Values.Count());
-            Assert.AreEqual("0|1|0", key.ToString());
+            Assert.Equal(3, key.Depth);
+            Assert.Equal(false, key.IsZero);
+            Assert.Equal(3, key.Values.Count());
+            Assert.Equal("0|1|0", key.ToString());
         }
     }
 }

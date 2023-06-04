@@ -3,7 +3,7 @@ using System.IO;
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests.Stubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests
 {
@@ -11,7 +11,7 @@ namespace CannedBytes.Midi.Device.UnitTests
     /// This is a test class for CannedBytes.Midi.Device.MidiDeviceDataManager and is intended
     /// to contain all CannedBytes.Midi.Device.MidiDeviceDataManager Unit Tests
     /// </summary>
-    [TestClass()]
+    
     [DeploymentItem("TestSchema.mds")]
     public class MidiDeviceDataManagerTest
     {
@@ -20,19 +20,19 @@ namespace CannedBytes.Midi.Device.UnitTests
         /// <summary>
         /// A test for ConvertorManager
         /// </summary>
-        [TestMethod()]
+        [Fact]
         public void MidiDeviceManagerTest()
         {
             DeviceSchema schema = SchemaHelper.OpenDeviceSchema(
                 Path.Combine(TestContext.DeploymentDirectory, Constants.TestSchemaFileName));
 
-            Assert.IsNotNull(schema);
+            Assert.NotNull(schema);
         }
 
         /// <summary>
         /// A test for ReadAppend (IMidiLogicalWriter, RecordType, Stream)
         /// </summary>
-        [TestMethod()]
+        [Fact]
         public void ReadAppendTest()
         {
             DeviceSchema schema = SchemaHelper.OpenDeviceSchema(
@@ -54,14 +54,14 @@ namespace CannedBytes.Midi.Device.UnitTests
             {
                 long count = dataMgr.ReadAppend(ctx, logicalWriter, physicalStream);
 
-                Assert.IsTrue(count > 0);
+                Assert.True(count > 0);
             }
         }
 
         /// <summary>
         /// A test for WriteAppend (Stream, RecordType, IMidiLogicalReader)
         /// </summary>
-        [TestMethod()]
+        [Fact]
         public void WriteAppendTest()
         {
             DeviceSchema schema = SchemaHelper.OpenDeviceSchema(
@@ -96,7 +96,7 @@ namespace CannedBytes.Midi.Device.UnitTests
             {
                 long count = dataMgr.WriteAppend(ctx, physicalStream, reader);
 
-                Assert.IsTrue(count > 0);
+                Assert.True(count > 0);
 
                 Console.WriteLine(System.BitConverter.ToString(physicalStream.GetBuffer(), 0, (int)physicalStream.Length));
             }

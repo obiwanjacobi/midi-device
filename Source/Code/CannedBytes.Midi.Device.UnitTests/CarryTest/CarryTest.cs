@@ -1,11 +1,11 @@
 ﻿using CannedBytes.Midi.Device.UnitTests.Stubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests.CarryTest
 {
-    [TestClass]
-    [DeploymentItem("CarryTest/CarryTestSchema.mds")]
-    [DeploymentItem("CarryTest/CarryTestStream.bin")]
+    
+    //[DeploymentItem("CarryTest/CarryTestSchema.mds")]
+    //[DeploymentItem("CarryTest/CarryTestStream.bin")]
     public class CarryTest
     {
         public const string TestSchemaFileName = "CarryTestSchema.mds";
@@ -13,29 +13,29 @@ namespace CannedBytes.Midi.Device.UnitTests.CarryTest
 
         public const string FieldNamespace = "http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/CarryTestSchema.mds:";
 
-        [TestMethod]
+        [Fact]
         public void Read_SchemaWithCarry_ByteAndWordValues()
         {
             var writer = new DictionaryBasedLogicalStub();
 
             DeviceHelper.ReadLogical(TestSchemaFileName, TestStreamFileName, "carryTest", writer);
 
-            Assert.AreEqual(9, writer.FieldValues.Count);
-            Assert.AreEqual((byte)0x21, writer.FieldValues[FieldNamespace + "loByte[0]"], "loByte");
-            Assert.AreEqual((byte)0x0F, writer.FieldValues[FieldNamespace + "hiByte[0]"], "hiByte");
+            Assert.Equal(9, writer.FieldValues.Count);
+            Assert.Equal((byte)0x21, writer.FieldValues[FieldNamespace + "loByte[0]"]);
+            Assert.Equal((byte)0x0F, writer.FieldValues[FieldNamespace + "hiByte[0]"]);
 
-            Assert.AreEqual((byte)0x0C, writer.FieldValues[FieldNamespace + "loPart[0]"], "loPart");
-            Assert.AreEqual((byte)0x0D, writer.FieldValues[FieldNamespace + "midPart[0]"], "midPart");
-            Assert.AreEqual((byte)0x00, writer.FieldValues[FieldNamespace + "hiPart[0]"], "hiPart");
+            Assert.Equal((byte)0x0C, writer.FieldValues[FieldNamespace + "loPart[0]"]);
+            Assert.Equal((byte)0x0D, writer.FieldValues[FieldNamespace + "midPart[0]"]);
+            Assert.Equal((byte)0x00, writer.FieldValues[FieldNamespace + "hiPart[0]"]);
 
-            Assert.AreEqual((byte)0x74, writer.FieldValues[FieldNamespace + "firstLo[0]"], "firstLo");
-            Assert.AreEqual((byte)0x03, writer.FieldValues[FieldNamespace + "secondLo[0]"], "secondLo");
+            Assert.Equal((byte)0x74, writer.FieldValues[FieldNamespace + "firstLo[0]"]);
+            Assert.Equal((byte)0x03, writer.FieldValues[FieldNamespace + "secondLo[0]"]);
 
-            Assert.AreEqual((byte)0x0E, writer.FieldValues[FieldNamespace + "firstHi[0]"], "firstHi");
-            Assert.AreEqual((byte)0x01, writer.FieldValues[FieldNamespace + "secondHi[0]"], "secondHi");
+            Assert.Equal((byte)0x0E, writer.FieldValues[FieldNamespace + "firstHi[0]"]);
+            Assert.Equal((byte)0x01, writer.FieldValues[FieldNamespace + "secondHi[0]"]);
         }
 
-        [TestMethod]
+        [Fact]
         public void Write_SchemaWithCarry_ByteAndWordValues()
         {
             var reader = new DictionaryBasedLogicalStub();
@@ -58,24 +58,24 @@ namespace CannedBytes.Midi.Device.UnitTests.CarryTest
 
             // 21-F0-4C-63-74-03-E0-00-10
 
-            Assert.AreEqual(9 + 2, stream.Length);
-            Assert.AreEqual(0xF0, stream.ReadByte());
+            Assert.Equal(9 + 2, stream.Length);
+            Assert.Equal(0xF0, stream.ReadByte());
 
-            Assert.AreEqual(0x21, stream.ReadByte());
-            Assert.AreEqual(0xF0, stream.ReadByte());
+            Assert.Equal(0x21, stream.ReadByte());
+            Assert.Equal(0xF0, stream.ReadByte());
 
-            Assert.AreEqual(0x4C, stream.ReadByte());
-            Assert.AreEqual(0x63, stream.ReadByte());
+            Assert.Equal(0x4C, stream.ReadByte());
+            Assert.Equal(0x63, stream.ReadByte());
 
-            Assert.AreEqual(0x74, stream.ReadByte());
-            Assert.AreEqual(0x03, stream.ReadByte());
+            Assert.Equal(0x74, stream.ReadByte());
+            Assert.Equal(0x03, stream.ReadByte());
 
-            Assert.AreEqual(0xE0, stream.ReadByte());
+            Assert.Equal(0xE0, stream.ReadByte());
 
-            Assert.AreEqual(0x00, stream.ReadByte());
-            Assert.AreEqual(0x10, stream.ReadByte());
+            Assert.Equal(0x00, stream.ReadByte());
+            Assert.Equal(0x10, stream.ReadByte());
 
-            Assert.AreEqual(0xF7, stream.ReadByte());
+            Assert.Equal(0xF7, stream.ReadByte());
         }
     }
 }

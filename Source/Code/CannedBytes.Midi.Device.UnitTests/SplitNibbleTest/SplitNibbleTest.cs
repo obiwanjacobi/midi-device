@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using CannedBytes.Midi.Device.UnitTests.Stubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests.SplitNibbleTest
 {
-    [TestClass]
-    [DeploymentItem("SplitNibbleTest/SplitNibbleTestSchema.mds")]
-    [DeploymentItem("SplitNibbleTest/SplitNibbleTestStream.bin")]
+    
+    //[DeploymentItem("SplitNibbleTest/SplitNibbleTestSchema.mds")]
+    //[DeploymentItem("SplitNibbleTest/SplitNibbleTestStream.bin")]
     public class SplitNibbleTest
     {
         public const string TestSchemaFileName = "SplitNibbleTestSchema.mds";
@@ -14,20 +14,20 @@ namespace CannedBytes.Midi.Device.UnitTests.SplitNibbleTest
 
         public const string FieldName = "http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/SplitNibbleTestSchema.mds:Field1[0|0]";
 
-        [TestMethod]
+        [Fact]
         public void Read_SplitNibbleStream_LogicValues()
         {
             var writer = new DictionaryBasedLogicalStub();
 
             DeviceHelper.ReadLogical(TestSchemaFileName, TestStreamFileName, "splitNibbleTest", writer);
 
-            Assert.IsTrue(writer.FieldValues.ContainsKey(FieldName));
+            Assert.True(writer.FieldValues.ContainsKey(FieldName));
 
             var actual = writer.FieldValues[FieldName];
-            Assert.AreEqual("Acoust Piano", actual);
+            Assert.Equal("Acoust Piano", actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Write_LogicalValues_SplitNibbleStream()
         {
             var reader = new DictionaryBasedLogicalStub();
@@ -37,12 +37,12 @@ namespace CannedBytes.Midi.Device.UnitTests.SplitNibbleTest
             var ctx = DeviceHelper.WritePhysical(TestSchemaFileName, "splitNibbleTest", reader);
             var stream = ctx.PhysicalStream;
 
-            Assert.AreEqual(24 + 2, stream.Length);
+            Assert.Equal(24 + 2, stream.Length);
 
             using (var fileStream = File.OpenRead(TestStreamFileName))
             {
                 long pos = -1;
-                Assert.IsTrue(DeviceHelper.CompareStreams(stream, fileStream, out pos));
+                Assert.True(DeviceHelper.CompareStreams(stream, fileStream, out pos));
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace CannedBytes.Midi.Device.Schema.UnitTests
 {
@@ -6,13 +6,13 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
     ///This is a test class for Jacobi.Midi.Device.Schema.Field and is intended
     ///to contain all Jacobi.Midi.Device.Schema.Field Unit Tests
     ///</summary>
-    [TestClass()]
+    
     public class FieldTest
     {
         private const string SchemaName = "urn:midi-test-schema";
         private const string FieldName = "TestField";
 
-        [TestMethod()]
+        [Fact]
         public void Field_ConstructorTest()
         {
             string fullName = SchemaName + ":" + FieldName;

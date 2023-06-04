@@ -2,13 +2,14 @@
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Message.UnitTests.BinaryMap
 {
-    [TestClass]
-    [DeploymentItem("BinaryMap/BinaryMapTest.mds")]
-    [DeploymentItem("BinaryMap/BinaryMapTest2.mds")]
+    
+    //[DeploymentItem("BinaryMap/BinaryMapTest.mds")]
+    //[DeploymentItem("BinaryMap/BinaryMapTest2.mds")]
     public class BinaryMapTest
     {
         private MidiDeviceBinaryMap CreateBinaryMap(string schemaFileName, string messageName)
@@ -35,7 +36,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.BinaryMap
             {
                 if (prevNode != null)
                 {
-                    Assert.IsTrue(node.Address >= prevNode.Address,
+                    Assert.True(node.Address >= prevNode.Address,
                         String.Format("Field '{0}' has an invalid address {1}", node.FieldConverterPair.Field.Name, node.Address));
                 }
 
@@ -44,8 +45,8 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.BinaryMap
             }
         }
 
-        [TestMethod]
-        public void Initialize_AddressMap_CorectKeys()
+        [Fact]
+        public void Initialize_AddressMap_CorrectKeys()
         {
             var binaryMap = CreateBinaryMap("BinaryMapTest.mds", "RootMessage");
 
@@ -53,11 +54,11 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.BinaryMap
 
             AssertAddresses(binaryMap.RootNode);
 
-            Assert.AreEqual("0|2|1|0", binaryMap.LastNode.Key.ToString());
+            binaryMap.LastNode.Key.ToString().Should().Be("0|2|1|0");
         }
 
-        [TestMethod]
-        public void Initialize_AddressMap_CorectAddressses()
+        [Fact]
+        public void Initialize_AddressMap_CorrectAddresses()
         {
             var binaryMap = CreateBinaryMap("BinaryMapTest2.mds", "RootMessage");
 

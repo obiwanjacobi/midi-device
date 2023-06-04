@@ -1,105 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{67F07078-22CD-4EFF-9E0A-87EBED77ADBA}</ProjectGuid>
+    <TargetFramework>net6.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CannedBytes.Midi.Device.Roland.UnitTests</RootNamespace>
-    <AssemblyName>CannedBytes.Midi.Device.Roland.UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>CannedBytes.Midi.Device.Roland.UnitTests</AssemblyTitle>
+    <Product>CannedBytes.Midi.Device.Roland.UnitTests</Product>
+    <Copyright>Copyright © CannedBytes 2013</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
-      <Visible>False</Visible>
-    </CodeAnalysisDependentAssemblyPaths>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="A880\SchemaTest.cs" />
-    <Compile Include="AddressBETest\RolandAddressBETest.cs" />
-    <Compile Include="D110\SchemaTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="U220\SchemaTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj">
-      <Project>{203e5be6-ed33-450a-94b3-791c99b6f8ea}</Project>
-      <Name>CannedBytes.Midi.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.Message.UnitTests\CannedBytes.Midi.Device.Message.UnitTests.csproj">
-      <Project>{DB52C1A0-B6E5-4234-B9DC-6DC21B9D0744}</Project>
-      <Name>CannedBytes.Midi.Device.Message.UnitTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.Message\CannedBytes.Midi.Device.Message.csproj">
-      <Project>{79F8D8D7-E6A4-4593-B627-5FB4195EB41F}</Project>
-      <Name>CannedBytes.Midi.Device.Message</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland.A880\CannedBytes.Midi.Device.Roland.A880.csproj">
-      <Project>{c37ab4ee-42aa-4cbf-824c-32ff134bef02}</Project>
-      <Name>CannedBytes.Midi.Device.Roland.A880</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland.D110\CannedBytes.Midi.Device.Roland.D110.csproj">
-      <Project>{C7224616-1D55-4441-B45F-E6E653246435}</Project>
-      <Name>CannedBytes.Midi.Device.Roland.D110</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland.U220\CannedBytes.Midi.Device.Roland.U220.csproj">
-      <Project>{F0ED930A-7286-48A6-9865-797E4A3F95EC}</Project>
-      <Name>CannedBytes.Midi.Device.Roland.U220</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland\CannedBytes.Midi.Device.Roland.csproj">
-      <Project>{17B60BDD-1F36-4C92-9AF3-CBCCF39AA298}</Project>
-      <Name>CannedBytes.Midi.Device.Roland</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj">
-      <Project>{29B41C20-E43B-42A7-AD23-DA6060A33825}</Project>
-      <Name>CannedBytes.Midi.Device.Schema</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device.UnitTests\CannedBytes.Midi.Device.UnitTests.csproj">
-      <Project>{FD3C709C-BD45-4B56-807D-39386980C073}</Project>
-      <Name>CannedBytes.Midi.Device.UnitTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj">
-      <Project>{27A16EC8-EC6A-466D-9B79-E69BABD63EC6}</Project>
-      <Name>CannedBytes.Midi.Device</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Message.UnitTests\CannedBytes.Midi.Device.Message.UnitTests.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Message\CannedBytes.Midi.Device.Message.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland.A880\CannedBytes.Midi.Device.Roland.A880.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland.D110\CannedBytes.Midi.Device.Roland.D110.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland.U220\CannedBytes.Midi.Device.Roland.U220.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Roland\CannedBytes.Midi.Device.Roland.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device.UnitTests\CannedBytes.Midi.Device.UnitTests.csproj" />
+    <ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="U220\PatchTestStream.txt" />
@@ -138,12 +58,20 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
+  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="6.11.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.1" />
+        <PackageReference Include="xunit" Version="2.5.0-pre.22" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.0-pre.15">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="6.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>

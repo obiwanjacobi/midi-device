@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Schema.UnitTests
 {
@@ -6,13 +7,13 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
     ///This is a test class for Jacobi.Midi.Device.Schema.RecordType and is intended
     ///to contain all Jacobi.Midi.Device.Schema.RecordType Unit Tests
     ///</summary>
-    [TestClass()]
+    
     public class RecordTypeTest
     {
         private const string SchemaName = "urn:midi-test-schema";
         private const string TypeName = "TestType";
 
-        [TestMethod()]
+        [Fact]
         public void RecordType_ConstructorTest()
         {
             string fullName = SchemaName + ":" + TypeName;
@@ -22,7 +23,7 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
             SchemaObjectTest.AssertName(target, SchemaName, TypeName);
         }
 
-        [TestMethod()]
+        [Fact]
         public void RecordType_FieldTest()
         {
             string fullName = SchemaName + ":" + TypeName;
@@ -30,7 +31,7 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
             RecordType target = new RecordType(fullName);
             SchemaObjectTest.AssertName(target, SchemaName, TypeName);
 
-            Assert.IsNotNull(target.Fields);
+            target.Fields.Should().NotBeNull();
 
             string fieldName = SchemaName + ":TestField";
 
@@ -39,9 +40,9 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests
 
             target.Fields.Add(field);
 
-            Assert.AreEqual(1, target.Fields.Count);
-            Assert.IsNotNull(target.Fields[0]);
-            Assert.AreSame(field, target.Fields[0]);
+            target.Fields.Should().HaveCount(1);
+            target.Fields[0].Should().NotBeNull();
+            target.Fields[0].Should().Be(field);
         }
     }
 }

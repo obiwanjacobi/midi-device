@@ -2,7 +2,7 @@
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device.Message.UnitTests
@@ -11,9 +11,9 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
     ///This is a test class for CannedBytes.Midi.Device.Message.MessageTypeFactory and is intended
     ///to contain all CannedBytes.Midi.Device.Message.MessageTypeFactory Unit Tests
     ///</summary>
-    [TestClass()]
-    [DeploymentItem("DynamicRecord/TestAddressMap1.mds")]
-    [DeploymentItem("DynamicRecord/TestAddressMap2.mds")]
+    
+    //[DeploymentItem("DynamicRecord/TestAddressMap1.mds")]
+    //[DeploymentItem("DynamicRecord/TestAddressMap2.mds")]
     public class MessageTypeFactoryTest
     {
         public static readonly string TestAddressMap1FileName = "TestAddressMap1.mds";
@@ -21,7 +21,7 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
         public const string MidiSysExData = "http://schemas.cannedbytes.com/midi-device-schema/midi-types/10:midiData";
 
-        [TestMethod]
+        [Fact]
         public void CreateDynamicHierarchicalConverter_2_2_Test()
         {
             MessageTypeFactory factory = CreateMessageTypeFactory(TestAddressMap1FileName, "MessageOne");
@@ -29,22 +29,22 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
             Console.WriteLine(converter.ToString());
 
-            Assert.IsNotNull(converter);
-            Assert.AreEqual(2, converter.RecordType.Fields.Count);
-            Assert.AreEqual("SectionOne", converter.RecordType.Fields[0].Name.Name);
-            Assert.AreEqual("SectionOne", converter.RecordType.Fields[1].Name.Name);
+            Assert.NotNull(converter);
+            Assert.Equal(2, converter.RecordType.Fields.Count);
+            Assert.Equal("SectionOne", converter.RecordType.Fields[0].Name.Name);
+            Assert.Equal("SectionOne", converter.RecordType.Fields[1].Name.Name);
 
-            Assert.AreEqual(1, converter.RecordType.Fields[0].RecordType.Fields.Count);
-            Assert.AreEqual("Field1Three", converter.RecordType.Fields[0].RecordType.Fields[0].Name.Name);
-            Assert.AreEqual(1, converter.RecordType.Fields[1].RecordType.Fields.Count);
-            Assert.AreEqual("Field1One", converter.RecordType.Fields[1].RecordType.Fields[0].Name.Name);
+            Assert.Equal(1, converter.RecordType.Fields[0].RecordType.Fields.Count);
+            Assert.Equal("Field1Three", converter.RecordType.Fields[0].RecordType.Fields[0].Name.Name);
+            Assert.Equal(1, converter.RecordType.Fields[1].RecordType.Fields.Count);
+            Assert.Equal("Field1One", converter.RecordType.Fields[1].RecordType.Fields[0].Name.Name);
 
-            Assert.AreEqual(2, converter.FieldConverterMap.Count);
-            Assert.AreEqual("SectionOne", converter.FieldConverterMap[0].Field.Name.Name);
-            Assert.AreEqual("SectionOne", converter.FieldConverterMap[1].Field.Name.Name);
+            Assert.Equal(2, converter.FieldConverterMap.Count);
+            Assert.Equal("SectionOne", converter.FieldConverterMap[0].Field.Name.Name);
+            Assert.Equal("SectionOne", converter.FieldConverterMap[1].Field.Name.Name);
         }
 
-        [TestMethod]
+        [Fact]
         public void CreateDynamicHierarchicalConverter_2_6_Test()
         {
             MessageTypeFactory factory = CreateMessageTypeFactory(TestAddressMap1FileName, "MessageOne");
@@ -52,30 +52,30 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
             Console.WriteLine(converter.ToString());
 
-            Assert.IsNotNull(converter);
-            Assert.AreEqual(3, converter.RecordType.Fields.Count);
-            Assert.AreEqual("SectionOne", converter.RecordType.Fields[0].Name.Name);
-            Assert.AreEqual("SectionOne", converter.RecordType.Fields[1].Name.Name);
-            Assert.AreEqual("SectionTwo", converter.RecordType.Fields[2].Name.Name);
+            Assert.NotNull(converter);
+            Assert.Equal(3, converter.RecordType.Fields.Count);
+            Assert.Equal("SectionOne", converter.RecordType.Fields[0].Name.Name);
+            Assert.Equal("SectionOne", converter.RecordType.Fields[1].Name.Name);
+            Assert.Equal("SectionTwo", converter.RecordType.Fields[2].Name.Name);
 
-            Assert.AreEqual(1, converter.RecordType.Fields[0].RecordType.Fields.Count);
-            Assert.AreEqual("Field1Three", converter.RecordType.Fields[0].RecordType.Fields[0].Name.Name);
-            Assert.AreEqual(3, converter.RecordType.Fields[1].RecordType.Fields.Count);
-            Assert.AreEqual("Field1One", converter.RecordType.Fields[1].RecordType.Fields[0].Name.Name);
-            Assert.AreEqual("Field1Two", converter.RecordType.Fields[1].RecordType.Fields[1].Name.Name);
-            Assert.AreEqual("Field1Three", converter.RecordType.Fields[1].RecordType.Fields[2].Name.Name);
+            Assert.Equal(1, converter.RecordType.Fields[0].RecordType.Fields.Count);
+            Assert.Equal("Field1Three", converter.RecordType.Fields[0].RecordType.Fields[0].Name.Name);
+            Assert.Equal(3, converter.RecordType.Fields[1].RecordType.Fields.Count);
+            Assert.Equal("Field1One", converter.RecordType.Fields[1].RecordType.Fields[0].Name.Name);
+            Assert.Equal("Field1Two", converter.RecordType.Fields[1].RecordType.Fields[1].Name.Name);
+            Assert.Equal("Field1Three", converter.RecordType.Fields[1].RecordType.Fields[2].Name.Name);
 
-            Assert.AreEqual(2, converter.RecordType.Fields[2].RecordType.Fields.Count);
-            Assert.AreEqual("Field2One", converter.RecordType.Fields[2].RecordType.Fields[0].Name.Name);
-            Assert.AreEqual("Field2Two", converter.RecordType.Fields[2].RecordType.Fields[1].Name.Name);
+            Assert.Equal(2, converter.RecordType.Fields[2].RecordType.Fields.Count);
+            Assert.Equal("Field2One", converter.RecordType.Fields[2].RecordType.Fields[0].Name.Name);
+            Assert.Equal("Field2Two", converter.RecordType.Fields[2].RecordType.Fields[1].Name.Name);
 
-            Assert.AreEqual(3, converter.FieldConverterMap.Count);
-            Assert.AreEqual("SectionOne", converter.FieldConverterMap[0].Field.Name.Name);
-            Assert.AreEqual("SectionOne", converter.FieldConverterMap[1].Field.Name.Name);
-            Assert.AreEqual("SectionTwo", converter.FieldConverterMap[2].Field.Name.Name);
+            Assert.Equal(3, converter.FieldConverterMap.Count);
+            Assert.Equal("SectionOne", converter.FieldConverterMap[0].Field.Name.Name);
+            Assert.Equal("SectionOne", converter.FieldConverterMap[1].Field.Name.Name);
+            Assert.Equal("SectionTwo", converter.FieldConverterMap[2].Field.Name.Name);
         }
 
-        [TestMethod]
+        [Fact]
         public void CreateDynamicHierarchicalConverter_Hierarchy_2_4_Test()
         {
             MessageTypeFactory factory = CreateMessageTypeFactory(TestAddressMap2FileName, "HierarchicalDynamicRecordTest");
@@ -83,32 +83,32 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
 
             Console.WriteLine(converter.ToString());
 
-            Assert.IsNotNull(converter);
+            Assert.NotNull(converter);
             // AddressMap/Section
             // AddressMap/Record
-            Assert.AreEqual(2, converter.RecordType.Fields.Count);
-            Assert.AreEqual("Section", converter.RecordType.Fields[0].Name.Name);
-            Assert.AreEqual("Record", converter.RecordType.Fields[1].Name.Name);
+            Assert.Equal(2, converter.RecordType.Fields.Count);
+            Assert.Equal("Section", converter.RecordType.Fields[0].Name.Name);
+            Assert.Equal("Record", converter.RecordType.Fields[1].Name.Name);
 
             // AddressMap/Section/NestedRecord
             // AddressMap/Section/Field
-            Assert.AreEqual(2, converter.RecordType.Fields[0].RecordType.Fields.Count);
-            Assert.AreEqual("NestedRecord", converter.RecordType.Fields[0].RecordType.Fields[0].Name.Name);
-            Assert.AreEqual("Field", converter.RecordType.Fields[0].RecordType.Fields[1].Name.Name);
+            Assert.Equal(2, converter.RecordType.Fields[0].RecordType.Fields.Count);
+            Assert.Equal("NestedRecord", converter.RecordType.Fields[0].RecordType.Fields[0].Name.Name);
+            Assert.Equal("Field", converter.RecordType.Fields[0].RecordType.Fields[1].Name.Name);
 
             // AddressMap/Section/NestedRecord/Field1Three
-            Assert.AreEqual(1, converter.RecordType.Fields[0].RecordType.Fields[0].RecordType.Fields.Count);
-            Assert.AreEqual("Field1Three", converter.RecordType.Fields[0].RecordType.Fields[0].RecordType.Fields[0].Name.Name);
+            Assert.Equal(1, converter.RecordType.Fields[0].RecordType.Fields[0].RecordType.Fields.Count);
+            Assert.Equal("Field1Three", converter.RecordType.Fields[0].RecordType.Fields[0].RecordType.Fields[0].Name.Name);
 
             // AddressMap/Record/Field2One
             // AddressMap/Record/Field2Two
-            Assert.AreEqual(2, converter.RecordType.Fields[1].RecordType.Fields.Count);
-            Assert.AreEqual("Field2One", converter.RecordType.Fields[1].RecordType.Fields[0].Name.Name);
-            Assert.AreEqual("Field2Two", converter.RecordType.Fields[1].RecordType.Fields[1].Name.Name);
+            Assert.Equal(2, converter.RecordType.Fields[1].RecordType.Fields.Count);
+            Assert.Equal("Field2One", converter.RecordType.Fields[1].RecordType.Fields[0].Name.Name);
+            Assert.Equal("Field2Two", converter.RecordType.Fields[1].RecordType.Fields[1].Name.Name);
 
-            Assert.AreEqual(2, converter.FieldConverterMap.Count);
-            Assert.AreEqual("Section", converter.FieldConverterMap[0].Field.Name.Name);
-            Assert.AreEqual("Record", converter.FieldConverterMap[1].Field.Name.Name);
+            Assert.Equal(2, converter.FieldConverterMap.Count);
+            Assert.Equal("Section", converter.FieldConverterMap[0].Field.Name.Name);
+            Assert.Equal("Record", converter.FieldConverterMap[1].Field.Name.Name);
         }
 
         // Helper to create a test MessageTypeFactory instance.

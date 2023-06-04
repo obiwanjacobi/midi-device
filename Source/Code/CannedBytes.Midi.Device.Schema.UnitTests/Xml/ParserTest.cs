@@ -1,19 +1,21 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using CannedBytes.Midi.Device.Schema.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Schema.UnitTests.Xml
 {
-    [TestClass]
-    [DeploymentItem("Xml/DeviceSchema1.mds")]
-    [DeploymentItem("Xml/DeviceSchema2.mds")]
-    [DeploymentItem("Xml/DeviceSchema3.mds")]
-    [DeploymentItem("Xml/InvalidDataTypeBase.mds")]
-    [DeploymentItem("Xml/InvalidRecordTypeBase.mds")]
-    [DeploymentItem("Xml/InvalidFieldType.mds")]
+    
+    //[DeploymentItem("Xml/DeviceSchema1.mds")]
+    //[DeploymentItem("Xml/DeviceSchema2.mds")]
+    //[DeploymentItem("Xml/DeviceSchema3.mds")]
+    //[DeploymentItem("Xml/InvalidDataTypeBase.mds")]
+    //[DeploymentItem("Xml/InvalidRecordTypeBase.mds")]
+    //[DeploymentItem("Xml/InvalidFieldType.mds")]
     public class ParserTest
     {
-        [TestMethod]
+        [Fact]
         public void Parse_Schema1_NoErrors()
         {
             var schemas = new MidiDeviceSchemaSet();
@@ -22,59 +24,74 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests.Xml
             using (var stream = File.OpenRead("DeviceSchema1.mds"))
             {
                 var schema = parser.Parse(stream);
+                
+                schema.Should().NotBeNull();
+                schema.AllDataTypes.Should().NotBeEmpty();
+                schema.AllRecordTypes.Should().NotBeEmpty();
 
-                Assert.IsNotNull(schema);
-                Assert.AreNotEqual(0, schema.AllDataTypes.Count);
-                Assert.AreNotEqual(0, schema.AllRecordTypes.Count);
+                var dataTypes = new[] {
+                    "midiByte",
+                    "midiData",
+                    "midiNull",
+                    "midiLSNibble",
+                    "midiChannel",
+                    "midiStatus",
+                    "midiMSNibble",
+                    "midiNibble",
+                    "midiBit0",
+                    "midiBit1",
+                    "midiBit2",
+                    "midiBit3",
+                    "midiBit4",
+                    "midiBit5",
+                    "midiBit6",
+                    "midiBit7",
+                    "midiBit8",
+                    "midiBit9",
+                    "midiBit10",
+                    "midiBit11",
+                    "midiBit12",
+                    "midiBit13",
+                    "midiBit14",
+                    "midiBit15",
+                    "midiComposite",
+                    "midiString",
+                    "midiUnsigned",
+                    "midiSigned",
+                    "midiUnsigned16",
+                    "midiUnsigned24",
+                    "midiUnsigned32",
+                    "midiUnsigned40",
+                    "midiUnsigned48",
+                    "midiUnsigned56",
+                    "midiUnsigned64",
+                    "midiSigned16",
+                    "midiSigned32",
+                    "midiSigned64",
+                    "midiChecksum"
+                };
 
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiByte"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiData"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiNull"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiLSNibble"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiChannel"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiStatus"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiMSNibble"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiNibble"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit0"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit1"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit2"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit3"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit4"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit5"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit6"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit7"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit8"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit9"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit10"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit11"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit12"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit13"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit14"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiBit15"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiComposite"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiString"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiSigned"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned16"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned24"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned32"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned40"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned48"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned56"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiUnsigned64"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiSigned16"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiSigned32"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiSigned64"));
-                Assert.IsNotNull(schema.AllDataTypes.Find("midiChecksum"));
+                foreach (var dt in dataTypes)
+                {
+                    schema.AllDataTypes.Find(dt).Should().NotBeNull();
+                }
 
-                Assert.IsNotNull(schema.AllRecordTypes.Find("midiSplitNibbleBE"));
-                Assert.IsNotNull(schema.AllRecordTypes.Find("midiSplitNibbleLE"));
-                Assert.IsNotNull(schema.AllRecordTypes.Find("midiBigEndian"));
-                Assert.IsNotNull(schema.AllRecordTypes.Find("midiLittleEndian"));
+                var recordTypes = new[]
+                {
+                    "midiSplitNibbleBE",
+                    "midiSplitNibbleLE",
+                    "midiBigEndian",
+                    "midiLittleEndian"
+                };
+
+                foreach (var rt in recordTypes)
+                {
+                    schema.AllRecordTypes.Find(rt).Should().NotBeNull();
+                }
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void Parse_Import_NoErrors()
         {
             var schemas = new MidiDeviceSchemaSet();
@@ -84,16 +101,15 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests.Xml
             {
                 var schema = parser.Parse(stream);
 
-                Assert.IsNotNull(schemas.Find("http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1"));
+                schemas.Find("http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchema1").Should().NotBeNull();
 
-                Assert.IsNotNull(schema);
-                Assert.AreNotEqual(0, schema.AllDataTypes.Count);
-
-                Assert.IsNotNull(schema.AllDataTypes.Find("derivedDataType"));
+                schema.Should().NotBeNull();
+                schema.AllDataTypes.Should().NotBeEmpty();
+                schema.AllDataTypes.Find("derivedDataType").Should().NotBeNull();
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void Parse_ImportResource_NoErrors()
         {
             var schemas = new MidiDeviceSchemaSet();
@@ -103,28 +119,27 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests.Xml
             {
                 var schema = parser.Parse(stream);
 
-                Assert.IsNotNull(schemas.Find("http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"));
+                schemas.Find("http://schemas.cannedbytes.com/midi-device-schema/midi-types/10").Should().NotBeNull();
 
-                Assert.IsNotNull(schema);
-                Assert.AreNotEqual(0, schema.AllDataTypes.Count);
+                schema.Should().NotBeNull();
+                schema.AllDataTypes.Should().NotBeEmpty();
 
                 var dataType = schema.AllDataTypes.Find("derivedDataType");
-                Assert.IsNotNull(dataType);
+                dataType.Should().NotBeNull();
 
                 var recordType = schema.AllRecordTypes.Find("testRecord");
-                Assert.IsNotNull(recordType);
+                recordType.Should().NotBeNull();
 
-                Assert.AreEqual(1, recordType.Fields.Count);
+                recordType.Fields.Should().HaveCount(1);
                 var field = recordType.Fields[0];
-                Assert.IsNotNull(field);
+                field.Should().NotBeNull();
 
-                Assert.AreEqual("Field1", field.Name.Name);
-                Assert.AreEqual(dataType, field.DataType);
+                field.Name.Name.Should().Be("Field1");
+                field.DataType.Should().Be(dataType);
             }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(DeviceSchemaException))]
+        [Fact]
         public void Parse_InvalidDataType_Exception()
         {
             var schemas = new MidiDeviceSchemaSet();
@@ -132,14 +147,12 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests.Xml
 
             using (var stream = File.OpenRead("InvalidDataTypeBase.mds"))
             {
-                var schema = parser.Parse(stream);
-
-                Assert.Fail();
+                Action action = () => parser.Parse(stream);
+                action.Should().Throw<DeviceSchemaException>();
             }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(DeviceSchemaException))]
+        [Fact]
         public void Parse_InvalidRecordType_Exception()
         {
             var schemas = new MidiDeviceSchemaSet();
@@ -147,14 +160,12 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests.Xml
 
             using (var stream = File.OpenRead("InvalidRecordTypeBase.mds"))
             {
-                var schema = parser.Parse(stream);
-
-                Assert.Fail();
+                Action action = () => parser.Parse(stream);
+                action.Should().Throw<DeviceSchemaException>();
             }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(DeviceSchemaException))]
+        [Fact]
         public void Parse_InvalidFieldType_Exception()
         {
             var schemas = new MidiDeviceSchemaSet();
@@ -162,9 +173,8 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests.Xml
 
             using (var stream = File.OpenRead("InvalidFieldType.mds"))
             {
-                var schema = parser.Parse(stream);
-
-                Assert.Fail();
+                Action action = () => parser.Parse(stream);
+                action.Should().Throw<DeviceSchemaException>();
             }
         }
     }

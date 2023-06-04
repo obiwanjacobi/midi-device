@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace CannedBytes.Midi.Device.UnitTests
 {
@@ -9,20 +10,23 @@ namespace CannedBytes.Midi.Device.UnitTests
     ///This is a test class for MidiLogicalXmlWriterTest and is intended
     ///to contain all MidiLogicalXmlWriterTest Unit Tests
     ///</summary>
-    [TestClass()]
-    [DeploymentItem("LogicalXmlTest/LogicalXmlTestSchema.mds")]
-    [DeploymentItem("LogicalXmlTest/LogicalXmlTestStream.bin")]
+    
+    //[DeploymentItem("LogicalXmlTest/LogicalXmlTestSchema.mds")]
+    //[DeploymentItem("LogicalXmlTest/LogicalXmlTestStream.bin")]
     public class LogicalXmlTest
     {
         public static readonly string TestSchemaFileName = "LogicalXmlTestSchema.mds";
         public static readonly string TestStreamFileName = "LogicalXmlTestStream.bin";
+        
+        private readonly ITestOutputHelper _output;
 
-        public TestContext TestContext { get; set; }
+        public LogicalXmlTest(ITestOutputHelper output)
+            => _output = output;
 
         /// <summary>
         ///A test for Write
         ///</summary>
-        [TestMethod()]
+        [Fact]
         public void WriteXmlTest()
         {
             DeviceSchema schema = DeviceHelper.OpenDeviceSchema(TestSchemaFileName);
@@ -46,7 +50,7 @@ namespace CannedBytes.Midi.Device.UnitTests
                 ctx.PhysicalStream = physicalStream;
                 ctx.ToLogical(logicalWriter);
 
-                this.TestContext.WriteLine(logicalWriter.XmlDocument.InnerXml);
+                _output.WriteLine(logicalWriter.XmlDocument.InnerXml);
 
                 ctx.Reset();
 
@@ -61,11 +65,11 @@ namespace CannedBytes.Midi.Device.UnitTests
                     stream.Position = 0;
                     physicalStream.Position = 0;
 
-                    Assert.AreEqual(physicalStream.Length, stream.Length);
+                    Assert.Equal(physicalStream.Length, stream.Length);
 
                     while (physicalStream.Position < physicalStream.Length)
                     {
-                        Assert.AreEqual(physicalStream.ReadByte(), stream.ReadByte(), "Stream not equal at position " + physicalStream.Position);
+                        Assert.Equal(physicalStream.ReadByte(), stream.ReadByte());
                     }
                 }
             }

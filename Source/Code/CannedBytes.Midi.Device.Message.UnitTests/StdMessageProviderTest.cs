@@ -1,20 +1,20 @@
 ﻿using System.IO;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Message.UnitTests
 {
     /// <summary>
     /// Summary description for StdMessageProviderTest
     /// </summary>
-    [TestClass]
-    [DeploymentItem("TestMessageProvider.xsd")]
+    
+    //[DeploymentItem("TestMessageProvider.xsd")]
     public class StdMessageProviderTest
     {
         public static readonly string TestMessageProviderFileName = "TestMessageProvider.xsd";
 
-        //[TestMethod]
+        //[Fact]
         public void TestGetMessageInfo_EnvelopeMessage()
         {
             IMessageProvider msgProvider = CreateMessageProvider();
@@ -23,13 +23,13 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
             {
                 MidiDeviceMessageInfo msgInfo = msgProvider.GetMessageInfo(stream);
 
-                Assert.IsNotNull(msgInfo, "No MidiDeviceMessageInfo was returned");
-                Assert.IsNotNull(msgInfo.EnvelopeRecordType, "No Envelope RecordType was set.");
-                Assert.AreEqual("EnvelopeMessage", msgInfo.EnvelopeRecordType.Name.Name, "Expected RecordType was not returned.");
+                Assert.NotNull(msgInfo);
+                Assert.NotNull(msgInfo.EnvelopeRecordType);
+                Assert.Equal("EnvelopeMessage", msgInfo.EnvelopeRecordType.Name.Name);
             }
         }
 
-        //[TestMethod]
+        //[Fact]
         public void TestGetMessageInfo_SomeOtherMessage()
         {
             IMessageProvider msgProvider = CreateMessageProvider();
@@ -38,9 +38,9 @@ namespace CannedBytes.Midi.Device.Message.UnitTests
             {
                 MidiDeviceMessageInfo msgInfo = msgProvider.GetMessageInfo(stream);
 
-                Assert.IsNotNull(msgInfo, "No MidiDeviceMessageInfo was returned");
-                Assert.IsNotNull(msgInfo.EnvelopeRecordType, "No Envelope RecordType was set.");
-                Assert.AreEqual("SomeOtherMessage", msgInfo.EnvelopeRecordType.Name.Name, "Expected RecordType was not returned.");
+                Assert.NotNull(msgInfo);
+                Assert.NotNull(msgInfo.EnvelopeRecordType);
+                Assert.Equal("SomeOtherMessage", msgInfo.EnvelopeRecordType.Name.Name);
             }
         }
 

@@ -3,20 +3,20 @@ using System.Diagnostics;
 using CannedBytes.Midi.Device.Roland.U220;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Message.UnitTests.U220Test
 {
-    [TestClass]
-    [DeploymentItem("U220/BulkDumpStream.bin")]
-    [DeploymentItem("U220/PatchMap1Stream.bin")]
-    [DeploymentItem("U220/SetupParamStream.bin")]
-    [DeploymentItem("U220/TempAllStream.bin")]
-    [DeploymentItem("U220/Timbre1Stream.bin")]
-    [DeploymentItem("U220/Rythm1Stream.bin")]
-    [DeploymentItem("U220/Timbre6Stream.bin")]
-    [DeploymentItem("U220/TimbreMap1Stream.bin")]
-    [DeploymentItem("U220/PatchTestStream.bin")]
+    
+    //[DeploymentItem("U220/BulkDumpStream.bin")]
+    //[DeploymentItem("U220/PatchMap1Stream.bin")]
+    //[DeploymentItem("U220/SetupParamStream.bin")]
+    //[DeploymentItem("U220/TempAllStream.bin")]
+    //[DeploymentItem("U220/Timbre1Stream.bin")]
+    //[DeploymentItem("U220/Rythm1Stream.bin")]
+    //[DeploymentItem("U220/Timbre6Stream.bin")]
+    //[DeploymentItem("U220/TimbreMap1Stream.bin")]
+    //[DeploymentItem("U220/PatchTestStream.bin")]
     public class SchemaTest
     {
         public const string SchemaFileName = "CannedBytes.Midi.Device.Roland.U220/Roland U-220.mds";
@@ -29,30 +29,30 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.U220Test
             messageTester.DeviceProvider = messageTester.CompositionContainer.GetExportedValue<Roland.U220.DeviceProvider>();
             messageTester.SetCurrentMessage("DT1");
 
-            Assert.IsNotNull(messageTester.CurrentPair);
-            Assert.IsNotNull(messageTester.DeviceProvider);
+            Assert.NotNull(messageTester.CurrentPair);
+            Assert.NotNull(messageTester.DeviceProvider);
 
             return messageTester;
         }
 
-        [TestMethod]
+        [Fact]
         public void DeviceProvider_Construct_NoErrors()
         {
             var provider = new DeviceProvider();
 
-            Assert.AreEqual("Roland", provider.Manufacturer);
-            Assert.AreEqual("U-220", provider.ModelName);
+            Assert.Equal("Roland", provider.Manufacturer);
+            Assert.Equal("U-220", provider.ModelName);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadSchema_SchemaValidation()
         {
             DeviceSchema schema = DeviceHelper.OpenDeviceSchema(SchemaFileName);
 
-            Assert.AreEqual(2, schema.RootRecordTypes.Count);
+            Assert.Equal(2, schema.RootRecordTypes.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void LoadBinaryMap_Validation()
         {
             var messageTester = CreateMessageTester();
@@ -61,76 +61,76 @@ namespace CannedBytes.Midi.Device.Message.UnitTests.U220Test
             Console.WriteLine(messageTester.CurrentBinaryMap.ToString());
         }
 
-        [TestMethod]
+        [Fact]
         public void Roundtrip_Patch_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("PatchTestStream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("PatchTestStream.bin");
         }
 
-        [TestMethod]
+        [Fact]
         public void Roundtrip_SetupParam_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("SetupParamStream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("SetupParamStream.bin");
         }
 
-        //[TestMethod]
+        //[Fact]
         public void Roundtrip_BulkDump_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("BulkDumpStream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("BulkDumpStream.bin");
         }
 
-        //[TestMethod]
+        //[Fact]
         public void Roundtrip_PatchMap_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("PatchMap1Stream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("PatchMap1Stream.bin");
         }
 
-        //[TestMethod]
+        //[Fact]
         public void Roundtrip_Rythm_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("Rythm1Stream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("Rythm1Stream.bin");
         }
 
-        //[TestMethod]
+        //[Fact]
         public void Roundtrip_TempAll_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("TempAllStream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("TempAllStream.bin");
         }
 
-        [TestMethod]
+        [Fact]
         public void Roundtrip_Timbre1_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("Timbre1Stream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("Timbre1Stream.bin");
         }
 
-        [TestMethod]
+        [Fact]
         public void Roundtrip_Timbre6_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("Timbre6Stream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("Timbre6Stream.bin");
         }
 
-        //[TestMethod]
+        //[Fact]
         public void Roundtrip_TimbreMap1_LogicalDataEquals()
         {
             var msgTester = CreateMessageTester();
 
-            msgTester.ReadWriteReadAllComapareLogicalData("TimbreMap1Stream.bin");
+            msgTester.ReadWriteReadAllCompareLogicalData("TimbreMap1Stream.bin");
         }
     }
 }

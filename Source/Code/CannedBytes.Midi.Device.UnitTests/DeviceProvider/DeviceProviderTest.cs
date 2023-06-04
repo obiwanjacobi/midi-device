@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests.DeviceProvider
 {
-    [TestClass]
-    [DeploymentItem("DeviceProvider/DeviceTestSchema.mds")]
+    
+    //[DeploymentItem("DeviceProvider/DeviceTestSchema.mds")]
     public class DeviceProviderTest
     {
         public const string TestSchemaFileName = "DeviceTestSchema.mds";
@@ -14,7 +14,7 @@ namespace CannedBytes.Midi.Device.UnitTests.DeviceProvider
             return container.GetExportedValue<MidiDeviceProvider>();
         }
 
-        [TestMethod]
+        [Fact]
         public void Init_DeviceSchema_NoErrors()
         {
             var manufacturer = "UnitTest";
@@ -25,13 +25,13 @@ namespace CannedBytes.Midi.Device.UnitTests.DeviceProvider
             var provider = CreateDeviceProvider();
             provider.Initialze(TestSchemaFileName, manufacturer, model, manId, modId);
 
-            Assert.AreEqual(manufacturer, provider.Manufacturer);
-            Assert.AreEqual(model, provider.ModelName);
-            Assert.AreEqual(manId, provider.ManufacturerId);
-            Assert.AreEqual(modId, provider.ModelId);
+            Assert.Equal(manufacturer, provider.Manufacturer);
+            Assert.Equal(model, provider.ModelName);
+            Assert.Equal(manId, provider.ManufacturerId);
+            Assert.Equal(modId, provider.ModelId);
 
-            Assert.IsNotNull(provider.Schema);
-            Assert.AreEqual(provider.Schema.RootRecordTypes.Count, provider.RootTypes.Count);
+            Assert.NotNull(provider.Schema);
+            Assert.Equal(provider.Schema.RootRecordTypes.Count, provider.RootTypes.Count);
         }
     }
 }

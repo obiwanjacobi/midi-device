@@ -1,20 +1,21 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.Schema.UnitTests
 {
     /// <summary>
     /// Summary description for SchemaObjectTest
     /// </summary>
-    [TestClass]
-    public class SchemaObjectTest
+    
+    public static class SchemaObjectTest
     {
         public static void AssertName(SchemaObject schemaObject, string schemaName, string objName)
         {
-            Assert.IsNotNull(schemaObject);
-            Assert.IsNotNull(schemaObject.Name);
-            Assert.AreEqual(schemaName, schemaObject.Name.SchemaName);
-            Assert.AreEqual(objName, schemaObject.Name.Name);
-            Assert.AreEqual(schemaName + ":" + objName, schemaObject.Name.FullName);
+            schemaObject.Should().NotBeNull();
+            schemaObject.Name.Should().NotBeNull();
+            schemaObject.Name.SchemaName.Should().Be(schemaName);
+            schemaObject.Name.Name.Should().Be(objName);
+            schemaObject.Name.FullName.Should().Be(schemaName + ":" + objName);
         }
     }
 }

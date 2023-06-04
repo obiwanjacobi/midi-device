@@ -1,25 +1,23 @@
 ﻿using CannedBytes.Midi.Device.UnitTests.Stubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests.ChecksumTest
 {
-    [TestClass]
-    [DeploymentItem("ChecksumTest/ChecksumTestSchema.mds")]
-    [DeploymentItem("ChecksumTest/ChecksumTestStream.bin")]
+    
+    //[DeploymentItem("ChecksumTest/ChecksumTestSchema.mds")]
+    //[DeploymentItem("ChecksumTest/ChecksumTestStream.bin")]
     public class ChecksumTest
     {
         public static readonly string ChecksumSchemaFileName = "ChecksumTestSchema.mds";
         public static readonly string ChecksumTestStreamFileName = "ChecksumTestStream.bin";
 
-        public TestContext TestContext { get; set; }
-
-        [TestMethod]
+        [Fact]
         public void ChecksumReadTest()
         {
             DeviceHelper.ReadLogical(ChecksumSchemaFileName, ChecksumTestStreamFileName, "checksumTest", null);
         }
 
-        [TestMethod]
+        [Fact]
         public void ChecksumWriteTest()
         {
             var reader = new DictionaryBasedLogicalStub();
