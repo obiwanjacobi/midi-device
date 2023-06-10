@@ -1,29 +1,27 @@
 ﻿using System;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+partial class DataRecordManager
 {
-    partial class DataRecordManager
+    private sealed class DataRecordScope : IDisposable
     {
-        private sealed class DataRecordScope : IDisposable
+        private readonly DataRecordManager _manager;
+
+        public DataRecordScope(DataRecordManager manager)
         {
-            private readonly DataRecordManager _manager;
+            _manager = manager;
+        }
 
-            public DataRecordScope(DataRecordManager manager)
+        public void Dispose()
+        {
+            if (_manager.CurrentEntry?.IsEmpty == false)
             {
-                _manager = manager;
+                _manager.SaveCurrentEntry();
             }
-
-            public void Dispose()
+            else
             {
-                if (_manager.CurrentEntry != null &&
-                    !_manager.CurrentEntry.IsEmpty)
-                {
-                    _manager.SaveCurrentEntry();
-                }
-                else
-                {
-                    _manager.CancelCurrentEntry();
-                }
+                _manager.CancelCurrentEntry();
             }
         }
     }

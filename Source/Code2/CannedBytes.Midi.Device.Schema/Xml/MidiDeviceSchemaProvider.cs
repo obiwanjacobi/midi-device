@@ -7,7 +7,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml;
 [Export(typeof(IDeviceSchemaProvider))]
 public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 {
-    private readonly MidiDeviceSchemaSet _schemas = new MidiDeviceSchemaSet();
+    private readonly MidiDeviceSchemaSet _schemas = new();
 
     public IEnumerable<string> SchemaNames
     {
@@ -22,7 +22,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
     {
         Check.IfArgumentNullOrEmpty(schemaLocation, "schemaLocation");
 
-        var parts = schemaLocation.Split("::");
+        string[] parts = schemaLocation.Split("::");
 
         string schemaAssembly = null;
         string schemaName;
@@ -44,17 +44,17 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
             System.Diagnostics.TraceEventType.Information,
             "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
 
-        using var stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
+        using System.IO.Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
             ?? throw new DeviceSchemaNotFoundException(schemaName + " - " + schemaAssembly);
-        var parser = new MidiDeviceSchemaParser(_schemas);
-        var deviceSchema = parser.Parse(stream);
+        MidiDeviceSchemaParser parser = new(_schemas);
+        DeviceSchema deviceSchema = parser.Parse(stream);
 
         return deviceSchema;
     }
 
     public DeviceSchema Open(string schemaName)
     {
-        var deviceSchema = _schemas.Find(schemaName)
+        DeviceSchema deviceSchema = _schemas.Find(schemaName)
             ?? Load(schemaName);
         return deviceSchema;
     }

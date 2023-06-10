@@ -19,10 +19,10 @@ public class ChecksumTest
     [Fact]
     public void ChecksumReadTest()
     {
-        var compositionCtx = CompositionHelper.CreateCompositionContext();
-        var writer = new DictionaryBasedLogicalStub();
+        ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
+        DictionaryBasedLogicalStub writer = new();
 
-        var ctx = DeviceHelper.ToLogical(compositionCtx, 
+        DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx, 
                                     ChecksumSchemaFileName, 
                                     ChecksumTestStreamFileName, 
                                     "checksumTest", 

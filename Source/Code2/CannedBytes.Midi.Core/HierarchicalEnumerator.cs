@@ -53,7 +53,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
 
             if (current != null)
             {
-                var enumerator = GetChildEnumerator();
+                IEnumerator<T> enumerator = GetChildEnumerator();
 
                 if (enumerator != null)
                 {
@@ -112,7 +112,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
             return enumerable.GetEnumerator();
         }
 
-        var enumerator = Current as IEnumerator<T>;
+        IEnumerator<T> enumerator = Current as IEnumerator<T>;
 
         return enumerator;
     }

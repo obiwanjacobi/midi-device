@@ -7,7 +7,7 @@ namespace CannedBytes.Tools.DgmlBuilder
     {
         public const string Namespace = "http://schemas.microsoft.com/vs/2009/dgml";
 
-        private static readonly XmlSerializer _serializer = new XmlSerializer(typeof(DirectedGraph), Namespace);
+        private static readonly XmlSerializer _serializer = new(typeof(DirectedGraph), Namespace);
 
         public void Serialize(Stream targetStream, DirectedGraph graph)
         {

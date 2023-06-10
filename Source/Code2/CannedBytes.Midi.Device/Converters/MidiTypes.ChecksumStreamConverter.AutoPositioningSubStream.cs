@@ -1,34 +1,32 @@
-﻿using CannedBytes.IO;
-using System.IO;
+﻿using System.IO;
+using CannedBytes.IO;
 
-namespace CannedBytes.Midi.Device.Converters
+namespace CannedBytes.Midi.Device.Converters;
+
+partial class ChecksumStreamConverter
 {
-    partial class ChecksumStreamConverter
+    private sealed class AutoPositioningSubStream : SubStream
     {
-        private class AutoPositioningSubStream : SubStream
+        private readonly long _repos;
+
+        public AutoPositioningSubStream(Stream stream, long offset)
+            : base(stream, offset, stream.Position - offset)
         {
-            private long _repos;
+            _repos = stream.Position;
+            Position = 0;
+        }
 
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-            public AutoPositioningSubStream(Stream stream, long offset)
-                : base(stream, offset, stream.Position - offset)
-            {
-                _repos = stream.Position;
-                Position = 0;
-            }
+        public override void Close()
+        {
+            // reposition the stream
+            base.InnerStream.Position = _repos;
 
-            public override void Close()
-            {
-                // reposition the stream
-                base.InnerStream.Position = _repos;
+            // DO NOT close the original stream!
+        }
 
-                // DO NOT close the original stream!
-            }
-
-            protected override void Dispose(bool disposing)
-            {
-                Close();
-            }
+        protected override void Dispose(bool disposing)
+        {
+            Close();
         }
     }
 }

@@ -13,7 +13,7 @@ public class DataTypeTest
     [Fact]
     public void Constructor_WithName_ParsesCorrectly()
     {
-        var target = new DataType(Constants.SchemaTypeName);
+        DataType target = new(Constants.SchemaTypeName);
 
         SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.TypeName);
     }
@@ -21,8 +21,8 @@ public class DataTypeTest
     [Fact]
     public void BaseTypesAdd_NewDataType_Sticks()
     {
-        var target = new DataType(Constants.SchemaTypeName);
-        var baseType = new DataType(Constants.SchemaBaseTypeName);
+        DataType target = new(Constants.SchemaTypeName);
+        DataType baseType = new(Constants.SchemaBaseTypeName);
 
         target.BaseTypes.Add(baseType);
 
@@ -35,8 +35,8 @@ public class DataTypeTest
     [Fact]
     public void DataTypeSchema_SchemaProperty_IsSame()
     {
-        var schema = new DeviceSchema(Constants.SchemaName);
-        var target = new DataType(Constants.SchemaTypeName);
+        DeviceSchema schema = new(Constants.SchemaName);
+        DataType target = new(Constants.SchemaTypeName);
 
         schema.AllDataTypes.Add(target);
 
@@ -47,8 +47,8 @@ public class DataTypeTest
     [Fact]
     public void IsType_OwnType_IsFound()
     {
-        var target = new DataType(Constants.SchemaTypeName);
-        var baseType = new DataType(Constants.SchemaBaseTypeName);
+        DataType target = new(Constants.SchemaTypeName);
+        DataType baseType = new(Constants.SchemaBaseTypeName);
 
         target.BaseTypes.Add(baseType);
 
@@ -60,8 +60,8 @@ public class DataTypeTest
     [Fact]
     public void IsType_BaseType_IsFound()
     {
-        var target = new DataType(Constants.SchemaTypeName);
-        var baseType = new DataType(Constants.SchemaBaseTypeName);
+        DataType target = new(Constants.SchemaTypeName);
+        DataType baseType = new(Constants.SchemaBaseTypeName);
 
         target.BaseTypes.Add(baseType);
 

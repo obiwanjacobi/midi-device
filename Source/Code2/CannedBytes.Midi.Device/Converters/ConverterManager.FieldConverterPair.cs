@@ -1,64 +1,59 @@
-﻿using CannedBytes.Midi.Device.Schema;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using CannedBytes.Midi.Device.Schema;
 
-namespace CannedBytes.Midi.Device.Converters
+namespace CannedBytes.Midi.Device.Converters;
+
+partial class ConverterManager
 {
-    partial class ConverterManager
+    private readonly Dictionary<string, FieldConverterPair> _fieldConverterPairs = new();
+
+    public FieldConverterPair GetFieldConverterPair(Field field)
     {
-        private readonly Dictionary<string, FieldConverterPair> _fieldConverterPairs = 
-            new Dictionary<string, FieldConverterPair>();
+        Check.IfArgumentNull(field, "field");
 
-        public FieldConverterPair GetFieldConverterPair(Field field)
+        FieldConverterPair pair = LookupFieldConverterPair(field);
+
+        if (pair == null)
         {
-            Check.IfArgumentNull(field, "field");
+            IConverter converter = GetConverter(field);
 
-            var pair = LookupFieldConverterPair(field);
-
-            if (pair == null)
+            if (converter != null)
             {
-                var converter = GetConverter(field);
+                pair = new FieldConverterPair(field, converter);
 
-                if (converter != null)
-                {
-                    pair = new FieldConverterPair(field, converter);
-
-                    _fieldConverterPairs.Add(BuildFieldTypeKey(field), pair);
-                }
+                _fieldConverterPairs.Add(BuildFieldTypeKey(field), pair);
             }
+        }
 
+        return pair;
+    }
+
+    public FieldConverterPair LookupFieldConverterPair(Field field)
+    {
+        Check.IfArgumentNull(field, "field");
+
+        string fieldKey = BuildFieldTypeKey(field);
+        if (_fieldConverterPairs.TryGetValue(fieldKey, out FieldConverterPair pair))
+        {
             return pair;
         }
 
-        public FieldConverterPair LookupFieldConverterPair(Field field)
+        return null;
+    }
+
+    // prevents giving out wrong pairs when field names are the same.
+    private static string BuildFieldTypeKey(Field field)
+    {
+        if (field.DataType != null)
         {
-            Check.IfArgumentNull(field, "field");
-
-            var fieldKey = BuildFieldTypeKey(field);
-
-            FieldConverterPair pair = null;
-
-            if (_fieldConverterPairs.TryGetValue(fieldKey, out pair))
-            {
-                return pair;
-            }
-
-            return null;
+            return $"{field.Name.FullName}:{field.DataType.Name.FullName}";
         }
 
-        // prevents giving out wrong pairs when field names are the same.
-        private static string BuildFieldTypeKey(Field field)
+        if (field.RecordType != null)
         {
-            if (field.DataType != null)
-            {
-                return field.Name.FullName + ":" + field.DataType.Name.FullName;
-            }
-
-            if (field.RecordType != null)
-            {
-                return field.Name.FullName + ":" + field.RecordType.Name.FullName;
-            }
-
-            return field.Name.FullName;
+            return $"{field.Name.FullName}:{field.RecordType.Name.FullName}";
         }
+
+        return field.Name.FullName;
     }
 }

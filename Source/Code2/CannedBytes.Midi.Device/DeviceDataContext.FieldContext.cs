@@ -1,39 +1,34 @@
-﻿using CannedBytes.Midi.Device.Schema;
-using System;
+﻿using System;
+using CannedBytes.Midi.Device.Schema;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+partial class DeviceDataContext
 {
-    partial class DeviceDataContext
+    /// <summary>
+    /// Maintains field-specific context information.
+    /// </summary>
+    public sealed class FieldContext
     {
-        /// <summary>
-        /// Maintains field-specific context information.
-        /// </summary>
-        public sealed class FieldContext
+        private readonly DeviceDataContext _contex;
+
+        internal FieldContext(DeviceDataContext context)
         {
-            private readonly DeviceDataContext _contex;
+            _contex = context;
+        }
 
-            internal FieldContext(DeviceDataContext context)
-            {
-                _contex = context;
-            }
+        public SchemaNode CurrentNode { get; set; }
 
-            public SchemaNode CurrentNode { get; set; }
+        public Field CurrentField
+        {
+            get { return CurrentNode?.FieldConverterPair.Field; }
+        }
 
-            public Field CurrentField
-            {
-                get
-                {
-                    return CurrentNode == null ? null :
-                        CurrentNode.FieldConverterPair.Field;
-                }
-            }
-
-            public FieldValue<T> GetDataFieldValue<T>()
-                where T : IComparable
-            {
-                var fieldValue = new FieldValue<T>(_contex);
-                return fieldValue;
-            }
+        public FieldValue<T> GetDataFieldValue<T>()
+            where T : IComparable
+        {
+            FieldValue<T> fieldValue = new(_contex);
+            return fieldValue;
         }
     }
 }

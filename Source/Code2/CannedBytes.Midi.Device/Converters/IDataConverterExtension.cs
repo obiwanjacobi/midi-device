@@ -1,7 +1,6 @@
-﻿namespace CannedBytes.Midi.Device.Converters
+﻿namespace CannedBytes.Midi.Device.Converters;
+
+public interface IDataConverterExtension
 {
-    public interface IDataConverterExtension
-    {
-        DataConverter InnerConverter { get; set; }
-    }
+    DataConverter InnerConverter { get; set; }
 }

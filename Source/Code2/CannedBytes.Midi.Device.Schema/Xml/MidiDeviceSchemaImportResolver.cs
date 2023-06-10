@@ -8,15 +8,15 @@ public static class MidiDeviceSchemaImportResolver
 {
     public static DeviceSchema LoadSchema(MidiDeviceSchemaSet schemas, string name, string assembly)
     {
-        using var stream = MidiDeviceSchemaImportResolver.OpenSchema(name, assembly);
+        using Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(name, assembly);
         if (stream == null)
         {
             throw new DeviceSchemaException(
                 String.Format("Failed to open schema (import) {0} ({1}).", name, assembly));
         }
 
-        var parser = new MidiDeviceSchemaParser(schemas);
-        var schema = parser.Parse(stream);
+        MidiDeviceSchemaParser parser = new(schemas);
+        DeviceSchema schema = parser.Parse(stream);
 
         //if (schema != null)
         //{
@@ -42,8 +42,7 @@ public static class MidiDeviceSchemaImportResolver
         }
         else
         {
-            Assembly assembly = null;
-
+            Assembly assembly;
             if (String.IsNullOrEmpty(assemblyName))
             {
                 assembly = Assembly.GetEntryAssembly();

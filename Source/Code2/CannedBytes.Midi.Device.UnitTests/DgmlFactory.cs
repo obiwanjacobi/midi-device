@@ -8,20 +8,20 @@ static class DgmlFactory
 {
     public static void SaveGraph(SchemaNodeMap map, string targetPath)
     {
-        var graph = CreateGraph(map);
+        DirectedGraph graph = CreateGraph(map);
 
-        var fileName = targetPath + ".dgml";
+        string fileName = targetPath + ".dgml";
 
-        var serializer = new DgmlSerializer();
-        using var stream = File.Create(fileName);
+        DgmlSerializer serializer = new();
+        using FileStream stream = File.Create(fileName);
         serializer.Serialize(stream, graph);
     }
 
     public static DirectedGraph CreateGraph(SchemaNodeMap map)
     {
-        var name = map.RootNode.Field.Schema.Name.FullName;
+        string name = map.RootNode.Field.Schema.Name.FullName;
 
-        var graph = new DirectedGraph()
+        DirectedGraph graph = new()
         {
             Title = name,
             Categories = CreateCategories(),
@@ -34,9 +34,9 @@ static class DgmlFactory
 
     private static DirectedGraphLink[] CreateLinks(SchemaNode schemaNode)
     {
-        var links = new List<DirectedGraphLink>();
+        List<DirectedGraphLink> links = new();
 
-        foreach (var n in schemaNode.SelectNodes(n => n.Next))
+        foreach (SchemaNode n in schemaNode.SelectNodes(n => n.Next))
         {
             if (n.Next != null)
             {
@@ -98,7 +98,7 @@ static class DgmlFactory
 
     private static DirectedGraphNode[] CreateNodes(SchemaNode schemaNode)
     {
-        var nodes = new List<DirectedGraphNode>();
+        List<DirectedGraphNode> nodes = new();
 
         CreateNode(nodes, schemaNode);
         CreateNodes(nodes, schemaNode.Children);
@@ -108,7 +108,7 @@ static class DgmlFactory
 
     private static void CreateNodes(List<DirectedGraphNode> nodes, IEnumerable<SchemaNode> schemaNodes)
     {
-        foreach (var schemaNode in schemaNodes)
+        foreach (SchemaNode schemaNode in schemaNodes)
         {
             CreateNode(nodes, schemaNode);
 
@@ -128,7 +128,7 @@ static class DgmlFactory
 
     private static DirectedGraphNodeCategory[] CreateNodeCategories(SchemaNode n)
     {
-        var cats = new List<DirectedGraphNodeCategory>();
+        List<DirectedGraphNodeCategory> cats = new();
 
         if (n.IsRecord)
         {
@@ -148,7 +148,7 @@ static class DgmlFactory
 
     private static DirectedGraphCategory[] CreateCategories()
     {
-        List<DirectedGraphCategory> list = new List<DirectedGraphCategory>()
+        List<DirectedGraphCategory> list = new()
         {
             // Nodes
             new DirectedGraphCategory()

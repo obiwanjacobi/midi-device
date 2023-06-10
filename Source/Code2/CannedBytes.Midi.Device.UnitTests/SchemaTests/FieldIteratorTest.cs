@@ -12,17 +12,17 @@ public class FieldIteratorTest
 
     private static DeviceSchema LoadTestSchema()
     {
-        var path = Path.Combine(Folder, HierarchicalSchema);
+        string path = Path.Combine(Folder, HierarchicalSchema);
         return DeviceSchemaHelper.LoadSchema(path);
     }
 
     [Fact]
     public void MoveNext_SchemaRecordType_VerifyAllFields()
     {
-        var schema = LoadTestSchema();
-        var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord"), 2);
+        DeviceSchema schema = LoadTestSchema();
+        FieldIterator iterator = new(schema.AllRecordTypes.Find("subRecord"), 2);
 
-        var counter = FieldHierarchicalIteratorTest.EnumerateFields(iterator);
+        int counter = FieldHierarchicalIteratorTest.EnumerateFields(iterator);
 
         counter.Should().Be(4);
     }
@@ -30,12 +30,12 @@ public class FieldIteratorTest
     [Fact]
     public void MoveNext_SchemaRecordType_VerifyFieldInstanceIndex()
     {
-        var schema = LoadTestSchema();
-        var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord"), 2);
+        DeviceSchema schema = LoadTestSchema();
+        FieldIterator iterator = new(schema.AllRecordTypes.Find("subRecord"), 2);
 
         int counter = 0;
 
-        foreach (var fieldInfo in iterator)
+        foreach (FieldInfo fieldInfo in iterator)
         {
             if (counter % 2 == 0)
             {

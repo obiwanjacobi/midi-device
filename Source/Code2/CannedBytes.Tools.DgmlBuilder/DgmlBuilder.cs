@@ -40,7 +40,7 @@ namespace CannedBytes.Tools.DgmlBuilder
 
         public DirectedGraphNode AddNode(string id)
         {
-            var node = new DirectedGraphNode()
+            DirectedGraphNode node = new()
             {
                 Id = id
             };
@@ -52,7 +52,7 @@ namespace CannedBytes.Tools.DgmlBuilder
 
         public void AddNode(DirectedGraphNode node)
         {
-            var nodes = new List<DirectedGraphNode>(DirectedGraph.Nodes);
+            List<DirectedGraphNode> nodes = new(DirectedGraph.Nodes);
 
             nodes.Add(node);
 
@@ -66,7 +66,7 @@ namespace CannedBytes.Tools.DgmlBuilder
 
         public DirectedGraphLink AddLink(string source, string target)
         {
-            var link = new DirectedGraphLink()
+            DirectedGraphLink link = new()
             {
                 Source = source,
                 Target = target,
@@ -79,7 +79,7 @@ namespace CannedBytes.Tools.DgmlBuilder
 
         public void AddLink(DirectedGraphLink link)
         {
-            var links = new List<DirectedGraphLink>(DirectedGraph.Links);
+            List<DirectedGraphLink> links = new(DirectedGraph.Links);
 
             links.Add(link);
 
@@ -88,7 +88,7 @@ namespace CannedBytes.Tools.DgmlBuilder
 
         public DirectedGraphCategory AddCategory(string id)
         {
-            var cat = new DirectedGraphCategory()
+            DirectedGraphCategory cat = new()
             {
                 Id = id
             };
@@ -100,7 +100,7 @@ namespace CannedBytes.Tools.DgmlBuilder
 
         public void AddCategory(DirectedGraphCategory category)
         {
-            var cats = new List<DirectedGraphCategory>(DirectedGraph.Categories);
+            List<DirectedGraphCategory> cats = new(DirectedGraph.Categories);
 
             cats.Add(category);
 

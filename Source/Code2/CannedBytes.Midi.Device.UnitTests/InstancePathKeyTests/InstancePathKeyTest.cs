@@ -9,7 +9,7 @@ public class InstancePathKeyTest
     [Fact]
     public void DefCtor_DepthAndIsZero_AllZero()
     {
-        var key = new InstancePathKey();
+        InstancePathKey key = new();
 
         key.Depth.Should().Be(0);
         key.IsZero.Should().BeTrue();
@@ -20,7 +20,7 @@ public class InstancePathKeyTest
     [Fact]
     public void IndexCtor_DepthAndIsZero_AllOne()
     {
-        var key = new InstancePathKey(1);
+        InstancePathKey key = new(1);
 
         key.Depth.Should().Be(1);
         key.IsZero.Should().BeFalse();
@@ -31,7 +31,7 @@ public class InstancePathKeyTest
     [Fact]
     public void Add_DepthAndIsZero_CorrectValues()
     {
-        var key = new InstancePathKey();
+        InstancePathKey key = new();
         key.Add(0);
         key.Add(1);
         key.Add(0);

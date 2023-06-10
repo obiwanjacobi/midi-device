@@ -13,10 +13,10 @@ public class MidiTypesConverterFactoryTest
 
     private static void TestFactoryDataType(string dataTypeName, System.Type converterType)
     {
-        var dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
+        DataType dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
         dataType.Should().NotBeNull();
 
-        var converter = ConverterFactory.Create(dataType, dataType);
+        DataConverter converter = ConverterFactory.Create(dataType, dataType);
 
         if (converterType == null)
         {
@@ -30,10 +30,10 @@ public class MidiTypesConverterFactoryTest
 
     private static void TestFactoryRecordType(string recordTypeName, System.Type converterType)
     {
-        var recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
+        RecordType recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
         recordType.Should().NotBeNull();
 
-        var converter = ConverterFactory.Create(recordType, recordType);
+        StreamConverter converter = ConverterFactory.Create(recordType, recordType);
 
         if (converterType == null)
         {

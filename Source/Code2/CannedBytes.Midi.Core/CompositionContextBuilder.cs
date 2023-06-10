@@ -9,19 +9,19 @@ public class CompositionContextBuilder
 
     public virtual CompositionContext ToCompositionContext()
     {
-        var container = new CompositionContainer(_catalog);
+        CompositionContainer container = new(_catalog);
         return new CompositionContext(container);
     }
 
     public void AddDirectory(string directoryLocation)
     {
-        var dirCat = new DirectoryCatalog(directoryLocation);
+        DirectoryCatalog dirCat = new(directoryLocation);
         _catalog.Catalogs.Add(dirCat);
     }
 
     public void AddAssembly(Assembly assembly)
     {
-        var assCat = new AssemblyCatalog(assembly);
+        AssemblyCatalog assCat = new(assembly);
         _catalog.Catalogs.Add(assCat);
     }
 }

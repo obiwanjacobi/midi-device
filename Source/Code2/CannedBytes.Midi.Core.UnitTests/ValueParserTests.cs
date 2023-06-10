@@ -10,10 +10,9 @@ public class ValueParserTests
     [Fact]
     public void TryParseBytes_4BytesBE_Decimal()
     {
-        byte[] bytes;
 
-        var success = ValueParser.TryParseToBytes(
-            "01 02 03 04", Ordering.BigEndian, out bytes);
+        bool success = ValueParser.TryParseToBytes(
+            "01 02 03 04", Ordering.BigEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
@@ -28,10 +27,9 @@ public class ValueParserTests
     [Fact]
     public void TryParseBytes_4BytesBE_Hexadecimal()
     {
-        byte[] bytes;
 
-        var success = ValueParser.TryParseToBytes(
-            "B1-C2-D3-E4H", Ordering.BigEndian, out bytes);
+        bool success = ValueParser.TryParseToBytes(
+            "B1-C2-D3-E4H", Ordering.BigEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
@@ -46,10 +44,9 @@ public class ValueParserTests
     [Fact]
     public void TryParseBytes_4BytesLE_Decimal()
     {
-        byte[] bytes;
 
-        var success = ValueParser.TryParseToBytes(
-            "01 02 03 04", Ordering.LittleEndian, out bytes);
+        bool success = ValueParser.TryParseToBytes(
+            "01 02 03 04", Ordering.LittleEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
@@ -64,10 +61,9 @@ public class ValueParserTests
     [Fact]
     public void TryParseBytes_4BytesLE_Hexadecimal()
     {
-        byte[] bytes;
 
-        var success = ValueParser.TryParseToBytes(
-            "B1-C2-D3-E4H", Ordering.LittleEndian, out bytes);
+        bool success = ValueParser.TryParseToBytes(
+            "B1-C2-D3-E4H", Ordering.LittleEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
@@ -82,8 +78,7 @@ public class ValueParserTests
     [Fact]
     public void TryParseInt32_4Bytes_Decimal()
     {
-        int value;
-        var success = ValueParser.TryParseInt32("01-02-03-04", out value);
+        bool success = ValueParser.TryParseInt32("01-02-03-04", out int value);
 
         success.Should().BeTrue();
         value.Should().Be(01020304);
@@ -92,9 +87,8 @@ public class ValueParserTests
     [Fact]
     public void TryParseInt32_4Bytes_Hexadecimal()
     {
-        int value;
-        var success = ValueParser.TryParseInt32("B1-C2-D3-E4H", out value);
-        
+        bool success = ValueParser.TryParseInt32("B1-C2-D3-E4H", out int value);
+
         uint result = (uint)value;
 
         success.Should().BeTrue();
@@ -104,8 +98,7 @@ public class ValueParserTests
     [Fact]
     public void TryParseInt32_OneInteger_Decimal()
     {
-        int value;
-        var success = ValueParser.TryParseInt32("01020304", out value);
+        bool success = ValueParser.TryParseInt32("01020304", out int value);
 
         success.Should().BeTrue();
         value.Should().Be(01020304);
@@ -114,8 +107,7 @@ public class ValueParserTests
     [Fact]
     public void TryParseInt32_OneInteger_Hexadecimal()
     {
-        int value;
-        var success = ValueParser.TryParseInt32("B1C2D3E4H", out value);
+        bool success = ValueParser.TryParseInt32("B1C2D3E4H", out int value);
 
         uint result = (uint)value;
 

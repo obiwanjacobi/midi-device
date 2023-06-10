@@ -1,42 +1,38 @@
-﻿using CannedBytes.Collections;
-using CannedBytes.Midi.Device.Schema;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace CannedBytes.Midi.Device.Schema
+namespace CannedBytes.Midi.Device.Schema;
+
+public sealed partial class FieldHierarchicalIterator : IEnumerable<FieldInfo>
 {
-    public sealed partial class FieldHierarchicalIterator : IEnumerable<FieldInfo>
+    private readonly RecordType _rootRecord;
+
+    public FieldHierarchicalIterator(RecordType rootRecord)
     {
-        private readonly RecordType _rootRecord;
+        Check.IfArgumentNull(rootRecord, "rootRecord");
 
-        public FieldHierarchicalIterator(RecordType rootRecord)
+        _rootRecord = rootRecord;
+    }
+
+    public bool ExpandRepeatingFields { get; set; }
+
+    // enumerates repeated fields
+    public IEnumerator<FieldInfo> GetEnumerator()
+    {
+        if (ExpandRepeatingFields)
         {
-            Check.IfArgumentNull(rootRecord, "rootRecord");
-
-            _rootRecord = rootRecord;
+            return new RepeatingFieldHierarchicalEnumerator(ToFieldInfos(_rootRecord.Fields));
         }
 
-        public bool ExpandRepeatingFields { get; set; }
+        return new FieldHierarchicalEnumerator(ToFieldInfos(_rootRecord.Fields));
+    }
 
-        // enumerates repeated fields
-        public IEnumerator<FieldInfo> GetEnumerator()
-        {
-            if (ExpandRepeatingFields)
-            {
-                return new RepeatingFieldHierarchicalEnumerator(ToFieldInfos(_rootRecord.Fields));
-            }
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 
-            return new FieldHierarchicalEnumerator(ToFieldInfos(_rootRecord.Fields));
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        internal static IEnumerable<FieldInfo> ToFieldInfos(IEnumerable<Field> fields)
-        {
-            return new FieldToFieldInfoEnumerator(fields);
-        }
+    internal static IEnumerable<FieldInfo> ToFieldInfos(IEnumerable<Field> fields)
+    {
+        return new FieldToFieldInfoEnumerator(fields);
     }
 }

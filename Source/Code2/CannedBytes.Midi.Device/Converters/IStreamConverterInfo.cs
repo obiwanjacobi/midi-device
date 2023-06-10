@@ -1,8 +1,7 @@
-﻿namespace CannedBytes.Midi.Device.Converters
+﻿namespace CannedBytes.Midi.Device.Converters;
+
+public interface IStreamConverterInfo
 {
-    public interface IStreamConverterInfo
-    {
-        string SchemaName { get; }
-        string RecordTypeName { get; }
-    }
+    string SchemaName { get; }
+    string RecordTypeName { get; }
 }

@@ -22,10 +22,10 @@ public class CarryTest
     [Fact]
     public void Read_SchemaWithCarry_ByteAndWordValues()
     {
-        var compositionCtx = CompositionHelper.CreateCompositionContext();
-        var writer = new DictionaryBasedLogicalStub();
+        ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
+        DictionaryBasedLogicalStub writer = new();
 
-        var ctx = DeviceHelper.ToLogical(compositionCtx,
+        DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx,
             TestSchemaFileName, TestStreamFileName, "carryTest", writer);
 
         writer.Count.Should().Be(9);

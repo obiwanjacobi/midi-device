@@ -19,10 +19,10 @@ public class DevicePropertiesTest
     [Fact]
     public void ToLogical_SchemaWithProperties_LogicalPropertyValuesInContext()
     {
-        var compositionCtx = CompositionHelper.CreateCompositionContext();
-        var writer = new DictionaryBasedLogicalStub();
+        ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
+        DictionaryBasedLogicalStub writer = new();
 
-        var ctx = DeviceHelper.ToLogical(
+        DeviceDataContext ctx = DeviceHelper.ToLogical(
             compositionCtx, SchemaFileName, StreamFileName, "RQ1", writer);
 
         ctx.DeviceProperties.Count.Should().Be(4);

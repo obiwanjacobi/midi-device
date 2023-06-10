@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+public interface ILogicalReadAccessor
 {
-    public interface ILogicalReadAccessor
-    {
-        bool Read<T>(int bitLength, out T value)
-            where T : IComparable;
-    }
+    bool Read<T>(int bitLength, out T value)
+        where T : IComparable;
 }

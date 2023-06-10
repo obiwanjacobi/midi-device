@@ -1,13 +1,12 @@
 ﻿using CannedBytes.Midi.Device.Schema;
 
-namespace CannedBytes.Midi.Device.Converters
+namespace CannedBytes.Midi.Device.Converters;
+
+public interface IConverterFactory
 {
-    public interface IConverterFactory
-    {
-        string SchemaName { get; }
+    string SchemaName { get; }
 
-        DataConverter Create(DataType matchType, DataType constructType);
+    DataConverter Create(DataType matchType, DataType constructType);
 
-        StreamConverter Create(RecordType matchType, RecordType constructType);
-    }
+    StreamConverter Create(RecordType matchType, RecordType constructType);
 }

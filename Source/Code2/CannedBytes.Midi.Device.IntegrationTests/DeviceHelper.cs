@@ -12,14 +12,14 @@ internal static class DeviceHelper
         string virtualRootName,
         IMidiLogicalWriter writer)
     {
-        var deviceProvider = DeviceProvider.Create(compositionCtx, schemaLocation);
-        var binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
+        DeviceProvider deviceProvider = DeviceProvider.Create(compositionCtx, schemaLocation);
+        SchemaNodeMap binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
 
-        var process = new DeviceToLogicalProcess();
+        DeviceToLogicalProcess process = new();
 
         DeviceDataContext dataCtx = null;
 
-        using (var stream = File.OpenRead(binStreamPath))
+        using (FileStream stream = File.OpenRead(binStreamPath))
         {
             dataCtx = process.Execute(binMap.RootNode, stream, writer);
         }

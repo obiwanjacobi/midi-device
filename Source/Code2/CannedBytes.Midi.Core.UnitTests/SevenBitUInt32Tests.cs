@@ -9,7 +9,7 @@ public class SevenBitUInt32Tests
     [Fact]
     public void Ctor_ParseHex7BitValue_ToUInt32ReflectsValue()
     {
-        var sb = new SevenBitUInt32("20-10-08-04H");
+        SevenBitUInt32 sb = new("20-10-08-04H");
 
         sb.ToUInt32().Should().Be(0x20100804);
     }
@@ -17,7 +17,7 @@ public class SevenBitUInt32Tests
     [Fact]
     public void Ctor_ParseDec7BitValue_ToUInt32ReflectsValue()
     {
-        var sb = new SevenBitUInt32("20-10-08-04");
+        SevenBitUInt32 sb = new("20-10-08-04");
 
         sb.ToUInt32().Should().Be(336201732);
     }
@@ -25,7 +25,7 @@ public class SevenBitUInt32Tests
     [Fact]
     public void Ctor_ParseInternalDec_ToUInt32ReflectsValue()
     {
-        var sb = new SevenBitUInt32("20100804");
+        SevenBitUInt32 sb = new("20100804");
 
         sb.ToUInt32().Should().Be(20067908);
     }
@@ -35,7 +35,7 @@ public class SevenBitUInt32Tests
     {
         uint value = 0x1000;
 
-        var sb = SevenBitUInt32.FromSevenBitValue(value);
+        SevenBitUInt32 sb = SevenBitUInt32.FromSevenBitValue(value);
 
         sb.ToUInt32().Should().Be(value);
     }
@@ -45,7 +45,7 @@ public class SevenBitUInt32Tests
     {
         int value = 0x1080;
 
-        var sb = SevenBitUInt32.FromInt32(value);
+        SevenBitUInt32 sb = SevenBitUInt32.FromInt32(value);
 
         sb.ToUInt32().Should().Be(0x2100);
     }

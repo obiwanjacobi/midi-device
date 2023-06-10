@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+partial class SchemaNode
 {
-    partial class SchemaNode
+    public class SchemaNodeCollection : Collection<SchemaNode>
     {
-        public class SchemaNodeCollection : Collection<SchemaNode>
-        {
-        }
     }
 }

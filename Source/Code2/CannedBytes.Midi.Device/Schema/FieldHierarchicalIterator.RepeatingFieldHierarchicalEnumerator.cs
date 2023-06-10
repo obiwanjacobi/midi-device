@@ -1,95 +1,94 @@
 ﻿using System.Collections.Generic;
 
-namespace CannedBytes.Midi.Device.Schema
+namespace CannedBytes.Midi.Device.Schema;
+
+partial class FieldHierarchicalIterator
 {
-    partial class FieldHierarchicalIterator
+    private sealed class RepeatingFieldHierarchicalEnumerator : FieldHierarchicalEnumerator
     {
-        private class RepeatingFieldHierarchicalEnumerator : FieldHierarchicalEnumerator
+        private readonly Stack<int> _repeatStack = new();
+        private int? _repeats;
+
+        public RepeatingFieldHierarchicalEnumerator(IEnumerable<FieldInfo> fields)
+            : base(fields)
+        { }
+
+        public override FieldInfo Current
         {
-            private readonly Stack<int> _repeatStack = new Stack<int>();
-            private int? _repeats = null;
-
-            public RepeatingFieldHierarchicalEnumerator(IEnumerable<FieldInfo> fields)
-                : base(fields)
-            { }
-
-            public override FieldInfo Current
+            get
             {
-                get
+                FieldInfo fieldInfo = base.Current;
+
+                fieldInfo.InstanceIndex = _repeats.GetValueOrDefault();
+
+                return fieldInfo;
+            }
+        }
+
+        public override bool MoveNext()
+        {
+            bool hasMore = base.MoveNext();
+
+            if (hasMore)
+            {
+                if (Current.Field.ExtendedProperties.Repeats > 1)
                 {
-                    var fieldInfo = base.Current;
-
-                    fieldInfo.InstanceIndex = _repeats.GetValueOrDefault();
-
-                    return fieldInfo;
+                    _repeats = Current.Field.ExtendedProperties.Repeats - 1;
+                }
+                else
+                {
+                    _repeats = 0;
                 }
             }
 
-            public override bool MoveNext()
+            return hasMore;
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+
+            _repeats = null;
+            _repeatStack.Clear();
+        }
+
+        protected override IEnumerator<FieldInfo> GetChildEnumerator()
+        {
+            IEnumerator<FieldInfo> enumerator = base.GetChildEnumerator();
+
+            if (enumerator != null)
             {
-                var hasMore = base.MoveNext();
-
-                if (hasMore)
-                {
-                    if (Current.Field.ExtendedProperties.Repeats > 1)
-                    {
-                        _repeats = Current.Field.ExtendedProperties.Repeats - 1;
-                    }
-                    else
-                    {
-                        _repeats = 0;
-                    }
-                }
-
-                return hasMore;
-            }
-
-            public override void Reset()
-            {
-                base.Reset();
-
+                _repeatStack.Push(_repeats.Value);
                 _repeats = null;
-                _repeatStack.Clear();
             }
 
-            protected override IEnumerator<FieldInfo> GetChildEnumerator()
-            {
-                var enumerator = base.GetChildEnumerator();
+            return enumerator;
+        }
 
-                if (enumerator != null)
-                {
-                    _repeatStack.Push(_repeats.Value);
-                    _repeats = null;
-                }
+        protected override IEnumerator<FieldInfo> GetParentEnumerator()
+        {
+            if (_repeatStack.Count > 0)
+            {
+                _repeats = _repeatStack.Pop();
+            }
+            else
+            {
+                _repeats = null;
+            }
+
+            if (_repeats.HasValue && _repeats.Value > 0)
+            {
+                _repeats--;
+
+                IEnumerator<FieldInfo> enumerator = CurrentEnumerator;
+
+                // do it again
+                enumerator.Reset();
 
                 return enumerator;
             }
 
-            protected override IEnumerator<FieldInfo> GetParentEnumerator()
-            {
-                if (_repeatStack.Count > 0)
-                {
-                    _repeats = _repeatStack.Pop();
-                }
-                else
-                {
-                    _repeats = null;
-                }
-
-                if (_repeats.HasValue && _repeats.Value > 0)
-                {
-                    _repeats--;
-
-                    var enumerator = CurrentEnumerator;
-
-                    // do it again
-                    enumerator.Reset();
-
-                    return enumerator;
-                }
-
-                return base.GetParentEnumerator();
-            }
+            return base.GetParentEnumerator();
         }
     }
 }

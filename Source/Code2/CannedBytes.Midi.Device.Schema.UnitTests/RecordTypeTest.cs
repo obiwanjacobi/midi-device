@@ -13,7 +13,7 @@ public class RecordTypeTest
     [Fact]
     public void Constructor_WithName_ParsedCorrectly()
     {
-        var target = new RecordType(Constants.SchemaTypeName);
+        RecordType target = new(Constants.SchemaTypeName);
 
         SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.TypeName);
     }
@@ -21,7 +21,7 @@ public class RecordTypeTest
     [Fact]
     public void Fields_OnNewRecordType_IsNotNull()
     {
-        var target = new RecordType(Constants.SchemaTypeName);
+        RecordType target = new(Constants.SchemaTypeName);
 
         target.Fields.Should().NotBeNull();
     }
@@ -29,8 +29,8 @@ public class RecordTypeTest
     [Fact]
     public void FieldsAdd_NewField_Sticks()
     {
-        var target = new RecordType(Constants.SchemaTypeName);
-        var field = new Field(Constants.SchemaFieldName);
+        RecordType target = new(Constants.SchemaTypeName);
+        Field field = new(Constants.SchemaFieldName);
 
         target.Fields.Add(field);
 
@@ -42,8 +42,8 @@ public class RecordTypeTest
     [Fact]
     public void RecordTypeSchema_SchemaProperty_IsSame()
     {
-        var schema = new DeviceSchema(Constants.SchemaName);
-        var target = new RecordType(Constants.SchemaTypeName);
+        DeviceSchema schema = new(Constants.SchemaName);
+        RecordType target = new(Constants.SchemaTypeName);
 
         schema.AllRecordTypes.Add(target);
 

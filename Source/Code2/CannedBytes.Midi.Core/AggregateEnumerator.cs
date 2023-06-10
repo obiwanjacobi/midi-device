@@ -5,7 +5,7 @@ namespace CannedBytes.Collections;
 
 public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerator<T>
 {
-    private readonly List<IEnumerator<T>> _enumerators = new List<IEnumerator<T>>();
+    private readonly List<IEnumerator<T>> _enumerators = new();
     private int _enumIndex = -1;
     private IEnumerator<T> _currentEnum;
 
@@ -49,7 +49,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
     {
         ThrowIfDisposed();
 
-        foreach (var myEnum in _enumerators)
+        foreach (IEnumerator<T> myEnum in _enumerators)
         {
             myEnum.Reset();
         }

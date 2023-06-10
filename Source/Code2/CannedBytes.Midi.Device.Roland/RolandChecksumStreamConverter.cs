@@ -14,11 +14,11 @@ namespace CannedBytes.Midi.Device.Roland
 
         protected override VarUInt64 CalculateChecksum(Stream stream)
         {
-            var total = base.CalculateChecksum(stream);
+            VarUInt64 total = base.CalculateChecksum(stream);
 
-            var checksum = (total.ConvertTo((VarUInt64.VarTypeCode)ByteLength) % 0x80);
+            int checksum = total.ConvertTo((VarUInt64.VarTypeCode)ByteLength) % 0x80;
 
-            return (0x80 - checksum);
+            return 0x80 - checksum;
         }
     }
 }

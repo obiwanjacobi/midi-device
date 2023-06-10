@@ -1,7 +1,6 @@
-﻿namespace CannedBytes.Midi.Device.Converters
+﻿namespace CannedBytes.Midi.Device.Converters;
+
+public interface IConverterFactoryInfo
 {
-    public interface IConverterFactoryInfo
-    {
-        string SchemaName { get; }
-    }
+    string SchemaName { get; }
 }

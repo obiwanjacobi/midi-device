@@ -7,8 +7,8 @@ internal static class DeviceSchemaHelper
 {
     public static DeviceSchema LoadSchema(string schemaName)
     {
-        var provider = new MidiDeviceSchemaProvider();
-        var schema = provider.Load(schemaName);
+        MidiDeviceSchemaProvider provider = new();
+        DeviceSchema schema = provider.Load(schemaName);
 
         return schema;
     }

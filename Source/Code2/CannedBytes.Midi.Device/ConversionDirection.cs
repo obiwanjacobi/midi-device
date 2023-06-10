@@ -1,8 +1,7 @@
-﻿namespace CannedBytes.Midi.Device
+﻿namespace CannedBytes.Midi.Device;
+
+public enum ConversionDirection
 {
-    public enum ConversionDirection
-    {
-        ToLogical, 
-        ToPhysical,
-    }
+    ToLogical, 
+    ToPhysical,
 }

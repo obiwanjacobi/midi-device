@@ -7,8 +7,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml;
 
 public static class MidiDeviceSchemaReader
 {
-    private static readonly XmlSerializer _serializer = new XmlSerializer(typeof(deviceSchema));
-    private static readonly XmlReaderSettings _settings = new XmlReaderSettings();
+    private static readonly XmlSerializer _serializer = new(typeof(deviceSchema));
+    private static readonly XmlReaderSettings _settings = new();
 
     static MidiDeviceSchemaReader()
     {
@@ -20,7 +20,7 @@ public static class MidiDeviceSchemaReader
 
     public static deviceSchema Read(Stream stream)
     {
-        var reader = XmlReader.Create(stream);
+        XmlReader reader = XmlReader.Create(stream);
 
         if (_serializer.CanDeserialize(reader))
         {

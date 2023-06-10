@@ -1,58 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+partial class DeviceDataContext
 {
-    partial class DeviceDataContext
+    public class ConverterState
     {
-        public class ConverterState
+        private readonly Dictionary<string, object> _stateMap = new();
+
+        public void Clear()
         {
-            private readonly Dictionary<string, object> _stateMap = new Dictionary<string, object>();
+            _stateMap.Clear();
+        }
 
-            public void Clear()
+        public IEnumerable<string> Names
+        {
+            get { return _stateMap.Keys; }
+        }
+
+        public bool Contains(string name)
+        {
+            return _stateMap.ContainsKey(name);
+        }
+
+        public T Get<T>(string name)
+        {
+
+            if (_stateMap.TryGetValue(name, out object value))
             {
-                _stateMap.Clear();
+                return (T)Convert.ChangeType(value, typeof(T));
             }
 
-            public IEnumerable<string> Names
-            {
-                get { return _stateMap.Keys; }
-            }
+            return default;
+        }
 
-            public bool Contains(string name)
-            {
-                return _stateMap.ContainsKey(name);
-            }
+        public T Set<T>(string name, T value)
+        {
+            T oldValue = Get<T>(name);
 
-            public T Get<T>(string name)
-            {
-                object value;
+            _stateMap[name] = value;
 
-                if (_stateMap.TryGetValue(name, out value))
-                {
-                    return (T)Convert.ChangeType(value, typeof(T));
-                }
+            return oldValue;
+        }
 
-                return default(T);
-            }
+        public T Remove<T>(string name)
+        {
+            T oldValue = Get<T>(name);
 
-            public T Set<T>(string name, T value)
-            {
-                T oldValue = Get<T>(name);
+            _stateMap.Remove(name);
 
-                _stateMap[name] = value;
-
-                return oldValue;
-            }
-
-            public T Remove<T>(string name)
-            {
-                T oldValue = Get<T>(name);
-
-                _stateMap.Remove(name);
-
-                return oldValue;
-            }
+            return oldValue;
         }
     }
 }

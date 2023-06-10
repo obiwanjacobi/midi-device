@@ -9,12 +9,12 @@ public class AggregateEnumeratorTests
     [Fact]
     public void ForEach_SimpleList_IteratesAllItems()
     {
-        var list = new[] { 1, 2, 3, 4, 5, 6, 7 };
-        var aggEnum = new AggregateEnumerator<int>();
+        int[] list = new[] { 1, 2, 3, 4, 5, 6, 7 };
+        AggregateEnumerator<int> aggEnum = new();
         aggEnum.Add(list);
 
         int count = 0;
-        foreach (var item in aggEnum)
+        foreach (int item in aggEnum)
         {
             item.Should().BeOneOf(list);
             count++;

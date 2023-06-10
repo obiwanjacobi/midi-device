@@ -1,20 +1,19 @@
-﻿using CannedBytes.Midi.Device.Converters;
-using System.IO;
+﻿using System.IO;
+using CannedBytes.Midi.Device.Converters;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+public partial class StreamManager
 {
-    public partial class StreamManager
+    private sealed class StreamOwner
     {
-        private sealed class StreamOwner
+        public StreamOwner(StreamConverter owner, Stream stream)
         {
-            public StreamOwner(StreamConverter owner, Stream stream)
-            {
-                Owner = owner;
-                Stream = stream;
-            }
-
-            public StreamConverter Owner { get; private set; }
-            public Stream Stream { get; private set; }
+            Owner = owner;
+            Stream = stream;
         }
+
+        public StreamConverter Owner { get; }
+        public Stream Stream { get; }
     }
 }

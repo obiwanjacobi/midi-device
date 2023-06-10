@@ -27,10 +27,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        if (this.writer != null)
-        {
-            this.writer.WriteBool(context, data);
-        }
+        this.writer?.WriteBool(context, data);
 
         return true;
     }
@@ -39,10 +36,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        if (this.writer != null)
-        {
-            this.writer.WriteByte(context, data);
-        }
+        this.writer?.WriteByte(context, data);
 
         return true;
     }
@@ -51,10 +45,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        if (this.writer != null)
-        {
-            this.writer.WriteShort(context, data);
-        }
+        this.writer?.WriteShort(context, data);
 
         return true;
     }
@@ -63,10 +54,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        if (this.writer != null)
-        {
-            this.writer.WriteInt(context, data);
-        }
+        this.writer?.WriteInt(context, data);
 
         return true;
     }
@@ -75,10 +63,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        if (this.writer != null)
-        {
-            this.writer.WriteLong(context, data);
-        }
+        this.writer?.WriteLong(context, data);
 
         return true;
     }
@@ -87,10 +72,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        if (this.writer != null)
-        {
-            this.writer.WriteString(context, data);
-        }
+        this.writer?.WriteString(context, data);
 
         return true;
     }

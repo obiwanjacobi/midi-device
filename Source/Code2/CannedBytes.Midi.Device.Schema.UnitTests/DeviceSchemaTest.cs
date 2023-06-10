@@ -13,7 +13,7 @@ public class DeviceSchemaTest
     [Fact]
     public void Constructor_WithName_Sticks()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
+        DeviceSchema target = new(Constants.SchemaName);
 
         target.SchemaName.Should().Be(Constants.SchemaName);
     }
@@ -21,7 +21,7 @@ public class DeviceSchemaTest
     [Fact]
     public void Attributes_OnNewInstance_IsNotNull()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
+        DeviceSchema target = new(Constants.SchemaName);
 
         target.Attributes.Should().NotBeNull();
     }
@@ -29,7 +29,7 @@ public class DeviceSchemaTest
     [Fact]
     public void Attributes_OnNewInstance_HasSchemaSet()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
+        DeviceSchema target = new(Constants.SchemaName);
 
         target.Attributes.Schema.Should().NotBeNull();
     }
@@ -37,7 +37,7 @@ public class DeviceSchemaTest
     [Fact]
     public void AllDataTypes_OnNewInstance_IsNotNull()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
+        DeviceSchema target = new(Constants.SchemaName);
 
         target.AllDataTypes.Should().NotBeNull();
     }
@@ -45,8 +45,8 @@ public class DeviceSchemaTest
     [Fact]
     public void Add_AllDataTypes_Sticks()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
-        var type = new DataType(Constants.SchemaTypeName);
+        DeviceSchema target = new(Constants.SchemaName);
+        DataType type = new(Constants.SchemaTypeName);
 
         target.AllDataTypes.Add(type);
 
@@ -58,8 +58,8 @@ public class DeviceSchemaTest
     [Fact]
     public void Clear_AllDataTypes_IsEmpty()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
-        var type = new DataType(Constants.SchemaTypeName);
+        DeviceSchema target = new(Constants.SchemaName);
+        DataType type = new(Constants.SchemaTypeName);
 
         target.AllDataTypes.Add(type);
         target.AllDataTypes.Clear();
@@ -70,8 +70,8 @@ public class DeviceSchemaTest
     [Fact]
     public void Add_AllRecordTypes_Sticks()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
-        var type = new RecordType(Constants.SchemaTypeName);
+        DeviceSchema target = new(Constants.SchemaName);
+        RecordType type = new(Constants.SchemaTypeName);
 
         target.AllRecordTypes.Add(type);
 
@@ -83,8 +83,8 @@ public class DeviceSchemaTest
     [Fact]
     public void Clear_AllRecordTypes_IsEmpty()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
-        var type = new RecordType(Constants.SchemaTypeName);
+        DeviceSchema target = new(Constants.SchemaName);
+        RecordType type = new(Constants.SchemaTypeName);
 
         target.AllRecordTypes.Add(type);
         target.AllRecordTypes.Clear();
@@ -95,8 +95,8 @@ public class DeviceSchemaTest
     [Fact]
     public void Add_RootRecordTypes_Sticks()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
-        var type = new RecordType(Constants.SchemaTypeName);
+        DeviceSchema target = new(Constants.SchemaName);
+        RecordType type = new(Constants.SchemaTypeName);
 
         target.RootRecordTypes.Add(type);
 
@@ -108,8 +108,8 @@ public class DeviceSchemaTest
     [Fact]
     public void Clear_RootRecordTypes_IsEmpty()
     {
-        var target = new DeviceSchema(Constants.SchemaName);
-        var type = new RecordType(Constants.SchemaTypeName);
+        DeviceSchema target = new(Constants.SchemaName);
+        RecordType type = new(Constants.SchemaTypeName);
 
         target.RootRecordTypes.Add(type);
         target.RootRecordTypes.Clear();

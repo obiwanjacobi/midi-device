@@ -83,8 +83,7 @@ public struct SevenBitUInt32 : IConvertible
 
     private bool ParseInternal(string s)
     {
-        byte[] bytes;
-        var success = ValueParser.TryParseToBytes(s, Ordering.LittleEndian, out bytes);
+        bool success = ValueParser.TryParseToBytes(s, Ordering.LittleEndian, out byte[] bytes);
 
         if (success)
         {
@@ -165,7 +164,7 @@ public struct SevenBitUInt32 : IConvertible
 
     public string ToString(string format)
     {
-        var value = ToUInt32();
+        uint value = ToUInt32();
 
         return value.ToString(format);
     }
@@ -309,7 +308,7 @@ public struct SevenBitUInt32 : IConvertible
     {
         ValidateInternalValue(internalValue);
 
-        var sevenBitValue = (internalValue & IntMaskByte1) << 0;
+        uint sevenBitValue = (internalValue & IntMaskByte1) << 0;
         sevenBitValue |= (internalValue & IntMaskByte2) << 1;
         sevenBitValue |= (internalValue & IntMaskByte3) << 2;
         sevenBitValue |= (internalValue & IntMaskByte4) << 3;
@@ -328,7 +327,7 @@ public struct SevenBitUInt32 : IConvertible
     {
         ValidateSevenBitValue(sevenBitValue);
 
-        var internalValue = (sevenBitValue & SbMaskByte1) >> 0;
+        uint internalValue = (sevenBitValue & SbMaskByte1) >> 0;
         internalValue |= (sevenBitValue & SbMaskByte2) >> 1;
         internalValue |= (sevenBitValue & SbMaskByte3) >> 2;
         internalValue |= (sevenBitValue & SbMaskByte4) >> 3;

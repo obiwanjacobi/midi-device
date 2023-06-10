@@ -36,7 +36,7 @@ public class CompositionContext : DisposableBase
 
     public void AddInstance<T>(T instance)
     {
-        var batch = new CompositionBatch();
+        CompositionBatch batch = new();
         batch.AddExportedValue<T>(instance);
 
         _container.Compose(batch);

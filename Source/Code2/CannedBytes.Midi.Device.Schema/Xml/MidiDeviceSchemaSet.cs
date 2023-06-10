@@ -7,7 +7,7 @@ public class MidiDeviceSchemaSet : DeviceSchemaCollection
 
     public MidiDeviceSchemaDataType FindDataType(string schemaName, string typeName)
     {
-        var schema = Find(schemaName);
+        DeviceSchema schema = Find(schemaName);
 
         if (schema != null)
         {
@@ -19,7 +19,7 @@ public class MidiDeviceSchemaSet : DeviceSchemaCollection
 
     public MidiDeviceSchemaRecordType FindRecordType(string schemaName, string typeName)
     {
-        var schema = Find(schemaName);
+        DeviceSchema schema = Find(schemaName);
 
         if (schema != null)
         {

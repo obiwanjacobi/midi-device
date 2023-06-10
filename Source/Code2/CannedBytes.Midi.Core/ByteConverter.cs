@@ -11,7 +11,7 @@ public static class ByteConverter
 
     public static byte[] FromUint32ToSevenBitBytes(uint value, Ordering ordering)
     {
-        var bytes = new byte[4];
+        byte[] bytes = new byte[4];
 
         bytes[0] = (byte)((value & IntMaskByte1) >> 0);
         bytes[1] = (byte)((value & IntMaskByte2) >> 7);
@@ -104,7 +104,7 @@ public static class ByteConverter
 
     public static byte[] FromUInt64ToBytes(ulong value, Ordering ordering)
     {
-        var bytes = new byte[8];
+        byte[] bytes = new byte[8];
 
         bytes[0] = (byte)((value >> 0) & LowByteMask);
         bytes[1] = (byte)((value >> 8) & LowByteMask);

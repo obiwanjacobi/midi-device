@@ -1,76 +1,76 @@
-﻿using CannedBytes.Midi.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using CannedBytes.Midi.Core;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+public class SchemaNodeNavigator
 {
-    public class SchemaNodeNavigator
+    private readonly SchemaNode _rootNode;
+
+    public SchemaNodeNavigator(SchemaNode rootNode)
     {
-        private SchemaNode _rootNode;
+        _rootNode = rootNode;
+    }
 
-        public SchemaNodeNavigator(SchemaNode rootNode)
+    public SchemaNode FindFirst(SevenBitUInt32 address)
+    {
+        SchemaNode firstNode = (from n in _rootNode.SelectNodes(node => node.Next)
+                                where n.IsAddressMap
+                                where n.Address == address
+                                select n).FirstOrDefault();
+
+        return firstNode;
+    }
+
+    public SchemaNode FindLast(SevenBitUInt32 address)
+    {
+        SchemaNode lastNode = (from n in _rootNode.SelectNodes(node => node.Next)
+                               where n.Address <= address
+                               where n.IsAddressMap
+                               select n).LastOrDefault();
+
+        if (lastNode != null)
         {
-            _rootNode = rootNode;
+            lastNode = lastNode.LastFieldOfAddress;
         }
 
-        public SchemaNode FindFirst(SevenBitUInt32 address)
-        {
-            var firstNode = (from n in _rootNode.SelectNodes(node => node.Next)
-                             where n.IsAddressMap
-                             where n.Address == address
-                             select n).FirstOrDefault();
+        return lastNode;
+    }
 
-            return firstNode;
+    public SchemaNode PreviousAddress(SchemaNode currentNode, SevenBitUInt32 address)
+    {
+        List<SchemaNode> nodes = new();
+        nodes.Add(currentNode);
+        nodes.AddRange(currentNode.SelectNodes(node => node.Previous));
+
+        SchemaNode prevNode = (from n in nodes
+                               where n.IsAddressMap
+                               where n.Address < address
+                               select n).FirstOrDefault();
+
+        if (prevNode == null)
+        {
+            prevNode = currentNode;
         }
 
-        public SchemaNode FindLast(SevenBitUInt32 address)
+        return prevNode;
+    }
+
+    public IEnumerable<SchemaNode> SelectRange(SchemaNode startNode, SchemaNode endNode)
+    {
+        List<SchemaNode> range = new()
         {
-            var lastNode = (from n in _rootNode.SelectNodes(node => node.Next)
-                        where n.Address <= address
-                        where n.IsAddressMap
-                        select n).LastOrDefault();
+            startNode
+        };
 
-            if (lastNode != null)
-            {
-                lastNode = lastNode.LastFieldOfAddress;
-            }
+        IEnumerable<SchemaNode> nodes = from n in startNode.SelectNodes(node => node.Next)
+                                        where n.IsAddressMap
+                                        where endNode == null || n.Address <= endNode.Address
+                                        select n;
 
-            return lastNode;
-        }
+        range.AddRange(nodes);
 
-        public SchemaNode PreviousAddress(SchemaNode currentNode, SevenBitUInt32 address)
-        {
-            var nodes = new List<SchemaNode>();
-            nodes.Add(currentNode);
-            nodes.AddRange(currentNode.SelectNodes(node => node.Previous));
-
-            var prevNode = (from n in nodes
-                            where n.IsAddressMap
-                            where n.Address < address
-                            select n).FirstOrDefault();
-
-            if (prevNode == null)
-            {
-                prevNode = currentNode;
-            }
-
-            return prevNode;
-        }
-
-        public IEnumerable<SchemaNode> SelectRange(SchemaNode startNode, SchemaNode endNode)
-        {
-            var range = new List<SchemaNode>();
-
-            range.Add(startNode);
-
-            var nodes = from n in startNode.SelectNodes(node => node.Next)
-                        where n.IsAddressMap
-                        where endNode == null || n.Address <= endNode.Address
-                        select n;
-
-            range.AddRange(nodes);
-
-            return range;
-        }
+        return range;
     }
 }

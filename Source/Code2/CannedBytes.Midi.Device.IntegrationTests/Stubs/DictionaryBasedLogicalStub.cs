@@ -19,18 +19,19 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
 
     public T GetValue<T>(string fieldName, int instanceIndex)
     {
-        var key = BuildKey(fieldName, instanceIndex);
+        string key = BuildKey(fieldName, instanceIndex);
 
-        var fldInfo = this[key];
+        FieldInfo fldInfo = this[key];
 
         return (T)Convert.ChangeType(fldInfo.Value, typeof(T));
     }
 
     public FieldInfo Add(ILogicalFieldInfo logicFieldInfo, object value)
     {
-        var fldInfo = new FieldInfo();
-
-        fldInfo.InstanceIndex = logicFieldInfo.Key.Values.Last();
+        FieldInfo fldInfo = new()
+        {
+            InstanceIndex = logicFieldInfo.Key.Values.Last()
+        };
         fldInfo.Key = BuildKey(logicFieldInfo.Field.Name.FullName, fldInfo.InstanceIndex);
         fldInfo.Field = logicFieldInfo.Field;
         fldInfo.LogicalFieldInfo = logicFieldInfo;

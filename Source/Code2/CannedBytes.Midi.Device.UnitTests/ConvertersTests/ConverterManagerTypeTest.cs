@@ -8,15 +8,15 @@ namespace CannedBytes.Midi.Device.UnitTests.ConverterTests;
 
 public class ConverterManagerTypeTest
 {
-    private static DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+    private static readonly DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
 
     private static void TestManagerDataType(string dataTypeName, System.Type converterType)
     {
-        var converterMgr = ConverterManagerTest.CreateConverterManager();
-        var dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
+        ConverterManager converterMgr = ConverterManagerTest.CreateConverterManager();
+        DataType dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
         dataType.Should().NotBeNull();
 
-        var converter = converterMgr.GetConverter(dataType);
+        DataConverter converter = converterMgr.GetConverter(dataType);
 
         if (converterType == null)
         {
@@ -30,11 +30,11 @@ public class ConverterManagerTypeTest
 
     private static void TestManagerRecordType(string recordTypeName, System.Type converterType)
     {
-        var converterMgr = ConverterManagerTest.CreateConverterManager();
-        var recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
+        ConverterManager converterMgr = ConverterManagerTest.CreateConverterManager();
+        RecordType recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
         recordType.Should().NotBeNull();
 
-        var converter = converterMgr.GetConverter(recordType);
+        StreamConverter converter = converterMgr.GetConverter(recordType);
 
         if (converterType == null)
         {

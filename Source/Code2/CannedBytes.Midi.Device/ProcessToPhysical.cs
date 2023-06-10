@@ -1,48 +1,47 @@
 ﻿using System;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+/// <summary>
+/// This class iterates the nodes in the schema and calls each converter ToPhysical method.
+/// </summary>
+public class ProcessToPhysical
 {
-    /// <summary>
-    /// This class iterates the nodes in the schema and calls each converter ToPhysical method.
-    /// </summary>
-    public class ProcessToPhysical
+    // TODO: possibly make a base class for overlap with ProcessToLogical.
+
+    private readonly DeviceDataContext _context;
+    private readonly SchemaNode _rootNode;
+
+    public ProcessToPhysical(DeviceDataContext context, SchemaNode rootNode)
     {
-        // TODO: possibly make a base class for overlap with ProcessToLogical.
+        _context = context;
+        _rootNode = rootNode;
+    }
 
-        private readonly DeviceDataContext _context;
-        private readonly SchemaNode _rootNode;
+    public SchemaNode CurrentNode
+    {
+        get { return _context.FieldInfo.CurrentNode; }
+        set { _context.FieldInfo.CurrentNode = value; }
+    }
 
-        public ProcessToPhysical(DeviceDataContext context, SchemaNode rootNode)
-        {
-            _context = context;
-            _rootNode = rootNode;
-        }
+    public void ToPhysical(IMidiLogicalReader reader)
+    {
+        //_context.LogicalReadAccessor = new LogicalReadAccessor(_context, reader);
 
-        public SchemaNode CurrentNode
-        {
-            get { return _context.FieldInfo.CurrentNode; }
-            set { _context.FieldInfo.CurrentNode = value; }
-        }
+        ToPhysical(_rootNode);
+    }
 
-        public void ToPhysical(IMidiLogicalReader reader)
-        {
-            //_context.LogicalReadAccessor = new LogicalReadAccessor(_context, reader);
+    private void ToPhysical(SchemaNode thisNode)
+    {
+        throw new NotImplementedException();
 
-            ToPhysical(_rootNode);
-        }
-
-        private void ToPhysical(SchemaNode thisNode)
-        {
-            throw new NotImplementedException();
-
-            //if (thisNode.IsRecord)
-            //{
-            //    RecordToPhysical(thisNode);
-            //}
-            //else
-            //{
-            //    FieldToPhysical(thisNode);
-            //}
-        }
+        //if (thisNode.IsRecord)
+        //{
+        //    RecordToPhysical(thisNode);
+        //}
+        //else
+        //{
+        //    FieldToPhysical(thisNode);
+        //}
     }
 }

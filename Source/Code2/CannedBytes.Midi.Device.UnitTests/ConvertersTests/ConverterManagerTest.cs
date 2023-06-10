@@ -16,17 +16,17 @@ public class ConverterManagerTest
 
     private static DeviceSchema LoadTestSchema()
     {
-        var path = Path.Combine(Folder, ConverterManagerTestSchema);
+        string path = Path.Combine(Folder, ConverterManagerTestSchema);
         return DeviceSchemaHelper.LoadSchema(path);
     }
 
     private static ConverterManager.AttributedConverterFactory CreateAttributedFactory()
     {
-        var dataConverters = Enumerable.Empty<Lazy<DataConverter, IDataConverterInfo>>();
-        var streamConverters = Enumerable.Empty<Lazy<StreamConverter, IStreamConverterInfo>>();
+        IEnumerable<Lazy<DataConverter, IDataConverterInfo>> dataConverters = Enumerable.Empty<Lazy<DataConverter, IDataConverterInfo>>();
+        IEnumerable<Lazy<StreamConverter, IStreamConverterInfo>> streamConverters = Enumerable.Empty<Lazy<StreamConverter, IStreamConverterInfo>>();
 
-        var attrFactory =
-            new ConverterManager.AttributedConverterFactory(
+        ConverterManager.AttributedConverterFactory attrFactory =
+            new(
                                 dataConverters, streamConverters);
 
         return attrFactory;
@@ -34,7 +34,7 @@ public class ConverterManagerTest
 
     public static ConverterManager CreateConverterManager()
     {
-        var factories = new List<Lazy<IConverterFactory, IConverterFactoryInfo>>();
+        List<Lazy<IConverterFactory, IConverterFactoryInfo>> factories = new();
 
         factories.Add(new Lazy<IConverterFactory, IConverterFactoryInfo>(
             () =>
@@ -43,7 +43,7 @@ public class ConverterManagerTest
             },
             ConverterFactoryAttribute.FromType<MidiTypesConverterFactory>()));
 
-        var mgr = new ConverterManager(CreateAttributedFactory(), factories);
+        ConverterManager mgr = new(CreateAttributedFactory(), factories);
 
         return mgr;
     }
@@ -51,11 +51,11 @@ public class ConverterManagerTest
     [Fact]
     public void GetConverter_MidiTypesMidiData_IsNotNull()
     {
-        var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
-        var dataType = schema.AllDataTypes.Find("midiData");
+        DeviceSchema schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+        DataType dataType = schema.AllDataTypes.Find("midiData");
 
-        var mgr = CreateConverterManager();
-        var converter = mgr.GetConverter(dataType);
+        ConverterManager mgr = CreateConverterManager();
+        DataConverter converter = mgr.GetConverter(dataType);
 
         converter.Should().NotBeNull();
     }
@@ -63,11 +63,11 @@ public class ConverterManagerTest
     [Fact]
     public void GetConverter_MidiTypesMidiData_HasCorrectDataType()
     {
-        var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
-        var dataType = schema.AllDataTypes.Find("midiData");
+        DeviceSchema schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+        DataType dataType = schema.AllDataTypes.Find("midiData");
 
-        var mgr = CreateConverterManager();
-        var converter = mgr.GetConverter(dataType);
+        ConverterManager mgr = CreateConverterManager();
+        DataConverter converter = mgr.GetConverter(dataType);
 
         converter.DataType.Should().BeSameAs(dataType);
     }
@@ -76,11 +76,11 @@ public class ConverterManagerTest
 
     private static FieldConverterPair CreateFieldConverterPair(out Field field)
     {
-        var schema = LoadTestSchema();
+        DeviceSchema schema = LoadTestSchema();
         field = schema.RootRecordTypes[0].Fields[1];
 
-        var mgr = CreateConverterManager();
-        var pair = mgr.GetFieldConverterPair(field);
+        ConverterManager mgr = CreateConverterManager();
+        FieldConverterPair pair = mgr.GetFieldConverterPair(field);
 
         return pair;
     }
@@ -88,7 +88,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeDataField_IsNotNull()
     {
-        var pair = CreateFieldConverterPair(out Field field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Should().NotBeNull();
     }
@@ -96,7 +96,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeDataField_FieldIsNotNull()
     {
-        var pair = CreateFieldConverterPair(out Field field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Field.Should().NotBeNull();
     }
@@ -104,7 +104,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeDataField_ConverterIsNotNull()
     {
-        var pair = CreateFieldConverterPair(out Field field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Converter.Should().NotBeNull();
     }
@@ -112,7 +112,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeDataField_HasCorrectField()
     {
-        var pair = CreateFieldConverterPair(out Field field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Field.Should().Be(field);
     }
@@ -120,11 +120,11 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeDataField_HasCorrectConverter()
     {
-        var schema = LoadTestSchema();
-        var field = schema.RootRecordTypes[0].Fields[0];
+        DeviceSchema schema = LoadTestSchema();
+        Field field = schema.RootRecordTypes[0].Fields[0];
 
-        var mgr = CreateConverterManager();
-        var pair = mgr.GetFieldConverterPair(field);
+        ConverterManager mgr = CreateConverterManager();
+        FieldConverterPair pair = mgr.GetFieldConverterPair(field);
 
         pair.Converter.Should().Be(mgr.GetConverter(field));
     }
@@ -132,13 +132,13 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeDataAndRecordField_SameFieldNameResultsInDifferentPairs()
     {
-        var schema = LoadTestSchema();
-        var field2a = schema.AllRecordTypes.Find("rootRecord").Fields.Find("Field2");
-        var field2b = schema.AllRecordTypes.Find("subRecord").Fields.Find("Field2");
+        DeviceSchema schema = LoadTestSchema();
+        Field field2a = schema.AllRecordTypes.Find("rootRecord").Fields.Find("Field2");
+        Field field2b = schema.AllRecordTypes.Find("subRecord").Fields.Find("Field2");
 
-        var mgr = CreateConverterManager();
-        var pair2a = mgr.GetFieldConverterPair(field2a);
-        var pair2b = mgr.GetFieldConverterPair(field2b);
+        ConverterManager mgr = CreateConverterManager();
+        FieldConverterPair pair2a = mgr.GetFieldConverterPair(field2a);
+        FieldConverterPair pair2b = mgr.GetFieldConverterPair(field2b);
 
         pair2a.Field.Should().Be(field2a);
         pair2b.Field.Should().Be(field2b);
@@ -155,7 +155,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeRecordField_IsNotNull()
     {
-        var pair = CreateFieldConverterPair(out Field field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Should().NotBeNull();
     }
@@ -163,8 +163,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeRecordField_FieldIsNotNull()
     {
-        Field field;
-        var pair = CreateFieldConverterPair(out field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Field.Should().NotBeNull();
     }
@@ -172,8 +171,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeRecordField_ConverterIsNotNull()
     {
-        Field field;
-        var pair = CreateFieldConverterPair(out field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Converter.Should().NotBeNull();
     }
@@ -181,8 +179,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeRecordField_HasCorrectField()
     {
-        Field field;
-        var pair = CreateFieldConverterPair(out field);
+        FieldConverterPair pair = CreateFieldConverterPair(out Field field);
 
         pair.Field.Should().Be(field);
     }
@@ -190,11 +187,11 @@ public class ConverterManagerTest
     [Fact]
     public void GetFieldConverterPair_MidiTypeRecordField_HasCorrectConverter()
     {
-        var schema = LoadTestSchema();
-        var field = schema.RootRecordTypes[0].Fields[1];
+        DeviceSchema schema = LoadTestSchema();
+        Field field = schema.RootRecordTypes[0].Fields[1];
 
-        var mgr = CreateConverterManager();
-        var pair = mgr.GetFieldConverterPair(field);
+        ConverterManager mgr = CreateConverterManager();
+        FieldConverterPair pair = mgr.GetFieldConverterPair(field);
 
         // '.Should().Be()' throws an exception unjustified...
         //pair.Converter.Should().Be(mgr.GetConverter(field));

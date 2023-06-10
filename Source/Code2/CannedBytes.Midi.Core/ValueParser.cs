@@ -97,7 +97,7 @@ namespace CannedBytes.Midi.Core
             {
                 result = new byte[values.Length];
 
-                foreach (var value in values)
+                foreach (string value in values)
                 {
                     if (!byte.TryParse(value, numberStyle, CultureInfo.InvariantCulture, out byte parsed))
                     {
@@ -133,12 +133,12 @@ namespace CannedBytes.Midi.Core
             s = s.Trim();
             parts = null;
 
-            var values = s.Split('-', ' ');
+            string[] values = s.Split('-', ' ');
 
             if (values.Length > 1)
             {
                 // check part length
-                foreach (var value in values)
+                foreach (string value in values)
                 {
                     if (value.Length > 2)
                     {

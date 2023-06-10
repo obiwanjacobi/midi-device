@@ -1,39 +1,38 @@
-﻿using CannedBytes.Midi.Device.Schema;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using CannedBytes.Midi.Device.Schema;
 
-namespace CannedBytes.Midi.Device.Converters
+namespace CannedBytes.Midi.Device.Converters;
+
+[Export]
+public partial class ConverterManager
 {
-    [Export]
-    public partial class ConverterManager
+    private readonly FactoryManager _factoryMgr;
+
+    [ImportingConstructor]
+    public ConverterManager(
+        [Import] AttributedConverterFactory attributedFactory,
+        [ImportMany(typeof(IConverterFactory))]
+        IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories)
     {
-        private readonly FactoryManager _factoryMgr;
+        _factoryMgr = new FactoryManager(attributedFactory, factories);
+    }
 
-        [ImportingConstructor]
-        public ConverterManager(
-            [Import] AttributedConverterFactory attributedFactory,
-            [ImportMany(typeof(IConverterFactory))] 
-            IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories)
+    public IConverter GetConverter(Field field)
+    {
+        Check.IfArgumentNull(field, "field");
+
+        if (field.DataType != null)
         {
-            _factoryMgr = new FactoryManager(attributedFactory, factories);
+            return GetConverter(field.DataType);
         }
 
-        public IConverter GetConverter(Field field)
+        if (field.RecordType != null)
         {
-            Check.IfArgumentNull(field, "field");
-
-            if (field.DataType != null)
-            {
-                return GetConverter(field.DataType);
-            }
-
-            if (field.RecordType != null)
-            {
-                return GetConverter(field.RecordType);
-            }
-
-            return null;
+            return GetConverter(field.RecordType);
         }
+
+        return null;
     }
 }

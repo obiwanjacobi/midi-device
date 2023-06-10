@@ -2,71 +2,69 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CannedBytes.Midi.Device.Converters
+namespace CannedBytes.Midi.Device.Converters;
+
+partial class ConverterManager
 {
-    partial class ConverterManager
+    private sealed class FactoryManager
     {
-        private sealed class FactoryManager
+        private readonly IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> _factories;
+        private readonly AttributedConverterFactory _attributedFactory;
+
+        public FactoryManager(AttributedConverterFactory attributedFactory,
+            IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories)
         {
-            private readonly IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> _factories;
-            private readonly AttributedConverterFactory _attributedFactory;
+            Check.IfArgumentNull(attributedFactory, "attributedFactory");
+            Check.IfArgumentNull(factories, "factories");
 
-            public FactoryManager(AttributedConverterFactory attributedFactory,
-                IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories)
+            _attributedFactory = attributedFactory;
+            _factories = factories;
+
+            DefaultFactory = Lookup(MidiTypes.MidiTypesSchemaName);
+
+            if (DefaultFactory == null)
             {
-                Check.IfArgumentNull(attributedFactory, "attributedFactory");
-                Check.IfArgumentNull(factories, "factories");
+                throw new DeviceException(
+                    $"The default converter factory implementation was not found for schema: {MidiTypes.MidiTypesSchemaName}");
+            }
+        }
 
-                _attributedFactory = attributedFactory;
-                _factories = factories;
+        public IConverterFactory DefaultFactory { get; }
 
-                DefaultFactory = Lookup(MidiTypes.MidiTypesSchemaName);
+        public IConverterFactory Lookup(string schemaName)
+        {
+            IEnumerable<IConverterFactory> all = LookupAll(schemaName);
 
-                if (DefaultFactory == null)
+            return all.FirstOrDefault();
+        }
+
+        public IEnumerable<IConverterFactory> LookupAll(string schemaName)
+        {
+            ThrowIfNotInitialized();
+            List<IConverterFactory> factories = new();
+
+            foreach (Lazy<IConverterFactory, IConverterFactoryInfo> regInfo in _factories)
+            {
+                if (regInfo.Metadata.SchemaName == schemaName)
                 {
-                    throw new DeviceException(
-                        "The default converter factory implementation was not found for schema: " + 
-                            MidiTypes.MidiTypesSchemaName);
+                    factories.Add(regInfo.Value);
                 }
             }
 
-            public IConverterFactory DefaultFactory { get; private set; }
-
-            public IConverterFactory Lookup(string schemaName)
+            if (_attributedFactory.SchemaNames.Contains(schemaName))
             {
-                var all = LookupAll(schemaName);
-
-                return all.FirstOrDefault();
+                factories.Add(_attributedFactory);
             }
 
-            public IEnumerable<IConverterFactory> LookupAll(string schemaName)
+            return factories;
+        }
+
+        private void ThrowIfNotInitialized()
+        {
+            if (_factories?.Any() != true)
             {
-                ThrowIfNotInitialized();
-                List<IConverterFactory> factories = new List<IConverterFactory>();
-
-                foreach (var regInfo in _factories)
-                {
-                    if (regInfo.Metadata.SchemaName == schemaName)
-                    {
-                        factories.Add(regInfo.Value);
-                    }
-                }
-
-                if (_attributedFactory.SchemaNames.Contains(schemaName))
-                {
-                    factories.Add(_attributedFactory);
-                }
-
-                return factories;
-            }
-
-            private void ThrowIfNotInitialized()
-            {
-                if (_factories == null || !_factories.Any())
-                {
-                    throw new InvalidOperationException(
-                        "The converter manager has not been initialized. No IConverterFactories were registered");
-                }
+                throw new InvalidOperationException(
+                    "The converter manager has not been initialized. No IConverterFactories were registered");
             }
         }
     }

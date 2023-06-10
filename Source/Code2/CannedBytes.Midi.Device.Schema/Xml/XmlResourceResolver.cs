@@ -25,7 +25,7 @@ internal class XmlResourceResolver : XmlUrlResolver
             string fullPath = absoluteUri.LocalPath;
 
             string assemblyName = Path.GetDirectoryName(fullPath);
-            var assembly = Assembly.LoadFrom(assemblyName + ".dll");
+            Assembly assembly = Assembly.LoadFrom(assemblyName + ".dll");
 
             if (assembly != null)
             {
@@ -50,7 +50,7 @@ internal class XmlResourceResolver : XmlUrlResolver
             }
         }
 
-        var resultUri = base.ResolveUri(baseUri, relativeUri);
+        Uri resultUri = base.ResolveUri(baseUri, relativeUri);
 
         return resultUri;
     }

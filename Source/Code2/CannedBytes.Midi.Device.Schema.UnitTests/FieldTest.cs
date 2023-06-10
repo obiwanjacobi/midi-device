@@ -12,7 +12,7 @@ public class FieldTest
     [Fact]
     public void Constructor_WithName_ParsedCorrectly()
     {
-        var target = new Field(Constants.SchemaFieldName);
+        Field target = new(Constants.SchemaFieldName);
 
         SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.FieldName);
     }

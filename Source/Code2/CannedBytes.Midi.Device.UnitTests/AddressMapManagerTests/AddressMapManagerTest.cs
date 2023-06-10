@@ -14,28 +14,28 @@ public class AddressMapManagerTest
 
     public static AddressMapManager CreateAddressMapManager(DeviceSchema schema)
     {
-        var map = SchemaNodeMapTest.CreateSchemaNodeMap(schema);
+        SchemaNodeMap map = SchemaNodeMapTest.CreateSchemaNodeMap(schema);
 
         return new AddressMapManager(map.RootNode);
     }
 
     private static AddressMapManager CreateAddressMapManager()
     {
-        var path = Path.Combine(Folder, AddressMapManagerTestSchema);
-        var schema = DeviceSchemaHelper.LoadSchema(path);
-        var mgr = CreateAddressMapManager(schema);
+        string path = Path.Combine(Folder, AddressMapManagerTestSchema);
+        DeviceSchema schema = DeviceSchemaHelper.LoadSchema(path);
+        AddressMapManager mgr = CreateAddressMapManager(schema);
         return mgr;
     }
 
     [Fact]
     public void CreateSchemaNodes_Address10hAndSize5_GivesFourNodesWithFixedEndNode()
     {
-        var mgr = CreateAddressMapManager();
+        AddressMapManager mgr = CreateAddressMapManager();
 
-        var address = SevenBitUInt32.FromSevenBitValue(0x10);
-        var size = SevenBitUInt32.FromSevenBitValue(5);
+        SevenBitUInt32 address = SevenBitUInt32.FromSevenBitValue(0x10);
+        SevenBitUInt32 size = SevenBitUInt32.FromSevenBitValue(5);
 
-        var result = mgr.CreateSchemaNodes(address, size);
+        System.Collections.Generic.IEnumerable<SchemaNode> result = mgr.CreateSchemaNodes(address, size);
 
         result.Should().NotBeNull();
         result.Should().HaveCount(4);
@@ -44,12 +44,12 @@ public class AddressMapManagerTest
     [Fact]
     public void CreateSchemaNodes_Address10hAndSize11h_GivesSevenNodes()
     {
-        var mgr = CreateAddressMapManager();
+        AddressMapManager mgr = CreateAddressMapManager();
 
-        var address = SevenBitUInt32.FromSevenBitValue(0x10);
-        var size = SevenBitUInt32.FromSevenBitValue(0x11);
+        SevenBitUInt32 address = SevenBitUInt32.FromSevenBitValue(0x10);
+        SevenBitUInt32 size = SevenBitUInt32.FromSevenBitValue(0x11);
 
-        var result = mgr.CreateSchemaNodes(address, size);
+        System.Collections.Generic.IEnumerable<SchemaNode> result = mgr.CreateSchemaNodes(address, size);
 
         result.Should().NotBeNull();
         result.Should().HaveCount(6);
@@ -58,12 +58,12 @@ public class AddressMapManagerTest
     [Fact]
     public void CreateSchemaNodes_Address10hAndSize1_GivesTwoNodes()
     {
-        var mgr = CreateAddressMapManager();
+        AddressMapManager mgr = CreateAddressMapManager();
 
-        var address = SevenBitUInt32.FromSevenBitValue(0x10);
-        var size = SevenBitUInt32.FromSevenBitValue(0x1);
+        SevenBitUInt32 address = SevenBitUInt32.FromSevenBitValue(0x10);
+        SevenBitUInt32 size = SevenBitUInt32.FromSevenBitValue(0x1);
 
-        var result = mgr.CreateSchemaNodes(address, size);
+        System.Collections.Generic.IEnumerable<SchemaNode> result = mgr.CreateSchemaNodes(address, size);
 
         result.Should().NotBeNull();
         // two nodes: includes parent record and field itself
@@ -73,12 +73,12 @@ public class AddressMapManagerTest
     [Fact]
     public void CreateSchemaNodes_Address0AndSize0_GivesAllNodes()
     {
-        var mgr = CreateAddressMapManager();
+        AddressMapManager mgr = CreateAddressMapManager();
 
-        var address = SevenBitUInt32.FromSevenBitValue(0x0);
-        var size = SevenBitUInt32.FromSevenBitValue(0x0);
+        SevenBitUInt32 address = SevenBitUInt32.FromSevenBitValue(0x0);
+        SevenBitUInt32 size = SevenBitUInt32.FromSevenBitValue(0x0);
 
-        var result = mgr.CreateSchemaNodes(address, size);
+        System.Collections.Generic.IEnumerable<SchemaNode> result = mgr.CreateSchemaNodes(address, size);
 
         result.Should().NotBeNull();
         result.Should().HaveCount(15);

@@ -13,10 +13,9 @@ namespace CannedBytes.Midi.Device.Schema
 
             protected override IEnumerator<FieldInfo> GetChildEnumerator()
             {
-                var fieldInfo = Current;
+                FieldInfo fieldInfo = Current;
 
-                if (fieldInfo.Field != null &&
-                    fieldInfo.Field.RecordType != null)
+                if (fieldInfo.Field?.RecordType != null)
                 {
                     return FieldHierarchicalIterator.ToFieldInfos(fieldInfo.Field.RecordType.Fields).GetEnumerator();
                 }

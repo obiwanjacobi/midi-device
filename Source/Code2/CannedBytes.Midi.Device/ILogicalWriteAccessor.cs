@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+public interface ILogicalWriteAccessor
 {
-    public interface ILogicalWriteAccessor
-    {
-        bool Write<T>(T value, int bitLength)
-            where T : IComparable;
-    }
+    bool Write<T>(T value, int bitLength)
+        where T : IComparable;
 }

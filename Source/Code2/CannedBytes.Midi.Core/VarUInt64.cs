@@ -131,7 +131,7 @@ public struct VarUInt64
     /// <returns>Returns a new instance.</returns>
     public VarUInt64 ConvertTo(VarTypeCode typeCode)
     {
-        var value = MaskValue(typeCode);
+        ulong value = MaskValue(typeCode);
 
         return new VarUInt64(value, typeCode);
     }
@@ -442,7 +442,7 @@ public struct VarUInt64
     {
         if (origin.IsFixed)
         {
-            var typeCode = TypeCodeFor(value);
+            VarTypeCode typeCode = TypeCodeFor(value);
 
             if (origin.TypeCode < typeCode)
             {
@@ -472,7 +472,7 @@ public struct VarUInt64
         }
     }
 
-    public static readonly VarUInt64 Zero = new VarUInt64();
+    public static readonly VarUInt64 Zero = new();
 
     /// <summary>
     /// The variable sizes supported by the VarUint64 class.
