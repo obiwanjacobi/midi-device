@@ -109,7 +109,7 @@ public class Carry
             if (newLength == 2)
             {
                 // new value is either hiByte or Word.
-                if (!IsOneOfTheBitsSet(Device.BitFlags.Word))
+                if (!IsOneOfTheBitsSet(BitFlags.Word))
                 {
                     // no word flags are set
                     value = ReadWordLittleEndian(stream);
@@ -117,7 +117,7 @@ public class Carry
 
                     Set(value, newFlags);
                 }
-                else if (!IsOneOfTheBitsSet(Device.BitFlags.HiByte))
+                else if (!IsOneOfTheBitsSet(BitFlags.HiByte))
                 {
                     // no hiByte flags are set
                     value = ReadByte(stream);
@@ -151,7 +151,7 @@ public class Carry
             else
             {
                 // deal with loByte
-                if (!IsOneOfTheBitsSet(Device.BitFlags.LoByte))
+                if (!IsOneOfTheBitsSet(BitFlags.LoByte))
                 {
                     value = ReadByte(stream);
                     newFlags = BitFlags.LoByte;
@@ -228,12 +228,12 @@ public class Carry
 
         if (length == 2)
         {
-            ushort value = Read(Device.BitFlags.Word);
+            ushort value = Read(BitFlags.Word);
             WriteWordLittleEndian(stream, value);
         }
         else if (length == 1)
         {
-            ushort value = Read(Device.BitFlags.LoByte);
+            ushort value = Read(BitFlags.LoByte);
             stream.WriteByte((byte)value);
         }
         else

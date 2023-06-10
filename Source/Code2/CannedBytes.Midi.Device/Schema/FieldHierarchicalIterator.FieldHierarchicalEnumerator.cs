@@ -17,7 +17,7 @@ namespace CannedBytes.Midi.Device.Schema
 
                 if (fieldInfo.Field?.RecordType != null)
                 {
-                    return FieldHierarchicalIterator.ToFieldInfos(fieldInfo.Field.RecordType.Fields).GetEnumerator();
+                    return ToFieldInfos(fieldInfo.Field.RecordType.Fields).GetEnumerator();
                 }
 
                 return null;

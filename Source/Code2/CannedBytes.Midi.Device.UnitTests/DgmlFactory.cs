@@ -12,9 +12,8 @@ static class DgmlFactory
 
         string fileName = targetPath + ".dgml";
 
-        DgmlSerializer serializer = new();
         using FileStream stream = File.Create(fileName);
-        serializer.Serialize(stream, graph);
+        DgmlSerializer.Serialize(stream, graph);
     }
 
     public static DirectedGraph CreateGraph(SchemaNodeMap map)

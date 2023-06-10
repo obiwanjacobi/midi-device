@@ -34,14 +34,15 @@ public class ConverterManagerTest
 
     public static ConverterManager CreateConverterManager()
     {
-        List<Lazy<IConverterFactory, IConverterFactoryInfo>> factories = new();
-
-        factories.Add(new Lazy<IConverterFactory, IConverterFactoryInfo>(
+        List<Lazy<IConverterFactory, IConverterFactoryInfo>> factories = new()
+        {
+            new Lazy<IConverterFactory, IConverterFactoryInfo>(
             () =>
             {
                 return new MidiTypesConverterFactory();
             },
-            ConverterFactoryAttribute.FromType<MidiTypesConverterFactory>()));
+            ConverterFactoryAttribute.FromType<MidiTypesConverterFactory>())
+        };
 
         ConverterManager mgr = new(CreateAttributedFactory(), factories);
 

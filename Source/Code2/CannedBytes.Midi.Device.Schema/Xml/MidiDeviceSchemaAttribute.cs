@@ -10,22 +10,22 @@ public class MidiDeviceSchemaAttribute : SchemaAttribute
 
     public string AttributeName
     {
-        get { return base.Name.FullName; }
+        get { return Name.FullName; }
         set
         {
             if (this.Schema != null)
             {
-                base.Name = new SchemaObjectName(this.Schema.SchemaName, value);
+                Name = new SchemaObjectName(this.Schema.SchemaName, value);
             }
             else
             {
-                base.Name = new SchemaObjectName(value);
+                Name = new SchemaObjectName(value);
             }
         }
     }
 
     public void SetValue(string value)
     {
-        base.Value = value;
+        Value = value;
     }
 }

@@ -12,7 +12,7 @@ public class MidiDeviceSchemaDataType : DataType
 
     public string DataTypeName
     {
-        get { return base.Name.FullName; }
+        get { return Name.FullName; }
         set
         {
             if (this.Schema != null)

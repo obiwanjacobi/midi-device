@@ -10,23 +10,23 @@ public class MidiDeviceSchemaRecordType : RecordType
 
     public string RecordTypeName
     {
-        get { return base.Name.FullName; }
+        get { return Name.FullName; }
         set
         {
             if (Schema != null)
             {
-                base.Name = new SchemaObjectName(Schema.SchemaName, value);
+                Name = new SchemaObjectName(Schema.SchemaName, value);
             }
             else
             {
-                base.Name = new SchemaObjectName(value);
+                Name = new SchemaObjectName(value);
             }
         }
     }
 
     public void SetIsAbstract(bool value)
     {
-        base.IsAbstract = value;
+        IsAbstract = value;
     }
 
     public void SetBaseType(MidiDeviceSchemaRecordType baseType)

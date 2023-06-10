@@ -1,110 +1,113 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace CannedBytes.Tools.DgmlBuilder
+namespace CannedBytes.Tools.DgmlBuilder;
+
+public class DgmlBuilder
 {
-    public class DgmlBuilder
+    public DgmlBuilder(string title)
     {
-        public DgmlBuilder(string title)
+        New(title);
+    }
+
+    public DgmlBuilder(DirectedGraph graph)
+    {
+        DirectedGraph = graph;
+        EnsureValid(DirectedGraph);
+    }
+
+    public DirectedGraph DirectedGraph { get; protected set; }
+
+    public void New(string title)
+    {
+        DirectedGraph = new DirectedGraph()
         {
-            New(title);
-        }
+            Title = title
+        };
 
-        public DgmlBuilder(DirectedGraph graph)
+        EnsureValid(DirectedGraph);
+    }
+
+    protected static void EnsureValid(DirectedGraph graph)
+    {
+        graph.Categories ??= Array.Empty<DirectedGraphCategory>();
+        graph.IdentifierAliases ??= Array.Empty<DirectedGraphAlias>();
+        graph.Nodes ??= Array.Empty<DirectedGraphNode>();
+        graph.Paths ??= Array.Empty<DirectedGraphPath>();
+        graph.Properties ??= Array.Empty<DirectedGraphProperty>();
+        graph.QualifiedNames ??= Array.Empty<DirectedGraphName>();
+        graph.Styles ??= Array.Empty<DirectedGraphStyle>();
+    }
+
+    public DirectedGraphNode AddNode(string id)
+    {
+        DirectedGraphNode node = new()
         {
-            DirectedGraph = graph;
-            EnsureValid(DirectedGraph);
-        }
+            Id = id
+        };
 
-        public DirectedGraph DirectedGraph { get; protected set; }
+        AddNode(node);
 
-        public void New(string title)
+        return node;
+    }
+
+    public void AddNode(DirectedGraphNode node)
+    {
+        List<DirectedGraphNode> nodes = new(DirectedGraph.Nodes)
         {
-            DirectedGraph = new DirectedGraph()
-            {
-                Title = title
-            };
+            node
+        };
 
-            EnsureValid(DirectedGraph);
-        }
+        DirectedGraph.Nodes = nodes.ToArray();
+    }
 
-        protected void EnsureValid(DirectedGraph graph)
+    public DirectedGraphLink AddLink(DirectedGraphNode source, DirectedGraphNode target)
+    {
+        return AddLink(source.Id, target.Id);
+    }
+
+    public DirectedGraphLink AddLink(string source, string target)
+    {
+        DirectedGraphLink link = new()
         {
-            if (graph.Categories == null) graph.Categories = new DirectedGraphCategory[0];
-            if (graph.IdentifierAliases == null) graph.IdentifierAliases = new DirectedGraphAlias[0];
-            if (graph.Nodes == null) graph.Nodes = new DirectedGraphNode[0];
-            if (graph.Paths == null) graph.Paths = new DirectedGraphPath[0];
-            if (graph.Properties == null) graph.Properties = new DirectedGraphProperty[0];
-            if (graph.QualifiedNames == null) graph.QualifiedNames = new DirectedGraphName[0];
-            if (graph.Styles == null) graph.Styles = new DirectedGraphStyle[0];
-        }
+            Source = source,
+            Target = target,
+        };
 
-        public DirectedGraphNode AddNode(string id)
+        AddLink(link);
+
+        return link;
+    }
+
+    public void AddLink(DirectedGraphLink link)
+    {
+        List<DirectedGraphLink> links = new(DirectedGraph.Links)
         {
-            DirectedGraphNode node = new()
-            {
-                Id = id
-            };
+            link
+        };
 
-            AddNode(node);
+        DirectedGraph.Links = links.ToArray();
+    }
 
-            return node;
-        }
-
-        public void AddNode(DirectedGraphNode node)
+    public DirectedGraphCategory AddCategory(string id)
+    {
+        DirectedGraphCategory cat = new()
         {
-            List<DirectedGraphNode> nodes = new(DirectedGraph.Nodes);
+            Id = id
+        };
 
-            nodes.Add(node);
+        AddCategory(cat);
 
-            DirectedGraph.Nodes = nodes.ToArray();
-        }
+        return cat;
+    }
 
-        public DirectedGraphLink AddLink(DirectedGraphNode source, DirectedGraphNode target)
+    public void AddCategory(DirectedGraphCategory category)
+    {
+        List<DirectedGraphCategory> cats = new(DirectedGraph.Categories)
         {
-            return AddLink(source.Id, target.Id);
-        }
+            category
+        };
 
-        public DirectedGraphLink AddLink(string source, string target)
-        {
-            DirectedGraphLink link = new()
-            {
-                Source = source,
-                Target = target,
-            };
-
-            AddLink(link);
-
-            return link;
-        }
-
-        public void AddLink(DirectedGraphLink link)
-        {
-            List<DirectedGraphLink> links = new(DirectedGraph.Links);
-
-            links.Add(link);
-
-            DirectedGraph.Links = links.ToArray();
-        }
-
-        public DirectedGraphCategory AddCategory(string id)
-        {
-            DirectedGraphCategory cat = new()
-            {
-                Id = id
-            };
-
-            AddCategory(cat);
-
-            return cat;
-        }
-
-        public void AddCategory(DirectedGraphCategory category)
-        {
-            List<DirectedGraphCategory> cats = new(DirectedGraph.Categories);
-
-            cats.Add(category);
-
-            DirectedGraph.Categories = cats.ToArray();
-        }
+        DirectedGraph.Categories = cats.ToArray();
     }
 }

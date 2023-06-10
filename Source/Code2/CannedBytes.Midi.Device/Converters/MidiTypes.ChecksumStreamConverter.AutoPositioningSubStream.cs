@@ -19,7 +19,7 @@ partial class ChecksumStreamConverter
         public override void Close()
         {
             // reposition the stream
-            base.InnerStream.Position = _repos;
+            InnerStream.Position = _repos;
 
             // DO NOT close the original stream!
         }

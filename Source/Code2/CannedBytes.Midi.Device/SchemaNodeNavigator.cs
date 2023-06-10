@@ -40,8 +40,10 @@ public class SchemaNodeNavigator
 
     public SchemaNode PreviousAddress(SchemaNode currentNode, SevenBitUInt32 address)
     {
-        List<SchemaNode> nodes = new();
-        nodes.Add(currentNode);
+        List<SchemaNode> nodes = new()
+        {
+            currentNode
+        };
         nodes.AddRange(currentNode.SelectNodes(node => node.Previous));
 
         SchemaNode prevNode = (from n in nodes
@@ -49,10 +51,7 @@ public class SchemaNodeNavigator
                                where n.Address < address
                                select n).FirstOrDefault();
 
-        if (prevNode == null)
-        {
-            prevNode = currentNode;
-        }
+        prevNode ??= currentNode;
 
         return prevNode;
     }

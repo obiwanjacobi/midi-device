@@ -8,7 +8,7 @@ public static class MidiDeviceSchemaImportResolver
 {
     public static DeviceSchema LoadSchema(MidiDeviceSchemaSet schemas, string name, string assembly)
     {
-        using Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(name, assembly);
+        using Stream stream = OpenSchema(name, assembly);
         if (stream == null)
         {
             throw new DeviceSchemaException(

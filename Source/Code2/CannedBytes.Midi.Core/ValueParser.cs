@@ -51,7 +51,7 @@ namespace CannedBytes.Midi.Core
         {
             if (String.IsNullOrEmpty(s))
             {
-                bytes = new byte[] { };
+                bytes = Array.Empty<byte>();
                 return true;
             }
 

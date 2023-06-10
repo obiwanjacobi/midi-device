@@ -10,8 +10,10 @@ public class AggregateEnumeratorTests
     public void ForEach_SimpleList_IteratesAllItems()
     {
         int[] list = new[] { 1, 2, 3, 4, 5, 6, 7 };
-        AggregateEnumerator<int> aggEnum = new();
-        aggEnum.Add(list);
+        AggregateEnumerator<int> aggEnum = new()
+        {
+            list
+        };
 
         int count = 0;
         foreach (int item in aggEnum)

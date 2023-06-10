@@ -22,7 +22,7 @@ public class MidiTypesConverterFactory : ConverterFactory
         Check.IfArgumentNull(matchType, "matchType");
         Check.IfArgumentNull(constructType, "constructType");
 
-        System.Diagnostics.Debug.Assert(matchType.Schema.SchemaName == base.SchemaName);
+        System.Diagnostics.Debug.Assert(matchType.Schema.SchemaName == SchemaName);
 
         DataConverter converter = null;
 

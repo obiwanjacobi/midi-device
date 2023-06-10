@@ -63,10 +63,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     {
         get
         {
-            if (_children == null)
-            {
-                _children = new SchemaNodeCollection();
-            }
+            _children ??= new SchemaNodeCollection();
 
             return _children;
         }

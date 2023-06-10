@@ -17,7 +17,7 @@ namespace CannedBytes.Midi.Device.Schema
 
         public IEnumerable<Constraint> FindAll<T>()
         {
-            return from constraint in base.Items
+            return from constraint in Items
                    where constraint is T
                    select constraint;
         }
@@ -29,7 +29,7 @@ namespace CannedBytes.Midi.Device.Schema
 
         public IEnumerable<Constraint> FindAll(ConstraintTypes type)
         {
-            return from constraint in base.Items
+            return from constraint in Items
                    where constraint.ConstraintType == type
                    select constraint;
         }

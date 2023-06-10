@@ -137,9 +137,4 @@ public class InstancePathKey : IEquatable<InstancePathKey>
 
         return result;
     }
-
-    public bool Equals(InstancePathKey other)
-    {
-        return this.Values.Equals(other.Values);
-    }
 }
