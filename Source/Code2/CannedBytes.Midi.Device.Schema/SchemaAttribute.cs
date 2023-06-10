@@ -1,16 +1,15 @@
-namespace CannedBytes.Midi.Device.Schema
+namespace CannedBytes.Midi.Device.Schema;
+
+public class SchemaAttribute : SchemaObject
 {
-    public class SchemaAttribute : SchemaObject
+    protected SchemaAttribute()
+    { }
+
+    public SchemaAttribute(DeviceSchema schema, SchemaObjectName name, string value)
+        : base(schema, name)
     {
-        protected SchemaAttribute()
-        { }
-
-        public SchemaAttribute(DeviceSchema schema, SchemaObjectName name, string value)
-            : base(schema, name)
-        {
-            Value = value;
-        }
-
-        public string Value { get; protected set; }
+        Value = value;
     }
+
+    public string Value { get; protected set; }
 }

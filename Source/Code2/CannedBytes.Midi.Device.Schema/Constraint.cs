@@ -33,7 +33,6 @@ public abstract class Constraint
     public ConstraintTypes ConstraintType { get; internal protected set; }
 
     private string name;
-
     /// <summary>
     /// Gets the name of the Constraint.
     /// </summary>

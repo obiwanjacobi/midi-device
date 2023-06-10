@@ -1,61 +1,46 @@
-namespace CannedBytes.Midi.Device.Schema
+using System;
+
+namespace CannedBytes.Midi.Device.Schema;
+
+/// <summary>
+/// Manages the schema (namespace) and object name.
+/// </summary>
+public class SchemaObjectName
 {
-    using System;
+    private const char SchemaNameSeparator = ':';
 
-    /// <summary>
-    /// Manages the schema (namespace) and object name.
-    /// </summary>
-    public class SchemaObjectName
+    protected SchemaObjectName()
+    { }
+
+    public SchemaObjectName(string fullName)
     {
-        private const char SchemaNameSeparator = ':';
-
-        protected SchemaObjectName()
-        { }
-
-        public SchemaObjectName(string fullName)
+        int index = fullName.LastIndexOf(SchemaNameSeparator);
+        if (index < 0)
         {
-            int index = fullName.LastIndexOf(SchemaNameSeparator);
-            if (index < 0) throw new ArgumentException("Cannot parse fullName: " + fullName);
-
-            _name = fullName.Substring(index + 1);
-            _schemaName = fullName.Substring(0, index);
-            _fullName = fullName;
+            throw new ArgumentException(
+                $"Cannot parse fullName: {fullName}");
         }
 
-        public SchemaObjectName(string schemaName, string objectName)
-        {
-            _schemaName = schemaName;
-            _name = objectName;
-            _fullName = schemaName + SchemaNameSeparator + objectName;
-        }
+        Name = fullName[(index + 1)..];
+        SchemaName = fullName[..index];
+        FullName = fullName;
+    }
 
-        private string _name;
+    public SchemaObjectName(string schemaName, string objectName)
+    {
+        SchemaName = schemaName;
+        Name = objectName;
+        FullName = schemaName + SchemaNameSeparator + objectName;
+    }
 
-        public string Name
-        {
-            get { return _name; }
-            protected set { _name = value; }
-        }
+    public string Name { get; protected set; }
 
-        private string _schemaName;
+    public string SchemaName { get; protected set; }
 
-        public string SchemaName
-        {
-            get { return _schemaName; }
-            protected set { _schemaName = value; }
-        }
+    public string FullName { get; protected set; }
 
-        private string _fullName;
-
-        public string FullName
-        {
-            get { return _fullName; }
-            protected set { _fullName = value; }
-        }
-
-        public override string ToString()
-        {
-            return FullName;
-        }
+    public override string ToString()
+    {
+        return FullName;
     }
 }
