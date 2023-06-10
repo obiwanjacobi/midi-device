@@ -199,13 +199,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml
 
                 foreach (var pair in _deferredDataTypes)
                 {
-                    var baseType = dataTypes.Find(pair.Key.Name);
-
-                    if (baseType == null)
-                    {
-                        throw new DeviceSchemaException("Could not find the DataType for " + pair.Key.Namespace + ":" + pair.Key.Name);
-                    }
-
+                    var baseType = dataTypes.Find(pair.Key.Name)
+                        ?? throw new DeviceSchemaException("Could not find the DataType for " + pair.Key.Namespace + ":" + pair.Key.Name);
                     pair.Value.BaseTypes.Add(baseType);
                 }
 

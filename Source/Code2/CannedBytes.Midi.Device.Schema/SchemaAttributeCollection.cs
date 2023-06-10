@@ -1,6 +1,5 @@
-namespace CannedBytes.Midi.Device.Schema
+namespace CannedBytes.Midi.Device.Schema;
+
+public class SchemaAttributeCollection : SchemaCollection<SchemaAttribute>
 {
-    public class SchemaAttributeCollection : SchemaCollection<SchemaAttribute>
-    {
-    }
 }

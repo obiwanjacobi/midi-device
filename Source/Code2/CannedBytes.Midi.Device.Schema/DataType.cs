@@ -1,188 +1,156 @@
 using CannedBytes.Midi.Core;
 
-namespace CannedBytes.Midi.Device.Schema
+namespace CannedBytes.Midi.Device.Schema;
+
+/// <summary>
+/// The DataType class describes one type of logical midi data.
+/// </summary>
+public class DataType : AttributedSchemaObject
 {
     /// <summary>
-    /// The DataType class describes one type of logical midi data.
+    /// For derived classes only.
     /// </summary>
-    public class DataType : AttributedSchemaObject
+    protected DataType()
+    { }
+
+    /// <summary>
+    /// Constructs a new instance.
+    /// </summary>
+    /// <param name="fullName">The long (and unique) name. Must not be null.</param>
+    public DataType(string fullName)
     {
-        /// <summary>
-        /// For derived classes only.
-        /// </summary>
-        protected DataType()
-        { }
+        Name = new SchemaObjectName(fullName);
+    }
 
-        /// <summary>
-        /// Constructs a new instance.
-        /// </summary>
-        /// <param name="fullName">The long (and unique) name. Must not be null.</param>
-        public DataType(string fullName)
+    protected override void OnSchemaChanged()
+    {
+        base.OnSchemaChanged();
+
+        if (this.baseTypes != null)
         {
-            Name = new SchemaObjectName(fullName);
+            this.baseTypes.Schema = Schema;
         }
+    }
 
-        protected override void OnSchemaChanged()
+    /// <summary>
+    /// Gets an indication if the DataType can be instantiated.
+    /// </summary>
+    public bool IsAbstract { get; protected set; }
+
+    public int ValueOffset { get; protected set; }
+
+    public Ordering BitOrder { get; protected set; }
+
+    /// <summary>
+    /// Gets a value indicating if this DataType derives from one or more other DataTypes.
+    /// </summary>
+    /// <remarks>Use this property, instead of accessing the <see cref="BaseTypes"/> property
+    /// to find out if there are any base DataTypes.</remarks>
+    public bool HasBaseTypes
+    {
+        get { return (this.baseTypes?.Count > 0); }
+    }
+
+    /// <summary>
+    /// Gets an indication if the data type is a union of (multiple) other data types.
+    /// </summary>
+    public bool IsUnion { get; protected set; }
+
+    /// <summary>
+    /// Gets an indication if the data type is an extension of (multiple) other data types.
+    /// </summary>
+    public bool IsExtension { get; protected set; }
+
+    private DataTypeCollection baseTypes;
+    /// <summary>
+    /// Gets the collection of <see cref="DataType"/>s this definition is based on.
+    /// </summary>
+    /// <value>Derived classes can set this property. Must not be null.</value>
+    public DataTypeCollection BaseTypes
+    {
+        get { return this.baseTypes ??= new DataTypeCollection{ Schema = Schema }; }
+    }
+
+    /// <summary>
+    /// Gets the base DataType if there is one (and only one).
+    /// </summary>
+    /// <remarks>If there are no or more than one base DataTypes this property returns null.
+    /// Refer to the <see cref="HasBaseTypes"/> and <see cref="BaseTypes"/> property.</remarks>
+    public DataType BaseType
+    {
+        get
         {
-            base.OnSchemaChanged();
-
-            if (this.baseTypes != null)
+            if (this.baseTypes?.Count == 1)
             {
-                this.baseTypes.Schema = Schema;
+                return this.baseTypes[0];
             }
+
+            return null;
         }
+    }
 
-        /// <summary>
-        /// Gets an indication if the DataType can be instantiated.
-        /// </summary>
-        public bool IsAbstract { get; protected set; }
+    private ConstraintCollection constraints;
+    /// <summary>
+    /// Gets the collection of <see cref="Constraint"/>s for this <see cref="DataType"/> definition.
+    /// </summary>
+    /// <value>Derived classes can set this property. Must not be null.</value>
+    /// <remarks>The collection contains only the Constraints declared in this DataType instance.</remarks>
+    public ConstraintCollection Constraints
+    {
+        get { return this.constraints ??= new ConstraintCollection(); }
+    }
 
-        public int ValueOffset { get; protected set; }
+    /// <summary>
+    /// Searches the type hierarchy for a specific <paramref name="constraintType"/>.
+    /// </summary>
+    /// <param name="constraintType">The type of constraint to look for.</param>
+    /// <returns>Returns null when no suitable constraint could be found.</returns>
+    public Constraint FindConstraint(ConstraintTypes constraintType)
+    {
+        DataType dataType = this;
+        Constraint constraint;
 
-        public Ordering BitOrder { get; protected set; }
-
-        /// <summary>
-        /// Gets a value indicating if this DataType derives from one or more other DataTypes.
-        /// </summary>
-        /// <remarks>Use this property, instead of accessing the <see cref="BaseTypes"/> property
-        /// to find out if there are any base DataTypes.</remarks>
-        public bool HasBaseTypes
+        do
         {
-            get { return (this.baseTypes != null && this.baseTypes.Count > 0); }
+            constraint = dataType.Constraints.Find(constraintType);
+            dataType = dataType.BaseType;
         }
+        while (constraint == null && dataType != null);
 
-        /// <summary>
-        /// Gets an indication if the data type is a union of (multiple) other data types.
-        /// </summary>
-        public bool IsUnion { get; protected set; }
+        return constraint;
+    }
 
-        /// <summary>
-        /// Gets an indication if the data type is an extension of (multiple) other data types.
-        /// </summary>
-        public bool IsExtension { get; protected set; }
+    /// <summary>
+    /// Determines if this data type is or derives from the specified <paramref name="fullDataTypeName"/>.
+    /// </summary>
+    /// <param name="fullDataTypeName">The full name of the DataType to test against.</param>
+    /// <param name="recursive">If false only this type and its immediate base types are checked.
+    /// If true than all base type are checked up the hierarchy.</param>
+    /// <returns>Returns true if the DataType is or derives from the specified <paramref name="fullDataTypeName"/>.</returns>
+    public bool IsType(string fullDataTypeName, bool recursive)
+    {
+        bool success = (Name.FullName == fullDataTypeName);
 
-        private DataTypeCollection baseTypes;
-
-        /// <summary>
-        /// Gets the collection of <see cref="DataType"/>s this definition is based on.
-        /// </summary>
-        /// <value>Derived classes can set this property. Must not be null.</value>
-        public DataTypeCollection BaseTypes
+        if (!success && HasBaseTypes)
         {
-            get
+            if (recursive)
             {
-                if (this.baseTypes == null)
+                foreach (DataType baseType in BaseTypes)
                 {
-                    BaseTypes = new DataTypeCollection();
-                }
+                    success = baseType.IsType(fullDataTypeName, true);
 
-                return this.baseTypes;
-            }
-            internal protected set
-            {
-                Check.IfArgumentNull(value, "BaseTypes");
-
-                this.baseTypes = value;
-                this.baseTypes.Schema = Schema;
-            }
-        }
-
-        /// <summary>
-        /// Gets the base DataType if there is one (and only one).
-        /// </summary>
-        /// <remarks>If there are no or more than one base DataTypes this property returns null.
-        /// Refer to the <see cref="HasBaseTypes"/> and <see cref="BaseTypes"/> property.</remarks>
-        public DataType BaseType
-        {
-            get
-            {
-                if (this.baseTypes != null && this.baseTypes.Count == 1)
-                {
-                    return this.baseTypes[0];
-                }
-
-                return null;
-            }
-        }
-
-        private ConstraintCollection constraints;
-
-        /// <summary>
-        /// Gets the collection of <see cref="Constraint"/>s for this <see cref="DataType"/> definition.
-        /// </summary>
-        /// <value>Derived classes can set this property. Must not be null.</value>
-        /// <remarks>The collection contains only the Constraints declared in this DataType instance.</remarks>
-        public ConstraintCollection Constraints
-        {
-            get
-            {
-                if (this.constraints == null)
-                {
-                    Constraints = new ConstraintCollection();
-                }
-
-                return this.constraints;
-            }
-            internal protected set
-            {
-                Check.IfArgumentNull(value, "Constraints");
-
-                this.constraints = value;
-            }
-        }
-
-        /// <summary>
-        /// Searches the type hierarchy for a specific <paramref name="constraintType"/>.
-        /// </summary>
-        /// <param name="constraintType">The type of constraint to look for.</param>
-        /// <returns>Returns null when no suitable constraint could be found.</returns>
-        public Constraint FindConstraint(ConstraintTypes constraintType)
-        {
-            Constraint constraint = null;
-            DataType dataType = this;
-
-            do
-            {
-                constraint = dataType.Constraints.Find(constraintType);
-                dataType = dataType.BaseType;
-            }
-            while (constraint == null && dataType != null);
-
-            return constraint;
-        }
-
-        /// <summary>
-        /// Determines if this data type is or derives from the specified <paramref name="fullDataTypeName"/>.
-        /// </summary>
-        /// <param name="fullDataTypeName">The full name of the DataType to test against.</param>
-        /// <param name="recursive">If false only this type and its immediate base types are checked.
-        /// If true than all base type are checked up the hierarchy.</param>
-        /// <returns>Returns true if the DataType is or derives from the specified <paramref name="fullDataTypeName"/>.</returns>
-        public bool IsType(string fullDataTypeName, bool recursive)
-        {
-            bool success = (Name.FullName == fullDataTypeName);
-
-            if (success == false && HasBaseTypes)
-            {
-                if (recursive)
-                {
-                    foreach (DataType baseType in BaseTypes)
+                    if (success)
                     {
-                        success = baseType.IsType(fullDataTypeName, true);
-
-                        if (success)
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
-                else
-                {
-                    success = (BaseTypes.Find(fullDataTypeName) != null);
-                }
             }
-
-            return success;
+            else
+            {
+                success = (BaseTypes.Find(fullDataTypeName) != null);
+            }
         }
+
+        return success;
     }
 }
