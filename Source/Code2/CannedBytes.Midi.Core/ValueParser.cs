@@ -7,12 +7,10 @@ namespace CannedBytes.Midi.Core
     {
         public static int ParseInt32(string s)
         {
-            int value;
-
-            if (!TryParseInt32(s, out value))
+            if (!TryParseInt32(s, out int value))
             {
                 throw new FormatException(
-                    "String could not be parsed into an Int32: " + s);
+                    $"String could not be parsed into an Int32: {s}");
             }
 
             return value;
@@ -20,8 +18,6 @@ namespace CannedBytes.Midi.Core
 
         public static bool TryParseInt32(string s, out int value)
         {
-            value = 0;
-
             bool isHex = IsHexadecimal(ref s);
             NumberStyles numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
 
@@ -32,9 +28,7 @@ namespace CannedBytes.Midi.Core
 
         public static long ParseInt64(string s)
         {
-            long value;
-
-            if (!TryParseInt64(s, out value))
+            if (!TryParseInt64(s, out long value))
             {
                 throw new FormatException(
                     "String could not be parsed into an Int64: " + s);
@@ -45,8 +39,6 @@ namespace CannedBytes.Midi.Core
 
         public static bool TryParseInt64(string s, out long value)
         {
-            value = 0;
-
             bool isHex = IsHexadecimal(ref s);
             NumberStyles numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
 
@@ -64,13 +56,12 @@ namespace CannedBytes.Midi.Core
             }
 
             bytes = null;
-            byte[] results = null;
-            string[] values;
+            byte[] results;
 
             bool isHex = IsHexadecimal(ref s);
             NumberStyles numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
-
-            if (TrySplitOnSeparators(s, out values))
+            
+            if (TrySplitOnSeparators(s, out string[] values))
             {
                 if (!TryParseToBytes(values, numberStyle, out results))
                 {
@@ -79,11 +70,9 @@ namespace CannedBytes.Midi.Core
             }
             else
             {
-                long parsed;
-
-                if (!Int64.TryParse(s, numberStyle, CultureInfo.InvariantCulture, out parsed))
+                if (!Int64.TryParse(s, numberStyle, CultureInfo.InvariantCulture, out long parsed))
                 {
-                     return false;
+                    return false;
                 }
 
                 results = ByteConverter.FromUInt64ToBytes((ulong)parsed, Ordering.BigEndian);
@@ -101,7 +90,7 @@ namespace CannedBytes.Midi.Core
         private static bool TryParseToBytes(string[] values, NumberStyles numberStyle, out byte[] bytes)
         {
             bytes = null;
-            byte[] result = null;
+            byte[] result;
             int index = 0;
 
             if (values.Length > 1)
@@ -110,9 +99,7 @@ namespace CannedBytes.Midi.Core
 
                 foreach (var value in values)
                 {
-                    byte parsed;
-
-                    if (!byte.TryParse(value, numberStyle, CultureInfo.InvariantCulture, out parsed))
+                    if (!byte.TryParse(value, numberStyle, CultureInfo.InvariantCulture, out byte parsed))
                     {
                         return false;
                     }

@@ -1,8 +1,7 @@
-﻿namespace CannedBytes.Midi.Core
+﻿namespace CannedBytes.Midi.Core;
+
+public enum Ordering
 {
-    public enum Ordering
-    {
-        LittleEndian,
-        BigEndian
-    }
+    LittleEndian,
+    BigEndian
 }
