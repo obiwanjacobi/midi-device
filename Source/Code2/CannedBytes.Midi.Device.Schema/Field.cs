@@ -47,12 +47,10 @@ public class Field : AttributedSchemaObject
             _isAbstract = value;
         }
     }
-
-    private readonly ExtendedFieldProperties _extendedProperties = new ExtendedFieldProperties();
     /// <summary>
     /// Gets the values of the extended schema attributes.
     /// </summary>
-    public ExtendedFieldProperties ExtendedProperties => _extendedProperties;
+    public ExtendedFieldProperties ExtendedProperties { get; } = new();
 
     private DataType _dataType;
     /// <summary>

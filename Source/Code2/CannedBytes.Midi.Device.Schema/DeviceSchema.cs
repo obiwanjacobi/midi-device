@@ -43,7 +43,7 @@ public class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public RecordTypeCollection AllRecordTypes
     {
-        get { return this.recordTypes ??= new RecordTypeCollection(); }
+        get { return this.recordTypes ??= new RecordTypeCollection { Schema = Schema }; }
     }
 
     private DataTypeCollection dataTypes;
@@ -53,7 +53,7 @@ public class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public DataTypeCollection AllDataTypes
     {
-        get { return this.dataTypes ??= new DataTypeCollection(); }
+        get { return this.dataTypes ??= new DataTypeCollection { Schema = Schema }; }
     }
 
     private RecordTypeCollection rootTypes;
@@ -63,7 +63,7 @@ public class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public RecordTypeCollection RootRecordTypes
     {
-        get { return this.rootTypes ??= new RecordTypeCollection(); }
+        get { return this.rootTypes ??= new RecordTypeCollection { Schema = Schema }; }
     }
 
     private FieldCollection _virtualRootFields;
@@ -72,7 +72,7 @@ public class DeviceSchema : AttributedSchemaObject
     /// </summary>
     public FieldCollection VirtualRootFields
     {
-        get { return this._virtualRootFields ??= new FieldCollection(); }
+        get { return this._virtualRootFields ??= new FieldCollection { Schema = Schema }; }
     }
 
     private string schemaName;

@@ -68,7 +68,7 @@ public class DataType : AttributedSchemaObject
     /// <value>Derived classes can set this property. Must not be null.</value>
     public DataTypeCollection BaseTypes
     {
-        get { return this.baseTypes ??= new DataTypeCollection(); }
+        get { return this.baseTypes ??= new DataTypeCollection{ Schema = Schema }; }
     }
 
     /// <summary>

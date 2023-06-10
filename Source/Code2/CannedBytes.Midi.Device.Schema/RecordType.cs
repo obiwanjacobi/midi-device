@@ -95,6 +95,6 @@ public class RecordType : AttributedSchemaObject
     /// <remarks>The collection contains only the fields declared in this RecordType instance.</remarks>
     public FieldCollection Fields
     {
-        get { return _fields ??= new FieldCollection(); }
+        get { return _fields ??= new FieldCollection { Schema = Schema }; }
     }
 }
