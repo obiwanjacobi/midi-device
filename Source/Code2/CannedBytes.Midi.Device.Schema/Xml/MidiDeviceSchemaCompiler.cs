@@ -1,19 +1,18 @@
 ﻿using System;
 
-namespace CannedBytes.Midi.Device.Schema.Xml
+namespace CannedBytes.Midi.Device.Schema.Xml;
+
+public class MidiDeviceSchemaCompiler
 {
-    public class MidiDeviceSchemaCompiler
+    private readonly MidiDeviceSchemaSet _schemas;
+
+    public MidiDeviceSchemaCompiler(MidiDeviceSchemaSet schemas)
     {
-        private readonly MidiDeviceSchemaSet _schemas;
+        _schemas = schemas;
+    }
 
-        public MidiDeviceSchemaCompiler(MidiDeviceSchemaSet schemas)
-        {
-            _schemas = schemas;
-        }
-
-        public void Compile(DeviceSchema schema)
-        {
-            throw new NotImplementedException();
-        }
+    public void Compile(DeviceSchema schema)
+    {
+        throw new NotImplementedException();
     }
 }

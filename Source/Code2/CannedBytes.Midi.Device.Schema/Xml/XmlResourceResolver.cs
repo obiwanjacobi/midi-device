@@ -3,56 +3,55 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 
-namespace CannedBytes.Midi.Device.Schema.Xml
+namespace CannedBytes.Midi.Device.Schema.Xml;
+
+internal class XmlResourceResolver : XmlUrlResolver
 {
-    internal class XmlResourceResolver : XmlUrlResolver
+    public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
     {
-        public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
+        object result = null;
+
+        try
         {
-            object result = null;
+            result = base.GetEntity(absoluteUri, role, ofObjectToReturn);
+        }
+        catch (DirectoryNotFoundException)
+        { }
+        catch (FileNotFoundException)
+        { }
 
-            try
+        if (result == null)
+        {
+            string fullPath = absoluteUri.LocalPath;
+
+            string assemblyName = Path.GetDirectoryName(fullPath);
+            var assembly = Assembly.LoadFrom(assemblyName + ".dll");
+
+            if (assembly != null)
             {
-                result = base.GetEntity(absoluteUri, role, ofObjectToReturn);
+                result = assembly.GetManifestResourceStream(
+                        assembly.GetName().Name + "." + Path.GetFileName(fullPath));
             }
-            catch (DirectoryNotFoundException)
-            { }
-            catch (FileNotFoundException)
-            { }
-
-            if (result == null)
-            {
-                string fullPath = absoluteUri.LocalPath;
-
-                string assemblyName = Path.GetDirectoryName(fullPath);
-                var assembly = Assembly.LoadFrom(assemblyName + ".dll");
-
-                if (assembly != null)
-                {
-                    result = assembly.GetManifestResourceStream(
-                            assembly.GetName().Name + "." + Path.GetFileName(fullPath));
-                }
-            }
-
-            return result;
         }
 
-        public override Uri ResolveUri(Uri baseUri, string relativeUri)
+        return result;
+    }
+
+    public override Uri ResolveUri(Uri baseUri, string relativeUri)
+    {
+        if (baseUri.IsAbsoluteUri)
         {
-            if (baseUri.IsAbsoluteUri)
+            string fullPath = baseUri.LocalPath;
+
+            if (!Directory.Exists(fullPath))
             {
-                string fullPath = baseUri.LocalPath;
-
-                if (!Directory.Exists(fullPath))
-                {
-                    fullPath = Path.GetDirectoryName(fullPath);
-                    baseUri = new Uri(fullPath);
-                }
+                fullPath = Path.GetDirectoryName(fullPath);
+                baseUri = new Uri(fullPath);
             }
-
-            var resultUri = base.ResolveUri(baseUri, relativeUri);
-
-            return resultUri;
         }
+
+        var resultUri = base.ResolveUri(baseUri, relativeUri);
+
+        return resultUri;
     }
 }

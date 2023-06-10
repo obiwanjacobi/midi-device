@@ -1,32 +1,31 @@
-﻿namespace CannedBytes.Midi.Device.Schema.Xml
+﻿namespace CannedBytes.Midi.Device.Schema.Xml;
+
+public class MidiDeviceSchemaSet : DeviceSchemaCollection
 {
-    public class MidiDeviceSchemaSet : DeviceSchemaCollection
+    public MidiDeviceSchemaSet()
+    { }
+
+    public MidiDeviceSchemaDataType FindDataType(string schemaName, string typeName)
     {
-        public MidiDeviceSchemaSet()
-        { }
+        var schema = Find(schemaName);
 
-        public MidiDeviceSchemaDataType FindDataType(string schemaName, string typeName)
+        if (schema != null)
         {
-            var schema = Find(schemaName);
-
-            if (schema != null)
-            {
-                return schema.AllDataTypes.Find(typeName) as MidiDeviceSchemaDataType;
-            }
-
-            return null;
+            return schema.AllDataTypes.Find(typeName) as MidiDeviceSchemaDataType;
         }
 
-        public MidiDeviceSchemaRecordType FindRecordType(string schemaName, string typeName)
+        return null;
+    }
+
+    public MidiDeviceSchemaRecordType FindRecordType(string schemaName, string typeName)
+    {
+        var schema = Find(schemaName);
+
+        if (schema != null)
         {
-            var schema = Find(schemaName);
-
-            if (schema != null)
-            {
-                return schema.AllRecordTypes.Find(typeName) as MidiDeviceSchemaRecordType;
-            }
-
-            return null;
+            return schema.AllRecordTypes.Find(typeName) as MidiDeviceSchemaRecordType;
         }
+
+        return null;
     }
 }

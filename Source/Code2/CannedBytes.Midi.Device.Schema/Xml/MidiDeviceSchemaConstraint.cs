@@ -1,43 +1,39 @@
-﻿using CannedBytes.Midi.Core;
-using System;
+﻿namespace CannedBytes.Midi.Device.Schema.Xml;
 
-namespace CannedBytes.Midi.Device.Schema.Xml
+public abstract partial class MidiDeviceSchemaConstraint : Constraint
 {
-    public abstract partial class MidiDeviceSchemaConstraint : Constraint
+    protected MidiDeviceSchemaConstraint(string name, ConstraintValidationTypes validationType)
+        : base(name, validationType)
+    { }
+
+    public static MidiDeviceSchemaConstraint Create(string constraintType, string value)
     {
-        protected MidiDeviceSchemaConstraint(string name, ConstraintValidationTypes validationType)
-            : base(name, validationType)
-        { }
+        MidiDeviceSchemaConstraint constraint = null;
 
-        public static MidiDeviceSchemaConstraint Create(string constraintType, string value)
+        switch (constraintType)
         {
-            MidiDeviceSchemaConstraint constraint = null;
+            case "enumeration":
+                constraint = new EnumeratedValueConstraint(value);
+                break;
 
-            switch (constraintType)
-            {
-                case "enumeration":
-                    constraint = new EnumeratedValueConstraint(value);
-                    break;
+            case "fixed":
+            case "@fixed":
+                constraint = new FixedValueConstraint(value);
+                break;
 
-                case "fixed":
-                case "@fixed":
-                    constraint = new FixedValueConstraint(value);
-                    break;
+            case "length":
+                constraint = new LengthValueConstraint(value);
+                break;
 
-                case "length":
-                    constraint = new LengthValueConstraint(value);
-                    break;
+            case "maximum":
+                constraint = new MaxInclusiveValueConstraint(value);
+                break;
 
-                case "maximum":
-                    constraint = new MaxInclusiveValueConstraint(value);
-                    break;
-
-                case "minimum":
-                    constraint = new MinInclusiveValueConstraint(value);
-                    break;
-            }
-
-            return constraint;
+            case "minimum":
+                constraint = new MinInclusiveValueConstraint(value);
+                break;
         }
+
+        return constraint;
     }
 }
