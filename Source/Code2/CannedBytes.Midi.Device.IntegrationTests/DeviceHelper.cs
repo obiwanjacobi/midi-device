@@ -1,30 +1,29 @@
-﻿using CannedBytes.ComponentModel.Composition;
-using System.IO;
+﻿using System.IO;
+using CannedBytes.ComponentModel.Composition;
 
-namespace CannedBytes.Midi.Device.IntegrationTests
+namespace CannedBytes.Midi.Device.IntegrationTests;
+
+internal static class DeviceHelper
 {
-    internal static class DeviceHelper
+    public static DeviceDataContext ToLogical(
+        CompositionContext compositionCtx,
+        string schemaLocation,
+        string binStreamPath,
+        string virtualRootName,
+        IMidiLogicalWriter writer)
     {
-        public static DeviceDataContext ToLogical(
-            CompositionContext compositionCtx, 
-            string schemaLocation,
-            string binStreamPath,
-            string virtualRootName,
-            IMidiLogicalWriter writer)
+        var deviceProvider = DeviceProvider.Create(compositionCtx, schemaLocation);
+        var binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
+
+        var process = new DeviceToLogicalProcess();
+
+        DeviceDataContext dataCtx = null;
+
+        using (var stream = File.OpenRead(binStreamPath))
         {
-            var deviceProvider = DeviceProvider.Create(compositionCtx, schemaLocation);
-            var binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
-
-            var process = new DeviceToLogicalProcess();
-
-            DeviceDataContext dataCtx = null;
-
-            using (var stream = File.OpenRead(binStreamPath))
-            {
-                dataCtx = process.Execute(binMap.RootNode, stream, writer);
-            }
-
-            return dataCtx;
+            dataCtx = process.Execute(binMap.RootNode, stream, writer);
         }
+
+        return dataCtx;
     }
 }

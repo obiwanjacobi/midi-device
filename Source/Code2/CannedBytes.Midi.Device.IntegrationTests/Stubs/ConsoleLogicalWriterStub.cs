@@ -1,98 +1,97 @@
 using System;
 
-namespace CannedBytes.Midi.Device.IntegrationTests.Stubs
+namespace CannedBytes.Midi.Device.IntegrationTests.Stubs;
+
+public class ConsoleLogicalWriterStub : IMidiLogicalWriter
 {
-    public class ConsoleLogicalWriterStub : IMidiLogicalWriter
+    private readonly IMidiLogicalWriter writer;
+
+    public ConsoleLogicalWriterStub()
+    { }
+
+    public ConsoleLogicalWriterStub(IMidiLogicalWriter nestedWriter)
     {
-        public ConsoleLogicalWriterStub()
-        { }
+        this.writer = nestedWriter;
+    }
 
-        private IMidiLogicalWriter writer;
+    private void Log<T>(LogicalContext context, T data)
+    {
+        Console.Write(context.FieldInfo.Field.ToString());
+        Console.Write("[");
+        Console.Write(context.FieldInfo.Key.ToString());
+        Console.Write("] = ");
+        Console.WriteLine(data);
+    }
 
-        public ConsoleLogicalWriterStub(IMidiLogicalWriter nestedWriter)
+    public bool WriteBool(LogicalContext context, bool data)
+    {
+        Log(context, data);
+
+        if (this.writer != null)
         {
-            this.writer = nestedWriter;
+            this.writer.WriteBool(context, data);
         }
 
-        private void Log<T>(LogicalContext context, T data)
+        return true;
+    }
+
+    public bool WriteByte(LogicalContext context, byte data)
+    {
+        Log(context, data);
+
+        if (this.writer != null)
         {
-            Console.Write(context.FieldInfo.Field.ToString());
-            Console.Write("[");
-            Console.Write(context.FieldInfo.Key.ToString());
-            Console.Write("] = ");
-            Console.WriteLine(data);
+            this.writer.WriteByte(context, data);
         }
 
-        public bool WriteBool(LogicalContext context, bool data)
+        return true;
+    }
+
+    public bool WriteShort(LogicalContext context, short data)
+    {
+        Log(context, data);
+
+        if (this.writer != null)
         {
-            Log(context, data);
-
-            if (this.writer != null)
-            {
-                this.writer.WriteBool(context, data);
-            }
-
-            return true;
+            this.writer.WriteShort(context, data);
         }
 
-        public bool WriteByte(LogicalContext context, byte data)
+        return true;
+    }
+
+    public bool WriteInt(LogicalContext context, int data)
+    {
+        Log(context, data);
+
+        if (this.writer != null)
         {
-            Log(context, data);
-
-            if (this.writer != null)
-            {
-                this.writer.WriteByte(context, data);
-            }
-
-            return true;
+            this.writer.WriteInt(context, data);
         }
 
-        public bool WriteShort(LogicalContext context, int data)
+        return true;
+    }
+
+    public bool WriteLong(LogicalContext context, long data)
+    {
+        Log(context, data);
+
+        if (this.writer != null)
         {
-            Log(context, data);
-
-            if (this.writer != null)
-            {
-                this.writer.WriteShort(context, data);
-            }
-
-            return true;
+            this.writer.WriteLong(context, data);
         }
 
-        public bool WriteInt(LogicalContext context, int data)
+        return true;
+    }
+
+    public bool WriteString(LogicalContext context, string data)
+    {
+        Log(context, data);
+
+        if (this.writer != null)
         {
-            Log(context, data);
-
-            if (this.writer != null)
-            {
-                this.writer.WriteInt(context, data);
-            }
-
-            return true;
+            this.writer.WriteString(context, data);
         }
 
-        public bool WriteLong(LogicalContext context, long data)
-        {
-            Log(context, data);
-
-            if (this.writer != null)
-            {
-                this.writer.WriteLong(context, data);
-            }
-
-            return true;
-        }
-
-        public bool WriteString(LogicalContext context, string data)
-        {
-            Log(context, data);
-
-            if (this.writer != null)
-            {
-                this.writer.WriteString(context, data);
-            }
-
-            return true;
-        }
+        return true;
     }
 }

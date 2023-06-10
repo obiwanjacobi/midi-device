@@ -1,46 +1,44 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Xunit;
 
-namespace CannedBytes.Midi.Device.UnitTests.InstancePathKeyTests
+namespace CannedBytes.Midi.Device.UnitTests.InstancePathKeyTests;
+
+
+public class InstancePathKeyTest
 {
-    
-    public class InstancePathKeyTest
+    [Fact]
+    public void DefCtor_DepthAndIsZero_AllZero()
     {
-        [Fact]
-        public void DefCtor_DepthAndIsZero_AllZero()
-        {
-            var key = new InstancePathKey();
+        var key = new InstancePathKey();
 
-            key.Depth.Should().Be(0);
-            key.IsZero.Should().BeTrue();
-            key.Values.Should().BeEmpty();
-            key.ToString().Should().BeEmpty();
-        }
+        key.Depth.Should().Be(0);
+        key.IsZero.Should().BeTrue();
+        key.Values.Should().BeEmpty();
+        key.ToString().Should().BeEmpty();
+    }
 
-        [Fact]
-        public void IndexCtor_DepthAndIsZero_AllOne()
-        {
-            var key = new InstancePathKey(1);
+    [Fact]
+    public void IndexCtor_DepthAndIsZero_AllOne()
+    {
+        var key = new InstancePathKey(1);
 
-            key.Depth.Should().Be(1);
-            key.IsZero.Should().BeFalse();
-            key.Values.Should().HaveCount(1);
-            key.ToString().Should().Be("1");
-        }
+        key.Depth.Should().Be(1);
+        key.IsZero.Should().BeFalse();
+        key.Values.Should().HaveCount(1);
+        key.ToString().Should().Be("1");
+    }
 
-        [Fact]
-        public void Add_DepthAndIsZero_CorrectValues()
-        {
-            var key = new InstancePathKey();
-            key.Add(0);
-            key.Add(1);
-            key.Add(0);
+    [Fact]
+    public void Add_DepthAndIsZero_CorrectValues()
+    {
+        var key = new InstancePathKey();
+        key.Add(0);
+        key.Add(1);
+        key.Add(0);
 
-            key.Depth.Should().Be(3);
-            key.IsZero.Should().BeFalse();
-            key.Values.Should().HaveCount(3);
-            key.ToString().Should().Be("0|1|0");
-        }
+        key.Depth.Should().Be(3);
+        key.IsZero.Should().BeFalse();
+        key.Values.Should().HaveCount(3);
+        key.ToString().Should().Be("0|1|0");
     }
 }

@@ -23,11 +23,10 @@ namespace CannedBytes.Midi.Device.Schema.Xml
         {
             Check.IfArgumentNullOrEmpty(schemaLocation, "schemaLocation");
 
-            var parts = schemaLocation.Split('/');
-
-            string schemaName = null;
+            var parts = schemaLocation.Split("::");
+            
             string schemaAssembly = null;
-
+            string schemaName;
             if (parts.Length == 1)
             {
                 schemaName = parts[0];
@@ -46,19 +45,18 @@ namespace CannedBytes.Midi.Device.Schema.Xml
                 System.Diagnostics.TraceEventType.Information,
                 "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
 
-            using (Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly))
+            using var stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly);
+
+            if (stream == null)
             {
-                if (stream == null)
-                {
-                    throw new DeviceSchemaNotFoundException(schemaName + " - " + schemaAssembly);
-                }
-
-                var parser = new MidiDeviceSchemaParser(_schemas);
-
-                var deviceSchema = parser.Parse(stream);
-
-                return deviceSchema;
+                throw new DeviceSchemaNotFoundException(schemaName + " - " + schemaAssembly);
             }
+
+            var parser = new MidiDeviceSchemaParser(_schemas);
+
+            var deviceSchema = parser.Parse(stream);
+
+            return deviceSchema;
         }
 
         public DeviceSchema Open(string schemaName)

@@ -1,51 +1,54 @@
-﻿using System;
-using Xunit;
+﻿using System.IO;
 using CannedBytes.Midi.Device.Schema;
 using FluentAssertions;
+using Xunit;
 
-namespace CannedBytes.Midi.Device.UnitTests.SchemaTests
+namespace CannedBytes.Midi.Device.UnitTests.SchemaTests;
+
+public class FieldIteratorTest
 {
-    
-    //[DeploymentItem(Folder + HierarchicalSchema)]
-    public class FieldIteratorTest
+    public const string Folder = "SchemaTests/";
+    public const string HierarchicalSchema = "HierarchicalSchema.mds";
+
+    private static DeviceSchema LoadTestSchema()
     {
-        public const string Folder = "SchemaTests/";
-        public const string HierarchicalSchema = "HierarchicalSchema.mds";
+        var path = Path.Combine(Folder, HierarchicalSchema);
+        return DeviceSchemaHelper.LoadSchema(path);
+    }
 
-        [Fact]
-        public void MoveNext_SchemaRecordType_VerifyAllFields()
+    [Fact]
+    public void MoveNext_SchemaRecordType_VerifyAllFields()
+    {
+        var schema = LoadTestSchema();
+        var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord"), 2);
+
+        var counter = FieldHierarchicalIteratorTest.EnumerateFields(iterator);
+
+        counter.Should().Be(4);
+    }
+
+    [Fact]
+    public void MoveNext_SchemaRecordType_VerifyFieldInstanceIndex()
+    {
+        var schema = LoadTestSchema();
+        var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord"), 2);
+
+        int counter = 0;
+
+        foreach (var fieldInfo in iterator)
         {
-            var schema = DeviceSchemaHelper.LoadSchema(HierarchicalSchema);
-            var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord"), 2);
-
-            var counter = FieldHierarchicalIteratorTest.EnumerateFields(iterator);
-
-            counter.Should().Be(4);
-        }
-
-        [Fact]
-        public void MoveNext_SchemaRecordType_VerifyFieldInstanceIndex()
-        {
-            var schema = DeviceSchemaHelper.LoadSchema(HierarchicalSchema);
-            var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord"), 2);
-
-            int counter = 0;
-
-            foreach (var fieldInfo in iterator)
+            if (counter % 2 == 0)
             {
-                if (counter % 2 == 0)
-                {
-                    fieldInfo.Field.Name.Name.Should().EndWith("Field1");
-                }
-                else
-                {
-                    fieldInfo.Field.Name.Name.Should().EndWith("Field2");
-                }
-
-                fieldInfo.InstanceIndex.Should().Be(counter / 2);
-
-                counter++;
+                fieldInfo.Field.Name.Name.Should().EndWith("Field1");
             }
+            else
+            {
+                fieldInfo.Field.Name.Name.Should().EndWith("Field2");
+            }
+
+            fieldInfo.InstanceIndex.Should().Be(counter / 2);
+
+            counter++;
         }
     }
 }

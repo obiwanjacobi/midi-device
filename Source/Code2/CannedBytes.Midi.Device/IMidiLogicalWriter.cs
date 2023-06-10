@@ -10,7 +10,7 @@
 
         bool WriteByte(LogicalContext context, byte data);
 
-        bool WriteShort(LogicalContext context, int data);
+        bool WriteShort(LogicalContext context, short data);
 
         bool WriteInt(LogicalContext context, int data);
 

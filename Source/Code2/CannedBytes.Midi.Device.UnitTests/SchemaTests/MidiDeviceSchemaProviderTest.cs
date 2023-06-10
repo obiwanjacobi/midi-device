@@ -1,18 +1,15 @@
-﻿using System;
+﻿using FluentAssertions;
 using Xunit;
-using FluentAssertions;
 
-namespace CannedBytes.Midi.Device.UnitTests.SchemaTests
+namespace CannedBytes.Midi.Device.UnitTests.SchemaTests;
+
+public class MidiDeviceSchemaProviderTest
 {
-    
-    public class MidiDeviceSchemaProviderTest
+    [Fact]
+    public void Load_MidiTypesSchema_LoadedFormAssembly()
     {
-        [Fact]
-        public void Load_MidiTypesSchema_LoadedFormAssembly()
-        {
-            var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+        var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
 
-            schema.Should().NotBeNull();
-        }
+        schema.Should().NotBeNull();
     }
 }

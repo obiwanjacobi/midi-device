@@ -1,52 +1,45 @@
-namespace CannedBytes.Midi.Device.Schema
+namespace CannedBytes.Midi.Device.Schema;
+
+/// <summary>
+/// A SchemaObject with SChemaAttribues.
+/// </summary>
+public abstract class AttributedSchemaObject : SchemaObject
 {
-    public abstract class AttributedSchemaObject : SchemaObject
+    /// <summary>
+    /// Default inheritance ctor.
+    /// </summary>
+    protected AttributedSchemaObject()
+    { }
+
+    /// <summary>
+    /// Initializing inheritance ctor.
+    /// </summary>
+    protected AttributedSchemaObject(DeviceSchema schema, SchemaObjectName name)
+        : base(schema, name)
+    { }
+
+    protected override void OnSchemaChanged()
     {
-        /// <summary>
-        /// Default inheritance ctor.
-        /// </summary>
-        protected AttributedSchemaObject()
+        base.OnSchemaChanged();
+
+        if (_attributes != null)
         {
+            _attributes.Schema = Schema;
         }
+    }
 
-        /// <summary>
-        /// Initializing inheritance ctor.
-        /// </summary>
-        protected AttributedSchemaObject(DeviceSchema schema, SchemaObjectName name)
-            : base(schema, name)
+    private SchemaAttributeCollection _attributes;
+
+    public SchemaAttributeCollection Attributes
+    {
+        get
         {
-        }
-
-        protected override void OnSchemaChanged()
-        {
-            base.OnSchemaChanged();
-
-            if (_attributes != null)
-            {
-                _attributes.Schema = Schema;
-            }
-        }
-
-        private SchemaAttributeCollection _attributes;
-
-        public SchemaAttributeCollection Attributes
-        {
-            get
-            {
-                if (_attributes == null)
+            _attributes ??= new SchemaAttributeCollection
                 {
-                    Attributes = new SchemaAttributeCollection();
-                }
+                    Schema = Schema
+                };
 
-                return _attributes;
-            }
-            protected internal set
-            {
-                Check.IfArgumentNull(value, "Attributes");
-
-                _attributes = value;
-                _attributes.Schema = Schema;
-            }
+            return _attributes;
         }
     }
 }

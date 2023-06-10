@@ -3,51 +3,47 @@ using Xunit;
 using FluentAssertions;
 using Xunit.Abstractions;
 
-namespace CannedBytes.Midi.Device.IntegrationTests.ChecksumTest
+namespace CannedBytes.Midi.Device.IntegrationTests.ChecksumTest;
+
+public class ChecksumTest
 {
+    public const string Folder = "ChecksumTest/";
+    public const string ChecksumSchemaFileName = "ChecksumTestSchema.mds";
+    public const string ChecksumTestStreamFileName = "ChecksumTestStream.bin";
     
-    //[DeploymentItem(Folder + ChecksumSchemaFileName)]
-    //[DeploymentItem(Folder + ChecksumTestStreamFileName)]
-    public class ChecksumTest
+    private readonly ITestOutputHelper _output;
+
+    public ChecksumTest(ITestOutputHelper output)
+        => _output = output;
+
+    [Fact]
+    public void ChecksumReadTest()
     {
-        public const string Folder = "ChecksumTest/";
-        public const string ChecksumSchemaFileName = "ChecksumTestSchema.mds";
-        public const string ChecksumTestStreamFileName = "ChecksumTestStream.bin";
-        
-        private readonly ITestOutputHelper _output;
+        var compositionCtx = CompositionHelper.CreateCompositionContext();
+        var writer = new DictionaryBasedLogicalStub();
 
-        public ChecksumTest(ITestOutputHelper output)
-            => _output = output;
+        var ctx = DeviceHelper.ToLogical(compositionCtx, 
+                                    ChecksumSchemaFileName, 
+                                    ChecksumTestStreamFileName, 
+                                    "checksumTest", 
+                                    writer);
 
-        [Fact]
-        public void ChecksumReadTest()
-        {
-            var compositionCtx = CompositionHelper.CreateCompositionContext();
-            var writer = new DictionaryBasedLogicalStub();
+        ctx.Should().NotBeNull();
 
-            var ctx = DeviceHelper.ToLogical(compositionCtx, 
-                                        ChecksumSchemaFileName, 
-                                        ChecksumTestStreamFileName, 
-                                        "checksumTest", 
-                                        writer);
+        _output.WriteLine(ctx.RecordManager.ToString());
+    }
 
-            ctx.Should().NotBeNull();
+    //[Fact]
+    public void ChecksumWriteTest()
+    {
+        //var reader = new DictionaryBasedLogicalStub();
+        //// fill reader fields
+        //reader.AddValue<byte>("SysExData", 0, 0x41);
+        //reader.AddValue<byte>("ChecksumData1", 0, 0x01);
+        //reader.AddValue<byte>("ChecksumData2", 0, 0x02);
+        //reader.AddValue<byte>("ChecksumData3", 0, 0x04);
+        //reader.AddValue<byte>("ChecksumData4", 0, 0x08);
 
-            _output.WriteLine(ctx.RecordManager.ToString());
-        }
-
-        //[Fact]
-        public void ChecksumWriteTest()
-        {
-            //var reader = new DictionaryBasedLogicalStub();
-            //// fill reader fields
-            //reader.AddValue<byte>("SysExData", 0, 0x41);
-            //reader.AddValue<byte>("ChecksumData1", 0, 0x01);
-            //reader.AddValue<byte>("ChecksumData2", 0, 0x02);
-            //reader.AddValue<byte>("ChecksumData3", 0, 0x04);
-            //reader.AddValue<byte>("ChecksumData4", 0, 0x08);
-
-            //DeviceHelper.WritePhysical(ChecksumSchemaFileName, "checksumTest", reader);
-        }
+        //DeviceHelper.WritePhysical(ChecksumSchemaFileName, "checksumTest", reader);
     }
 }
