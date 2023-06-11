@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CannedBytes.Midi.Device;
 
-public class DevicePropertyCollection : Collection<DeviceProperty>
+public sealed class DevicePropertyCollection : Collection<DeviceProperty>
 {
     public DeviceProperty Add(string schemaName, string propertyName, object value)
     {

@@ -4,7 +4,7 @@ using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
-public class SchemaNodeNavigator
+public sealed class SchemaNodeNavigator
 {
     private readonly SchemaNode _rootNode;
 

@@ -5,7 +5,7 @@ using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
-public partial class AddressMapManager
+internal partial class AddressMapManager
 {
     private SchemaNode _rootNode;
     private SchemaNodeNavigator _navigator;

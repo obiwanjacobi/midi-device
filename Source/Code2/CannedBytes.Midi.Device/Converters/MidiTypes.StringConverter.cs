@@ -8,7 +8,7 @@ namespace CannedBytes.Midi.Device.Converters;
 /// </summary>
 /// <remarks>To use a string in your device schema, create a new data type that
 /// inherits from midiString and specify the (fixed) length constraint.</remarks>
-public class StringConverter : DataConverter
+internal sealed class StringConverter : DataConverter
 {
     /// <summary>
     /// Constructs an instance based on the specified <paramref name="dataType"/>.

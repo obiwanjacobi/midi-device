@@ -3,7 +3,7 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
 
-public partial class ConverterManager
+public sealed partial class ConverterManager
 {
     private readonly FactoryManager _factoryMgr;
 

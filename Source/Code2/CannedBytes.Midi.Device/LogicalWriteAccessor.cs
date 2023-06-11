@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace CannedBytes.Midi.Device;
 
 // helps in calling the right method on IMidiLogicalWriter
-public class LogicalWriteAccessor : ILogicalWriteAccessor
+internal class LogicalWriteAccessor : ILogicalWriteAccessor
 {
     private readonly DeviceDataContext _context;
     private readonly IMidiLogicalWriter _writer;

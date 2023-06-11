@@ -5,7 +5,7 @@ namespace CannedBytes.Midi.Device;
 
 partial class DataRecordManager
 {
-    public class DataRecordEntry
+    public sealed class DataRecordEntry
     {
         public bool CarryCleared { get; set; }
         public object Data { get; set; }

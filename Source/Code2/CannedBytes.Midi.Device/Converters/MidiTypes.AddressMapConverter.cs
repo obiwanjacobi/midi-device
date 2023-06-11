@@ -5,7 +5,7 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
 
-public class AddressMapConverter : StreamConverter, INavigationEvents
+internal sealed class AddressMapConverter : StreamConverter, INavigationEvents
 {
     private const string ChildrenStateName = "AddressMapConverterChildren";
 

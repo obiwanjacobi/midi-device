@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 
-namespace CannedBytes.Midi.Device;
+namespace CannedBytes.Midi.Device.Converters;
 
-public partial class StreamManager
+partial class BigEndianStreamConverter
 {
-    public class BigEndianStream : CachedStream
+    internal sealed class BigEndianStream : CachedStream
     {
         public BigEndianStream(Stream innerStream, int width)
             : base(innerStream, width)

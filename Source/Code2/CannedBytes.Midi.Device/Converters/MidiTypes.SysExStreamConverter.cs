@@ -5,7 +5,7 @@ namespace CannedBytes.Midi.Device.Converters;
 /// <summary>
 /// A system <see cref="StreamConverter"/> that manages the SOX and EOX marker bytes.
 /// </summary>
-public class SysExStreamConverter : StreamConverter, INavigationEvents
+internal sealed partial class SysExStreamConverter : StreamConverter, INavigationEvents
 {
     /// <summary>
     /// Constructs a new instance.
@@ -19,7 +19,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
     }
 
     /// <summary>
-    /// Registers the <see cref="StreamManager.SysExStream"/> that does the actual work.
+    /// Registers the <see cref="SysExStream"/> that does the actual work.
     /// </summary>
     /// <param name="context">Must not be null.</param>
     public override void OnBeforeRecord(DeviceDataContext context)
@@ -27,7 +27,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
         Check.IfArgumentNull(context, nameof(context));
 
         // Start of SysEx
-         var sysExStream = new StreamManager.SysExStream(context.StreamManager.CurrentStream);
+         var sysExStream = new SysExStream(context.StreamManager.CurrentStream);
 
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {
@@ -38,7 +38,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
     }
 
     /// <summary>
-    /// Unregisters the <see cref="StreamManager.SysExStream"/> from the <paramref name="context"/>.
+    /// Unregisters the <see cref="SysExStream"/> from the <paramref name="context"/>.
     /// </summary>
     /// <param name="context">Must not be null.</param>
     public override void OnAfterRecord(DeviceDataContext context)
@@ -46,7 +46,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
         Check.IfArgumentNull(context, nameof(context));
 
         // End of SysEx
-        var sysExStream = context.StreamManager.CurrentStream as StreamManager.SysExStream
+        var sysExStream = context.StreamManager.CurrentStream as SysExStream
             ?? throw new DeviceDataException(
                 "The SysExStreamConverter.INavigationEvents.OnAfterRecord method could not find its stream (Type) on the DeviceDataContext.StreamManager.CurrentStream property.");
 

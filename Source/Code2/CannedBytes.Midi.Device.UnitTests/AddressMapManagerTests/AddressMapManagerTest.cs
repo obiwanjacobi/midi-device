@@ -12,7 +12,7 @@ public class AddressMapManagerTest
     public const string Folder = "AddressMapManagerTests/";
     public const string AddressMapManagerTestSchema = "AddressMapManagerTestSchema.mds";
 
-    public static AddressMapManager CreateAddressMapManager(DeviceSchema schema)
+    private static AddressMapManager CreateAddressMapManager(DeviceSchema schema)
     {
         var map = SchemaNodeMapTest.CreateSchemaNodeMap(schema);
 

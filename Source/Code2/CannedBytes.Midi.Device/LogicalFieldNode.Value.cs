@@ -5,7 +5,7 @@ namespace CannedBytes.Midi.Device;
 
 partial class LogicalFieldNode
 {
-    public class LogicalValue
+    public sealed class LogicalValue
     {
         public object Data { get; set; }
         public int BitLength { get; set; }

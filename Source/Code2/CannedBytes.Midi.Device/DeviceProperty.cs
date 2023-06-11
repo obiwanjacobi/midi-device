@@ -2,7 +2,7 @@
 
 namespace CannedBytes.Midi.Device;
 
-public class DeviceProperty
+public sealed class DeviceProperty
 {
     /// <summary>Used with the 'property' attribute in a schema to indicate the field that contains the address of an address-map message.</summary>
     public const string AddressPropertyName = "address";

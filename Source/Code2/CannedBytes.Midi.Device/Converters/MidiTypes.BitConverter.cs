@@ -6,7 +6,7 @@ namespace CannedBytes.Midi.Device.Converters;
 /// <summary>
 /// A converter class that converts bits of a byte.
 /// </summary>
-public partial class BitConverter : DataConverter
+internal sealed class BitConverter : DataConverter
 {
     [Flags]
     private enum ProcessPart

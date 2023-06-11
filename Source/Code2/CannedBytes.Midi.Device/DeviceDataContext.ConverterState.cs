@@ -5,7 +5,7 @@ namespace CannedBytes.Midi.Device;
 
 partial class DeviceDataContext
 {
-    public class ConverterState
+    public sealed class ConverterState
     {
         private readonly Dictionary<string, object> _stateMap = new();
 

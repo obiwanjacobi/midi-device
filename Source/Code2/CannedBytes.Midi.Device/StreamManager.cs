@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using CannedBytes.Midi.Device.Converters;
+using static CannedBytes.Midi.Device.Converters.SysExStreamConverter;
 
 namespace CannedBytes.Midi.Device;
 
 /// <summary>
 /// Manages the Stream stack that StreamConverters may inject.
 /// </summary>
-public partial class StreamManager
+public sealed partial class StreamManager
 {
     private Stack<StreamOwner> _streams = new();
 

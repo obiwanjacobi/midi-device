@@ -2,11 +2,11 @@
 using System.IO;
 using CannedBytes.IO;
 
-namespace CannedBytes.Midi.Device;
+namespace CannedBytes.Midi.Device.Converters;
 
-public partial class StreamManager
+partial class SysExStreamConverter
 {
-    public class SysExStream : SubStream
+    internal sealed class SysExStream : SubStream
     {
         public SysExStream(Stream stream)
             : base(stream, true)

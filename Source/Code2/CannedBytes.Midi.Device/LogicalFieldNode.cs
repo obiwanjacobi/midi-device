@@ -3,7 +3,7 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device;
 
-public partial class LogicalFieldNode : ILogicalFieldInfo
+public sealed partial class LogicalFieldNode : ILogicalFieldInfo
 {
     public LogicalFieldNode Parent { get; set; }
     public LogicalFieldNode Next { get; set; }

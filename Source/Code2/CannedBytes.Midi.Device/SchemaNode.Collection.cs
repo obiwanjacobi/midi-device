@@ -4,7 +4,7 @@ namespace CannedBytes.Midi.Device;
 
 partial class SchemaNode
 {
-    public class SchemaNodeCollection : Collection<SchemaNode>
+    public sealed class SchemaNodeCollection : Collection<SchemaNode>
     {
     }
 }
