@@ -9,18 +9,6 @@ namespace CannedBytes.Midi.Device.Converters;
 public abstract class ConverterFactory : IConverterFactory
 {
     /// <summary>
-    /// Retrieves the <see cref="SchemaName"/> from the <see cref="ConverterFactoryAttribute"/>.
-    /// </summary>
-    /// <exception cref="InvalidOperationException">Thrown when the <see cref="ConverterFactoryAttribute"/> was not found.</exception>
-    protected ConverterFactory()
-    {
-        IConverterFactoryInfo attr = ConverterFactoryAttribute.FromType(GetType())
-            ?? throw new InvalidOperationException(
-                "Cannot find the ConverterFactoryAttribute. Use the ctor that takes the schema name.");
-        SchemaName = attr.SchemaName;
-    }
-
-    /// <summary>
     /// Constructor used by derived types to pass in the name of the schema that is managed by the factory.
     /// </summary>
     /// <param name="schemaName">Must not be null or empty.</param>
