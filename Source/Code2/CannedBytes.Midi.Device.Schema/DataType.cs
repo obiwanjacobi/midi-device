@@ -80,7 +80,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             internal protected set
             {
-                Check.IfArgumentNull(value, "BaseTypes");
+                Check.IfArgumentNull(value, nameof(BaseTypes));
 
                 this.baseTypes = value;
                 this.baseTypes.Schema = Schema;
@@ -125,7 +125,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             internal protected set
             {
-                Check.IfArgumentNull(value, "Constraints");
+                Check.IfArgumentNull(value, nameof(Constraints));
 
                 this.constraints = value;
             }

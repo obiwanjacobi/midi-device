@@ -96,8 +96,8 @@ public partial class BitConverter : DataConverter
     /// <inheritdoc/>
     public override void ToPhysical(DeviceDataContext context, IMidiLogicalReader reader)
     {
-        Check.IfArgumentNull(context, "context");
-        Check.IfArgumentNull(reader, "reader");
+        Check.IfArgumentNull(context, nameof(context));
+        Check.IfArgumentNull(reader, nameof(reader));
 
         //var fieldData = new FieldData<ushort>(context);
         //var outputStream = context.CurrentStream;
@@ -142,9 +142,9 @@ public partial class BitConverter : DataConverter
 
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
-        Check.IfArgumentNull(context, "context");
-        Check.IfArgumentNull(reader, "reader");
-        Check.IfArgumentNull(writer, "writer");
+        Check.IfArgumentNull(context, nameof(context));
+        Check.IfArgumentNull(reader, nameof(reader));
+        Check.IfArgumentNull(writer, nameof(writer));
 
         reader.Read(this.BitFlag, out ushort value);
 

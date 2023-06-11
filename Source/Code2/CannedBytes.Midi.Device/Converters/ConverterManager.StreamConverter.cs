@@ -18,8 +18,8 @@ partial class ConverterManager
 
     public StreamConverter GetConverter(RecordType matchType, RecordType constructType)
     {
-        Check.IfArgumentNull(matchType, "matchType");
-        Check.IfArgumentNull(constructType, "constructType");
+        Check.IfArgumentNull(matchType, nameof(matchType));
+        Check.IfArgumentNull(constructType, nameof(constructType));
 
         // lookup matchtype (matchtype == constructtype on entry)
         // not found -> lookup factory for schema
@@ -59,7 +59,7 @@ partial class ConverterManager
 
     public StreamConverter LookupConverter(RecordType recordType)
     {
-        Check.IfArgumentNull(recordType, "recordType");
+        Check.IfArgumentNull(recordType, nameof(recordType));
 
         if (_streamConverters.TryGetValue(recordType.Name.FullName, out StreamConverter converter))
         {
@@ -71,7 +71,7 @@ partial class ConverterManager
 
     protected static bool IsDynamic(RecordType constructType)
     {
-        Check.IfArgumentNull(constructType, "constructType");
+        Check.IfArgumentNull(constructType, nameof(constructType));
 
         if (!constructType.IsDynamic)
         {
@@ -96,8 +96,8 @@ partial class ConverterManager
 
     protected StreamConverter CreateConverter(RecordType matchType, RecordType constructType)
     {
-        Check.IfArgumentNull(matchType, "matchType");
-        Check.IfArgumentNull(constructType, "constructType");
+        Check.IfArgumentNull(matchType, nameof(matchType));
+        Check.IfArgumentNull(constructType, nameof(constructType));
 
         IConverterFactory factory = _factoryMgr.Lookup(matchType.Schema.SchemaName);
 

@@ -11,7 +11,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
 
     public HierarchicalEnumerator(IEnumerable<T> root)
     {
-        Check.IfArgumentNull(root, "root");
+        Check.IfArgumentNull(root, nameof(root));
 
         _root = root.GetEnumerator();
         _enumStack.Push(_root);
@@ -19,7 +19,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
 
     public HierarchicalEnumerator(IEnumerator<T> root)
     {
-        Check.IfArgumentNull(root, "root");
+        Check.IfArgumentNull(root, nameof(root));
 
         _root = root;
         _enumStack.Push(_root);

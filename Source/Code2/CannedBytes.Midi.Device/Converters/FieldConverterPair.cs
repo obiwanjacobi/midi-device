@@ -21,8 +21,8 @@ public class FieldConverterPair
     /// <param name="converter">Must not be null.</param>
     public FieldConverterPair(Field field, IConverter converter)
     {
-        Check.IfArgumentNull(field, "field");
-        Check.IfArgumentNull(converter, "converter");
+        Check.IfArgumentNull(field, nameof(field));
+        Check.IfArgumentNull(converter, nameof(converter));
 
         Field = field;
         Converter = converter;

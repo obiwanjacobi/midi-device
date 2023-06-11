@@ -24,7 +24,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
     /// <param name="context">Must not be null.</param>
     public override void OnBeforeRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
 
         // Start of SysEx
         StreamManager.SysExStream sysExStream = new(context.StreamManager.CurrentStream);
@@ -43,7 +43,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
     /// <param name="context">Must not be null.</param>
     public override void OnAfterRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
 
         // End of SysEx
         StreamManager.SysExStream sysExStream = context.StreamManager.CurrentStream as StreamManager.SysExStream;

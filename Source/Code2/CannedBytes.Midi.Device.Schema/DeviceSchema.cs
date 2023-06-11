@@ -55,7 +55,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             protected set
             {
-                Check.IfArgumentNull(value, "AllRecordTypes");
+                Check.IfArgumentNull(value, nameof(AllRecordTypes));
 
                 this.recordTypes = value;
                 this.recordTypes.Schema = this;
@@ -81,7 +81,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             protected set
             {
-                Check.IfArgumentNull(value, "AllDataTypes");
+                Check.IfArgumentNull(value, nameof(AllDataTypes));
 
                 this.dataTypes = value;
                 this.dataTypes.Schema = this;
@@ -107,7 +107,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             protected set
             {
-                Check.IfArgumentNull(value, "RootRecordTypes");
+                Check.IfArgumentNull(value, nameof(RootRecordTypes));
 
                 this.rootTypes = value;
                 this.rootTypes.Schema = this;
@@ -132,7 +132,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             set
             {
-                Check.IfArgumentNull(value, "VirtualRootFields");
+                Check.IfArgumentNull(value, nameof(VirtualRootFields));
 
                 this._virtualRootFields = value;
                 this._virtualRootFields.Schema = this;
@@ -150,7 +150,7 @@ namespace CannedBytes.Midi.Device.Schema
             get { return this.schemaName; }
             internal protected set
             {
-                Check.IfArgumentNullOrEmpty(value, "SchemaName");
+                Check.IfArgumentNullOrEmpty(value, nameof(SchemaName));
                 this.schemaName = value;
 
                 Name = new SchemaObjectName(value, string.Empty);

@@ -15,7 +15,7 @@ public class StreamConverter : IConverter
     /// <param name="recordType">Must not be null.</param>
     public StreamConverter(RecordType recordType)
     {
-        Check.IfArgumentNull(recordType, "recordType");
+        Check.IfArgumentNull(recordType, nameof(recordType));
 
         RecordType = recordType;
     }
@@ -56,7 +56,7 @@ public class StreamConverter : IConverter
     /// <returns>Must never return null.</returns>
     public virtual IEnumerable<SchemaNode> GetChildNodeIterator(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
 
         AggregateEnumerator<SchemaNode> aggEnum = new();
 
@@ -74,7 +74,7 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnBeforeRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
     }
 
     /// <summary>
@@ -83,7 +83,7 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnBeforeField(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
     }
 
     /// <summary>
@@ -92,7 +92,7 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnAfterField(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
     }
 
     /// <summary>
@@ -101,6 +101,6 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnAfterRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
     }
 }

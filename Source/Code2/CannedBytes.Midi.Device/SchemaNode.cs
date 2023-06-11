@@ -14,7 +14,7 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     public SchemaNode(FieldConverterPair pair, int instanceIndex)
     {
-        Check.IfArgumentNull(pair, "pair");
+        Check.IfArgumentNull(pair, nameof(pair));
         //Check.IfArgumentOutOfRange(instanceIndex, 0, pair.Field.ExtendedProperties.Repeats, "instanceIndex");
 
         FieldConverterPair = pair;
@@ -83,7 +83,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     public IEnumerable<SchemaNode> RepeatedChildren(int instanceIndex)
     {
         Check.IfArgumentOutOfRange(instanceIndex, 0,
-            FieldConverterPair.Field.ExtendedProperties.Repeats, "instanceIndex");
+            FieldConverterPair.Field.ExtendedProperties.Repeats, nameof(instanceIndex));
 
         SchemaNode parent = this;
         int currentIndex = instanceIndex;
@@ -365,7 +365,7 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     protected void CopyTo(SchemaNode targetNode)
     {
-        Check.IfArgumentNull(targetNode, "targetNode");
+        Check.IfArgumentNull(targetNode, nameof(targetNode));
 
         targetNode.Address = this.Address;
         targetNode.DataLength = this.DataLength;

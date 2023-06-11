@@ -16,7 +16,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <param name="schemas">A collection of <see cref="DeviceSchema"/>s. Must not be null.</param>
         public void AddRange(DeviceSchemaCollection schemas)
         {
-            Check.IfArgumentNull(schemas, "schemas");
+            Check.IfArgumentNull(schemas, nameof(schemas));
 
             foreach (DeviceSchema schema in schemas)
             {

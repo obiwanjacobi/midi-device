@@ -73,7 +73,7 @@ namespace CannedBytes.Midi.Device.Schema
             get { return _dataType; }
             internal protected set
             {
-                Check.IfArgumentNull(value, "DataType");
+                Check.IfArgumentNull(value, nameof(DataType));
 
                 _dataType = value;
                 _recordType = null;
@@ -92,7 +92,7 @@ namespace CannedBytes.Midi.Device.Schema
             get { return _recordType; }
             internal protected set
             {
-                Check.IfArgumentNull(value, "RecordType");
+                Check.IfArgumentNull(value, nameof(RecordType));
 
                 _recordType = value;
                 _dataType = null;
@@ -110,7 +110,7 @@ namespace CannedBytes.Midi.Device.Schema
             get { return _declaringRecord; }
             internal protected set
             {
-                Check.IfArgumentNull(value, "DeclaringType");
+                Check.IfArgumentNull(value, nameof(DeclaringRecord));
                 _declaringRecord = value;
             }
         }
@@ -135,7 +135,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             internal protected set
             {
-                Check.IfArgumentNull(value, "Constraints");
+                Check.IfArgumentNull(value, nameof(Constraints));
 
                 _constraints = value;
                 CreateConstraints();

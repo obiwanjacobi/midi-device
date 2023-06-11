@@ -14,7 +14,7 @@ public abstract class ConverterFactory : IConverterFactory
     /// <param name="schemaName">Must not be null or empty.</param>
     protected ConverterFactory(string schemaName)
     {
-        Check.IfArgumentNullOrEmpty(schemaName, "schemaName");
+        Check.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
 
         SchemaName = schemaName;
     }

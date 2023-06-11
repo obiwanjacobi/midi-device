@@ -50,7 +50,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <returns>Returns true if a match is found in this type or one of its <see cref="BaseType"/>s.</returns>
         public bool IsType(RecordType matchType)
         {
-            Check.IfArgumentNull(matchType, "matchType");
+            Check.IfArgumentNull(matchType, nameof(matchType));
 
             return IsType(matchType.Name.FullName);
         }
@@ -83,7 +83,7 @@ namespace CannedBytes.Midi.Device.Schema
             get { return _baseType; }
             internal protected set
             {
-                Check.IfArgumentNull(value, "BaseType");
+                Check.IfArgumentNull(value, nameof(BaseType));
                 _baseType = value;
             }
         }
@@ -108,7 +108,7 @@ namespace CannedBytes.Midi.Device.Schema
             }
             internal protected set
             {
-                Check.IfArgumentNull(value, "Fields");
+                Check.IfArgumentNull(value, nameof(Fields));
 
                 _fields = value;
                 _fields.Schema = Schema;

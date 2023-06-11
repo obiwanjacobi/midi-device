@@ -46,7 +46,7 @@ public abstract class Constraint
 
         internal protected set
         {
-            Check.IfArgumentNullOrEmpty(value, "Name");
+            Check.IfArgumentNullOrEmpty(value, nameof(Name));
             this.name = value;
         }
     }

@@ -18,8 +18,8 @@ public class DeviceStreamReader
     /// <seealso cref="DeviceDataContext"/>
     public DeviceStreamReader(Stream stream, Carry carry)
     {
-        Check.IfArgumentNull(stream, "stream");
-        Check.IfArgumentNull(carry, "carry");
+        Check.IfArgumentNull(stream, nameof(stream));
+        Check.IfArgumentNull(carry, nameof(carry));
 
         BaseStream = stream;
         Carry = carry;
@@ -54,7 +54,7 @@ public class DeviceStreamReader
     public VarUInt64 Read(int byteLength)
     {
         Check.IfArgumentOutOfRange(byteLength,
-            (int)VarUInt64.VarTypeCode.UInt8, (int)VarUInt64.VarTypeCode.UInt64, "byteLength");
+            (int)VarUInt64.VarTypeCode.UInt8, (int)VarUInt64.VarTypeCode.UInt64, nameof(byteLength));
 
         FillBuffer(byteLength);
 
@@ -75,7 +75,7 @@ public class DeviceStreamReader
     /// could be read from the stream.</exception>
     private void FillBuffer(int numOfBytes)
     {
-        Check.IfArgumentOutOfRange(numOfBytes, 0, MaxBufferSize, "numOfBytes");
+        Check.IfArgumentOutOfRange(numOfBytes, 0, MaxBufferSize, nameof(numOfBytes));
 
         int bytesRead = BaseStream.Read(_buffer, 0, numOfBytes);
 

@@ -16,7 +16,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
 
     public void Add(IEnumerable<T> iterator)
     {
-        Check.IfArgumentNull(iterator, "iterator");
+        Check.IfArgumentNull(iterator, nameof(iterator));
         ThrowIfDisposed();
 
         Add(iterator.GetEnumerator());
@@ -24,7 +24,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
 
     public void Add(IEnumerator<T> enumerator)
     {
-        Check.IfArgumentNull(enumerator, "enumerator");
+        Check.IfArgumentNull(enumerator, nameof(enumerator));
         ThrowIfDisposed();
 
         _enumerators.Add(enumerator);
@@ -39,7 +39,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
 
     public void Remove(IEnumerator<T> enumerator)
     {
-        Check.IfArgumentNull(enumerator, "enumerator");
+        Check.IfArgumentNull(enumerator, nameof(enumerator));
         ThrowIfDisposed();
 
         _enumerators.Remove(enumerator);

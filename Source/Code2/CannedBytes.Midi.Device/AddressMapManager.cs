@@ -12,7 +12,7 @@ public partial class AddressMapManager
 
     public AddressMapManager(SchemaNode rootNode)
     {
-        Check.IfArgumentNull(rootNode, "rootNode");
+        Check.IfArgumentNull(rootNode, nameof(rootNode));
 
         _rootNode = rootNode;
         _navigator = new SchemaNodeNavigator(_rootNode);
@@ -53,7 +53,7 @@ public partial class AddressMapManager
 
     public IEnumerable<SchemaNode> CreateSchemaNodes(SchemaNode startNode, SchemaNode endNode)
     {
-        Check.IfArgumentNull(startNode, "startNode");
+        Check.IfArgumentNull(startNode, nameof(startNode));
         if (!startNode.IsAddressMap)
         {
             throw new ArgumentException(

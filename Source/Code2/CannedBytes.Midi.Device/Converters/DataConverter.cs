@@ -19,7 +19,7 @@ public abstract partial class DataConverter : IConverter
     /// <param name="dataType">The data type the converter represents at runtime. Must not be null.</param>
     protected DataConverter(DataType dataType)
     {
-        Check.IfArgumentNull(dataType, "dataType");
+        Check.IfArgumentNull(dataType, nameof(dataType));
 
         DataType = dataType;
     }

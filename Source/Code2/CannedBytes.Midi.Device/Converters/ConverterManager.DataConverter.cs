@@ -18,8 +18,8 @@ partial class ConverterManager
 
     public DataConverter GetConverter(DataType matchType, DataType constructType)
     {
-        Check.IfArgumentNull(matchType, "matchType");
-        Check.IfArgumentNull(constructType, "constructType");
+        Check.IfArgumentNull(matchType, nameof(matchType));
+        Check.IfArgumentNull(constructType, nameof(constructType));
 
         // lookup matchtype (matchtype == constructtype on entry)
         // not found -> lookup factory for schema
@@ -52,7 +52,7 @@ partial class ConverterManager
 
     public DataConverter LookupConverter(DataType dataType)
     {
-        Check.IfArgumentNull(dataType, "dataType");
+        Check.IfArgumentNull(dataType, nameof(dataType));
 
         if (_dataConverters.TryGetValue(dataType.Name.FullName, out DataConverter converter))
         {
@@ -64,8 +64,8 @@ partial class ConverterManager
 
     protected DataConverter CreateConverter(DataType matchType, DataType constructType)
     {
-        Check.IfArgumentNull(matchType, "matchType");
-        Check.IfArgumentNull(constructType, "constructType");
+        Check.IfArgumentNull(matchType, nameof(matchType));
+        Check.IfArgumentNull(constructType, nameof(constructType));
 
         DataConverter converter = null;
         IConverterFactory factory = _factoryMgr.Lookup(matchType.Schema.SchemaName);

@@ -6,7 +6,7 @@ public sealed class SchemaNodeMap
 {
     public SchemaNodeMap(SchemaNode root)
     {
-        Check.IfArgumentNull(root, "root");
+        Check.IfArgumentNull(root, nameof(root));
 
         RootNode = root;
         LastNode = root;

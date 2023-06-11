@@ -14,7 +14,7 @@ public partial class ConverterManager
 
     public IConverter GetConverter(Field field)
     {
-        Check.IfArgumentNull(field, "field");
+        Check.IfArgumentNull(field, nameof(field));
 
         if (field.DataType != null)
         {

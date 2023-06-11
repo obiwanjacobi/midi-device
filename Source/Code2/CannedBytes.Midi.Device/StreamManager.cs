@@ -13,7 +13,7 @@ public partial class StreamManager
 
     public StreamManager(Stream physicalStream)
     {
-        Check.IfArgumentNull(physicalStream, "physicalStream");
+        Check.IfArgumentNull(physicalStream, nameof(physicalStream));
 
         PhysicalStream = physicalStream;
     }
@@ -25,12 +25,12 @@ public partial class StreamManager
     /// <param name="stream">Wraps <see cref="CurrentStream"/>.</param>
     public void SetCurrentStream(StreamConverter owner, Stream stream)
     {
-        Check.IfArgumentNull(owner, "owner");
-        Check.IfArgumentNull(stream, "stream");
+        Check.IfArgumentNull(owner, nameof(owner));
+        Check.IfArgumentNull(stream, nameof(stream));
 
         if (_streams.Count == 0)
         {
-            Check.IfArgumentNotOfType<SysExStream>(stream, "stream");
+            Check.IfArgumentNotOfType<SysExStream>(stream, nameof(stream));
 
             RootStream = stream;
         }

@@ -15,14 +15,14 @@ public class MidiDeviceSchemaParser
 
     public MidiDeviceSchemaParser(MidiDeviceSchemaSet schemas)
     {
-        Check.IfArgumentNull(schemas, "schemas");
+        Check.IfArgumentNull(schemas, nameof(schemas));
 
         _schemas = schemas;
     }
 
     public DeviceSchema Parse(Stream stream)
     {
-        Check.IfArgumentNull(stream, "stream");
+        Check.IfArgumentNull(stream, nameof(stream));
 
         deviceSchema sourceSchema = MidiDeviceSchemaReader.Read(stream)
             ?? throw new DeviceSchemaException(
@@ -81,8 +81,8 @@ public class MidiDeviceSchemaParser
 
     protected virtual void FillSchema(deviceSchema source, MidiDeviceSchema target)
     {
-        Check.IfArgumentNull(source, "source");
-        Check.IfArgumentNull(target, "target");
+        Check.IfArgumentNull(source, nameof(source));
+        Check.IfArgumentNull(target, nameof(target));
 
         target.SchemaName = source.schema;
         target.SetVersion(source.version);

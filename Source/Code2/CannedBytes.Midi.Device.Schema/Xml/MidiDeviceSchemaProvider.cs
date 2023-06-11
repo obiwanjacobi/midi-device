@@ -20,7 +20,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 
     public DeviceSchema Load(string schemaLocation)
     {
-        Check.IfArgumentNullOrEmpty(schemaLocation, "schemaLocation");
+        Check.IfArgumentNullOrEmpty(schemaLocation, nameof(schemaLocation));
 
         string[] parts = schemaLocation.Split("::");
 
@@ -62,8 +62,8 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 
     public RecordType FindRecordType(string schemaName, string typeName)
     {
-        Check.IfArgumentNullOrEmpty(schemaName, "schemaName");
-        Check.IfArgumentNullOrEmpty(typeName, "typeName");
+        Check.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
+        Check.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         RecordType recordType = null;
         MidiDeviceSchema schema = (MidiDeviceSchema)_schemas.Find(schemaName);
@@ -78,8 +78,8 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 
     public DataType FindDataType(string schemaName, string typeName)
     {
-        Check.IfArgumentNullOrEmpty(schemaName, "schemaName");
-        Check.IfArgumentNullOrEmpty(typeName, "typeName");
+        Check.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
+        Check.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         DataType dataType = null;
         MidiDeviceSchema schema = (MidiDeviceSchema)_schemas.Find(schemaName);

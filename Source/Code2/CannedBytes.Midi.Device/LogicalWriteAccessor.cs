@@ -11,8 +11,8 @@ public class LogicalWriteAccessor : ILogicalWriteAccessor
 
     public LogicalWriteAccessor(DeviceDataContext context, IMidiLogicalWriter writer)
     {
-        Check.IfArgumentNull(context, "context");
-        Check.IfArgumentNull(writer, "writer");
+        Check.IfArgumentNull(context, nameof(context));
+        Check.IfArgumentNull(writer, nameof(writer));
 
         _context = context;
         _writer = writer;

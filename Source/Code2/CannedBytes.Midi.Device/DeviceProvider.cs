@@ -33,7 +33,7 @@ public sealed class DeviceProvider
     // complete structure for each root message.
     public SchemaNodeMap GetBinaryConverterMapFor(string virtualRootFieldName)
     {
-        Check.IfArgumentNullOrEmpty(virtualRootFieldName, "virtualRootFieldName");
+        Check.IfArgumentNullOrEmpty(virtualRootFieldName, nameof(virtualRootFieldName));
 
         Field virtualField = Schema.VirtualRootFields.Find(virtualRootFieldName);
 

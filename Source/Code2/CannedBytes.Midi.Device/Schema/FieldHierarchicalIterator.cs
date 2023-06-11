@@ -8,7 +8,7 @@ public sealed partial class FieldHierarchicalIterator : IEnumerable<FieldInfo>
 
     public FieldHierarchicalIterator(RecordType rootRecord)
     {
-        Check.IfArgumentNull(rootRecord, "rootRecord");
+        Check.IfArgumentNull(rootRecord, nameof(rootRecord));
 
         _rootRecord = rootRecord;
     }

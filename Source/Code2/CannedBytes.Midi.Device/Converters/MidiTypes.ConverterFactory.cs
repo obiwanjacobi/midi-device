@@ -22,8 +22,8 @@ public class MidiTypesConverterFactory : ConverterFactory
     /// <returns>Returns null if the factory could not find a converter that matched the <paramref name="matchType"/>.</returns>
     public override DataConverter Create(DataType matchType, DataType constructType)
     {
-        Check.IfArgumentNull(matchType, "matchType");
-        Check.IfArgumentNull(constructType, "constructType");
+        Check.IfArgumentNull(matchType, nameof(matchType));
+        Check.IfArgumentNull(constructType, nameof(constructType));
 
         System.Diagnostics.Debug.Assert(matchType.Schema.SchemaName == SchemaName);
 
@@ -229,8 +229,8 @@ public class MidiTypesConverterFactory : ConverterFactory
     /// <returns>Returns null when the factory could not find a suitable group converter that matched the <paramref name="matchType"/>.</returns>
     public override StreamConverter Create(RecordType matchType, RecordType constructType)
     {
-        Check.IfArgumentNull(matchType, "matchType");
-        Check.IfArgumentNull(constructType, "constructType");
+        Check.IfArgumentNull(matchType, nameof(matchType));
+        Check.IfArgumentNull(constructType, nameof(constructType));
 
         StreamConverter converter;
         switch (matchType.Name.Name)

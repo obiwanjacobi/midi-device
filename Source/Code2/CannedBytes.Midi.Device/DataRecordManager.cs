@@ -10,7 +10,7 @@ public sealed partial class DataRecordManager
 
     public DataRecordManager(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, "context");
+        Check.IfArgumentNull(context, nameof(context));
 
         _context = context;
     }

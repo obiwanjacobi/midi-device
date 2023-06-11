@@ -14,14 +14,14 @@ public sealed class SchemaNodeMapFactory
     //[ImportingConstructor]
     public SchemaNodeMapFactory(/*[Import]*/ ConverterManager converterMgr)
     {
-        Check.IfArgumentNull(converterMgr, "converterMgr");
+        Check.IfArgumentNull(converterMgr, nameof(converterMgr));
 
         _converterMgr = converterMgr;
     }
 
     public IEnumerable<SchemaNodeMap> CreateAll(DeviceSchema schema)
     {
-        Check.IfArgumentNull(schema, "schema");
+        Check.IfArgumentNull(schema, nameof(schema));
 
         List<SchemaNodeMap> maps = new();
 
@@ -37,7 +37,7 @@ public sealed class SchemaNodeMapFactory
 
     public SchemaNodeMap Create(Field rootField)
     {
-        Check.IfArgumentNull(rootField, "rootField");
+        Check.IfArgumentNull(rootField, nameof(rootField));
 
         SchemaNode rootNode = CreateNode(rootField, 0);
         rootNode.IsRoot = true;

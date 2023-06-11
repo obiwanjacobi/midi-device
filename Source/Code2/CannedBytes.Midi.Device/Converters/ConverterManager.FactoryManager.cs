@@ -12,7 +12,7 @@ partial class ConverterManager
 
         public FactoryManager(IEnumerable<IConverterFactory> factories)
         {
-            Check.IfArgumentNull(factories, "factories");
+            Check.IfArgumentNull(factories, nameof(factories));
 
             _factories = factories.ToList();
 

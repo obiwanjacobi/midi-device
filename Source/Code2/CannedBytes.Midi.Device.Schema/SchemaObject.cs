@@ -27,7 +27,7 @@ public abstract class SchemaObject
         get { return _schema; }
         internal protected set
         {
-            Check.IfArgumentNull(value, "Schema");
+            Check.IfArgumentNull(value, nameof(Schema));
 
             _schema = value;
 
@@ -45,7 +45,7 @@ public abstract class SchemaObject
         get { return _name; }
         protected set
         {
-            Check.IfArgumentNull(value, "Name");
+            Check.IfArgumentNull(value, nameof(Name));
 
             _name = value;
         }

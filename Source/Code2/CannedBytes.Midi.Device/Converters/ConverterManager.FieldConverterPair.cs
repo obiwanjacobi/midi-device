@@ -9,7 +9,7 @@ partial class ConverterManager
 
     public FieldConverterPair GetFieldConverterPair(Field field)
     {
-        Check.IfArgumentNull(field, "field");
+        Check.IfArgumentNull(field, nameof(field));
 
         FieldConverterPair pair = LookupFieldConverterPair(field);
 
@@ -30,7 +30,7 @@ partial class ConverterManager
 
     public FieldConverterPair LookupFieldConverterPair(Field field)
     {
-        Check.IfArgumentNull(field, "field");
+        Check.IfArgumentNull(field, nameof(field));
 
         string fieldKey = BuildFieldTypeKey(field);
         if (_fieldConverterPairs.TryGetValue(fieldKey, out FieldConverterPair pair))

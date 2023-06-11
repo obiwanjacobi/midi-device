@@ -40,7 +40,7 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     /// <param name="items">Must not be null.</param>
     public void AddRange(SchemaCollection<T> items)
     {
-        Check.IfArgumentNull(items, "items");
+        Check.IfArgumentNull(items, nameof(items));
 
         foreach (T item in items)
         {
@@ -56,7 +56,7 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     /// <returns>Returns null if the item could not be found.</returns>
     public T Find(string itemName)
     {
-        Check.IfArgumentNullOrEmpty(itemName, "itemName");
+        Check.IfArgumentNullOrEmpty(itemName, nameof(itemName));
 
         if (!Contains(itemName) &&
             Schema != null && !itemName.StartsWith(Schema.SchemaName))
