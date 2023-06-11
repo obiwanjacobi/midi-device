@@ -8,17 +8,13 @@ partial class ConverterManager
 {
     private sealed class FactoryManager
     {
-        private readonly IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> _factories;
-        private readonly AttributedConverterFactory _attributedFactory;
+        private readonly List<IConverterFactory> _factories;
 
-        public FactoryManager(AttributedConverterFactory attributedFactory,
-            IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories)
+        public FactoryManager(IEnumerable<IConverterFactory> factories)
         {
-            Check.IfArgumentNull(attributedFactory, "attributedFactory");
             Check.IfArgumentNull(factories, "factories");
 
-            _attributedFactory = attributedFactory;
-            _factories = factories;
+            _factories = factories.ToList();
 
             DefaultFactory = Lookup(MidiTypes.MidiTypesSchemaName);
 
@@ -43,17 +39,12 @@ partial class ConverterManager
             ThrowIfNotInitialized();
             List<IConverterFactory> factories = new();
 
-            foreach (Lazy<IConverterFactory, IConverterFactoryInfo> regInfo in _factories)
+            foreach (var factory in _factories)
             {
-                if (regInfo.Metadata.SchemaName == schemaName)
+                if (factory.SchemaName == schemaName)
                 {
-                    factories.Add(regInfo.Value);
+                    factories.Add(factory);
                 }
-            }
-
-            if (_attributedFactory.SchemaNames.Contains(schemaName))
-            {
-                factories.Add(_attributedFactory);
             }
 
             return factories;

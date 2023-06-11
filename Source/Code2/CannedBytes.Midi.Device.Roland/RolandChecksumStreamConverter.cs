@@ -5,7 +5,7 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Roland;
 
-[StreamConverter("http://schemas.cannedbytes.com/midi-device-schema/Roland/10", "rolandChecksum")]
+//[StreamConverter("http://schemas.cannedbytes.com/midi-device-schema/Roland/10", "rolandChecksum")]
 public class RolandChecksumStreamConverter : ChecksumStreamConverter
 {
     public RolandChecksumStreamConverter(RecordType recordType)

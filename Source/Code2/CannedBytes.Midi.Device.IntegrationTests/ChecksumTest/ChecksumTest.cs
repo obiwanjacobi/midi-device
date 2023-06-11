@@ -2,6 +2,7 @@
 using Xunit;
 using FluentAssertions;
 using Xunit.Abstractions;
+using System.IO;
 
 namespace CannedBytes.Midi.Device.IntegrationTests.ChecksumTest;
 
@@ -19,14 +20,21 @@ public class ChecksumTest
     [Fact]
     public void ChecksumReadTest()
     {
-        ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
         DictionaryBasedLogicalStub writer = new();
 
-        DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx, 
-                                    ChecksumSchemaFileName, 
-                                    ChecksumTestStreamFileName, 
-                                    "checksumTest", 
-                                    writer);
+        //ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
+        //DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx, 
+        //                            ChecksumSchemaFileName, 
+        //                            ChecksumTestStreamFileName, 
+        //                            "checksumTest", 
+        //                            writer);
+
+        var serviceProvider = ServiceHelper.CreateServices();
+        DeviceDataContext ctx = DeviceHelper.ToLogical(serviceProvider,
+            Path.Combine(Folder, ChecksumSchemaFileName),
+            Path.Combine(Folder, ChecksumTestStreamFileName),
+            "checksumTest",
+            writer);
 
         ctx.Should().NotBeNull();
 

@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device;
 
-[Export]
+//[Export]
 public sealed class SchemaNodeMapFactory
 {
     private readonly ConverterManager _converterMgr;
 
-    [ImportingConstructor]
-    public SchemaNodeMapFactory([Import] ConverterManager converterMgr)
+    //[ImportingConstructor]
+    public SchemaNodeMapFactory(/*[Import]*/ ConverterManager converterMgr)
     {
         Check.IfArgumentNull(converterMgr, "converterMgr");
 

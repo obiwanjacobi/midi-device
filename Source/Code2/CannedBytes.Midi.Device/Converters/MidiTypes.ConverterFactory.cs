@@ -7,9 +7,12 @@ namespace CannedBytes.Midi.Device.Converters;
 /// The MidiTypesConverterFactory creates converters for the predefined type system
 /// of midi types.
 /// </summary>
-[ConverterFactory(MidiTypes.MidiTypesSchemaName)]
 public class MidiTypesConverterFactory : ConverterFactory
 {
+    public MidiTypesConverterFactory()
+        : base(MidiTypes.MidiTypesSchemaName)
+    { }
+
     /// <summary>
     /// Creates a field converter instance on the <paramref name="constructType"/>
     /// that supports the specified <paramref name="matchType"/>.

@@ -17,6 +17,6 @@
     <EmbeddedResource Include="MidiTypes.mds" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
   </ItemGroup>
 </Project>

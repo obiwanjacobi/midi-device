@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+using System.IO;
 using System.Linq;
 
 namespace CannedBytes.Midi.Device.Schema.Xml;
 
-[Export(typeof(IDeviceSchemaProvider))]
+//[Export(typeof(IDeviceSchemaProvider))]
 public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 {
     private readonly MidiDeviceSchemaSet _schemas = new();
@@ -44,8 +44,9 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
             System.Diagnostics.TraceEventType.Information,
             "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
 
-        using System.IO.Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
+        using Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
             ?? throw new DeviceSchemaNotFoundException(schemaName + " - " + schemaAssembly);
+        
         MidiDeviceSchemaParser parser = new(_schemas);
         DeviceSchema deviceSchema = parser.Parse(stream);
 
