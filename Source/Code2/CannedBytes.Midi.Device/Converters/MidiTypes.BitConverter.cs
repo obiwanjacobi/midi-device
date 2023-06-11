@@ -146,7 +146,7 @@ public partial class BitConverter : DataConverter
         Check.IfArgumentNull(reader, nameof(reader));
         Check.IfArgumentNull(writer, nameof(writer));
 
-        reader.Read(this.BitFlag, out ushort value);
+        reader.Read(BitFlag, out ushort value);
 
         int bitLength = ProcessStartAndLength(ProcessPart.LogicalStartAndLength, ref value);
 

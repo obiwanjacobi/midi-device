@@ -44,22 +44,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <remarks>Derived classes can set their own instance of this collection.</remarks>
         public RecordTypeCollection AllRecordTypes
         {
-            get
-            {
-                if (this.recordTypes == null)
-                {
-                    AllRecordTypes = new RecordTypeCollection();
-                }
-
-                return this.recordTypes;
-            }
-            protected set
-            {
-                Check.IfArgumentNull(value, nameof(AllRecordTypes));
-
-                this.recordTypes = value;
-                this.recordTypes.Schema = this;
-            }
+            get { return recordTypes ??= new RecordTypeCollection { Schema = this }; }
         }
 
         private DataTypeCollection dataTypes;
@@ -70,22 +55,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <remarks>Derived classes can set their own instance of this collection.</remarks>
         public DataTypeCollection AllDataTypes
         {
-            get
-            {
-                if (this.dataTypes == null)
-                {
-                    AllDataTypes = new DataTypeCollection();
-                }
-
-                return this.dataTypes;
-            }
-            protected set
-            {
-                Check.IfArgumentNull(value, nameof(AllDataTypes));
-
-                this.dataTypes = value;
-                this.dataTypes.Schema = this;
-            }
+            get { return dataTypes ??= new DataTypeCollection { Schema = this }; }
         }
 
         private RecordTypeCollection rootTypes;
@@ -96,22 +66,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <remarks>Derived classes can set their own instance of this collection.</remarks>
         public RecordTypeCollection RootRecordTypes
         {
-            get
-            {
-                if (this.rootTypes == null)
-                {
-                    RootRecordTypes = new RecordTypeCollection();
-                }
-
-                return this.rootTypes;
-            }
-            protected set
-            {
-                Check.IfArgumentNull(value, nameof(RootRecordTypes));
-
-                this.rootTypes = value;
-                this.rootTypes.Schema = this;
-            }
+            get { return rootTypes ??= new RecordTypeCollection { Schema = this }; }
         }
 
         private FieldCollection _virtualRootFields;
@@ -121,22 +76,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// </summary>
         public FieldCollection VirtualRootFields
         {
-            get
-            {
-                if (this._virtualRootFields == null)
-                {
-                    VirtualRootFields = new FieldCollection();
-                }
-
-                return this._virtualRootFields;
-            }
-            set
-            {
-                Check.IfArgumentNull(value, nameof(VirtualRootFields));
-
-                this._virtualRootFields = value;
-                this._virtualRootFields.Schema = this;
-            }
+            get { return _virtualRootFields ??= new FieldCollection { Schema = this }; }
         }
 
         private string schemaName;
@@ -147,11 +87,11 @@ namespace CannedBytes.Midi.Device.Schema
         /// <remarks>Derived classes can set this property.</remarks>
         public virtual string SchemaName
         {
-            get { return this.schemaName; }
+            get { return schemaName; }
             internal protected set
             {
                 Check.IfArgumentNullOrEmpty(value, nameof(SchemaName));
-                this.schemaName = value;
+                schemaName = value;
 
                 Name = new SchemaObjectName(value, string.Empty);
             }
@@ -164,7 +104,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <returns>Never returns null.</returns>
         public string FormatFullName(string localName)
         {
-            return new SchemaObjectName(this.schemaName, localName).ToString();
+            return new SchemaObjectName(schemaName, localName).ToString();
         }
     }
 }

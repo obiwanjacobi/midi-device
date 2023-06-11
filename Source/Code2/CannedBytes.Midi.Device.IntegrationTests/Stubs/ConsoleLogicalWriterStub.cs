@@ -11,7 +11,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
 
     public ConsoleLogicalWriterStub(IMidiLogicalWriter nestedWriter)
     {
-        this.writer = nestedWriter;
+        writer = nestedWriter;
     }
 
     private void Log<T>(LogicalContext context, T data)
@@ -27,7 +27,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        this.writer?.WriteBool(context, data);
+        writer?.WriteBool(context, data);
 
         return true;
     }
@@ -36,7 +36,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        this.writer?.WriteByte(context, data);
+        writer?.WriteByte(context, data);
 
         return true;
     }
@@ -45,7 +45,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        this.writer?.WriteShort(context, data);
+        writer?.WriteShort(context, data);
 
         return true;
     }
@@ -54,7 +54,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        this.writer?.WriteInt(context, data);
+        writer?.WriteInt(context, data);
 
         return true;
     }
@@ -63,7 +63,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        this.writer?.WriteLong(context, data);
+        writer?.WriteLong(context, data);
 
         return true;
     }
@@ -72,7 +72,7 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
     {
         Log(context, data);
 
-        this.writer?.WriteString(context, data);
+        writer?.WriteString(context, data);
 
         return true;
     }

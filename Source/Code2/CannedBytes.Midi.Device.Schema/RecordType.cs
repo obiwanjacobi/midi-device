@@ -97,22 +97,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <remarks>The collection contains only the fields declared in this RecordType instance.</remarks>
         public FieldCollection Fields
         {
-            get
-            {
-                if (_fields == null)
-                {
-                    Fields = new FieldCollection();
-                }
-
-                return _fields;
-            }
-            internal protected set
-            {
-                Check.IfArgumentNull(value, nameof(Fields));
-
-                _fields = value;
-                _fields.Schema = Schema;
-            }
+            get { return _fields ??= new FieldCollection { Schema = Schema }; }
         }
     }
 }

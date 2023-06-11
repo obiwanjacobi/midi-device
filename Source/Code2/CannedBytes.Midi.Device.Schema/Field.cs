@@ -35,12 +35,10 @@ namespace CannedBytes.Midi.Device.Schema
         {
             get
             {
-                if (!_isAbstract.HasValue)
+                if (!_isAbstract.HasValue
+                    && RecordType != null)
                 {
-                    if (RecordType != null)
-                    {
-                        return RecordType.IsAbstract;
-                    }
+                    return RecordType.IsAbstract;
                 }
 
                 return _isAbstract.GetValueOrDefault();
@@ -51,18 +49,12 @@ namespace CannedBytes.Midi.Device.Schema
             }
         }
 
-        private readonly ExtendedFieldProperties _extendedProperties = new();
-
         /// <summary>
         /// Gets the values of the extended schema attributes.
         /// </summary>
-        public ExtendedFieldProperties ExtendedProperties
-        { 
-            get { return _extendedProperties; }
-        }
+        public ExtendedFieldProperties ExtendedProperties { get; } = new();
 
         private DataType _dataType;
-
         /// <summary>
         /// Gets the DataType for this Field. Can be null.
         /// </summary>
@@ -154,14 +146,14 @@ namespace CannedBytes.Midi.Device.Schema
         {
             StringBuilder text = new();
 
-            text.Append(this.Name.SchemaName);
+            text.Append(Name.SchemaName);
             text.Append(':');
             if (DeclaringRecord != null)
             {
                 text.Append(DeclaringRecord.Name.Name);
                 text.Append(':');
             }
-            text.Append(this.Name.Name);
+            text.Append(Name.Name);
 
             if (DataType != null)
             {
@@ -192,17 +184,11 @@ namespace CannedBytes.Midi.Device.Schema
 
             public int Width { get; set; }
 
-            private int _repeats = 1;
-
             /// <summary>
             /// Gets the number of times this field can occur within an address map.
             /// </summary>
             /// <remarks>Filled by the 'repeats' attribute. Default value of 1.</remarks>
-            public int Repeats
-            {
-                get { return _repeats; }
-                set { _repeats = value; }
-            }
+            public int Repeats { get; set; } = 1;
         }
     }
 }

@@ -32,24 +32,11 @@ public abstract class Constraint
     /// <value>Derived classes can set this property. Must not be empty.</value>
     public ConstraintTypes ConstraintType { get; internal protected set; }
 
-    private string name;
     /// <summary>
     /// Gets the name of the Constraint.
     /// </summary>
     /// <value>Derived classes can set this property. Must not be null or empty.</value>
-    public string Name
-    {
-        get
-        {
-            return this.name;
-        }
-
-        internal protected set
-        {
-            Check.IfArgumentNullOrEmpty(value, nameof(Name));
-            this.name = value;
-        }
-    }
+    public string Name { get; }
 
     /// <summary>
     /// Gets the value used in validation.

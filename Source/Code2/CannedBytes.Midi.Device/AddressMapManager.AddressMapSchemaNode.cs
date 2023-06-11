@@ -22,35 +22,35 @@ partial class AddressMapManager
 
         public void SetParent(SchemaNode parent)
         {
-            this.Parent = parent;
-            this.Parent.Children.Add(this);
+            Parent = parent;
+            Parent.Children.Add(this);
         }
 
         public void SetNext(SchemaNode next)
         {
-            this.Next = next;
-            this.Next.Previous = this;
+            Next = next;
+            Next.Previous = this;
         }
 
         private void CopyFrom(SchemaNode copyNode)
         {
-            this.Address = copyNode.Address;
-            this.DataLength = copyNode.DataLength;
-            this.FieldConverterPair = copyNode.FieldConverterPair;
-            this.InstanceCount = copyNode.InstanceCount;
-            this.InstanceIndex = copyNode.InstanceIndex;
-            this.IsAddressMap = copyNode.IsAddressMap;
-            this.IsClone = copyNode.IsClone;
-            this.IsRecord = copyNode.IsRecord;
-            this.IsRoot = copyNode.IsRoot;
-            this.Key = copyNode.Key;
-            this.Next = copyNode.Next;
-            this.NextClone = copyNode.NextClone;
-            this.NextSibling = copyNode.NextSibling;
-            this.Parent = copyNode.Parent;
-            this.Previous = copyNode.Previous;
-            this.PreviousClone = copyNode.PreviousClone;
-            this.PreviousSibling = copyNode.PreviousSibling;
+            Address = copyNode.Address;
+            DataLength = copyNode.DataLength;
+            FieldConverterPair = copyNode.FieldConverterPair;
+            InstanceCount = copyNode.InstanceCount;
+            InstanceIndex = copyNode.InstanceIndex;
+            IsAddressMap = copyNode.IsAddressMap;
+            IsClone = copyNode.IsClone;
+            IsRecord = copyNode.IsRecord;
+            IsRoot = copyNode.IsRoot;
+            Key = copyNode.Key;
+            Next = copyNode.Next;
+            NextClone = copyNode.NextClone;
+            NextSibling = copyNode.NextSibling;
+            Parent = copyNode.Parent;
+            Previous = copyNode.Previous;
+            PreviousClone = copyNode.PreviousClone;
+            PreviousSibling = copyNode.PreviousSibling;
         }
     }
 }

@@ -134,7 +134,7 @@ public class MidiTypesConverterFactory : ConverterFactory
     private DataConverter CreateUnion(DataType matchType, DataType constructType)
     {
         System.Collections.Generic.IEnumerable<DataType> bitTypes = from dataType in matchType.BaseTypes
-                       where dataType.Name.SchemaName == this.SchemaName
+                       where dataType.Name.SchemaName == SchemaName
                        where dataType.Name.Name.StartsWith("midiBit") || dataType.Name.Name.EndsWith("Nibble")
                        select dataType;
 

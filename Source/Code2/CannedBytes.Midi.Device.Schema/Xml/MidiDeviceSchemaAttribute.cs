@@ -13,9 +13,9 @@ public class MidiDeviceSchemaAttribute : SchemaAttribute
         get { return Name.FullName; }
         set
         {
-            if (this.Schema != null)
+            if (Schema != null)
             {
-                Name = new SchemaObjectName(this.Schema.SchemaName, value);
+                Name = new SchemaObjectName(Schema.SchemaName, value);
             }
             else
             {

@@ -4,24 +4,18 @@ namespace CannedBytes.Midi.Device.Schema.Xml;
 
 public class MidiDeviceSchemaDataType : DataType
 {
-    //public new DeviceSchema Schema
-    //{
-    //    get { return base.Schema; }
-    //    set { base.Schema = value; }
-    //}
-
     public string DataTypeName
     {
         get { return Name.FullName; }
         set
         {
-            if (this.Schema != null)
+            if (Schema != null)
             {
-                this.Name = new SchemaObjectName(this.Schema.SchemaName, value);
+                Name = new SchemaObjectName(Schema.SchemaName, value);
             }
             else
             {
-                this.Name = new SchemaObjectName(value);
+                Name = new SchemaObjectName(value);
             }
         }
     }

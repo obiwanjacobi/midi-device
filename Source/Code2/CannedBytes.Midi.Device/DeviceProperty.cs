@@ -11,9 +11,9 @@ public class DeviceProperty
 
     public DeviceProperty(string schemaName, string propertyName, object value)
     {
-        this.SchemaName = schemaName;
-        this.Name = propertyName;
-        this.Value = value;
+        SchemaName = schemaName;
+        Name = propertyName;
+        Value = value;
     }
 
     public string SchemaName { get; protected set; }
@@ -26,6 +26,6 @@ public class DeviceProperty
     {
         Type requestedType = typeof(T);
 
-        return (T)Convert.ChangeType(this.Value, requestedType);
+        return (T)Convert.ChangeType(Value, requestedType);
     }
 }

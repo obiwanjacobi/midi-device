@@ -14,9 +14,6 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     public SchemaNode(FieldConverterPair pair, int instanceIndex)
     {
-        Check.IfArgumentNull(pair, nameof(pair));
-        //Check.IfArgumentOutOfRange(instanceIndex, 0, pair.Field.ExtendedProperties.Repeats, "instanceIndex");
-
         FieldConverterPair = pair;
         InstanceIndex = instanceIndex;
         InstanceCount = pair.Field.ExtendedProperties.Repeats;
@@ -127,16 +124,16 @@ public partial class SchemaNode : ILogicalFieldInfo
     {
         get
         {
-            if (this.IsRecord)
+            if (IsRecord)
             {
-                if (this.PreviousClone != null)
+                if (PreviousClone != null)
                 {
-                    return this.PreviousClone;
+                    return PreviousClone;
                 }
 
-                if (this.PreviousSibling != null)
+                if (PreviousSibling != null)
                 {
-                    return this.PreviousSibling.Last(node => node.NextClone);
+                    return PreviousSibling.Last(node => node.NextClone);
                 }
             }
 
@@ -222,7 +219,7 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     public bool IsOfParent(SchemaNode parentNode)
     {
-        return (from node in this.SelectNodes(node => node.Parent)
+        return (from node in SelectNodes(node => node.Parent)
                 where node == parentNode
                 select node).Any();
     }
@@ -367,23 +364,23 @@ public partial class SchemaNode : ILogicalFieldInfo
     {
         Check.IfArgumentNull(targetNode, nameof(targetNode));
 
-        targetNode.Address = this.Address;
-        targetNode.DataLength = this.DataLength;
-        targetNode.FieldConverterPair = this.FieldConverterPair;
-        targetNode.InstanceCount = this.InstanceCount;
-        targetNode.InstanceIndex = this.InstanceIndex;
-        targetNode.IsAddressMap = this.IsAddressMap;
-        targetNode.IsClone = this.IsClone;
-        targetNode.IsRecord = this.IsRecord;
-        targetNode.IsRoot = this.IsRoot;
-        targetNode.Key = this.Key;
-        targetNode.Next = this.Next;
-        targetNode.NextClone = this.NextClone;
-        targetNode.NextSibling = this.NextSibling;
-        targetNode.Parent = this.Parent;
-        targetNode.Previous = this.Previous;
-        targetNode.PreviousClone = this.PreviousClone;
-        targetNode.PreviousSibling = this.PreviousSibling;
+        targetNode.Address = Address;
+        targetNode.DataLength = DataLength;
+        targetNode.FieldConverterPair = FieldConverterPair;
+        targetNode.InstanceCount = InstanceCount;
+        targetNode.InstanceIndex = InstanceIndex;
+        targetNode.IsAddressMap = IsAddressMap;
+        targetNode.IsClone = IsClone;
+        targetNode.IsRecord = IsRecord;
+        targetNode.IsRoot = IsRoot;
+        targetNode.Key = Key;
+        targetNode.Next = Next;
+        targetNode.NextClone = NextClone;
+        targetNode.NextSibling = NextSibling;
+        targetNode.Parent = Parent;
+        targetNode.Previous = Previous;
+        targetNode.PreviousClone = PreviousClone;
+        targetNode.PreviousSibling = PreviousSibling;
     }
 
     #region ILogicalFieldInfo members
@@ -395,7 +392,7 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     ILogicalFieldInfo ILogicalFieldInfo.Parent
     {
-        get { return this.Parent; }
+        get { return Parent; }
     }
 
     #endregion

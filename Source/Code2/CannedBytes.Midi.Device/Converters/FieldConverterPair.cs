@@ -5,15 +5,8 @@ namespace CannedBytes.Midi.Device.Converters;
 /// <summary>
 /// The FieldConverterPair class stores a <see cref="Field"/> with its matching <see cref="IConverter"/> instance.
 /// </summary>
-public class FieldConverterPair
+public readonly struct FieldConverterPair
 {
-    /// <summary>
-    /// For derived classes only.
-    /// </summary>
-    protected FieldConverterPair()
-    {
-    }
-
     /// <summary>
     /// Constructs a new fully initialized instance.
     /// </summary>
@@ -31,12 +24,12 @@ public class FieldConverterPair
     /// <summary>
     /// Gets the field.
     /// </summary>
-    public Field Field { get; protected set; }
+    public Field Field { get; }
 
     /// <summary>
     /// Gets the converter.
     /// </summary>
-    public IConverter Converter { get; protected set; }
+    public IConverter Converter { get; }
 
     public DataConverter DataConverter
     {

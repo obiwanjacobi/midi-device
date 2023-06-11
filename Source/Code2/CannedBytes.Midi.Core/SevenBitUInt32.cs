@@ -87,7 +87,7 @@ public struct SevenBitUInt32 : IConvertible
 
         if (success)
         {
-            this.Bytes = bytes;
+            Bytes = bytes;
         }
 
         return success;
@@ -159,7 +159,7 @@ public struct SevenBitUInt32 : IConvertible
     /// <returns></returns>
     public override string ToString()
     {
-        return this.ToString("X") + "H (" + ToString("D") + ")";
+        return ToString("X") + "H (" + ToString("D") + ")";
     }
 
     public string ToString(string format)

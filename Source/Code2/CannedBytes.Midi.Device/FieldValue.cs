@@ -10,9 +10,9 @@ public class FieldValue<T>
     public FieldValue(DeviceDataContext context)
         : this(context.FieldInfo.CurrentNode.FieldConverterPair.Field)
     {
-        if (!String.IsNullOrEmpty(this.Field.ExtendedProperties.DevicePropertyName))
+        if (!String.IsNullOrEmpty(Field.ExtendedProperties.DevicePropertyName))
         {
-            DeviceProperty prop = context.DeviceProperties.Find(this.Field.ExtendedProperties.DevicePropertyName);
+            DeviceProperty prop = context.DeviceProperties.Find(Field.ExtendedProperties.DevicePropertyName);
 
             if (prop != null)
             {
@@ -29,25 +29,25 @@ public class FieldValue<T>
 
     protected FieldValue(Field field)
     {
-        this.Field = field;
+        Field = field;
 
         Callback = true;
 
-        Constraint minValue = this.Field.Constraints.Find(ConstraintTypes.MinInclusive);
+        Constraint minValue = Field.Constraints.Find(ConstraintTypes.MinInclusive);
 
         if (minValue != null)
         {
             MinValue = minValue.GetValue<T>();
         }
 
-        Constraint maxValue = this.Field.Constraints.Find(ConstraintTypes.MaxInclusive);
+        Constraint maxValue = Field.Constraints.Find(ConstraintTypes.MaxInclusive);
 
         if (maxValue != null)
         {
             MaxValue = maxValue.GetValue<T>();
         }
 
-        Constraint fixValue = this.Field.Constraints.Find(ConstraintTypes.FixedValue);
+        Constraint fixValue = Field.Constraints.Find(ConstraintTypes.FixedValue);
 
         if (fixValue != null)
         {
@@ -55,7 +55,7 @@ public class FieldValue<T>
             Callback = false;
         }
 
-        System.Collections.Generic.IEnumerable<Constraint> enums = this.Field.Constraints.FindAll(ConstraintTypes.Enumeration);
+        System.Collections.Generic.IEnumerable<Constraint> enums = Field.Constraints.FindAll(ConstraintTypes.Enumeration);
 
         if (enums?.Count() == 1)
         {
@@ -63,7 +63,7 @@ public class FieldValue<T>
             Callback = false;
         }
 
-        if (this.Field.DataType.Name.Name == "midiNull")
+        if (Field.DataType.Name.Name == "midiNull")
         {
             IsNullType = true;
             Callback = false;
@@ -81,10 +81,10 @@ public class FieldValue<T>
     {
         if (data is string strData)
         {
-            return this.Field.Constraints.Validate(strData.Length);
+            return Field.Constraints.Validate(strData.Length);
         }
 
-        return this.Field.Constraints.Validate<T>(data);
+        return Field.Constraints.Validate<T>(data);
     }
 
     public void Validate(T data)

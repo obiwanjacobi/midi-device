@@ -2,12 +2,6 @@
 
 public class MidiDeviceSchemaRecordType : RecordType
 {
-    //public new DeviceSchema Schema
-    //{
-    //    get { return base.Schema; }
-    //    set { base.Schema = value; }
-    //}
-
     public string RecordTypeName
     {
         get { return Name.FullName; }

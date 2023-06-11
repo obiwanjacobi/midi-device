@@ -11,9 +11,7 @@ partial class ConverterManager
     {
         Check.IfArgumentNull(field, nameof(field));
 
-        FieldConverterPair pair = LookupFieldConverterPair(field);
-
-        if (pair == null)
+        if (!TryLookupFieldConverterPair(field, out var pair))
         {
             IConverter converter = GetConverter(field);
 
@@ -28,17 +26,19 @@ partial class ConverterManager
         return pair;
     }
 
-    public FieldConverterPair LookupFieldConverterPair(Field field)
+    public bool TryLookupFieldConverterPair(Field field, out FieldConverterPair fieldConverterPair)
     {
         Check.IfArgumentNull(field, nameof(field));
 
         string fieldKey = BuildFieldTypeKey(field);
         if (_fieldConverterPairs.TryGetValue(fieldKey, out FieldConverterPair pair))
         {
-            return pair;
+            fieldConverterPair = pair;
+            return true;
         }
 
-        return null;
+        fieldConverterPair = default;
+        return false;
     }
 
     // prevents giving out wrong pairs when field names are the same.

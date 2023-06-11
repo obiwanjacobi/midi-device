@@ -16,13 +16,9 @@ partial class ConverterManager
 
             _factories = factories.ToList();
 
-            DefaultFactory = Lookup(MidiTypes.MidiTypesSchemaName);
-
-            if (DefaultFactory == null)
-            {
-                throw new DeviceException(
+            DefaultFactory = Lookup(MidiTypes.MidiTypesSchemaName)
+                ?? throw new DeviceException(
                     $"The default converter factory implementation was not found for schema: {MidiTypes.MidiTypesSchemaName}");
-            }
         }
 
         public IConverterFactory DefaultFactory { get; }

@@ -26,9 +26,9 @@ namespace CannedBytes.Midi.Device.Schema
         {
             base.OnSchemaChanged();
 
-            if (this.baseTypes != null)
+            if (baseTypes != null)
             {
-                this.baseTypes.Schema = Schema;
+                baseTypes.Schema = Schema;
             }
         }
 
@@ -48,7 +48,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// to find out if there are any base DataTypes.</remarks>
         public bool HasBaseTypes
         {
-            get { return this.baseTypes?.Count > 0; }
+            get { return baseTypes?.Count > 0; }
         }
 
         /// <summary>
@@ -69,22 +69,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <value>Derived classes can set this property. Must not be null.</value>
         public DataTypeCollection BaseTypes
         {
-            get
-            {
-                if (this.baseTypes == null)
-                {
-                    BaseTypes = new DataTypeCollection();
-                }
-
-                return this.baseTypes;
-            }
-            internal protected set
-            {
-                Check.IfArgumentNull(value, nameof(BaseTypes));
-
-                this.baseTypes = value;
-                this.baseTypes.Schema = Schema;
-            }
+            get { return baseTypes ??= new DataTypeCollection { Schema = Schema }; }
         }
 
         /// <summary>
@@ -96,9 +81,9 @@ namespace CannedBytes.Midi.Device.Schema
         {
             get
             {
-                if (this.baseTypes?.Count == 1)
+                if (baseTypes?.Count == 1)
                 {
-                    return this.baseTypes[0];
+                    return baseTypes[0];
                 }
 
                 return null;
@@ -114,21 +99,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <remarks>The collection contains only the Constraints declared in this DataType instance.</remarks>
         public ConstraintCollection Constraints
         {
-            get
-            {
-                if (this.constraints == null)
-                {
-                    Constraints = new ConstraintCollection();
-                }
-
-                return this.constraints;
-            }
-            internal protected set
-            {
-                Check.IfArgumentNull(value, nameof(Constraints));
-
-                this.constraints = value;
-            }
+            get { return constraints ??= new ConstraintCollection(); }
         }
 
         /// <summary>

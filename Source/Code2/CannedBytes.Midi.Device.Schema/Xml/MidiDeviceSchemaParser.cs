@@ -135,7 +135,8 @@ public class MidiDeviceSchemaParser
 
             if (docOrAppInfo is appInfo)
             {
-                throw new NotImplementedException("The use of <annotation>/<appInfo> is not implemented yet.");
+                throw new NotImplementedException(
+                    "The use of <annotation>/<appInfo> is not implemented yet.");
             }
         }
     }
@@ -186,7 +187,9 @@ public class MidiDeviceSchemaParser
             foreach (KeyValuePair<XmlQualifiedName, MidiDeviceSchemaDataType> pair in _deferredDataTypes)
             {
                 DataType baseType = dataTypes.Find(pair.Key.Name)
-                    ?? throw new DeviceSchemaException("Could not find the DataType for " + pair.Key.Namespace + ":" + pair.Key.Name);
+                    ?? throw new DeviceSchemaException(
+                        $"Could not find the DataType for {pair.Key.Namespace}:{pair.Key.Name}");
+
                 pair.Value.BaseTypes.Add(baseType);
             }
 

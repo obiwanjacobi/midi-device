@@ -2,21 +2,15 @@
 
 public class MidiDeviceSchemaField : Field
 {
-    //public new DeviceSchema Schema
-    //{
-    //    get { return base.Schema; }
-    //    set { base.Schema = value; }
-    //}
-
     public void SetName(string name)
     {
-        if (this.Schema != null)
+        if (Schema != null)
         {
-            this.Name = new SchemaObjectName(this.Schema.SchemaName, name);
+            Name = new SchemaObjectName(Schema.SchemaName, name);
         }
         else
         {
-            this.Name = new SchemaObjectName(name);
+            Name = new SchemaObjectName(name);
         }
     }
 

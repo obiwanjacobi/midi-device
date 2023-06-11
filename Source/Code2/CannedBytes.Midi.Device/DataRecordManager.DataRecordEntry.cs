@@ -19,13 +19,13 @@ partial class DataRecordManager
         {
             DataRecordEntry clone = new()
             {
-                CarryCleared = this.CarryCleared,
-                Data = this.Data,
-                Error = this.Error,
-                Node = this.Node,
-                Message = this.Message,
-                ParentStreamPosition = this.ParentStreamPosition,
-                PhysicalStreamPosition = this.PhysicalStreamPosition
+                CarryCleared = CarryCleared,
+                Data = Data,
+                Error = Error,
+                Node = Node,
+                Message = Message,
+                ParentStreamPosition = ParentStreamPosition,
+                PhysicalStreamPosition = PhysicalStreamPosition
             };
 
             return clone;

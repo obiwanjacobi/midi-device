@@ -60,12 +60,12 @@ public partial class StreamManager
 
         public void WriteStartMarker()
         {
-            this.WriteByte(0xF0);
+            WriteByte(0xF0);
         }
 
         public void WriteEndMarker()
         {
-            this.WriteByte(0xF7);
+            WriteByte(0xF7);
         }
 
         public override int Read(byte[] buffer, int offset, int count)

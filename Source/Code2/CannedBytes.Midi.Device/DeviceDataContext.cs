@@ -59,7 +59,7 @@ public partial class DeviceDataContext
     public DeviceStreamReader CreateReader()
     {
         DeviceStreamReader reader = new(
-            this.StreamManager.CurrentStream, this.Carry);
+            StreamManager.CurrentStream, Carry);
 
         return reader;
     }
@@ -82,13 +82,13 @@ public partial class DeviceDataContext
     /// <returns>Never returns null.</returns>
     public virtual LogicalContext CreateLogicalContext()
     {
-        if (this.FieldInfo.CurrentNode == null)
+        if (FieldInfo.CurrentNode == null)
         {
             throw new InvalidOperationException(
                 "No current node is set");
         }
 
-        LogicalContext ctx = new(this.FieldInfo.CurrentNode);
+        LogicalContext ctx = new(FieldInfo.CurrentNode);
 
         return ctx;
     }

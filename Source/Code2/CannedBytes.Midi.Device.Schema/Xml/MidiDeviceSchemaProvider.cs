@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace CannedBytes.Midi.Device.Schema.Xml;
 
-//[Export(typeof(IDeviceSchemaProvider))]
 public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 {
     private readonly MidiDeviceSchemaSet _schemas = new();
@@ -45,7 +44,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
             "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
 
         using Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
-            ?? throw new DeviceSchemaNotFoundException(schemaName + " - " + schemaAssembly);
+            ?? throw new DeviceSchemaNotFoundException($"{schemaName} - {schemaAssembly}");
         
         MidiDeviceSchemaParser parser = new(_schemas);
         DeviceSchema deviceSchema = parser.Parse(stream);

@@ -8,12 +8,9 @@ public static class MidiDeviceSchemaImportResolver
 {
     public static DeviceSchema LoadSchema(MidiDeviceSchemaSet schemas, string name, string assembly)
     {
-        using Stream stream = OpenSchema(name, assembly);
-        if (stream == null)
-        {
-            throw new DeviceSchemaException(
-                String.Format("Failed to open schema (import) {0} ({1}).", name, assembly));
-        }
+        using Stream stream = OpenSchema(name, assembly)
+            ?? throw new DeviceSchemaException(
+                $"Failed to open schema (import) {name} ({assembly}).");
 
         MidiDeviceSchemaParser parser = new(schemas);
         DeviceSchema schema = parser.Parse(stream);

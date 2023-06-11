@@ -18,28 +18,28 @@ public class InstancePathKey : IEquatable<InstancePathKey>
 
     public InstancePathKey()
     {
-        this.values = new List<int>();
+        values = new List<int>();
     }
 
     public InstancePathKey(int instanceIndex)
         : this()
     {
-        this.Add(instanceIndex);
+        Add(instanceIndex);
     }
 
     public InstancePathKey(IEnumerable<int> values)
     {
-        this.values = new List<int>(values);
+        values = new List<int>(values);
     }
 
     public void Add(int instanceIndex)
     {
-        this.values.Add(instanceIndex);
+        values.Add(instanceIndex);
     }
 
     public void AddRange(IEnumerable<int> instanceIndexes)
     {
-        this.values.AddRange(instanceIndexes);
+        values.AddRange(instanceIndexes);
     }
 
     public override bool Equals(object obj)
@@ -56,11 +56,11 @@ public class InstancePathKey : IEquatable<InstancePathKey>
 
     public bool Equals(InstancePathKey key)
     {
-        if (this.values.Count == key.values.Count)
+        if (values.Count == key.values.Count)
         {
-            for (int i = 0; i < this.values.Count; i++)
+            for (int i = 0; i < values.Count; i++)
             {
-                if (this.values[i] != key.values[i])
+                if (values[i] != key.values[i])
                 {
                     return false;
                 }
@@ -74,7 +74,7 @@ public class InstancePathKey : IEquatable<InstancePathKey>
 
     public override int GetHashCode()
     {
-        return this.values.GetHashCode();
+        return values.GetHashCode();
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class InstancePathKey : IEquatable<InstancePathKey>
     {
         get
         {
-            foreach (int index in this.values)
+            foreach (int index in values)
             {
                 if (index > 0)
                 {
@@ -98,19 +98,19 @@ public class InstancePathKey : IEquatable<InstancePathKey>
 
     public int Depth
     {
-        get { return this.values.Count; }
+        get { return values.Count; }
     }
 
     public IEnumerable<int> Values
     {
-        get { return this.values; }
+        get { return values; }
     }
 
     public override string ToString()
     {
         StringBuilder text = new();
 
-        foreach (int index in this.values)
+        foreach (int index in values)
         {
             if (text.Length > 0)
             {

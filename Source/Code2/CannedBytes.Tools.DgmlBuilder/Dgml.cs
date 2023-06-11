@@ -66,10 +66,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Node", IsNullable=false)]
         public DirectedGraphNode[] Nodes {
             get {
-                return this.nodesField;
+                return nodesField;
             }
             set {
-                this.nodesField = value;
+                nodesField = value;
             }
         }
         
@@ -77,10 +77,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Link", IsNullable=false)]
         public DirectedGraphLink[] Links {
             get {
-                return this.linksField;
+                return linksField;
             }
             set {
-                this.linksField = value;
+                linksField = value;
             }
         }
         
@@ -88,10 +88,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Category", IsNullable=false)]
         public DirectedGraphCategory[] Categories {
             get {
-                return this.categoriesField;
+                return categoriesField;
             }
             set {
-                this.categoriesField = value;
+                categoriesField = value;
             }
         }
         
@@ -99,10 +99,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Property", IsNullable=false)]
         public DirectedGraphProperty[] Properties {
             get {
-                return this.propertiesField;
+                return propertiesField;
             }
             set {
-                this.propertiesField = value;
+                propertiesField = value;
             }
         }
         
@@ -110,10 +110,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Name", IsNullable=false)]
         public DirectedGraphName[] QualifiedNames {
             get {
-                return this.qualifiedNamesField;
+                return qualifiedNamesField;
             }
             set {
-                this.qualifiedNamesField = value;
+                qualifiedNamesField = value;
             }
         }
         
@@ -121,10 +121,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Alias", IsNullable=false)]
         public DirectedGraphAlias[] IdentifierAliases {
             get {
-                return this.identifierAliasesField;
+                return identifierAliasesField;
             }
             set {
-                this.identifierAliasesField = value;
+                identifierAliasesField = value;
             }
         }
         
@@ -132,10 +132,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Style", IsNullable=false)]
         public DirectedGraphStyle[] Styles {
             get {
-                return this.stylesField;
+                return stylesField;
             }
             set {
-                this.stylesField = value;
+                stylesField = value;
             }
         }
         
@@ -143,10 +143,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlArrayItemAttribute("Path", IsNullable=false)]
         public DirectedGraphPath[] Paths {
             get {
-                return this.pathsField;
+                return pathsField;
             }
             set {
-                this.pathsField = value;
+                pathsField = value;
             }
         }
         
@@ -154,10 +154,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Title {
             get {
-                return this.titleField;
+                return titleField;
             }
             set {
-                this.titleField = value;
+                titleField = value;
             }
         }
         
@@ -165,10 +165,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Background {
             get {
-                return this.backgroundField;
+                return backgroundField;
             }
             set {
-                this.backgroundField = value;
+                backgroundField = value;
             }
         }
         
@@ -176,10 +176,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string BackgroundImage {
             get {
-                return this.backgroundImageField;
+                return backgroundImageField;
             }
             set {
-                this.backgroundImageField = value;
+                backgroundImageField = value;
             }
         }
         
@@ -187,10 +187,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public GraphDirectionEnum GraphDirection {
             get {
-                return this.graphDirectionField;
+                return graphDirectionField;
             }
             set {
-                this.graphDirectionField = value;
+                graphDirectionField = value;
             }
         }
         
@@ -198,10 +198,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool GraphDirectionSpecified {
             get {
-                return this.graphDirectionFieldSpecified;
+                return graphDirectionFieldSpecified;
             }
             set {
-                this.graphDirectionFieldSpecified = value;
+                graphDirectionFieldSpecified = value;
             }
         }
         
@@ -209,10 +209,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public LayoutEnum Layout {
             get {
-                return this.layoutField;
+                return layoutField;
             }
             set {
-                this.layoutField = value;
+                layoutField = value;
             }
         }
         
@@ -220,10 +220,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool LayoutSpecified {
             get {
-                return this.layoutFieldSpecified;
+                return layoutFieldSpecified;
             }
             set {
-                this.layoutFieldSpecified = value;
+                layoutFieldSpecified = value;
             }
         }
         
@@ -231,10 +231,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean ButterflyMode {
             get {
-                return this.butterflyModeField;
+                return butterflyModeField;
             }
             set {
-                this.butterflyModeField = value;
+                butterflyModeField = value;
             }
         }
         
@@ -242,10 +242,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ButterflyModeSpecified {
             get {
-                return this.butterflyModeFieldSpecified;
+                return butterflyModeFieldSpecified;
             }
             set {
-                this.butterflyModeFieldSpecified = value;
+                butterflyModeFieldSpecified = value;
             }
         }
         
@@ -253,10 +253,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute(DataType="integer")]
         public string NeighborhoodDistance {
             get {
-                return this.neighborhoodDistanceField;
+                return neighborhoodDistanceField;
             }
             set {
-                this.neighborhoodDistanceField = value;
+                neighborhoodDistanceField = value;
             }
         }
         
@@ -264,10 +264,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ZoomLevel {
             get {
-                return this.zoomLevelField;
+                return zoomLevelField;
             }
             set {
-                this.zoomLevelField = value;
+                zoomLevelField = value;
             }
         }
     }
@@ -588,10 +588,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlElementAttribute("Category")]
         public DirectedGraphNodeCategory[] Category {
             get {
-                return this.categoryField;
+                return categoryField;
             }
             set {
-                this.categoryField = value;
+                categoryField = value;
             }
         }
         
@@ -599,10 +599,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Id {
             get {
-                return this.idField;
+                return idField;
             }
             set {
-                this.idField = value;
+                idField = value;
             }
         }
         
@@ -610,10 +610,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute("Category")]
         public string Category1 {
             get {
-                return this.category1Field;
+                return category1Field;
             }
             set {
-                this.category1Field = value;
+                category1Field = value;
             }
         }
         
@@ -621,10 +621,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Icon {
             get {
-                return this.iconField;
+                return iconField;
             }
             set {
-                this.iconField = value;
+                iconField = value;
             }
         }
         
@@ -632,10 +632,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Shape {
             get {
-                return this.shapeField;
+                return shapeField;
             }
             set {
-                this.shapeField = value;
+                shapeField = value;
             }
         }
         
@@ -643,10 +643,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Style {
             get {
-                return this.styleField;
+                return styleField;
             }
             set {
-                this.styleField = value;
+                styleField = value;
             }
         }
         
@@ -654,10 +654,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public HorizontalAlignmentEnum HorizontalAlignment {
             get {
-                return this.horizontalAlignmentField;
+                return horizontalAlignmentField;
             }
             set {
-                this.horizontalAlignmentField = value;
+                horizontalAlignmentField = value;
             }
         }
         
@@ -665,10 +665,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool HorizontalAlignmentSpecified {
             get {
-                return this.horizontalAlignmentFieldSpecified;
+                return horizontalAlignmentFieldSpecified;
             }
             set {
-                this.horizontalAlignmentFieldSpecified = value;
+                horizontalAlignmentFieldSpecified = value;
             }
         }
         
@@ -676,10 +676,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public VerticalAlignmentEnum VerticalAlignment {
             get {
-                return this.verticalAlignmentField;
+                return verticalAlignmentField;
             }
             set {
-                this.verticalAlignmentField = value;
+                verticalAlignmentField = value;
             }
         }
         
@@ -687,10 +687,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool VerticalAlignmentSpecified {
             get {
-                return this.verticalAlignmentFieldSpecified;
+                return verticalAlignmentFieldSpecified;
             }
             set {
-                this.verticalAlignmentFieldSpecified = value;
+                verticalAlignmentFieldSpecified = value;
             }
         }
         
@@ -698,10 +698,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double MinWidth {
             get {
-                return this.minWidthField;
+                return minWidthField;
             }
             set {
-                this.minWidthField = value;
+                minWidthField = value;
             }
         }
         
@@ -709,10 +709,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool MinWidthSpecified {
             get {
-                return this.minWidthFieldSpecified;
+                return minWidthFieldSpecified;
             }
             set {
-                this.minWidthFieldSpecified = value;
+                minWidthFieldSpecified = value;
             }
         }
         
@@ -720,10 +720,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double MaxWidth {
             get {
-                return this.maxWidthField;
+                return maxWidthField;
             }
             set {
-                this.maxWidthField = value;
+                maxWidthField = value;
             }
         }
         
@@ -731,10 +731,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool MaxWidthSpecified {
             get {
-                return this.maxWidthFieldSpecified;
+                return maxWidthFieldSpecified;
             }
             set {
-                this.maxWidthFieldSpecified = value;
+                maxWidthFieldSpecified = value;
             }
         }
         
@@ -742,10 +742,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double NodeRadius {
             get {
-                return this.nodeRadiusField;
+                return nodeRadiusField;
             }
             set {
-                this.nodeRadiusField = value;
+                nodeRadiusField = value;
             }
         }
         
@@ -753,10 +753,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool NodeRadiusSpecified {
             get {
-                return this.nodeRadiusFieldSpecified;
+                return nodeRadiusFieldSpecified;
             }
             set {
-                this.nodeRadiusFieldSpecified = value;
+                nodeRadiusFieldSpecified = value;
             }
         }
         
@@ -764,10 +764,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Description {
             get {
-                return this.descriptionField;
+                return descriptionField;
             }
             set {
-                this.descriptionField = value;
+                descriptionField = value;
             }
         }
         
@@ -775,10 +775,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public GroupEnum Group {
             get {
-                return this.groupField;
+                return groupField;
             }
             set {
-                this.groupField = value;
+                groupField = value;
             }
         }
         
@@ -786,10 +786,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool GroupSpecified {
             get {
-                return this.groupFieldSpecified;
+                return groupFieldSpecified;
             }
             set {
-                this.groupFieldSpecified = value;
+                groupFieldSpecified = value;
             }
         }
         
@@ -797,10 +797,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsVertical {
             get {
-                return this.isVerticalField;
+                return isVerticalField;
             }
             set {
-                this.isVerticalField = value;
+                isVerticalField = value;
             }
         }
         
@@ -808,10 +808,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsVerticalSpecified {
             get {
-                return this.isVerticalFieldSpecified;
+                return isVerticalFieldSpecified;
             }
             set {
-                this.isVerticalFieldSpecified = value;
+                isVerticalFieldSpecified = value;
             }
         }
         
@@ -819,10 +819,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Reference {
             get {
-                return this.referenceField;
+                return referenceField;
             }
             set {
-                this.referenceField = value;
+                referenceField = value;
             }
         }
         
@@ -830,10 +830,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Label {
             get {
-                return this.labelField;
+                return labelField;
             }
             set {
-                this.labelField = value;
+                labelField = value;
             }
         }
         
@@ -841,10 +841,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public VisibilityEnum Visibility {
             get {
-                return this.visibilityField;
+                return visibilityField;
             }
             set {
-                this.visibilityField = value;
+                visibilityField = value;
             }
         }
         
@@ -852,10 +852,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool VisibilitySpecified {
             get {
-                return this.visibilityFieldSpecified;
+                return visibilityFieldSpecified;
             }
             set {
-                this.visibilityFieldSpecified = value;
+                visibilityFieldSpecified = value;
             }
         }
         
@@ -863,10 +863,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Background {
             get {
-                return this.backgroundField;
+                return backgroundField;
             }
             set {
-                this.backgroundField = value;
+                backgroundField = value;
             }
         }
         
@@ -874,10 +874,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double FontSize {
             get {
-                return this.fontSizeField;
+                return fontSizeField;
             }
             set {
-                this.fontSizeField = value;
+                fontSizeField = value;
             }
         }
         
@@ -885,10 +885,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontSizeSpecified {
             get {
-                return this.fontSizeFieldSpecified;
+                return fontSizeFieldSpecified;
             }
             set {
-                this.fontSizeFieldSpecified = value;
+                fontSizeFieldSpecified = value;
             }
         }
         
@@ -896,10 +896,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string FontFamily {
             get {
-                return this.fontFamilyField;
+                return fontFamilyField;
             }
             set {
-                this.fontFamilyField = value;
+                fontFamilyField = value;
             }
         }
         
@@ -907,10 +907,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public FontStyleEnum FontStyle {
             get {
-                return this.fontStyleField;
+                return fontStyleField;
             }
             set {
-                this.fontStyleField = value;
+                fontStyleField = value;
             }
         }
         
@@ -918,10 +918,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontStyleSpecified {
             get {
-                return this.fontStyleFieldSpecified;
+                return fontStyleFieldSpecified;
             }
             set {
-                this.fontStyleFieldSpecified = value;
+                fontStyleFieldSpecified = value;
             }
         }
         
@@ -929,10 +929,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public FontWeightEnum FontWeight {
             get {
-                return this.fontWeightField;
+                return fontWeightField;
             }
             set {
-                this.fontWeightField = value;
+                fontWeightField = value;
             }
         }
         
@@ -940,10 +940,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontWeightSpecified {
             get {
-                return this.fontWeightFieldSpecified;
+                return fontWeightFieldSpecified;
             }
             set {
-                this.fontWeightFieldSpecified = value;
+                fontWeightFieldSpecified = value;
             }
         }
         
@@ -951,10 +951,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Stroke {
             get {
-                return this.strokeField;
+                return strokeField;
             }
             set {
-                this.strokeField = value;
+                strokeField = value;
             }
         }
         
@@ -962,10 +962,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string StrokeThickness {
             get {
-                return this.strokeThicknessField;
+                return strokeThicknessField;
             }
             set {
-                this.strokeThicknessField = value;
+                strokeThicknessField = value;
             }
         }
         
@@ -973,10 +973,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string StrokeDashArray {
             get {
-                return this.strokeDashArrayField;
+                return strokeDashArrayField;
             }
             set {
-                this.strokeDashArrayField = value;
+                strokeDashArrayField = value;
             }
         }
         
@@ -984,10 +984,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Access {
             get {
-                return this.accessField;
+                return accessField;
             }
             set {
-                this.accessField = value;
+                accessField = value;
             }
         }
         
@@ -995,10 +995,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Assembly {
             get {
-                return this.assemblyField;
+                return assemblyField;
             }
             set {
-                this.assemblyField = value;
+                assemblyField = value;
             }
         }
         
@@ -1006,10 +1006,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string FilePath {
             get {
-                return this.filePathField;
+                return filePathField;
             }
             set {
-                this.filePathField = value;
+                filePathField = value;
             }
         }
         
@@ -1017,10 +1017,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string FunctionTypeFlags {
             get {
-                return this.functionTypeFlagsField;
+                return functionTypeFlagsField;
             }
             set {
-                this.functionTypeFlagsField = value;
+                functionTypeFlagsField = value;
             }
         }
         
@@ -1028,10 +1028,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsAbstract {
             get {
-                return this.isAbstractField;
+                return isAbstractField;
             }
             set {
-                this.isAbstractField = value;
+                isAbstractField = value;
             }
         }
         
@@ -1039,10 +1039,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsAbstractSpecified {
             get {
-                return this.isAbstractFieldSpecified;
+                return isAbstractFieldSpecified;
             }
             set {
-                this.isAbstractFieldSpecified = value;
+                isAbstractFieldSpecified = value;
             }
         }
         
@@ -1050,10 +1050,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsCodeType {
             get {
-                return this.isCodeTypeField;
+                return isCodeTypeField;
             }
             set {
-                this.isCodeTypeField = value;
+                isCodeTypeField = value;
             }
         }
         
@@ -1061,10 +1061,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsCodeTypeSpecified {
             get {
-                return this.isCodeTypeFieldSpecified;
+                return isCodeTypeFieldSpecified;
             }
             set {
-                this.isCodeTypeFieldSpecified = value;
+                isCodeTypeFieldSpecified = value;
             }
         }
         
@@ -1072,10 +1072,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsHub {
             get {
-                return this.isHubField;
+                return isHubField;
             }
             set {
-                this.isHubField = value;
+                isHubField = value;
             }
         }
         
@@ -1083,10 +1083,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsHubSpecified {
             get {
-                return this.isHubFieldSpecified;
+                return isHubFieldSpecified;
             }
             set {
-                this.isHubFieldSpecified = value;
+                isHubFieldSpecified = value;
             }
         }
         
@@ -1094,10 +1094,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsOverloaded {
             get {
-                return this.isOverloadedField;
+                return isOverloadedField;
             }
             set {
-                this.isOverloadedField = value;
+                isOverloadedField = value;
             }
         }
         
@@ -1105,10 +1105,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsOverloadedSpecified {
             get {
-                return this.isOverloadedFieldSpecified;
+                return isOverloadedFieldSpecified;
             }
             set {
-                this.isOverloadedFieldSpecified = value;
+                isOverloadedFieldSpecified = value;
             }
         }
         
@@ -1116,10 +1116,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsOverridable {
             get {
-                return this.isOverridableField;
+                return isOverridableField;
             }
             set {
-                this.isOverridableField = value;
+                isOverridableField = value;
             }
         }
         
@@ -1127,10 +1127,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsOverridableSpecified {
             get {
-                return this.isOverridableFieldSpecified;
+                return isOverridableFieldSpecified;
             }
             set {
-                this.isOverridableFieldSpecified = value;
+                isOverridableFieldSpecified = value;
             }
         }
         
@@ -1138,10 +1138,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Language {
             get {
-                return this.languageField;
+                return languageField;
             }
             set {
-                this.languageField = value;
+                languageField = value;
             }
         }
         
@@ -1149,10 +1149,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Location {
             get {
-                return this.locationField;
+                return locationField;
             }
             set {
-                this.locationField = value;
+                locationField = value;
             }
         }
         
@@ -1160,10 +1160,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int LinesOfCode {
             get {
-                return this.linesOfCodeField;
+                return linesOfCodeField;
             }
             set {
-                this.linesOfCodeField = value;
+                linesOfCodeField = value;
             }
         }
         
@@ -1171,10 +1171,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool LinesOfCodeSpecified {
             get {
-                return this.linesOfCodeFieldSpecified;
+                return linesOfCodeFieldSpecified;
             }
             set {
-                this.linesOfCodeFieldSpecified = value;
+                linesOfCodeFieldSpecified = value;
             }
         }
         
@@ -1182,10 +1182,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Namespace {
             get {
-                return this.namespaceField;
+                return namespaceField;
             }
             set {
-                this.namespaceField = value;
+                namespaceField = value;
             }
         }
         
@@ -1193,10 +1193,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string MustImplement {
             get {
-                return this.mustImplementField;
+                return mustImplementField;
             }
             set {
-                this.mustImplementField = value;
+                mustImplementField = value;
             }
         }
         
@@ -1204,10 +1204,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string TypeName {
             get {
-                return this.typeNameField;
+                return typeNameField;
             }
             set {
-                this.typeNameField = value;
+                typeNameField = value;
             }
         }
         
@@ -1215,10 +1215,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsDocumentation {
             get {
-                return this.isDocumentationField;
+                return isDocumentationField;
             }
             set {
-                this.isDocumentationField = value;
+                isDocumentationField = value;
             }
         }
         
@@ -1226,10 +1226,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsDocumentationSpecified {
             get {
-                return this.isDocumentationFieldSpecified;
+                return isDocumentationFieldSpecified;
             }
             set {
-                this.isDocumentationFieldSpecified = value;
+                isDocumentationFieldSpecified = value;
             }
         }
         
@@ -1237,10 +1237,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CodeGenSourceName {
             get {
-                return this.codeGenSourceNameField;
+                return codeGenSourceNameField;
             }
             set {
-                this.codeGenSourceNameField = value;
+                codeGenSourceNameField = value;
             }
         }
         
@@ -1248,10 +1248,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CodeGenTargetName {
             get {
-                return this.codeGenTargetNameField;
+                return codeGenTargetNameField;
             }
             set {
-                this.codeGenTargetNameField = value;
+                codeGenTargetNameField = value;
             }
         }
         
@@ -1259,10 +1259,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeGenIncoming {
             get {
-                return this.codeGenIncomingField;
+                return codeGenIncomingField;
             }
             set {
-                this.codeGenIncomingField = value;
+                codeGenIncomingField = value;
             }
         }
         
@@ -1270,10 +1270,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeGenIncomingSpecified {
             get {
-                return this.codeGenIncomingFieldSpecified;
+                return codeGenIncomingFieldSpecified;
             }
             set {
-                this.codeGenIncomingFieldSpecified = value;
+                codeGenIncomingFieldSpecified = value;
             }
         }
         
@@ -1281,10 +1281,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int CodeSchemaProperty_CallSequenceNumber {
             get {
-                return this.codeSchemaProperty_CallSequenceNumberField;
+                return codeSchemaProperty_CallSequenceNumberField;
             }
             set {
-                this.codeSchemaProperty_CallSequenceNumberField = value;
+                codeSchemaProperty_CallSequenceNumberField = value;
             }
         }
         
@@ -1292,10 +1292,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_CallSequenceNumberSpecified {
             get {
-                return this.codeSchemaProperty_CallSequenceNumberFieldSpecified;
+                return codeSchemaProperty_CallSequenceNumberFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_CallSequenceNumberFieldSpecified = value;
+                codeSchemaProperty_CallSequenceNumberFieldSpecified = value;
             }
         }
         
@@ -1303,10 +1303,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_DisableEnabledErrorHandler {
             get {
-                return this.codeSchemaProperty_DisableEnabledErrorHandlerField;
+                return codeSchemaProperty_DisableEnabledErrorHandlerField;
             }
             set {
-                this.codeSchemaProperty_DisableEnabledErrorHandlerField = value;
+                codeSchemaProperty_DisableEnabledErrorHandlerField = value;
             }
         }
         
@@ -1314,10 +1314,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_DisableEnabledErrorHandlerSpecified {
             get {
-                return this.codeSchemaProperty_DisableEnabledErrorHandlerFieldSpecified;
+                return codeSchemaProperty_DisableEnabledErrorHandlerFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_DisableEnabledErrorHandlerFieldSpecified = value;
+                codeSchemaProperty_DisableEnabledErrorHandlerFieldSpecified = value;
             }
         }
         
@@ -1325,10 +1325,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_DisableEnabledException {
             get {
-                return this.codeSchemaProperty_DisableEnabledExceptionField;
+                return codeSchemaProperty_DisableEnabledExceptionField;
             }
             set {
-                this.codeSchemaProperty_DisableEnabledExceptionField = value;
+                codeSchemaProperty_DisableEnabledExceptionField = value;
             }
         }
         
@@ -1336,10 +1336,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_DisableEnabledExceptionSpecified {
             get {
-                return this.codeSchemaProperty_DisableEnabledExceptionFieldSpecified;
+                return codeSchemaProperty_DisableEnabledExceptionFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_DisableEnabledExceptionFieldSpecified = value;
+                codeSchemaProperty_DisableEnabledExceptionFieldSpecified = value;
             }
         }
         
@@ -1347,10 +1347,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int CodeSchemaProperty_EndColumn {
             get {
-                return this.codeSchemaProperty_EndColumnField;
+                return codeSchemaProperty_EndColumnField;
             }
             set {
-                this.codeSchemaProperty_EndColumnField = value;
+                codeSchemaProperty_EndColumnField = value;
             }
         }
         
@@ -1358,10 +1358,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_EndColumnSpecified {
             get {
-                return this.codeSchemaProperty_EndColumnFieldSpecified;
+                return codeSchemaProperty_EndColumnFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_EndColumnFieldSpecified = value;
+                codeSchemaProperty_EndColumnFieldSpecified = value;
             }
         }
         
@@ -1369,10 +1369,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int CodeSchemaProperty_EndLine {
             get {
-                return this.codeSchemaProperty_EndLineField;
+                return codeSchemaProperty_EndLineField;
             }
             set {
-                this.codeSchemaProperty_EndLineField = value;
+                codeSchemaProperty_EndLineField = value;
             }
         }
         
@@ -1380,10 +1380,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_EndLineSpecified {
             get {
-                return this.codeSchemaProperty_EndLineFieldSpecified;
+                return codeSchemaProperty_EndLineFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_EndLineFieldSpecified = value;
+                codeSchemaProperty_EndLineFieldSpecified = value;
             }
         }
         
@@ -1391,10 +1391,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int CodeSchemaProperty_FrameDepth {
             get {
-                return this.codeSchemaProperty_FrameDepthField;
+                return codeSchemaProperty_FrameDepthField;
             }
             set {
-                this.codeSchemaProperty_FrameDepthField = value;
+                codeSchemaProperty_FrameDepthField = value;
             }
         }
         
@@ -1402,10 +1402,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_FrameDepthSpecified {
             get {
-                return this.codeSchemaProperty_FrameDepthFieldSpecified;
+                return codeSchemaProperty_FrameDepthFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_FrameDepthFieldSpecified = value;
+                codeSchemaProperty_FrameDepthFieldSpecified = value;
             }
         }
         
@@ -1413,10 +1413,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public FrameKindEnum CodeSchemaProperty_FrameKind {
             get {
-                return this.codeSchemaProperty_FrameKindField;
+                return codeSchemaProperty_FrameKindField;
             }
             set {
-                this.codeSchemaProperty_FrameKindField = value;
+                codeSchemaProperty_FrameKindField = value;
             }
         }
         
@@ -1424,10 +1424,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_FrameKindSpecified {
             get {
-                return this.codeSchemaProperty_FrameKindFieldSpecified;
+                return codeSchemaProperty_FrameKindFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_FrameKindFieldSpecified = value;
+                codeSchemaProperty_FrameKindFieldSpecified = value;
             }
         }
         
@@ -1435,10 +1435,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CodeSchemaProperty_Icon {
             get {
-                return this.codeSchemaProperty_IconField;
+                return codeSchemaProperty_IconField;
             }
             set {
-                this.codeSchemaProperty_IconField = value;
+                codeSchemaProperty_IconField = value;
             }
         }
         
@@ -1446,10 +1446,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CodeSchemaProperty_InstanceTrackingInformation {
             get {
-                return this.codeSchemaProperty_InstanceTrackingInformationField;
+                return codeSchemaProperty_InstanceTrackingInformationField;
             }
             set {
-                this.codeSchemaProperty_InstanceTrackingInformationField = value;
+                codeSchemaProperty_InstanceTrackingInformationField = value;
             }
         }
         
@@ -1457,10 +1457,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsAbstract {
             get {
-                return this.codeSchemaProperty_IsAbstractField;
+                return codeSchemaProperty_IsAbstractField;
             }
             set {
-                this.codeSchemaProperty_IsAbstractField = value;
+                codeSchemaProperty_IsAbstractField = value;
             }
         }
         
@@ -1468,10 +1468,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsAbstractSpecified {
             get {
-                return this.codeSchemaProperty_IsAbstractFieldSpecified;
+                return codeSchemaProperty_IsAbstractFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsAbstractFieldSpecified = value;
+                codeSchemaProperty_IsAbstractFieldSpecified = value;
             }
         }
         
@@ -1479,10 +1479,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsAnonymous {
             get {
-                return this.codeSchemaProperty_IsAnonymousField;
+                return codeSchemaProperty_IsAnonymousField;
             }
             set {
-                this.codeSchemaProperty_IsAnonymousField = value;
+                codeSchemaProperty_IsAnonymousField = value;
             }
         }
         
@@ -1490,10 +1490,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsAnonymousSpecified {
             get {
-                return this.codeSchemaProperty_IsAnonymousFieldSpecified;
+                return codeSchemaProperty_IsAnonymousFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsAnonymousFieldSpecified = value;
+                codeSchemaProperty_IsAnonymousFieldSpecified = value;
             }
         }
         
@@ -1501,10 +1501,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsArray {
             get {
-                return this.codeSchemaProperty_IsArrayField;
+                return codeSchemaProperty_IsArrayField;
             }
             set {
-                this.codeSchemaProperty_IsArrayField = value;
+                codeSchemaProperty_IsArrayField = value;
             }
         }
         
@@ -1512,10 +1512,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsArraySpecified {
             get {
-                return this.codeSchemaProperty_IsArrayFieldSpecified;
+                return codeSchemaProperty_IsArrayFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsArrayFieldSpecified = value;
+                codeSchemaProperty_IsArrayFieldSpecified = value;
             }
         }
         
@@ -1523,10 +1523,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsByReference {
             get {
-                return this.codeSchemaProperty_IsByReferenceField;
+                return codeSchemaProperty_IsByReferenceField;
             }
             set {
-                this.codeSchemaProperty_IsByReferenceField = value;
+                codeSchemaProperty_IsByReferenceField = value;
             }
         }
         
@@ -1534,10 +1534,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsByReferenceSpecified {
             get {
-                return this.codeSchemaProperty_IsByReferenceFieldSpecified;
+                return codeSchemaProperty_IsByReferenceFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsByReferenceFieldSpecified = value;
+                codeSchemaProperty_IsByReferenceFieldSpecified = value;
             }
         }
         
@@ -1545,10 +1545,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsCallToThis {
             get {
-                return this.codeSchemaProperty_IsCallToThisField;
+                return codeSchemaProperty_IsCallToThisField;
             }
             set {
-                this.codeSchemaProperty_IsCallToThisField = value;
+                codeSchemaProperty_IsCallToThisField = value;
             }
         }
         
@@ -1556,10 +1556,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsCallToThisSpecified {
             get {
-                return this.codeSchemaProperty_IsCallToThisFieldSpecified;
+                return codeSchemaProperty_IsCallToThisFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsCallToThisFieldSpecified = value;
+                codeSchemaProperty_IsCallToThisFieldSpecified = value;
             }
         }
         
@@ -1567,10 +1567,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsConstructor {
             get {
-                return this.codeSchemaProperty_IsConstructorField;
+                return codeSchemaProperty_IsConstructorField;
             }
             set {
-                this.codeSchemaProperty_IsConstructorField = value;
+                codeSchemaProperty_IsConstructorField = value;
             }
         }
         
@@ -1578,10 +1578,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsConstructorSpecified {
             get {
-                return this.codeSchemaProperty_IsConstructorFieldSpecified;
+                return codeSchemaProperty_IsConstructorFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsConstructorFieldSpecified = value;
+                codeSchemaProperty_IsConstructorFieldSpecified = value;
             }
         }
         
@@ -1589,10 +1589,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsDo {
             get {
-                return this.codeSchemaProperty_IsDoField;
+                return codeSchemaProperty_IsDoField;
             }
             set {
-                this.codeSchemaProperty_IsDoField = value;
+                codeSchemaProperty_IsDoField = value;
             }
         }
         
@@ -1600,10 +1600,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsDoSpecified {
             get {
-                return this.codeSchemaProperty_IsDoFieldSpecified;
+                return codeSchemaProperty_IsDoFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsDoFieldSpecified = value;
+                codeSchemaProperty_IsDoFieldSpecified = value;
             }
         }
         
@@ -1611,10 +1611,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsFinal {
             get {
-                return this.codeSchemaProperty_IsFinalField;
+                return codeSchemaProperty_IsFinalField;
             }
             set {
-                this.codeSchemaProperty_IsFinalField = value;
+                codeSchemaProperty_IsFinalField = value;
             }
         }
         
@@ -1622,10 +1622,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsFinalSpecified {
             get {
-                return this.codeSchemaProperty_IsFinalFieldSpecified;
+                return codeSchemaProperty_IsFinalFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsFinalFieldSpecified = value;
+                codeSchemaProperty_IsFinalFieldSpecified = value;
             }
         }
         
@@ -1633,10 +1633,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsFor {
             get {
-                return this.codeSchemaProperty_IsForField;
+                return codeSchemaProperty_IsForField;
             }
             set {
-                this.codeSchemaProperty_IsForField = value;
+                codeSchemaProperty_IsForField = value;
             }
         }
         
@@ -1644,10 +1644,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsForSpecified {
             get {
-                return this.codeSchemaProperty_IsForFieldSpecified;
+                return codeSchemaProperty_IsForFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsForFieldSpecified = value;
+                codeSchemaProperty_IsForFieldSpecified = value;
             }
         }
         
@@ -1655,10 +1655,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsForEach {
             get {
-                return this.codeSchemaProperty_IsForEachField;
+                return codeSchemaProperty_IsForEachField;
             }
             set {
-                this.codeSchemaProperty_IsForEachField = value;
+                codeSchemaProperty_IsForEachField = value;
             }
         }
         
@@ -1666,10 +1666,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsForEachSpecified {
             get {
-                return this.codeSchemaProperty_IsForEachFieldSpecified;
+                return codeSchemaProperty_IsForEachFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsForEachFieldSpecified = value;
+                codeSchemaProperty_IsForEachFieldSpecified = value;
             }
         }
         
@@ -1677,10 +1677,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsGeneric {
             get {
-                return this.codeSchemaProperty_IsGenericField;
+                return codeSchemaProperty_IsGenericField;
             }
             set {
-                this.codeSchemaProperty_IsGenericField = value;
+                codeSchemaProperty_IsGenericField = value;
             }
         }
         
@@ -1688,10 +1688,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsGenericSpecified {
             get {
-                return this.codeSchemaProperty_IsGenericFieldSpecified;
+                return codeSchemaProperty_IsGenericFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsGenericFieldSpecified = value;
+                codeSchemaProperty_IsGenericFieldSpecified = value;
             }
         }
         
@@ -1699,10 +1699,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsGenericInstance {
             get {
-                return this.codeSchemaProperty_IsGenericInstanceField;
+                return codeSchemaProperty_IsGenericInstanceField;
             }
             set {
-                this.codeSchemaProperty_IsGenericInstanceField = value;
+                codeSchemaProperty_IsGenericInstanceField = value;
             }
         }
         
@@ -1710,10 +1710,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsGenericInstanceSpecified {
             get {
-                return this.codeSchemaProperty_IsGenericInstanceFieldSpecified;
+                return codeSchemaProperty_IsGenericInstanceFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsGenericInstanceFieldSpecified = value;
+                codeSchemaProperty_IsGenericInstanceFieldSpecified = value;
             }
         }
         
@@ -1721,10 +1721,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsInternal {
             get {
-                return this.codeSchemaProperty_IsInternalField;
+                return codeSchemaProperty_IsInternalField;
             }
             set {
-                this.codeSchemaProperty_IsInternalField = value;
+                codeSchemaProperty_IsInternalField = value;
             }
         }
         
@@ -1732,10 +1732,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsInternalSpecified {
             get {
-                return this.codeSchemaProperty_IsInternalFieldSpecified;
+                return codeSchemaProperty_IsInternalFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsInternalFieldSpecified = value;
+                codeSchemaProperty_IsInternalFieldSpecified = value;
             }
         }
         
@@ -1743,10 +1743,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsHideBySignature {
             get {
-                return this.codeSchemaProperty_IsHideBySignatureField;
+                return codeSchemaProperty_IsHideBySignatureField;
             }
             set {
-                this.codeSchemaProperty_IsHideBySignatureField = value;
+                codeSchemaProperty_IsHideBySignatureField = value;
             }
         }
         
@@ -1754,10 +1754,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsHideBySignatureSpecified {
             get {
-                return this.codeSchemaProperty_IsHideBySignatureFieldSpecified;
+                return codeSchemaProperty_IsHideBySignatureFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsHideBySignatureFieldSpecified = value;
+                codeSchemaProperty_IsHideBySignatureFieldSpecified = value;
             }
         }
         
@@ -1765,10 +1765,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsOperator {
             get {
-                return this.codeSchemaProperty_IsOperatorField;
+                return codeSchemaProperty_IsOperatorField;
             }
             set {
-                this.codeSchemaProperty_IsOperatorField = value;
+                codeSchemaProperty_IsOperatorField = value;
             }
         }
         
@@ -1776,10 +1776,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsOperatorSpecified {
             get {
-                return this.codeSchemaProperty_IsOperatorFieldSpecified;
+                return codeSchemaProperty_IsOperatorFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsOperatorFieldSpecified = value;
+                codeSchemaProperty_IsOperatorFieldSpecified = value;
             }
         }
         
@@ -1787,10 +1787,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsOut {
             get {
-                return this.codeSchemaProperty_IsOutField;
+                return codeSchemaProperty_IsOutField;
             }
             set {
-                this.codeSchemaProperty_IsOutField = value;
+                codeSchemaProperty_IsOutField = value;
             }
         }
         
@@ -1798,10 +1798,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsOutSpecified {
             get {
-                return this.codeSchemaProperty_IsOutFieldSpecified;
+                return codeSchemaProperty_IsOutFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsOutFieldSpecified = value;
+                codeSchemaProperty_IsOutFieldSpecified = value;
             }
         }
         
@@ -1809,10 +1809,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsParameterArray {
             get {
-                return this.codeSchemaProperty_IsParameterArrayField;
+                return codeSchemaProperty_IsParameterArrayField;
             }
             set {
-                this.codeSchemaProperty_IsParameterArrayField = value;
+                codeSchemaProperty_IsParameterArrayField = value;
             }
         }
         
@@ -1820,10 +1820,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsParameterArraySpecified {
             get {
-                return this.codeSchemaProperty_IsParameterArrayFieldSpecified;
+                return codeSchemaProperty_IsParameterArrayFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsParameterArrayFieldSpecified = value;
+                codeSchemaProperty_IsParameterArrayFieldSpecified = value;
             }
         }
         
@@ -1831,10 +1831,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsPrivate {
             get {
-                return this.codeSchemaProperty_IsPrivateField;
+                return codeSchemaProperty_IsPrivateField;
             }
             set {
-                this.codeSchemaProperty_IsPrivateField = value;
+                codeSchemaProperty_IsPrivateField = value;
             }
         }
         
@@ -1842,10 +1842,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsPrivateSpecified {
             get {
-                return this.codeSchemaProperty_IsPrivateFieldSpecified;
+                return codeSchemaProperty_IsPrivateFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsPrivateFieldSpecified = value;
+                codeSchemaProperty_IsPrivateFieldSpecified = value;
             }
         }
         
@@ -1853,10 +1853,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsProtected {
             get {
-                return this.codeSchemaProperty_IsProtectedField;
+                return codeSchemaProperty_IsProtectedField;
             }
             set {
-                this.codeSchemaProperty_IsProtectedField = value;
+                codeSchemaProperty_IsProtectedField = value;
             }
         }
         
@@ -1864,10 +1864,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsProtectedSpecified {
             get {
-                return this.codeSchemaProperty_IsProtectedFieldSpecified;
+                return codeSchemaProperty_IsProtectedFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsProtectedFieldSpecified = value;
+                codeSchemaProperty_IsProtectedFieldSpecified = value;
             }
         }
         
@@ -1875,10 +1875,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsProtectedOrInternal {
             get {
-                return this.codeSchemaProperty_IsProtectedOrInternalField;
+                return codeSchemaProperty_IsProtectedOrInternalField;
             }
             set {
-                this.codeSchemaProperty_IsProtectedOrInternalField = value;
+                codeSchemaProperty_IsProtectedOrInternalField = value;
             }
         }
         
@@ -1886,10 +1886,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsProtectedOrInternalSpecified {
             get {
-                return this.codeSchemaProperty_IsProtectedOrInternalFieldSpecified;
+                return codeSchemaProperty_IsProtectedOrInternalFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsProtectedOrInternalFieldSpecified = value;
+                codeSchemaProperty_IsProtectedOrInternalFieldSpecified = value;
             }
         }
         
@@ -1897,10 +1897,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsPropertyGet {
             get {
-                return this.codeSchemaProperty_IsPropertyGetField;
+                return codeSchemaProperty_IsPropertyGetField;
             }
             set {
-                this.codeSchemaProperty_IsPropertyGetField = value;
+                codeSchemaProperty_IsPropertyGetField = value;
             }
         }
         
@@ -1908,10 +1908,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsPropertyGetSpecified {
             get {
-                return this.codeSchemaProperty_IsPropertyGetFieldSpecified;
+                return codeSchemaProperty_IsPropertyGetFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsPropertyGetFieldSpecified = value;
+                codeSchemaProperty_IsPropertyGetFieldSpecified = value;
             }
         }
         
@@ -1919,10 +1919,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsPropertySet {
             get {
-                return this.codeSchemaProperty_IsPropertySetField;
+                return codeSchemaProperty_IsPropertySetField;
             }
             set {
-                this.codeSchemaProperty_IsPropertySetField = value;
+                codeSchemaProperty_IsPropertySetField = value;
             }
         }
         
@@ -1930,10 +1930,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsPropertySetSpecified {
             get {
-                return this.codeSchemaProperty_IsPropertySetFieldSpecified;
+                return codeSchemaProperty_IsPropertySetFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsPropertySetFieldSpecified = value;
+                codeSchemaProperty_IsPropertySetFieldSpecified = value;
             }
         }
         
@@ -1941,10 +1941,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsPrototype {
             get {
-                return this.codeSchemaProperty_IsPrototypeField;
+                return codeSchemaProperty_IsPrototypeField;
             }
             set {
-                this.codeSchemaProperty_IsPrototypeField = value;
+                codeSchemaProperty_IsPrototypeField = value;
             }
         }
         
@@ -1952,10 +1952,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsPrototypeSpecified {
             get {
-                return this.codeSchemaProperty_IsPrototypeFieldSpecified;
+                return codeSchemaProperty_IsPrototypeFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsPrototypeFieldSpecified = value;
+                codeSchemaProperty_IsPrototypeFieldSpecified = value;
             }
         }
         
@@ -1963,10 +1963,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsPublic {
             get {
-                return this.codeSchemaProperty_IsPublicField;
+                return codeSchemaProperty_IsPublicField;
             }
             set {
-                this.codeSchemaProperty_IsPublicField = value;
+                codeSchemaProperty_IsPublicField = value;
             }
         }
         
@@ -1974,10 +1974,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsPublicSpecified {
             get {
-                return this.codeSchemaProperty_IsPublicFieldSpecified;
+                return codeSchemaProperty_IsPublicFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsPublicFieldSpecified = value;
+                codeSchemaProperty_IsPublicFieldSpecified = value;
             }
         }
         
@@ -1985,10 +1985,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsSpecialName {
             get {
-                return this.codeSchemaProperty_IsSpecialNameField;
+                return codeSchemaProperty_IsSpecialNameField;
             }
             set {
-                this.codeSchemaProperty_IsSpecialNameField = value;
+                codeSchemaProperty_IsSpecialNameField = value;
             }
         }
         
@@ -1996,10 +1996,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsSpecialNameSpecified {
             get {
-                return this.codeSchemaProperty_IsSpecialNameFieldSpecified;
+                return codeSchemaProperty_IsSpecialNameFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsSpecialNameFieldSpecified = value;
+                codeSchemaProperty_IsSpecialNameFieldSpecified = value;
             }
         }
         
@@ -2007,10 +2007,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsStatic {
             get {
-                return this.codeSchemaProperty_IsStaticField;
+                return codeSchemaProperty_IsStaticField;
             }
             set {
-                this.codeSchemaProperty_IsStaticField = value;
+                codeSchemaProperty_IsStaticField = value;
             }
         }
         
@@ -2018,10 +2018,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsStaticSpecified {
             get {
-                return this.codeSchemaProperty_IsStaticFieldSpecified;
+                return codeSchemaProperty_IsStaticFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsStaticFieldSpecified = value;
+                codeSchemaProperty_IsStaticFieldSpecified = value;
             }
         }
         
@@ -2029,10 +2029,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsUntilLoop {
             get {
-                return this.codeSchemaProperty_IsUntilLoopField;
+                return codeSchemaProperty_IsUntilLoopField;
             }
             set {
-                this.codeSchemaProperty_IsUntilLoopField = value;
+                codeSchemaProperty_IsUntilLoopField = value;
             }
         }
         
@@ -2040,10 +2040,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsUntilLoopSpecified {
             get {
-                return this.codeSchemaProperty_IsUntilLoopFieldSpecified;
+                return codeSchemaProperty_IsUntilLoopFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsUntilLoopFieldSpecified = value;
+                codeSchemaProperty_IsUntilLoopFieldSpecified = value;
             }
         }
         
@@ -2051,10 +2051,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsVirtual {
             get {
-                return this.codeSchemaProperty_IsVirtualField;
+                return codeSchemaProperty_IsVirtualField;
             }
             set {
-                this.codeSchemaProperty_IsVirtualField = value;
+                codeSchemaProperty_IsVirtualField = value;
             }
         }
         
@@ -2062,10 +2062,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsVirtualSpecified {
             get {
-                return this.codeSchemaProperty_IsVirtualFieldSpecified;
+                return codeSchemaProperty_IsVirtualFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsVirtualFieldSpecified = value;
+                codeSchemaProperty_IsVirtualFieldSpecified = value;
             }
         }
         
@@ -2073,10 +2073,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_IsWhile {
             get {
-                return this.codeSchemaProperty_IsWhileField;
+                return codeSchemaProperty_IsWhileField;
             }
             set {
-                this.codeSchemaProperty_IsWhileField = value;
+                codeSchemaProperty_IsWhileField = value;
             }
         }
         
@@ -2084,10 +2084,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_IsWhileSpecified {
             get {
-                return this.codeSchemaProperty_IsWhileFieldSpecified;
+                return codeSchemaProperty_IsWhileFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_IsWhileFieldSpecified = value;
+                codeSchemaProperty_IsWhileFieldSpecified = value;
             }
         }
         
@@ -2095,10 +2095,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_PreserveData {
             get {
-                return this.codeSchemaProperty_PreserveDataField;
+                return codeSchemaProperty_PreserveDataField;
             }
             set {
-                this.codeSchemaProperty_PreserveDataField = value;
+                codeSchemaProperty_PreserveDataField = value;
             }
         }
         
@@ -2106,10 +2106,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_PreserveDataSpecified {
             get {
-                return this.codeSchemaProperty_PreserveDataFieldSpecified;
+                return codeSchemaProperty_PreserveDataFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_PreserveDataFieldSpecified = value;
+                codeSchemaProperty_PreserveDataFieldSpecified = value;
             }
         }
         
@@ -2117,10 +2117,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_SingleInstanceSourceLink {
             get {
-                return this.codeSchemaProperty_SingleInstanceSourceLinkField;
+                return codeSchemaProperty_SingleInstanceSourceLinkField;
             }
             set {
-                this.codeSchemaProperty_SingleInstanceSourceLinkField = value;
+                codeSchemaProperty_SingleInstanceSourceLinkField = value;
             }
         }
         
@@ -2128,10 +2128,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_SingleInstanceSourceLinkSpecified {
             get {
-                return this.codeSchemaProperty_SingleInstanceSourceLinkFieldSpecified;
+                return codeSchemaProperty_SingleInstanceSourceLinkFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_SingleInstanceSourceLinkFieldSpecified = value;
+                codeSchemaProperty_SingleInstanceSourceLinkFieldSpecified = value;
             }
         }
         
@@ -2139,10 +2139,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean CodeSchemaProperty_SingleInstanceTargetLink {
             get {
-                return this.codeSchemaProperty_SingleInstanceTargetLinkField;
+                return codeSchemaProperty_SingleInstanceTargetLinkField;
             }
             set {
-                this.codeSchemaProperty_SingleInstanceTargetLinkField = value;
+                codeSchemaProperty_SingleInstanceTargetLinkField = value;
             }
         }
         
@@ -2150,10 +2150,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_SingleInstanceTargetLinkSpecified {
             get {
-                return this.codeSchemaProperty_SingleInstanceTargetLinkFieldSpecified;
+                return codeSchemaProperty_SingleInstanceTargetLinkFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_SingleInstanceTargetLinkFieldSpecified = value;
+                codeSchemaProperty_SingleInstanceTargetLinkFieldSpecified = value;
             }
         }
         
@@ -2161,10 +2161,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CodeSchemaProperty_SourceText {
             get {
-                return this.codeSchemaProperty_SourceTextField;
+                return codeSchemaProperty_SourceTextField;
             }
             set {
-                this.codeSchemaProperty_SourceTextField = value;
+                codeSchemaProperty_SourceTextField = value;
             }
         }
         
@@ -2172,10 +2172,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int CodeSchemaProperty_StartColumn {
             get {
-                return this.codeSchemaProperty_StartColumnField;
+                return codeSchemaProperty_StartColumnField;
             }
             set {
-                this.codeSchemaProperty_StartColumnField = value;
+                codeSchemaProperty_StartColumnField = value;
             }
         }
         
@@ -2183,10 +2183,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_StartColumnSpecified {
             get {
-                return this.codeSchemaProperty_StartColumnFieldSpecified;
+                return codeSchemaProperty_StartColumnFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_StartColumnFieldSpecified = value;
+                codeSchemaProperty_StartColumnFieldSpecified = value;
             }
         }
         
@@ -2194,10 +2194,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int CodeSchemaProperty_StartLine {
             get {
-                return this.codeSchemaProperty_StartLineField;
+                return codeSchemaProperty_StartLineField;
             }
             set {
-                this.codeSchemaProperty_StartLineField = value;
+                codeSchemaProperty_StartLineField = value;
             }
         }
         
@@ -2205,10 +2205,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_StartLineSpecified {
             get {
-                return this.codeSchemaProperty_StartLineFieldSpecified;
+                return codeSchemaProperty_StartLineFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_StartLineFieldSpecified = value;
+                codeSchemaProperty_StartLineFieldSpecified = value;
             }
         }
         
@@ -2216,10 +2216,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CodeSchemaProperty_StatementKind {
             get {
-                return this.codeSchemaProperty_StatementKindField;
+                return codeSchemaProperty_StatementKindField;
             }
             set {
-                this.codeSchemaProperty_StatementKindField = value;
+                codeSchemaProperty_StatementKindField = value;
             }
         }
         
@@ -2227,10 +2227,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public int CodeSchemaProperty_StatementNumber {
             get {
-                return this.codeSchemaProperty_StatementNumberField;
+                return codeSchemaProperty_StatementNumberField;
             }
             set {
-                this.codeSchemaProperty_StatementNumberField = value;
+                codeSchemaProperty_StatementNumberField = value;
             }
         }
         
@@ -2238,10 +2238,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool CodeSchemaProperty_StatementNumberSpecified {
             get {
-                return this.codeSchemaProperty_StatementNumberFieldSpecified;
+                return codeSchemaProperty_StatementNumberFieldSpecified;
             }
             set {
-                this.codeSchemaProperty_StatementNumberFieldSpecified = value;
+                codeSchemaProperty_StatementNumberFieldSpecified = value;
             }
         }
         
@@ -2249,10 +2249,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CodeSchemaProperty_StatementType {
             get {
-                return this.codeSchemaProperty_StatementTypeField;
+                return codeSchemaProperty_StatementTypeField;
             }
             set {
-                this.codeSchemaProperty_StatementTypeField = value;
+                codeSchemaProperty_StatementTypeField = value;
             }
         }
     }
@@ -2271,10 +2271,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Ref {
             get {
-                return this.refField;
+                return refField;
             }
             set {
-                this.refField = value;
+                refField = value;
             }
         }
     }
@@ -2505,10 +2505,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlElementAttribute("Category")]
         public DirectedGraphLinkCategory[] Category {
             get {
-                return this.categoryField;
+                return categoryField;
             }
             set {
-                this.categoryField = value;
+                categoryField = value;
             }
         }
         
@@ -2516,10 +2516,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Label {
             get {
-                return this.labelField;
+                return labelField;
             }
             set {
-                this.labelField = value;
+                labelField = value;
             }
         }
         
@@ -2527,10 +2527,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public VisibilityEnum Visibility {
             get {
-                return this.visibilityField;
+                return visibilityField;
             }
             set {
-                this.visibilityField = value;
+                visibilityField = value;
             }
         }
         
@@ -2538,10 +2538,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool VisibilitySpecified {
             get {
-                return this.visibilityFieldSpecified;
+                return visibilityFieldSpecified;
             }
             set {
-                this.visibilityFieldSpecified = value;
+                visibilityFieldSpecified = value;
             }
         }
         
@@ -2549,10 +2549,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Background {
             get {
-                return this.backgroundField;
+                return backgroundField;
             }
             set {
-                this.backgroundField = value;
+                backgroundField = value;
             }
         }
         
@@ -2560,10 +2560,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double FontSize {
             get {
-                return this.fontSizeField;
+                return fontSizeField;
             }
             set {
-                this.fontSizeField = value;
+                fontSizeField = value;
             }
         }
         
@@ -2571,10 +2571,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontSizeSpecified {
             get {
-                return this.fontSizeFieldSpecified;
+                return fontSizeFieldSpecified;
             }
             set {
-                this.fontSizeFieldSpecified = value;
+                fontSizeFieldSpecified = value;
             }
         }
         
@@ -2582,10 +2582,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string FontFamily {
             get {
-                return this.fontFamilyField;
+                return fontFamilyField;
             }
             set {
-                this.fontFamilyField = value;
+                fontFamilyField = value;
             }
         }
         
@@ -2593,10 +2593,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public FontStyleEnum FontStyle {
             get {
-                return this.fontStyleField;
+                return fontStyleField;
             }
             set {
-                this.fontStyleField = value;
+                fontStyleField = value;
             }
         }
         
@@ -2604,10 +2604,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontStyleSpecified {
             get {
-                return this.fontStyleFieldSpecified;
+                return fontStyleFieldSpecified;
             }
             set {
-                this.fontStyleFieldSpecified = value;
+                fontStyleFieldSpecified = value;
             }
         }
         
@@ -2615,10 +2615,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public FontWeightEnum FontWeight {
             get {
-                return this.fontWeightField;
+                return fontWeightField;
             }
             set {
-                this.fontWeightField = value;
+                fontWeightField = value;
             }
         }
         
@@ -2626,10 +2626,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontWeightSpecified {
             get {
-                return this.fontWeightFieldSpecified;
+                return fontWeightFieldSpecified;
             }
             set {
-                this.fontWeightFieldSpecified = value;
+                fontWeightFieldSpecified = value;
             }
         }
         
@@ -2637,10 +2637,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Stroke {
             get {
-                return this.strokeField;
+                return strokeField;
             }
             set {
-                this.strokeField = value;
+                strokeField = value;
             }
         }
         
@@ -2648,10 +2648,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string StrokeThickness {
             get {
-                return this.strokeThicknessField;
+                return strokeThicknessField;
             }
             set {
-                this.strokeThicknessField = value;
+                strokeThicknessField = value;
             }
         }
         
@@ -2659,10 +2659,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string StrokeDashArray {
             get {
-                return this.strokeDashArrayField;
+                return strokeDashArrayField;
             }
             set {
-                this.strokeDashArrayField = value;
+                strokeDashArrayField = value;
             }
         }
         
@@ -2670,10 +2670,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Source {
             get {
-                return this.sourceField;
+                return sourceField;
             }
             set {
-                this.sourceField = value;
+                sourceField = value;
             }
         }
         
@@ -2681,10 +2681,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Target {
             get {
-                return this.targetField;
+                return targetField;
             }
             set {
-                this.targetField = value;
+                targetField = value;
             }
         }
         
@@ -2692,10 +2692,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute("Category")]
         public string Category1 {
             get {
-                return this.category1Field;
+                return category1Field;
             }
             set {
-                this.category1Field = value;
+                category1Field = value;
             }
         }
         
@@ -2703,10 +2703,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean Seeder {
             get {
-                return this.seederField;
+                return seederField;
             }
             set {
-                this.seederField = value;
+                seederField = value;
             }
         }
         
@@ -2714,10 +2714,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool SeederSpecified {
             get {
-                return this.seederFieldSpecified;
+                return seederFieldSpecified;
             }
             set {
-                this.seederFieldSpecified = value;
+                seederFieldSpecified = value;
             }
         }
         
@@ -2725,10 +2725,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean AttractConsumers {
             get {
-                return this.attractConsumersField;
+                return attractConsumersField;
             }
             set {
-                this.attractConsumersField = value;
+                attractConsumersField = value;
             }
         }
         
@@ -2736,10 +2736,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool AttractConsumersSpecified {
             get {
-                return this.attractConsumersFieldSpecified;
+                return attractConsumersFieldSpecified;
             }
             set {
-                this.attractConsumersFieldSpecified = value;
+                attractConsumersFieldSpecified = value;
             }
         }
     }
@@ -2758,10 +2758,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Ref {
             get {
-                return this.refField;
+                return refField;
             }
             set {
-                this.refField = value;
+                refField = value;
             }
         }
     }
@@ -2870,10 +2870,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Id {
             get {
-                return this.idField;
+                return idField;
             }
             set {
-                this.idField = value;
+                idField = value;
             }
         }
         
@@ -2881,10 +2881,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string BasedOn {
             get {
-                return this.basedOnField;
+                return basedOnField;
             }
             set {
-                this.basedOnField = value;
+                basedOnField = value;
             }
         }
         
@@ -2892,10 +2892,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Label {
             get {
-                return this.labelField;
+                return labelField;
             }
             set {
-                this.labelField = value;
+                labelField = value;
             }
         }
         
@@ -2903,10 +2903,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public VisibilityEnum Visibility {
             get {
-                return this.visibilityField;
+                return visibilityField;
             }
             set {
-                this.visibilityField = value;
+                visibilityField = value;
             }
         }
         
@@ -2914,10 +2914,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool VisibilitySpecified {
             get {
-                return this.visibilityFieldSpecified;
+                return visibilityFieldSpecified;
             }
             set {
-                this.visibilityFieldSpecified = value;
+                visibilityFieldSpecified = value;
             }
         }
         
@@ -2925,10 +2925,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Background {
             get {
-                return this.backgroundField;
+                return backgroundField;
             }
             set {
-                this.backgroundField = value;
+                backgroundField = value;
             }
         }
         
@@ -2936,10 +2936,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double FontSize {
             get {
-                return this.fontSizeField;
+                return fontSizeField;
             }
             set {
-                this.fontSizeField = value;
+                fontSizeField = value;
             }
         }
         
@@ -2947,10 +2947,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontSizeSpecified {
             get {
-                return this.fontSizeFieldSpecified;
+                return fontSizeFieldSpecified;
             }
             set {
-                this.fontSizeFieldSpecified = value;
+                fontSizeFieldSpecified = value;
             }
         }
         
@@ -2958,10 +2958,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string FontFamily {
             get {
-                return this.fontFamilyField;
+                return fontFamilyField;
             }
             set {
-                this.fontFamilyField = value;
+                fontFamilyField = value;
             }
         }
         
@@ -2969,10 +2969,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public FontStyleEnum FontStyle {
             get {
-                return this.fontStyleField;
+                return fontStyleField;
             }
             set {
-                this.fontStyleField = value;
+                fontStyleField = value;
             }
         }
         
@@ -2980,10 +2980,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontStyleSpecified {
             get {
-                return this.fontStyleFieldSpecified;
+                return fontStyleFieldSpecified;
             }
             set {
-                this.fontStyleFieldSpecified = value;
+                fontStyleFieldSpecified = value;
             }
         }
         
@@ -2991,10 +2991,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public FontWeightEnum FontWeight {
             get {
-                return this.fontWeightField;
+                return fontWeightField;
             }
             set {
-                this.fontWeightField = value;
+                fontWeightField = value;
             }
         }
         
@@ -3002,10 +3002,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool FontWeightSpecified {
             get {
-                return this.fontWeightFieldSpecified;
+                return fontWeightFieldSpecified;
             }
             set {
-                this.fontWeightFieldSpecified = value;
+                fontWeightFieldSpecified = value;
             }
         }
         
@@ -3013,10 +3013,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Stroke {
             get {
-                return this.strokeField;
+                return strokeField;
             }
             set {
-                this.strokeField = value;
+                strokeField = value;
             }
         }
         
@@ -3024,10 +3024,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string StrokeThickness {
             get {
-                return this.strokeThicknessField;
+                return strokeThicknessField;
             }
             set {
-                this.strokeThicknessField = value;
+                strokeThicknessField = value;
             }
         }
         
@@ -3035,10 +3035,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string StrokeDashArray {
             get {
-                return this.strokeDashArrayField;
+                return strokeDashArrayField;
             }
             set {
-                this.strokeDashArrayField = value;
+                strokeDashArrayField = value;
             }
         }
         
@@ -3046,10 +3046,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Icon {
             get {
-                return this.iconField;
+                return iconField;
             }
             set {
-                this.iconField = value;
+                iconField = value;
             }
         }
         
@@ -3057,10 +3057,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Shape {
             get {
-                return this.shapeField;
+                return shapeField;
             }
             set {
-                this.shapeField = value;
+                shapeField = value;
             }
         }
         
@@ -3068,10 +3068,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Style {
             get {
-                return this.styleField;
+                return styleField;
             }
             set {
-                this.styleField = value;
+                styleField = value;
             }
         }
         
@@ -3079,10 +3079,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public HorizontalAlignmentEnum HorizontalAlignment {
             get {
-                return this.horizontalAlignmentField;
+                return horizontalAlignmentField;
             }
             set {
-                this.horizontalAlignmentField = value;
+                horizontalAlignmentField = value;
             }
         }
         
@@ -3090,10 +3090,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool HorizontalAlignmentSpecified {
             get {
-                return this.horizontalAlignmentFieldSpecified;
+                return horizontalAlignmentFieldSpecified;
             }
             set {
-                this.horizontalAlignmentFieldSpecified = value;
+                horizontalAlignmentFieldSpecified = value;
             }
         }
         
@@ -3101,10 +3101,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public VerticalAlignmentEnum VerticalAlignment {
             get {
-                return this.verticalAlignmentField;
+                return verticalAlignmentField;
             }
             set {
-                this.verticalAlignmentField = value;
+                verticalAlignmentField = value;
             }
         }
         
@@ -3112,10 +3112,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool VerticalAlignmentSpecified {
             get {
-                return this.verticalAlignmentFieldSpecified;
+                return verticalAlignmentFieldSpecified;
             }
             set {
-                this.verticalAlignmentFieldSpecified = value;
+                verticalAlignmentFieldSpecified = value;
             }
         }
         
@@ -3123,10 +3123,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double MinWidth {
             get {
-                return this.minWidthField;
+                return minWidthField;
             }
             set {
-                this.minWidthField = value;
+                minWidthField = value;
             }
         }
         
@@ -3134,10 +3134,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool MinWidthSpecified {
             get {
-                return this.minWidthFieldSpecified;
+                return minWidthFieldSpecified;
             }
             set {
-                this.minWidthFieldSpecified = value;
+                minWidthFieldSpecified = value;
             }
         }
         
@@ -3145,10 +3145,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double MaxWidth {
             get {
-                return this.maxWidthField;
+                return maxWidthField;
             }
             set {
-                this.maxWidthField = value;
+                maxWidthField = value;
             }
         }
         
@@ -3156,10 +3156,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool MaxWidthSpecified {
             get {
-                return this.maxWidthFieldSpecified;
+                return maxWidthFieldSpecified;
             }
             set {
-                this.maxWidthFieldSpecified = value;
+                maxWidthFieldSpecified = value;
             }
         }
         
@@ -3167,10 +3167,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public double NodeRadius {
             get {
-                return this.nodeRadiusField;
+                return nodeRadiusField;
             }
             set {
-                this.nodeRadiusField = value;
+                nodeRadiusField = value;
             }
         }
         
@@ -3178,10 +3178,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool NodeRadiusSpecified {
             get {
-                return this.nodeRadiusFieldSpecified;
+                return nodeRadiusFieldSpecified;
             }
             set {
-                this.nodeRadiusFieldSpecified = value;
+                nodeRadiusFieldSpecified = value;
             }
         }
         
@@ -3189,10 +3189,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CanLinkedNodesBeDataDriven {
             get {
-                return this.canLinkedNodesBeDataDrivenField;
+                return canLinkedNodesBeDataDrivenField;
             }
             set {
-                this.canLinkedNodesBeDataDrivenField = value;
+                canLinkedNodesBeDataDrivenField = value;
             }
         }
         
@@ -3200,10 +3200,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string CanBeDataDriven {
             get {
-                return this.canBeDataDrivenField;
+                return canBeDataDrivenField;
             }
             set {
-                this.canBeDataDrivenField = value;
+                canBeDataDrivenField = value;
             }
         }
         
@@ -3211,10 +3211,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string DefaultAction {
             get {
-                return this.defaultActionField;
+                return defaultActionField;
             }
             set {
-                this.defaultActionField = value;
+                defaultActionField = value;
             }
         }
         
@@ -3222,10 +3222,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string IncomingActionLabel {
             get {
-                return this.incomingActionLabelField;
+                return incomingActionLabelField;
             }
             set {
-                this.incomingActionLabelField = value;
+                incomingActionLabelField = value;
             }
         }
         
@@ -3233,10 +3233,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsProviderRoot {
             get {
-                return this.isProviderRootField;
+                return isProviderRootField;
             }
             set {
-                this.isProviderRootField = value;
+                isProviderRootField = value;
             }
         }
         
@@ -3244,10 +3244,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsProviderRootSpecified {
             get {
-                return this.isProviderRootFieldSpecified;
+                return isProviderRootFieldSpecified;
             }
             set {
-                this.isProviderRootFieldSpecified = value;
+                isProviderRootFieldSpecified = value;
             }
         }
         
@@ -3255,10 +3255,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsContainment {
             get {
-                return this.isContainmentField;
+                return isContainmentField;
             }
             set {
-                this.isContainmentField = value;
+                isContainmentField = value;
             }
         }
         
@@ -3266,10 +3266,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsContainmentSpecified {
             get {
-                return this.isContainmentFieldSpecified;
+                return isContainmentFieldSpecified;
             }
             set {
-                this.isContainmentFieldSpecified = value;
+                isContainmentFieldSpecified = value;
             }
         }
         
@@ -3277,10 +3277,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsTag {
             get {
-                return this.isTagField;
+                return isTagField;
             }
             set {
-                this.isTagField = value;
+                isTagField = value;
             }
         }
         
@@ -3288,10 +3288,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsTagSpecified {
             get {
-                return this.isTagFieldSpecified;
+                return isTagFieldSpecified;
             }
             set {
-                this.isTagFieldSpecified = value;
+                isTagFieldSpecified = value;
             }
         }
         
@@ -3299,10 +3299,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string NavigationActionLabel {
             get {
-                return this.navigationActionLabelField;
+                return navigationActionLabelField;
             }
             set {
-                this.navigationActionLabelField = value;
+                navigationActionLabelField = value;
             }
         }
         
@@ -3310,10 +3310,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string OutgoingActionLabel {
             get {
-                return this.outgoingActionLabelField;
+                return outgoingActionLabelField;
             }
             set {
-                this.outgoingActionLabelField = value;
+                outgoingActionLabelField = value;
             }
         }
         
@@ -3321,10 +3321,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string SourceCategory {
             get {
-                return this.sourceCategoryField;
+                return sourceCategoryField;
             }
             set {
-                this.sourceCategoryField = value;
+                sourceCategoryField = value;
             }
         }
         
@@ -3332,10 +3332,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string TargetCategory {
             get {
-                return this.targetCategoryField;
+                return targetCategoryField;
             }
             set {
-                this.targetCategoryField = value;
+                targetCategoryField = value;
             }
         }
         
@@ -3343,10 +3343,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Details {
             get {
-                return this.detailsField;
+                return detailsField;
             }
             set {
-                this.detailsField = value;
+                detailsField = value;
             }
         }
         
@@ -3354,10 +3354,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string InboundName {
             get {
-                return this.inboundNameField;
+                return inboundNameField;
             }
             set {
-                this.inboundNameField = value;
+                inboundNameField = value;
             }
         }
         
@@ -3365,10 +3365,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string OutboundName {
             get {
-                return this.outboundNameField;
+                return outboundNameField;
             }
             set {
-                this.outboundNameField = value;
+                outboundNameField = value;
             }
         }
     }
@@ -3401,10 +3401,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Id {
             get {
-                return this.idField;
+                return idField;
             }
             set {
-                this.idField = value;
+                idField = value;
             }
         }
         
@@ -3412,10 +3412,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsReference {
             get {
-                return this.isReferenceField;
+                return isReferenceField;
             }
             set {
-                this.isReferenceField = value;
+                isReferenceField = value;
             }
         }
         
@@ -3423,10 +3423,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsReferenceSpecified {
             get {
-                return this.isReferenceFieldSpecified;
+                return isReferenceFieldSpecified;
             }
             set {
-                this.isReferenceFieldSpecified = value;
+                isReferenceFieldSpecified = value;
             }
         }
         
@@ -3434,10 +3434,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Label {
             get {
-                return this.labelField;
+                return labelField;
             }
             set {
-                this.labelField = value;
+                labelField = value;
             }
         }
         
@@ -3445,10 +3445,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string DataType {
             get {
-                return this.dataTypeField;
+                return dataTypeField;
             }
             set {
-                this.dataTypeField = value;
+                dataTypeField = value;
             }
         }
         
@@ -3456,10 +3456,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Description {
             get {
-                return this.descriptionField;
+                return descriptionField;
             }
             set {
-                this.descriptionField = value;
+                descriptionField = value;
             }
         }
         
@@ -3467,10 +3467,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Group {
             get {
-                return this.groupField;
+                return groupField;
             }
             set {
-                this.groupField = value;
+                groupField = value;
             }
         }
         
@@ -3478,10 +3478,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ReferenceTemplate {
             get {
-                return this.referenceTemplateField;
+                return referenceTemplateField;
             }
             set {
-                this.referenceTemplateField = value;
+                referenceTemplateField = value;
             }
         }
     }
@@ -3506,10 +3506,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Id {
             get {
-                return this.idField;
+                return idField;
             }
             set {
-                this.idField = value;
+                idField = value;
             }
         }
         
@@ -3517,10 +3517,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Label {
             get {
-                return this.labelField;
+                return labelField;
             }
             set {
-                this.labelField = value;
+                labelField = value;
             }
         }
         
@@ -3528,10 +3528,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ValueType {
             get {
-                return this.valueTypeField;
+                return valueTypeField;
             }
             set {
-                this.valueTypeField = value;
+                valueTypeField = value;
             }
         }
         
@@ -3539,10 +3539,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Formatter {
             get {
-                return this.formatterField;
+                return formatterField;
             }
             set {
-                this.formatterField = value;
+                formatterField = value;
             }
         }
     }
@@ -3565,10 +3565,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public byte n {
             get {
-                return this.nField;
+                return nField;
             }
             set {
-                this.nField = value;
+                nField = value;
             }
         }
         
@@ -3576,10 +3576,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Uri {
             get {
-                return this.uriField;
+                return uriField;
             }
             set {
-                this.uriField = value;
+                uriField = value;
             }
         }
         
@@ -3587,10 +3587,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Id {
             get {
-                return this.idField;
+                return idField;
             }
             set {
-                this.idField = value;
+                idField = value;
             }
         }
     }
@@ -3622,10 +3622,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         /// <remarks/>
         public DirectedGraphStyleCondition Condition {
             get {
-                return this.conditionField;
+                return conditionField;
             }
             set {
-                this.conditionField = value;
+                conditionField = value;
             }
         }
         
@@ -3633,10 +3633,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlElementAttribute("Setter")]
         public DirectedGraphStyleSetter[] Setter {
             get {
-                return this.setterField;
+                return setterField;
             }
             set {
-                this.setterField = value;
+                setterField = value;
             }
         }
         
@@ -3644,10 +3644,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public TargetTypeEnum TargetType {
             get {
-                return this.targetTypeField;
+                return targetTypeField;
             }
             set {
-                this.targetTypeField = value;
+                targetTypeField = value;
             }
         }
         
@@ -3655,10 +3655,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public ClrBoolean IsEnabled {
             get {
-                return this.isEnabledField;
+                return isEnabledField;
             }
             set {
-                this.isEnabledField = value;
+                isEnabledField = value;
             }
         }
         
@@ -3666,10 +3666,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool IsEnabledSpecified {
             get {
-                return this.isEnabledFieldSpecified;
+                return isEnabledFieldSpecified;
             }
             set {
-                this.isEnabledFieldSpecified = value;
+                isEnabledFieldSpecified = value;
             }
         }
         
@@ -3677,10 +3677,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string GroupLabel {
             get {
-                return this.groupLabelField;
+                return groupLabelField;
             }
             set {
-                this.groupLabelField = value;
+                groupLabelField = value;
             }
         }
         
@@ -3688,10 +3688,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ValueLabel {
             get {
-                return this.valueLabelField;
+                return valueLabelField;
             }
             set {
-                this.valueLabelField = value;
+                valueLabelField = value;
             }
         }
         
@@ -3699,10 +3699,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string ToolTip {
             get {
-                return this.toolTipField;
+                return toolTipField;
             }
             set {
-                this.toolTipField = value;
+                toolTipField = value;
             }
         }
     }
@@ -3721,10 +3721,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Expression {
             get {
-                return this.expressionField;
+                return expressionField;
             }
             set {
-                this.expressionField = value;
+                expressionField = value;
             }
         }
     }
@@ -3747,10 +3747,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public PropertyType Property {
             get {
-                return this.propertyField;
+                return propertyField;
             }
             set {
-                this.propertyField = value;
+                propertyField = value;
             }
         }
         
@@ -3758,10 +3758,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Value {
             get {
-                return this.valueField;
+                return valueField;
             }
             set {
-                this.valueField = value;
+                valueField = value;
             }
         }
         
@@ -3769,10 +3769,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Expression {
             get {
-                return this.expressionField;
+                return expressionField;
             }
             set {
-                this.expressionField = value;
+                expressionField = value;
             }
         }
     }
@@ -3876,10 +3876,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Id {
             get {
-                return this.idField;
+                return idField;
             }
             set {
-                this.idField = value;
+                idField = value;
             }
         }
         
@@ -3887,10 +3887,10 @@ namespace CannedBytes.Tools.DgmlBuilder {
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Value {
             get {
-                return this.valueField;
+                return valueField;
             }
             set {
-                this.valueField = value;
+                valueField = value;
             }
         }
     }

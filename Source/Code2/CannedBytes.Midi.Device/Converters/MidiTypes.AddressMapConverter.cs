@@ -26,7 +26,7 @@ public class AddressMapConverter : StreamConverter, INavigationEvents
 
         IEnumerable<SchemaNode> children = context.StateMap.Get<IEnumerable<SchemaNode>>(ChildrenStateName);
 
-        return children != null ? children : base.GetChildNodeIterator(context);
+        return children ?? base.GetChildNodeIterator(context);
     }
 
     public override void OnBeforeRecord(DeviceDataContext context)
@@ -47,7 +47,7 @@ public class AddressMapConverter : StreamConverter, INavigationEvents
         context.StateMap.Set(ChildrenStateName, children);
     }
 
-    private void GetAddressAndSize(DeviceDataContext context, out SevenBitUInt32 address, out SevenBitUInt32 size)
+    private static void GetAddressAndSize(DeviceDataContext context, out SevenBitUInt32 address, out SevenBitUInt32 size)
     {
         DeviceProperty addressProperty = context.DeviceProperties.Find(DeviceProperty.AddressPropertyName);
         DeviceProperty sizeProperty = context.DeviceProperties.Find(DeviceProperty.SizePropertyName);

@@ -32,14 +32,6 @@ public abstract class AttributedSchemaObject : SchemaObject
 
     public SchemaAttributeCollection Attributes
     {
-        get
-        {
-            _attributes ??= new SchemaAttributeCollection
-                {
-                    Schema = Schema
-                };
-
-            return _attributes;
-        }
+        get { return _attributes ??= new SchemaAttributeCollection { Schema = Schema }; }
     }
 }

@@ -37,7 +37,7 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
         fldInfo.LogicalFieldInfo = logicFieldInfo;
         fldInfo.Value = value;
 
-        this.Add(fldInfo);
+        Add(fldInfo);
 
         return fldInfo;
     }

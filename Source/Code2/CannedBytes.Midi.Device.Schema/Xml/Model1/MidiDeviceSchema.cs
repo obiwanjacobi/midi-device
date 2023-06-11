@@ -172,7 +172,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1
 
         public field()
         {
-            this.repeats = "1";
+            repeats = "1";
         }
     }
 
@@ -259,9 +259,9 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1
 
         public dataType()
         {
-            this.@abstract = false;
-            this.valueOffset = 0;
-            this.bitOrder = bitOrder.BigEndian;
+            @abstract = false;
+            valueOffset = 0;
+            bitOrder = bitOrder.BigEndian;
         }
     }
 
@@ -492,7 +492,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1
 
         public recordType()
         {
-            this.@abstract = false;
+            @abstract = false;
         }
     }
 
