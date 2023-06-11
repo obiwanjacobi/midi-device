@@ -85,6 +85,7 @@ static class DgmlFactory
         return links.ToArray();
     }
 
+    // Fails when different nodes have the same name.
     private static string BuildId(SchemaNode schemaNode)
     {
         if (schemaNode.Field != null)
