@@ -15,6 +15,12 @@
 		<ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Update="BigEndianTest\BigEndianTestSchema.mds">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="BigEndianTest\BigEndianTestStream.bin">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="CarryTest\CarryTestSchema.mds">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

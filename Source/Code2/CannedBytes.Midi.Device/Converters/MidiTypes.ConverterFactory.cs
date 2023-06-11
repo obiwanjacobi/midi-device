@@ -94,9 +94,9 @@ public class MidiTypesConverterFactory : ConverterFactory
             case "midiBit15":
                 converter = new BitConverter(constructType, BitFlags.Bit15);
                 break;
-            //case "midiString":
-            //    converter = new StringConverter(constructType);
-            //    break;
+            case "midiString":
+                converter = new StringConverter(constructType);
+                break;
             //case "midiNull":
             //    converter = new NullByteConverter(constructType);
             //    break;
@@ -241,9 +241,9 @@ public class MidiTypesConverterFactory : ConverterFactory
             //case "midiSplitNibbleBE":
             //    converter = new SplitNibbleBEGroupConverter(constructType);
             //    break;
-            //case "midiBigEndian":
-            //    converter = new BigEndianGroupConverter(constructType);
-            //    break;
+            case "midiBigEndian":
+                converter = new BigEndianStreamConverter(constructType);
+                break;
             //case "midiSevenByte":
             //    converter = new SevenByteShift56GroupConverter(constructType);
             //    break;

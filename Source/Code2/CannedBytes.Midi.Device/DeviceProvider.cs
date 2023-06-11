@@ -37,10 +37,10 @@ public sealed class DeviceProvider
 
         var virtualField = Schema.VirtualRootFields.Find(virtualRootFieldName);
 
-        return virtualField == null
-            ? throw new ArgumentException(
-                $"The specified virtual root field name was not found in the schema: {virtualRootFieldName}", "virtualRootFieldName")
-            : GetBinaryConverterMapFor(virtualField);
+        return virtualField != null
+            ? GetBinaryConverterMapFor(virtualField)
+            : throw new ArgumentException(
+                $"The specified virtual root field name was not found in the schema: {virtualRootFieldName}", nameof(virtualRootFieldName));
     }
 
     public SchemaNodeMap GetBinaryConverterMapFor(Field virtualRootField)

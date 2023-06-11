@@ -53,6 +53,7 @@ public partial class StreamManager
 
         if (_streams.Count == 0)
         {
+            stream = RootStream;
             RootStream = null;
         }
 

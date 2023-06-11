@@ -48,7 +48,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
         // End of SysEx
         var sysExStream = context.StreamManager.CurrentStream as StreamManager.SysExStream
             ?? throw new DeviceDataException(
-                "The SysExStreamConverter.INavigationEvents.OnAfterRecord method could not find its stream on the DeviceDataContext.StreamManager.CurrentStream property.");
+                "The SysExStreamConverter.INavigationEvents.OnAfterRecord method could not find its stream (Type) on the DeviceDataContext.StreamManager.CurrentStream property.");
 
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {

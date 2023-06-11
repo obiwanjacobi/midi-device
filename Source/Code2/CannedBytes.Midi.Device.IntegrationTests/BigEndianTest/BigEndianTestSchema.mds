@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/BigEndianTestSchema.mds"
+    xmlns="http://schemas.cannedbytes.com/MidiDeviceSchema/UnitTests/BigEndianTestSchema.mds"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+>
+    <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+    <mds:recordType name="bigEndianTest">
+        <mds:extension base="m:midiSysEx">
+            <mds:sequence>
+                <mds:field name="bigEndian" type="bigEndianTestBE" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
+
+    <mds:recordType name="bigEndianTestBE" mds:width="2">
+        <mds:extension base="m:midiBigEndian">
+            <mds:sequence>
+                <mds:field name="SwappedChars" type="TextOf6" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
+
+    <mds:recordType name="bigEndianFieldTest">
+        <mds:extension base="m:midiSysEx">
+            <mds:sequence>
+                <mds:field name="bigEndian" type="bigEndianFieldTestBE" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
+    
+    <mds:recordType name="bigEndianFieldTestBE" mds:width="3">
+        <mds:extension base="m:midiBigEndian">
+            <mds:sequence>
+                <mds:field name="SwappedChars" type="TextOf6" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
+
+    <mds:dataType name="TextOf6">
+        <mds:restriction base="m:midiString">
+            <mds:length value="6" />
+        </mds:restriction>
+    </mds:dataType>
+
+</mds:deviceSchema>
