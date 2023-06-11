@@ -13,8 +13,9 @@ public partial class ConverterManager
     [ImportingConstructor]
     public ConverterManager(
         [Import] AttributedConverterFactory attributedFactory,
-        [ImportMany(typeof(IConverterFactory))]
-        IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories)
+        //[ImportMany(typeof(IConverterFactory))]
+        //IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories
+        IEnumerable<IConverterFactory> factories)
     {
         _factoryMgr = new FactoryManager(attributedFactory, factories);
     }

@@ -2,6 +2,7 @@
 using Xunit;
 using FluentAssertions;
 using Xunit.Abstractions;
+using System.IO;
 
 namespace CannedBytes.Midi.Device.IntegrationTests.DevicePropertiesTest;
 
@@ -19,11 +20,16 @@ public class DevicePropertiesTest
     [Fact]
     public void ToLogical_SchemaWithProperties_LogicalPropertyValuesInContext()
     {
-        ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
         DictionaryBasedLogicalStub writer = new();
 
-        DeviceDataContext ctx = DeviceHelper.ToLogical(
-            compositionCtx, SchemaFileName, StreamFileName, "RQ1", writer);
+        //ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
+        //DeviceDataContext ctx = DeviceHelper.ToLogical(
+        //    compositionCtx, SchemaFileName, StreamFileName, "RQ1", writer);
+
+        var serviceProvider = ServiceHelper.CreateServices();
+        DeviceDataContext ctx = DeviceHelper.ToLogical(serviceProvider,
+            Path.Combine(Folder, SchemaFileName),
+            Path.Combine(Folder, StreamFileName), "RQ1", writer);
 
         ctx.DeviceProperties.Count.Should().Be(4);
         ctx.DeviceProperties.Find("ManufacturerId").GetValue<int>().Should().Be(65);

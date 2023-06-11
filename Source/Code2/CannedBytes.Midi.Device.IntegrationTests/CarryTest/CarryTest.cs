@@ -1,4 +1,5 @@
-﻿using CannedBytes.Midi.Device.IntegrationTests.Stubs;
+﻿using System.IO;
+using CannedBytes.Midi.Device.IntegrationTests.Stubs;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
@@ -22,11 +23,15 @@ public class CarryTest
     [Fact]
     public void Read_SchemaWithCarry_ByteAndWordValues()
     {
-        ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
         DictionaryBasedLogicalStub writer = new();
+        //var compositionCtx = CompositionHelper.CreateCompositionContext();
+        //DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx,
+        //    TestSchemaFileName, TestStreamFileName, "carryTest", writer);
 
-        DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx,
-            TestSchemaFileName, TestStreamFileName, "carryTest", writer);
+        var serviceProvider = ServiceHelper.CreateServices();
+        DeviceDataContext ctx = DeviceHelper.ToLogical(serviceProvider,
+            Path.Combine(Folder, TestSchemaFileName),
+            Path.Combine(Folder, TestStreamFileName), "carryTest", writer);
 
         writer.Count.Should().Be(9);
 
