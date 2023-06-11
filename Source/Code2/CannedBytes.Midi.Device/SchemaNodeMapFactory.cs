@@ -6,13 +6,11 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device;
 
-//[Export]
 public sealed class SchemaNodeMapFactory
 {
     private readonly ConverterManager _converterMgr;
 
-    //[ImportingConstructor]
-    public SchemaNodeMapFactory(/*[Import]*/ ConverterManager converterMgr)
+    public SchemaNodeMapFactory(ConverterManager converterMgr)
     {
         Check.IfArgumentNull(converterMgr, nameof(converterMgr));
 
@@ -25,9 +23,9 @@ public sealed class SchemaNodeMapFactory
 
         List<SchemaNodeMap> maps = new();
 
-        foreach (Field rootField in schema.VirtualRootFields)
+        foreach (var rootField in schema.VirtualRootFields)
         {
-            SchemaNodeMap map = Create(rootField);
+            var map = Create(rootField);
 
             maps.Add(map);
         }
@@ -39,12 +37,12 @@ public sealed class SchemaNodeMapFactory
     {
         Check.IfArgumentNull(rootField, nameof(rootField));
 
-        SchemaNode rootNode = CreateNode(rootField, 0);
+        var rootNode = CreateNode(rootField, 0);
         rootNode.IsRoot = true;
 
-        SchemaNode lastNode = BuildNode(rootNode);
+        var lastNode = BuildNode(rootNode);
 
-        SchemaNodeMap map = CreateMap(rootNode, lastNode);
+        var map = CreateMap(rootNode, lastNode);
 
         return map;
     }
@@ -57,7 +55,7 @@ public sealed class SchemaNodeMapFactory
         };
 
         Carry carry = new();
-        SchemaNode thisNode = rootNode;
+        var thisNode = rootNode;
 
         while (thisNode != null)
         {
@@ -152,7 +150,7 @@ public sealed class SchemaNodeMapFactory
 
                 if (dataLength == 0)
                 {
-                    SchemaNode prevField = thisNode.PreviousField;
+                    var prevField = thisNode.PreviousField;
 
                     //
                     // find a previous field that has length
@@ -195,7 +193,7 @@ public sealed class SchemaNodeMapFactory
 
                 if (dataLength == 0)
                 {
-                    SchemaNode prevFieldNode = thisNode.PreviousField;
+                    var prevFieldNode = thisNode.PreviousField;
 
                     while (prevFieldNode?.DataLength == 0)
                     {
@@ -262,7 +260,7 @@ public sealed class SchemaNodeMapFactory
         {
             Dictionary<string, SchemaNode> clones = new();
 
-            SchemaNode parentNode = thisNode;
+            var parentNode = thisNode;
             SchemaNode lastSibling = null;
 
             FieldIterator iterator = new(thisNode.FieldConverterPair.Field);
@@ -281,7 +279,7 @@ public sealed class SchemaNodeMapFactory
                     lastSibling = null;
                 }
 
-                SchemaNode newNode = CreateNewNode(thisNode, parentNode,
+                var newNode = CreateNewNode(thisNode, parentNode,
                     fieldInfo.Field, fieldInfo.InstanceIndex);
 
                 ManageSiblings(ref lastSibling, newNode);
@@ -310,7 +308,7 @@ public sealed class SchemaNodeMapFactory
     {
         if (clones.ContainsKey(newNode.FieldConverterPair.Field.Name.FullName))
         {
-            SchemaNode clone = clones[newNode.FieldConverterPair.Field.Name.FullName];
+            var clone = clones[newNode.FieldConverterPair.Field.Name.FullName];
 
             newNode.PreviousClone = clone;
             clone.NextClone = newNode;
@@ -321,7 +319,7 @@ public sealed class SchemaNodeMapFactory
 
     private SchemaNode CreateNewNode(SchemaNode thisNode, SchemaNode parentNode, Field field, int instanceIndex)
     {
-        SchemaNode newNode = CreateNode(field, instanceIndex);
+        var newNode = CreateNode(field, instanceIndex);
 
         thisNode.Next = newNode;
         newNode.Previous = thisNode;
@@ -357,9 +355,9 @@ public sealed class SchemaNodeMapFactory
 
     private SchemaNode CreateNode(Field field, int instanceIndex)
     {
-        FieldConverterPair pair = _converterMgr.GetFieldConverterPair(field);
+        var pair = _converterMgr.GetFieldConverterPair(field);
 
-        SchemaNode node = new(pair, instanceIndex);
+        var node = new SchemaNode(pair, instanceIndex);
 
         return node;
     }

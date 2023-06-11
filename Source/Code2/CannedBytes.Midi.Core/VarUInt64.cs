@@ -131,7 +131,7 @@ public struct VarUInt64
     /// <returns>Returns a new instance.</returns>
     public VarUInt64 ConvertTo(VarTypeCode typeCode)
     {
-        ulong value = MaskValue(typeCode);
+        var value = MaskValue(typeCode);
 
         return new VarUInt64(value, typeCode);
     }
@@ -458,7 +458,7 @@ public struct VarUInt64
 
     private ulong MaskValue(VarTypeCode typeCode)
     {
-        ulong mask = MaxValueFor(typeCode);
+        var mask = MaxValueFor(typeCode);
 
         return _value & mask;
     }

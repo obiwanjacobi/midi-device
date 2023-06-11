@@ -24,12 +24,9 @@ public class CarryTest
     public void Read_SchemaWithCarry_ByteAndWordValues()
     {
         DictionaryBasedLogicalStub writer = new();
-        //var compositionCtx = CompositionHelper.CreateCompositionContext();
-        //DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx,
-        //    TestSchemaFileName, TestStreamFileName, "carryTest", writer);
 
         var serviceProvider = ServiceHelper.CreateServices();
-        DeviceDataContext ctx = DeviceHelper.ToLogical(serviceProvider,
+        var ctx = DeviceHelper.ToLogical(serviceProvider,
             Path.Combine(Folder, TestSchemaFileName),
             Path.Combine(Folder, TestStreamFileName), "carryTest", writer);
 

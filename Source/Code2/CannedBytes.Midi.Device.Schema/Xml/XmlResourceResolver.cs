@@ -22,10 +22,10 @@ internal class XmlResourceResolver : XmlUrlResolver
 
         if (result == null)
         {
-            string fullPath = absoluteUri.LocalPath;
+            var fullPath = absoluteUri.LocalPath;
 
-            string assemblyName = Path.GetDirectoryName(fullPath);
-            Assembly assembly = Assembly.LoadFrom(assemblyName + ".dll");
+            var assemblyName = Path.GetDirectoryName(fullPath);
+            var assembly = Assembly.LoadFrom(assemblyName + ".dll");
 
             if (assembly != null)
             {
@@ -50,7 +50,7 @@ internal class XmlResourceResolver : XmlUrlResolver
             }
         }
 
-        Uri resultUri = base.ResolveUri(baseUri, relativeUri);
+        var resultUri = base.ResolveUri(baseUri, relativeUri);
 
         return resultUri;
     }

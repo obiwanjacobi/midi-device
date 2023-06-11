@@ -22,7 +22,7 @@ public class LogicalWriteAccessor : ILogicalWriteAccessor
     public bool Write<T>(T value, int bitLength)
         where T : IComparable
     {
-        FieldValue<T> fieldValue = _context.FieldInfo.GetDataFieldValue<T>();
+        var fieldValue = _context.FieldInfo.GetDataFieldValue<T>();
 
         // intercept the value and set it on the current Record Entry.
         if (_context.RecordManager?.CurrentEntry != null)
@@ -33,7 +33,7 @@ public class LogicalWriteAccessor : ILogicalWriteAccessor
         // validate against field constraints
         fieldValue.Validate(value);
 
-        string devicePropName = _context.FieldInfo.CurrentField.ExtendedProperties.DevicePropertyName;
+        var devicePropName = _context.FieldInfo.CurrentField.ExtendedProperties.DevicePropertyName;
         
         // write device property value
         if (!String.IsNullOrEmpty(devicePropName))
@@ -52,8 +52,8 @@ public class LogicalWriteAccessor : ILogicalWriteAccessor
 
     protected virtual bool DispatchValue<T>(T value, int bitLength)
     {
-        Type type = typeof(T);
-        LogicalContext ctx = CreateLogicalContext();
+        var type = typeof(T);
+        var ctx = CreateLogicalContext();
 
         if (type == typeof(string))
         {
@@ -104,7 +104,7 @@ public class LogicalWriteAccessor : ILogicalWriteAccessor
 
     private LogicalContext CreateLogicalContext()
     {
-        LogicalContext ctx = _context.CreateLogicalContext();
+        var ctx = _context.CreateLogicalContext();
 
         return ctx;
     }

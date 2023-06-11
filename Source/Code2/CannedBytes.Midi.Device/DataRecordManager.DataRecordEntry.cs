@@ -56,7 +56,7 @@ partial class DataRecordManager
 
         public override string ToString()
         {
-            StringBuilder text = new();
+            var text = new StringBuilder();
 
             if (Node != null)
             {

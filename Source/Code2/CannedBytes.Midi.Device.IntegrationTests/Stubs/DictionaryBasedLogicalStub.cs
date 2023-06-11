@@ -21,7 +21,7 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
     {
         string key = BuildKey(fieldName, instanceIndex);
 
-        FieldInfo fldInfo = this[key];
+        var fldInfo = this[key];
 
         return (T)Convert.ChangeType(fldInfo.Value, typeof(T));
     }

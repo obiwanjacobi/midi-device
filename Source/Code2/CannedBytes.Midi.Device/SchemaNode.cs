@@ -226,7 +226,7 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     public IEnumerable<SchemaNode> SelectNodes(Func<SchemaNode, SchemaNode> newNodeFunc)
     {
-        SchemaNode node = newNodeFunc(this);
+        var node = newNodeFunc(this);
 
         while (node != null)
         {
@@ -237,8 +237,8 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     public SchemaNode Last(Func<SchemaNode, SchemaNode> nextNodeFunc)
     {
-        SchemaNode node = nextNodeFunc(this);
-        SchemaNode lastNode = node;
+        var node = nextNodeFunc(this);
+        var lastNode = node;
 
         while (node != null)
         {
@@ -332,11 +332,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     {
         StringBuilder text = new();
 
-        if (Key != null)
-        {
-            text.Append(new string(' ', Key.Depth * 2));
-        }
-
+        text.Append(new string(' ', Key.Depth * 2));
         text.Append("A:");
         text.Append(Address.ToString("X"));
         text.Append(" (L:");
@@ -350,12 +346,9 @@ public partial class SchemaNode : ILogicalFieldInfo
             text.Append('\'');
         }
 
-        if (Key != null)
-        {
-            text.Append(" [");
-            text.Append(Key.ToString());
-            text.Append(']');
-        }
+        text.Append(" [");
+        text.Append(Key.ToString());
+        text.Append(']');
 
         return text.ToString();
     }

@@ -35,7 +35,7 @@ public sealed class DeviceProvider
     {
         Check.IfArgumentNullOrEmpty(virtualRootFieldName, nameof(virtualRootFieldName));
 
-        Field virtualField = Schema.VirtualRootFields.Find(virtualRootFieldName);
+        var virtualField = Schema.VirtualRootFields.Find(virtualRootFieldName);
 
         return virtualField == null
             ? throw new ArgumentException(
@@ -45,7 +45,7 @@ public sealed class DeviceProvider
 
     public SchemaNodeMap GetBinaryConverterMapFor(Field virtualRootField)
     {
-        SchemaNodeMap map = (from bcm in BinaryMaps
+        var map = (from bcm in BinaryMaps
                    where bcm.RootNode.FieldConverterPair.Field == virtualRootField
                    select bcm).FirstOrDefault();
 
@@ -60,11 +60,11 @@ public sealed class DeviceProvider
         deviceProvider.Schema = schemaProvider.Load(schemaLocation);
 
         // filter root fields on 'midiSysEx' records
-        List<Field> remove = (from vrf in deviceProvider.Schema.VirtualRootFields
+        var remove = (from vrf in deviceProvider.Schema.VirtualRootFields
                               where !vrf.RecordType.IsType(MidiTypes.MidiTypesSchema_SysEx)
                               select vrf).ToList();
 
-        foreach (Field nonSysExRoot in remove)
+        foreach (var nonSysExRoot in remove)
         {
             deviceProvider.Schema.VirtualRootFields.Remove(nonSysExRoot);
         }
@@ -75,7 +75,7 @@ public sealed class DeviceProvider
                 $"The schema '{deviceProvider.Schema.SchemaName}' loaded from '{schemaLocation}' Does not contain any root records that derive from midiSysEx.");
         }
 
-        SchemaNodeMapFactory mapFactory = serviceProvider.GetRequiredService<SchemaNodeMapFactory>();
+        var mapFactory = serviceProvider.GetRequiredService<SchemaNodeMapFactory>();
         deviceProvider.BinaryMaps = mapFactory.CreateAll(deviceProvider.Schema);
 
         return deviceProvider;

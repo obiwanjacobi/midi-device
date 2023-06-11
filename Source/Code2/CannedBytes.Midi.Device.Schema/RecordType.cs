@@ -57,7 +57,7 @@ namespace CannedBytes.Midi.Device.Schema
 
         public bool IsType(string matchFullTypeName)
         {
-            RecordType type = this;
+            var type = this;
 
             while (type != null)
             {

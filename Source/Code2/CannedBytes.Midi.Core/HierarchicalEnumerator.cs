@@ -45,11 +45,11 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
     {
         ThrowIfDisposed();
 
-        bool hasMore = false;
+        var hasMore = false;
 
         if (_currentEnum != null)
         {
-            T current = _currentEnum.Current;
+            var current = _currentEnum.Current;
 
             if (current != null)
             {
@@ -112,7 +112,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
             return enumerable.GetEnumerator();
         }
 
-        IEnumerator<T> enumerator = Current as IEnumerator<T>;
+        var enumerator = Current as IEnumerator<T>;
 
         return enumerator;
     }
@@ -142,4 +142,3 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
         return GetEnumerator();
     }
 }
-

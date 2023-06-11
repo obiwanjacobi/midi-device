@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using CannedBytes.Midi.Device.IntegrationTests.Stubs;
 
 namespace CannedBytes.Midi.Device.IntegrationTests;
 
@@ -12,13 +13,13 @@ internal static class DeviceHelper
         string virtualRootName,
         IMidiLogicalWriter writer)
     {
-        DeviceProvider deviceProvider = DeviceProvider.Create(serviceProvider, schemaLocation);
-        SchemaNodeMap binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
+        var deviceProvider = DeviceProvider.Create(serviceProvider, schemaLocation);
+        var binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
 
         DeviceToLogicalProcess process = new();
 
-        FileStream stream = File.OpenRead(binStreamPath);
-        DeviceDataContext dataCtx = process.Execute(binMap.RootNode, stream, writer);
+        using var stream = File.OpenRead(binStreamPath);
+        var dataCtx = process.Execute(binMap.RootNode, stream, writer);
 
         return dataCtx;
     }

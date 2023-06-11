@@ -58,7 +58,7 @@ public class DeviceStreamReader
 
         FillBuffer(byteLength);
 
-        ulong value = FormatBuffer<ulong>(_buffer, byteLength);
+        var value = FormatBuffer<ulong>(_buffer, byteLength);
 
         return new VarUInt64(value);
     }
@@ -96,13 +96,13 @@ public class DeviceStreamReader
     protected virtual T FormatBuffer<T>(byte[] buffer, int length)
         where T : struct, IConvertible, IComparable
     {
-        Type type = typeof(T);
+        var type = typeof(T);
         int shift = 0;
         ulong value = 0;
 
         for (int i = 0; i < length; i++)
         {
-            ulong data = (ulong)buffer[i] << shift;
+            var data = (ulong)buffer[i] << shift;
 
             value |= data;
 
@@ -222,7 +222,7 @@ public class DeviceStreamReader
     public string ReadString(int byteLength)
     {
         // use own buffer to be able to read strings with larger length than MaxBufferSize.
-        byte[] buffer = new byte[byteLength];
+        var buffer = new byte[byteLength];
 
         if (BaseStream.Read(buffer, 0, byteLength) != byteLength)
         {

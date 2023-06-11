@@ -5,7 +5,7 @@ namespace CannedBytes.Midi.Device;
 
 public partial class StreamManager
 {
-    private sealed class StreamOwner
+    private readonly struct StreamOwner
     {
         public StreamOwner(StreamConverter owner, Stream stream)
         {

@@ -83,7 +83,7 @@ public struct SevenBitUInt32 : IConvertible
 
     private bool ParseInternal(string s)
     {
-        bool success = ValueParser.TryParseToBytes(s, Ordering.LittleEndian, out byte[] bytes);
+        var success = ValueParser.TryParseToBytes(s, Ordering.LittleEndian, out byte[] bytes);
 
         if (success)
         {
@@ -121,7 +121,7 @@ public struct SevenBitUInt32 : IConvertible
     /// </summary>
     public byte[] Bytes
     {
-        get { return ByteConverter.FromUint32ToSevenBitBytes(_value, Ordering.LittleEndian); }
+        readonly get { return ByteConverter.FromUint32ToSevenBitBytes(_value, Ordering.LittleEndian); }
         private set { _value = ByteConverter.FromSevenBitBytesToUInt32(value, Ordering.LittleEndian); }
     }
 
@@ -132,17 +132,17 @@ public struct SevenBitUInt32 : IConvertible
 
     public override bool Equals(object obj)
     {
-        if (obj is SevenBitUInt32)
+        if (obj is SevenBitUInt32 sevenBitUInt32)
         {
-            return Equals((SevenBitUInt32)obj);
+            return Equals(sevenBitUInt32);
         }
-        if (obj is uint)
+        if (obj is uint ui)
         {
-            return _value == (uint)obj;
+            return _value == ui;
         }
-        if (obj is int)
+        if (obj is int i)
         {
-            return ToInt32() == (int)obj;
+            return ToInt32() == i;
         }
 
         return base.Equals(obj);

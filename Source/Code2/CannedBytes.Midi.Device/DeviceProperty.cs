@@ -24,7 +24,7 @@ public class DeviceProperty
 
     public T GetValue<T>()
     {
-        Type requestedType = typeof(T);
+        var requestedType = typeof(T);
 
         return (T)Convert.ChangeType(Value, requestedType);
     }

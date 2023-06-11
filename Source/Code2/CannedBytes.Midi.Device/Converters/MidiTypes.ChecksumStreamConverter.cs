@@ -19,7 +19,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
     {
         Check.IfArgumentNull(context, nameof(context));
 
-        long pos = context.StreamManager.CurrentStream.Position;
+        var pos = context.StreamManager.CurrentStream.Position;
 
         context.StateMap.Set(ChecksumStartStreamPosition, pos);
     }
@@ -28,16 +28,16 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
     {
         Check.IfArgumentNull(context, nameof(context));
 
-        long pos = context.StateMap.Get<long>(ChecksumStartStreamPosition);
+        var pos = context.StateMap.Get<long>(ChecksumStartStreamPosition);
 
-        AutoPositioningSubStream stream = new(
+        var stream = new AutoPositioningSubStream(
             context.StreamManager.CurrentStream, pos);
 
-        VarUInt64 calculatedChecksum = CalculateChecksum(stream);
+        var calculatedChecksum = CalculateChecksum(stream);
 
         if (context.ConversionDirection == ConversionDirection.ToLogical)
         {
-            VarUInt64 checksum = ReadChecksumFromStream(context);
+            var checksum = ReadChecksumFromStream(context);
 
             // intercept the value and set it on the current Record Entry.
             if (context.RecordManager?.CurrentEntry != null)
@@ -63,7 +63,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
     {
         Check.IfArgumentNull(context, nameof(context));
 
-        DeviceStreamReader reader = context.CreateReader();
+        var reader = context.CreateReader();
 
         return reader.Read(ByteLength);
     }

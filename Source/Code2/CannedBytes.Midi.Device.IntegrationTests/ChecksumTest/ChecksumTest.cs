@@ -22,15 +22,8 @@ public class ChecksumTest
     {
         DictionaryBasedLogicalStub writer = new();
 
-        //ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
-        //DeviceDataContext ctx = DeviceHelper.ToLogical(compositionCtx, 
-        //                            ChecksumSchemaFileName, 
-        //                            ChecksumTestStreamFileName, 
-        //                            "checksumTest", 
-        //                            writer);
-
         var serviceProvider = ServiceHelper.CreateServices();
-        DeviceDataContext ctx = DeviceHelper.ToLogical(serviceProvider,
+        var ctx = DeviceHelper.ToLogical(serviceProvider,
             Path.Combine(Folder, ChecksumSchemaFileName),
             Path.Combine(Folder, ChecksumTestStreamFileName),
             "checksumTest",

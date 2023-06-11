@@ -20,7 +20,7 @@ public static class MidiDeviceSchemaReader
 
     public static deviceSchema Read(Stream stream)
     {
-        XmlReader reader = XmlReader.Create(stream);
+        var reader = XmlReader.Create(stream);
 
         if (_serializer.CanDeserialize(reader))
         {

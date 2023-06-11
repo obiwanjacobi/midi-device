@@ -22,12 +22,8 @@ public class DevicePropertiesTest
     {
         DictionaryBasedLogicalStub writer = new();
 
-        //ComponentModel.Composition.CompositionContext compositionCtx = CompositionHelper.CreateCompositionContext();
-        //DeviceDataContext ctx = DeviceHelper.ToLogical(
-        //    compositionCtx, SchemaFileName, StreamFileName, "RQ1", writer);
-
         var serviceProvider = ServiceHelper.CreateServices();
-        DeviceDataContext ctx = DeviceHelper.ToLogical(serviceProvider,
+        var ctx = DeviceHelper.ToLogical(serviceProvider,
             Path.Combine(Folder, SchemaFileName),
             Path.Combine(Folder, StreamFileName), "RQ1", writer);
 

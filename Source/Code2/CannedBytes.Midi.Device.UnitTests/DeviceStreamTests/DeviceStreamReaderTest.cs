@@ -20,7 +20,7 @@ public class DeviceStreamReaderTest
     [Fact]
     public void ReadWithCarry()
     {
-        DeviceStreamReader reader = CreateDeviceStreamReader(new byte[] { 0xFF });
+        var reader = CreateDeviceStreamReader(new byte[] { 0xFF });
 
         int read = reader.Read(BitFlags.Bit1 | BitFlags.Bit2 | BitFlags.Bit3 | BitFlags.Bit4 | BitFlags.Bit5, out ushort result);
         read.Should().BeGreaterThan(0);

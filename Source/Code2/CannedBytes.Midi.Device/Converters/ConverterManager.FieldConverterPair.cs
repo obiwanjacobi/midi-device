@@ -13,7 +13,7 @@ partial class ConverterManager
 
         if (!TryLookupFieldConverterPair(field, out var pair))
         {
-            IConverter converter = GetConverter(field);
+            var converter = GetConverter(field);
 
             if (converter != null)
             {
@@ -30,7 +30,7 @@ partial class ConverterManager
     {
         Check.IfArgumentNull(field, nameof(field));
 
-        string fieldKey = BuildFieldTypeKey(field);
+        var fieldKey = BuildFieldTypeKey(field);
         if (_fieldConverterPairs.TryGetValue(fieldKey, out FieldConverterPair pair))
         {
             fieldConverterPair = pair;

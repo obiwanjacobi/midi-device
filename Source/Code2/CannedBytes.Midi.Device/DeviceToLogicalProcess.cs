@@ -9,7 +9,7 @@ public class DeviceToLogicalProcess
 {
     public virtual DeviceDataContext Execute(SchemaNode rootNode, Stream physicalStream, IMidiLogicalWriter logicalWriter)
     {
-        DeviceDataContext context = CreateContext(physicalStream, rootNode);
+        var context = CreateContext(physicalStream, rootNode);
         ProcessToLogical navigator = new(context, rootNode);
 
         navigator.ToLogical(logicalWriter);

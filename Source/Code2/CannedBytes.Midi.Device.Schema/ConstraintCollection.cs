@@ -91,9 +91,9 @@ namespace CannedBytes.Midi.Device.Schema
         {
             ConstraintCollection newConstraints = new();
 
-            foreach (Constraint constraint in constraints)
+            foreach (var constraint in constraints)
             {
-                IEnumerable<Constraint> currentConstraints = FindAll(constraint.ConstraintType);
+                var currentConstraints = FindAll(constraint.ConstraintType);
 
                 if (currentConstraints == null || currentConstraints.Count() == 0)
                 {

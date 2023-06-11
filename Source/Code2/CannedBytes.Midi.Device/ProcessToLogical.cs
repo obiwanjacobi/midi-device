@@ -80,7 +80,7 @@ public class ProcessToLogical
     {
         ClearCarry();
 
-        INavigationEvents navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
+        var navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
 
         navEvents?.OnBeforeRecord(_context);
     }
@@ -89,7 +89,7 @@ public class ProcessToLogical
     {
         CurrentNode = thisNode;
 
-        IEnumerable<SchemaNode> iterator = thisNode.FieldConverterPair.StreamConverter.GetChildNodeIterator(_context);
+        var iterator = thisNode.FieldConverterPair.StreamConverter.GetChildNodeIterator(_context);
 
         foreach (SchemaNode node in iterator)
         {
@@ -99,7 +99,7 @@ public class ProcessToLogical
 
     protected virtual void OnAfterRecordToLogical(SchemaNode thisNode)
     {
-        INavigationEvents navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
+        var navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
 
         navEvents?.OnAfterRecord(_context);
 
@@ -111,7 +111,7 @@ public class ProcessToLogical
 
     protected virtual void OnBeforeFieldToLogical(SchemaNode thisNode)
     {
-        INavigationEvents navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
+        var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
 
         navEvents?.OnBeforeField(_context);
     }
@@ -120,14 +120,14 @@ public class ProcessToLogical
     {
         CurrentNode = thisNode;
 
-        DeviceStreamReader reader = _context.CreateReader();
+        var reader = _context.CreateReader();
 
         thisNode.FieldConverterPair.DataConverter.ToLogical(_context, reader, _context.LogicalWriteAccessor);
     }
 
     protected virtual void OnAfterFieldToLogical(SchemaNode thisNode)
     {
-        INavigationEvents navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
+        var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
 
         navEvents?.OnAfterField(_context);
     }

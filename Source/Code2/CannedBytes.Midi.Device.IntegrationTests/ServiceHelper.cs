@@ -13,9 +13,6 @@ namespace CannedBytes.Midi.Device.IntegrationTests
         private readonly static Assembly DeviceAssembly =
             Assembly.GetAssembly(typeof(DataConverter));
 
-        //private readonly static Assembly SchemaAssembly =
-        //    Assembly.GetAssembly(typeof(DeviceSchema));
-
         public static IServiceProvider CreateServices()
         {
             var services = new ServiceCollection();

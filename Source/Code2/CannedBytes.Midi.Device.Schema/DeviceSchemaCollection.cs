@@ -18,7 +18,7 @@ namespace CannedBytes.Midi.Device.Schema
         {
             Check.IfArgumentNull(schemas, nameof(schemas));
 
-            foreach (DeviceSchema schema in schemas)
+            foreach (var schema in schemas)
             {
                 Add(schema);
             }

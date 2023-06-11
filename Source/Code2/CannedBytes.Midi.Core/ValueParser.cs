@@ -18,8 +18,8 @@ namespace CannedBytes.Midi.Core
 
         public static bool TryParseInt32(string s, out int value)
         {
-            bool isHex = IsHexadecimal(ref s);
-            NumberStyles numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
+            var isHex = IsHexadecimal(ref s);
+            var numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
 
             s = s.Replace("-", String.Empty).Replace(" ", String.Empty);
  
@@ -39,8 +39,8 @@ namespace CannedBytes.Midi.Core
 
         public static bool TryParseInt64(string s, out long value)
         {
-            bool isHex = IsHexadecimal(ref s);
-            NumberStyles numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
+            var isHex = IsHexadecimal(ref s);
+            var numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
 
             s = s.Replace("-", String.Empty).Replace(" ", String.Empty);
 
@@ -58,8 +58,8 @@ namespace CannedBytes.Midi.Core
             bytes = null;
             byte[] results;
 
-            bool isHex = IsHexadecimal(ref s);
-            NumberStyles numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
+            var isHex = IsHexadecimal(ref s);
+            var numberStyle = isHex ? NumberStyles.HexNumber : NumberStyles.Number;
             
             if (TrySplitOnSeparators(s, out string[] values))
             {
@@ -133,7 +133,7 @@ namespace CannedBytes.Midi.Core
             s = s.Trim();
             parts = null;
 
-            string[] values = s.Split('-', ' ');
+            var values = s.Split('-', ' ');
 
             if (values.Length > 1)
             {

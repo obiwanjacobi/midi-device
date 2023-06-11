@@ -27,7 +27,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAABAAAAQAAAAAAgAAAAAAQAAAEAI=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAABAAAAQEAAAAAgAAAAAAQAAAEAI=</HashCode>
       <FileName>Converters\DataConverter.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -49,7 +49,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAABAAAAAAAAQAIgAAAAAAAAAAEAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAABAAAAAAAAQAAgAAAAAAAAAAEAA=</HashCode>
       <FileName>Converters\MidiTypes.BitConverter.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,7 +59,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AIAAAAAAABADAAAAAAAAAAwIAAAAAgAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AIAAAAAAABADAAAAAAAAAAwMAAAAAgAAAAAAAAEAAAA=</HashCode>
       <FileName>Converters\StreamConverter.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -100,11 +100,6 @@
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="CannedBytes.Midi.Device.Converters.ConverterManager.AttributedConverterFactory" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Converters\ConverterManager.AttributedConverterFactory.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
       <Class Name="CannedBytes.Midi.Device.Converters.ConverterManager.FactoryManager" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>Converters\ConverterManager.FactoryManager.cs</NewMemberFileName>
@@ -117,28 +112,14 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BCEAAYAAAAAAgAEAAAAAAAAAAQAAAAAAAEQAAAAACAA=</HashCode>
-      <FileName>Converters\ConverterManager.AttributedConverterFactory.cs</FileName>
+      <HashCode>BCEAAYAAAAAAAAEAAAAgAAAAAQAAAAAAAEQAAAAACAA=</HashCode>
+      <FileName>Converters\ConverterManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="_dataConverters" />
-      <Field Name="_fieldConverterPairs" />
       <Field Name="_streamConverters" />
+      <Field Name="_fieldConverterPairs" />
     </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="CannedBytes.Midi.Device.Converters.FieldConverterPair">
-    <Position X="3" Y="4" Width="1.75" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>gAAAAAAAQAAAAAAEACAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>Converters\FieldConverterPair.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="DataConverter" />
-      <Property Name="StreamConverter" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="CannedBytes.Midi.Device.Converters.ConverterFactory" Collapsed="true">
     <Position X="7.75" Y="0.5" Width="1.75" />
@@ -155,5 +136,15 @@
       <FileName>Converters\MidiTypes.ConverterFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Struct Name="CannedBytes.Midi.Device.Converters.FieldConverterPair">
+    <Position X="3.75" Y="3.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAQAAAAAAEACAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Converters\FieldConverterPair.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

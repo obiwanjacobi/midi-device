@@ -58,7 +58,7 @@ public class StreamConverter : IConverter
     {
         Check.IfArgumentNull(context, nameof(context));
 
-        AggregateEnumerator<SchemaNode> aggEnum = new();
+        var aggEnum = new AggregateEnumerator<SchemaNode>();
 
         for (int i = 0; i < context.FieldInfo.CurrentNode.InstanceCount; i++)
         {

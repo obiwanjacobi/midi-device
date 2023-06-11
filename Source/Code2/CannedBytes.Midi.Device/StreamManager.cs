@@ -47,7 +47,7 @@ public partial class StreamManager
         if (_streams.Count > 0 &&
             _streams.Peek().Owner == owner)
         {
-            StreamOwner streamOwner = _streams.Pop();
+            var streamOwner = _streams.Pop();
             stream = streamOwner.Stream;
         }
 
@@ -68,7 +68,7 @@ public partial class StreamManager
         {
             if (_streams.Count > 0)
             {
-                StreamOwner owner = _streams.Peek();
+                var owner = _streams.Peek();
                 return owner.Stream;
             }
 

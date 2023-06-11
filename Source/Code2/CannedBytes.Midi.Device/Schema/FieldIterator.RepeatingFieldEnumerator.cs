@@ -19,7 +19,7 @@ partial class FieldIterator
         {
             get
             {
-                FieldInfo current = base.Current;
+                var current = base.Current;
                 current.InstanceIndex = _instanceIndex;
 
                 return current;
@@ -28,7 +28,7 @@ partial class FieldIterator
 
         public override bool MoveNext()
         {
-            bool hasMore = base.MoveNext();
+            var hasMore = base.MoveNext();
 
             if (!hasMore &&
                 _instanceIndex < _repeat -1 &&

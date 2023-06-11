@@ -23,7 +23,7 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
             _schema = value;
 
             // update the collection's items
-            foreach (SchemaObject item in this)
+            foreach (var item in this)
             {
                 if (item.Schema == null && Schema != null)
                 {

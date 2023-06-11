@@ -99,7 +99,7 @@ partial class ConverterManager
         Check.IfArgumentNull(matchType, nameof(matchType));
         Check.IfArgumentNull(constructType, nameof(constructType));
 
-        IConverterFactory factory = _factoryMgr.Lookup(matchType.Schema.SchemaName);
+        var factory = _factoryMgr.Lookup(matchType.Schema.SchemaName);
 
         StreamConverter converter = null;
         if (factory != null)

@@ -27,22 +27,22 @@ public class SchemaNodeMapTest
     private static SchemaNodeMap CreateSchemaNodeMap(string name)
     {
         string path = Path.Combine(Folder, name);
-        DeviceSchema schema = DeviceSchemaHelper.LoadSchema(path);
+        var schema = DeviceSchemaHelper.LoadSchema(path);
         return CreateSchemaNodeMap(schema);
     }
 
     public static SchemaNodeMap CreateSchemaNodeMap(DeviceSchema schema)
     {
-        Converters.ConverterManager converterMgr = ConverterManagerTest.CreateConverterManager();
+        var converterMgr = ConverterManagerTest.CreateConverterManager();
         SchemaNodeMapFactory factory = new(converterMgr);
-        SchemaNodeMap map = factory.Create(schema.VirtualRootFields[0]);
+        var map = factory.Create(schema.VirtualRootFields[0]);
         return map;
     }
 
     [Fact]
     public void Create_HierarchicalSchema_IsNotNull()
     {
-        SchemaNodeMap map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
+        var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
         SaveSchemaNodeMap(map, "Create_HierarchicalSchema_IsNotNull");
         _output.WriteLine(map.ToString());
@@ -53,7 +53,7 @@ public class SchemaNodeMapTest
     [Fact]
     public void Create_HierarchicalSchema_RootIsSet()
     {
-        SchemaNodeMap map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
+        var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
         SaveSchemaNodeMap(map, "Create_HierarchicalSchema_RootIsSet");
         _output.WriteLine(map.ToString());
@@ -66,7 +66,7 @@ public class SchemaNodeMapTest
     [Fact]
     public void Create_HierarchicalSchema_LastNodeIsSet()
     {
-        SchemaNodeMap map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
+        var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
         SaveSchemaNodeMap(map, "Create_HierarchicalSchema_LastNodeIsSet");
         _output.WriteLine(map.ToString());
@@ -78,7 +78,7 @@ public class SchemaNodeMapTest
     [Fact]
     public void Create_HierarchicalSchema_AddressMapIsSet()
     {
-        SchemaNodeMap map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
+        var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
         SaveSchemaNodeMap(map, "Create_HierarchicalSchema_AddressMapIsSet");
         _output.WriteLine(map.ToString());

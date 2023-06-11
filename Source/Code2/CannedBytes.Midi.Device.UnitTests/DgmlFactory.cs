@@ -8,7 +8,7 @@ static class DgmlFactory
 {
     public static void SaveGraph(SchemaNodeMap map, string targetPath)
     {
-        DirectedGraph graph = CreateGraph(map);
+        var graph = CreateGraph(map);
 
         string fileName = targetPath + ".dgml";
 
@@ -35,7 +35,7 @@ static class DgmlFactory
     {
         List<DirectedGraphLink> links = new();
 
-        foreach (SchemaNode n in schemaNode.SelectNodes(n => n.Next))
+        foreach (var n in schemaNode.SelectNodes(n => n.Next))
         {
             if (n.Next != null)
             {
@@ -108,7 +108,7 @@ static class DgmlFactory
 
     private static void CreateNodes(List<DirectedGraphNode> nodes, IEnumerable<SchemaNode> schemaNodes)
     {
-        foreach (SchemaNode schemaNode in schemaNodes)
+        foreach (var schemaNode in schemaNodes)
         {
             CreateNode(nodes, schemaNode);
 

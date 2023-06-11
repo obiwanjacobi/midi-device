@@ -20,9 +20,9 @@ public partial class AddressMapManager
 
     public IEnumerable<SchemaNode> CreateSchemaNodes(SevenBitUInt32 address, SevenBitUInt32 size)
     {
-        SevenBitUInt32 endAddress = address + size;
-        SchemaNode startNode = _navigator.FindFirst(address);
-        SchemaNode endNode = _navigator.FindLast(endAddress);
+        var endAddress = address + size;
+        var startNode = _navigator.FindFirst(address);
+        var endNode = _navigator.FindLast(endAddress);
 
         if (startNode == null)
         {
@@ -46,7 +46,7 @@ public partial class AddressMapManager
             endNode = _navigator.PreviousAddress(endNode, endAddress);
         }
 
-        IEnumerable<SchemaNode> nodes = CreateSchemaNodes(startNode, endNode);
+        var nodes = CreateSchemaNodes(startNode, endNode);
 
         return nodes;
     }
@@ -65,25 +65,24 @@ public partial class AddressMapManager
                 "The specified endNode is not part of an Address Map.", "endNode");
         }
 
-        IEnumerable<AddressMapSchemaNode> parents = CreateParentNodes(startNode);
-        AddressMapSchemaNode lastParent = parents.FirstOrDefault();
+        var parents = CreateParentNodes(startNode);
+        var lastParent = parents.FirstOrDefault();
 
-        IEnumerable<SchemaNode> nodes = CreateSchemaNodes(lastParent, startNode, endNode);
+        var nodes = CreateSchemaNodes(lastParent, startNode, endNode);
 
         return nodes;
     }
 
     private IEnumerable<SchemaNode> CreateSchemaNodes(AddressMapSchemaNode parent, SchemaNode startNode, SchemaNode endNode)
     {
-        IEnumerable<SchemaNode> nodes = _navigator.SelectRange(startNode, endNode);
-
-        List<SchemaNode> newNodes = new();
+        var nodes = _navigator.SelectRange(startNode, endNode);
+        var newNodes = new List<SchemaNode>();
 
         AddressMapSchemaNode lastNode = null;
 
         foreach (SchemaNode node in nodes)
         {
-            AddressMapSchemaNode newNode = new(node);
+            var newNode = new AddressMapSchemaNode(node);
 
             newNodes.Add(newNode);
 
@@ -105,17 +104,17 @@ public partial class AddressMapManager
 
     private IEnumerable<AddressMapSchemaNode> CreateParentNodes(SchemaNode startNode)
     {
-        IEnumerable<SchemaNode> parents = from n in startNode.SelectNodes(node => node.Parent)
+        var parents = from n in startNode.SelectNodes(node => node.Parent)
                       where n.IsAddressMap
                       select n;
 
-        List<AddressMapSchemaNode> newParents = new();
+        var newParents = new List<AddressMapSchemaNode>();
 
         AddressMapSchemaNode lastParent = null;
 
         foreach (SchemaNode parent in parents)
         {
-            AddressMapSchemaNode newParent = new(parent);
+            var newParent = new AddressMapSchemaNode(parent);
             newParents.Add(newParent);
 
             if (lastParent != null)

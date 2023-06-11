@@ -12,11 +12,11 @@ public class ConverterManagerTypeTest
 
     private static void TestManagerDataType(string dataTypeName, System.Type converterType)
     {
-        ConverterManager converterMgr = ConverterManagerTest.CreateConverterManager();
-        DataType dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
+        var converterMgr = ConverterManagerTest.CreateConverterManager();
+        var dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
         dataType.Should().NotBeNull();
 
-        DataConverter converter = converterMgr.GetConverter(dataType);
+        var converter = converterMgr.GetConverter(dataType);
 
         if (converterType == null)
         {
@@ -30,11 +30,11 @@ public class ConverterManagerTypeTest
 
     private static void TestManagerRecordType(string recordTypeName, System.Type converterType)
     {
-        ConverterManager converterMgr = ConverterManagerTest.CreateConverterManager();
-        RecordType recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
+        var converterMgr = ConverterManagerTest.CreateConverterManager();
+        var recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
         recordType.Should().NotBeNull();
 
-        StreamConverter converter = converterMgr.GetConverter(recordType);
+        var converter = converterMgr.GetConverter(recordType);
 
         if (converterType == null)
         {

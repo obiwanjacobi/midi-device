@@ -77,7 +77,7 @@ public sealed partial class DataRecordManager
 
             if (_entries.Count > 0)
             {
-                DataRecordEntry lastEntry = _entries[_entries.Count - 1];
+                var lastEntry = _entries[_entries.Count - 1];
 
                 // there is no current entry, is the exception the same as logged in last entry?
                 if (lastEntry.Error != e)
@@ -112,7 +112,7 @@ public sealed partial class DataRecordManager
 
     public override string ToString()
     {
-        StringBuilder text = new();
+        var text = new StringBuilder();
 
         foreach (DataRecordEntry entry in Entries)
         {

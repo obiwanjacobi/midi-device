@@ -15,7 +15,7 @@ public class SchemaNodeNavigator
 
     public SchemaNode FindFirst(SevenBitUInt32 address)
     {
-        SchemaNode firstNode = (from n in _rootNode.SelectNodes(node => node.Next)
+        var firstNode = (from n in _rootNode.SelectNodes(node => node.Next)
                                 where n.IsAddressMap
                                 where n.Address == address
                                 select n).FirstOrDefault();
@@ -25,7 +25,7 @@ public class SchemaNodeNavigator
 
     public SchemaNode FindLast(SevenBitUInt32 address)
     {
-        SchemaNode lastNode = (from n in _rootNode.SelectNodes(node => node.Next)
+        var lastNode = (from n in _rootNode.SelectNodes(node => node.Next)
                                where n.Address <= address
                                where n.IsAddressMap
                                select n).LastOrDefault();
@@ -46,7 +46,7 @@ public class SchemaNodeNavigator
         };
         nodes.AddRange(currentNode.SelectNodes(node => node.Previous));
 
-        SchemaNode prevNode = (from n in nodes
+        var prevNode = (from n in nodes
                                where n.IsAddressMap
                                where n.Address < address
                                select n).FirstOrDefault();
@@ -63,7 +63,7 @@ public class SchemaNodeNavigator
             startNode
         };
 
-        IEnumerable<SchemaNode> nodes = from n in startNode.SelectNodes(node => node.Next)
+        var nodes = from n in startNode.SelectNodes(node => node.Next)
                                         where n.IsAddressMap
                                         where endNode == null || n.Address <= endNode.Address
                                         select n;

@@ -49,7 +49,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
     {
         ThrowIfDisposed();
 
-        foreach (IEnumerator<T> myEnum in _enumerators)
+        foreach (var myEnum in _enumerators)
         {
             myEnum.Reset();
         }
@@ -72,15 +72,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
         get
         {
             ThrowIfDisposed();
-
-            T val = default;
-
-            if (_currentEnum != null)
-            {
-                val = _currentEnum.Current;
-            }
-
-            return val;
+            return _currentEnum != null ? _currentEnum.Current : default;
         }
     }
 
@@ -93,7 +85,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
     {
         ThrowIfDisposed();
 
-        bool hasMore = false;
+        var hasMore = false;
 
         _currentEnum ??= GetNextEnumerator();
 

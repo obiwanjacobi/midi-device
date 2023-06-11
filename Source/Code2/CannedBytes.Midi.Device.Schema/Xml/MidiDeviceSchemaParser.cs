@@ -24,7 +24,7 @@ public class MidiDeviceSchemaParser
     {
         Check.IfArgumentNull(stream, nameof(stream));
 
-        deviceSchema sourceSchema = MidiDeviceSchemaReader.Read(stream)
+        var sourceSchema = MidiDeviceSchemaReader.Read(stream)
             ?? throw new DeviceSchemaException(
                 "The provided stream could not be parsed into a Midi Device Schema.");
         
@@ -49,7 +49,7 @@ public class MidiDeviceSchemaParser
 
         foreach (object item in importsAndAnnotations)
         {
-            import import = item as import;
+            var import = item as import;
 
             if (import != null)
             {
@@ -60,7 +60,7 @@ public class MidiDeviceSchemaParser
 
     private void ProcessImport(import import)
     {
-        DeviceSchema deviceSchema = _schemas.Find(import.schema);
+        var deviceSchema = _schemas.Find(import.schema);
 
         if (deviceSchema == null)
         {
@@ -99,9 +99,7 @@ public class MidiDeviceSchemaParser
         {
             foreach (openAttrs openAttr in source)
             {
-                annotation annotation = openAttr as annotation;
-
-                if (annotation != null)
+                if (openAttr is annotation annotation)
                 {
                     FillAttributed(annotation, schemaAttributes);
                 }
@@ -156,11 +154,11 @@ public class MidiDeviceSchemaParser
 
         if (source.Any != null)
         {
-            IEnumerable<string> texts = from node in source.Any
+            var texts = from node in source.Any
                         where node is XmlText
                         select ((XmlText)node).Value;
 
-            string value = String.Join("\r\n", texts);
+            var value = String.Join("\r\n", texts);
 
             target.SetValue(value);
         }
@@ -172,11 +170,11 @@ public class MidiDeviceSchemaParser
         {
             foreach (annotated item in source)
             {
-                dataType dataType = item as dataType;
+                var dataType = item as dataType;
 
                 if (dataType != null)
                 {
-                    MidiDeviceSchemaDataType dt = new();
+                    var dt = new MidiDeviceSchemaDataType();
 
                     FillDataType(dataType, dt);
 
@@ -207,11 +205,7 @@ public class MidiDeviceSchemaParser
 
         FillAttributed(source.annotation, target.Attributes);
 
-        extension extension = source.Item as extension;
-        restriction restriction = source.Item as restriction;
-        union union = source.Item as union;
-
-        if (extension != null)
+        if (source.Item is extension extension)
         {
             target.SetIsExtension();
             FillNames(extension.baseTypes, target);
@@ -220,9 +214,9 @@ public class MidiDeviceSchemaParser
             FillFacets(extension.Items, extension.ItemsElementName, target.Constraints);
         }
 
-        if (restriction != null)
+        if (source.Item is restriction restriction)
         {
-            MidiDeviceSchemaDataType baseType = _schemas.FindDataType(restriction.@base.Namespace, restriction.@base.Name);
+            var baseType = _schemas.FindDataType(restriction.@base.Namespace, restriction.@base.Name);
 
             if (baseType != null)
             {
@@ -238,11 +232,12 @@ public class MidiDeviceSchemaParser
             FillFacets(restriction.Items, restriction.ItemsElementName, target.Constraints);
         }
 
-        if (union != null)
+        if (source.Item is union union)
         {
             if (union.dataType != null)
             {
-                throw new DeviceSchemaException("Nested DataType inside a union is not implemented yet.");
+                throw new DeviceSchemaException(
+                    "Nested DataType inside a union is not implemented yet.");
             }
 
             target.SetIsUnion();
@@ -272,7 +267,7 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private void FillFacets(facet[] facets, ItemsChoiceType1[] choiceTypes, ConstraintCollection constraintCollection)
+    private static void FillFacets(facet[] facets, ItemsChoiceType1[] choiceTypes, ConstraintCollection constraintCollection)
     {
         if (facets != null)
         {
@@ -288,16 +283,16 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private void FillFacets(facet[] facets, ItemsChoiceType[] choiceTypes, ConstraintCollection constraintCollection)
+    private static void FillFacets(facet[] facets, ItemsChoiceType[] choiceTypes, ConstraintCollection constraintCollection)
     {
         if (facets != null)
         {
             for (int i = 0; i < facets.Length; i++)
             {
                 facet facet = facets[i];
-                ItemsChoiceType itemType = choiceTypes[i];
+                var itemType = choiceTypes[i];
 
-                MidiDeviceSchemaConstraint constraint = MidiDeviceSchemaConstraint.Create(itemType.ToString(), facet.value);
+                var constraint = MidiDeviceSchemaConstraint.Create(itemType.ToString(), facet.value);
 
                 constraintCollection.Add(constraint);
             }
@@ -310,9 +305,7 @@ public class MidiDeviceSchemaParser
         {
             foreach (annotated item in annotated)
             {
-                recordType recordType = item as recordType;
-
-                if (recordType != null)
+                if (item is recordType recordType)
                 {
                     MidiDeviceSchemaRecordType rt = new();
 
@@ -325,7 +318,7 @@ public class MidiDeviceSchemaParser
 
             foreach (KeyValuePair<XmlQualifiedName, MidiDeviceSchemaRecordType> pair in _deferredRecordTypes)
             {
-                MidiDeviceSchemaRecordType baseType = (MidiDeviceSchemaRecordType)_targetSchema.AllRecordTypes.Find(pair.Key.Name)
+                var baseType = (MidiDeviceSchemaRecordType)_targetSchema.AllRecordTypes.Find(pair.Key.Name)
                     ?? throw new DeviceSchemaException(
                         $"The base type '{pair.Key.Name}' ({pair.Key.Namespace}) used for record type '{pair.Value.Name}' was not found.");
 
@@ -375,7 +368,7 @@ public class MidiDeviceSchemaParser
 
         if (source.Item is recordExtensionType extension)
         {
-            MidiDeviceSchemaRecordType baseType = _schemas.FindRecordType(extension.@base.Namespace, extension.@base.Name);
+            var baseType = _schemas.FindRecordType(extension.@base.Namespace, extension.@base.Name);
 
             if (baseType != null)
             {
@@ -408,7 +401,7 @@ public class MidiDeviceSchemaParser
     {
         if (source != null)
         {
-            foreach (localField field in source)
+            foreach (var field in source)
             {
                 MidiDeviceSchemaField fld = new();
                 fld.SetDeclaringRecord(recordType);
@@ -445,7 +438,7 @@ public class MidiDeviceSchemaParser
         }
         else
         {
-            DataType dataType = target.DataType;
+            var dataType = target.DataType;
 
             while (dataType != null)
             {
@@ -465,7 +458,7 @@ public class MidiDeviceSchemaParser
     {
         if (!String.IsNullOrEmpty(fixedValue))
         {
-            MidiDeviceSchemaConstraint constraint = MidiDeviceSchemaConstraint.Create("fixed", fixedValue);
+            var constraint = MidiDeviceSchemaConstraint.Create("fixed", fixedValue);
             target.Add(constraint);
         }
     }
@@ -473,12 +466,12 @@ public class MidiDeviceSchemaParser
     private bool SetFieldType(string schema, string name, MidiDeviceSchemaField target)
     {
         SchemaObjectName fullName = new(schema, name);
-        MidiDeviceSchemaDataType dataType = _schemas.FindDataType(schema, name)
+        var dataType = _schemas.FindDataType(schema, name)
             ?? (MidiDeviceSchemaDataType)_targetSchema.AllDataTypes.Find(fullName.FullName);
 
         if (dataType == null)
         {
-            MidiDeviceSchemaRecordType recordType = _schemas.FindRecordType(schema, name);
+            var recordType = _schemas.FindRecordType(schema, name);
 
             if (recordType == null)
             {

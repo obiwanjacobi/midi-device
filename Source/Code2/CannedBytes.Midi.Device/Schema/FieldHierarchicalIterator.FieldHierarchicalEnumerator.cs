@@ -13,7 +13,7 @@ namespace CannedBytes.Midi.Device.Schema
 
             protected override IEnumerator<FieldInfo> GetChildEnumerator()
             {
-                FieldInfo fieldInfo = Current;
+                var fieldInfo = Current;
 
                 if (fieldInfo.Field?.RecordType != null)
                 {

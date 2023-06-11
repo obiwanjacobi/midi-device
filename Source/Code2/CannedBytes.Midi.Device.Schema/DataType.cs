@@ -109,7 +109,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <returns>Returns null when no suitable constraint could be found.</returns>
         public Constraint FindConstraint(ConstraintTypes constraintType)
         {
-            DataType dataType = this;
+            var dataType = this;
 
             Constraint constraint;
             do
@@ -131,9 +131,9 @@ namespace CannedBytes.Midi.Device.Schema
         /// <returns>Returns true if the DataType is or derives from the specified <paramref name="fullDataTypeName"/>.</returns>
         public bool IsType(string fullDataTypeName, bool recursive)
         {
-            bool success = Name.FullName == fullDataTypeName;
+            var success = Name.FullName == fullDataTypeName;
 
-            if (success == false && HasBaseTypes)
+            if (!success && HasBaseTypes)
             {
                 if (recursive)
                 {

@@ -24,7 +24,7 @@ public class AddressMapConverter : StreamConverter, INavigationEvents
     {
         Check.IfArgumentNull(context, nameof(context));
 
-        IEnumerable<SchemaNode> children = context.StateMap.Get<IEnumerable<SchemaNode>>(ChildrenStateName);
+        var children = context.StateMap.Get<IEnumerable<SchemaNode>>(ChildrenStateName);
 
         return children ?? base.GetChildNodeIterator(context);
     }
@@ -40,17 +40,17 @@ public class AddressMapConverter : StreamConverter, INavigationEvents
             size = CalculateSize(context);
         }
 
-        AddressMapManager mgr = new(context.RootNode);
+        var mgr = new AddressMapManager(context.RootNode);
 
-        IEnumerable<SchemaNode> children = mgr.CreateSchemaNodes(address, size);
+        var children = mgr.CreateSchemaNodes(address, size);
 
         context.StateMap.Set(ChildrenStateName, children);
     }
 
     private static void GetAddressAndSize(DeviceDataContext context, out SevenBitUInt32 address, out SevenBitUInt32 size)
     {
-        DeviceProperty addressProperty = context.DeviceProperties.Find(DeviceProperty.AddressPropertyName);
-        DeviceProperty sizeProperty = context.DeviceProperties.Find(DeviceProperty.SizePropertyName);
+        var addressProperty = context.DeviceProperties.Find(DeviceProperty.AddressPropertyName);
+        var sizeProperty = context.DeviceProperties.Find(DeviceProperty.SizePropertyName);
 
         if (addressProperty == null)
         {

@@ -21,7 +21,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
     {
         Check.IfArgumentNullOrEmpty(schemaLocation, nameof(schemaLocation));
 
-        string[] parts = schemaLocation.Split("::");
+        var parts = schemaLocation.Split("::");
 
         string schemaAssembly = null;
         string schemaName;
@@ -43,18 +43,18 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
             System.Diagnostics.TraceEventType.Information,
             "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
 
-        using Stream stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
+        using var stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
             ?? throw new DeviceSchemaNotFoundException($"{schemaName} - {schemaAssembly}");
         
         MidiDeviceSchemaParser parser = new(_schemas);
-        DeviceSchema deviceSchema = parser.Parse(stream);
+        var deviceSchema = parser.Parse(stream);
 
         return deviceSchema;
     }
 
     public DeviceSchema Open(string schemaName)
     {
-        DeviceSchema deviceSchema = _schemas.Find(schemaName)
+        var deviceSchema = _schemas.Find(schemaName)
             ?? Load(schemaName);
         return deviceSchema;
     }
@@ -65,7 +65,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
         Check.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         RecordType recordType = null;
-        MidiDeviceSchema schema = (MidiDeviceSchema)_schemas.Find(schemaName);
+        var schema = (MidiDeviceSchema)_schemas.Find(schemaName);
 
         if (schema != null)
         {
@@ -81,7 +81,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
         Check.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         DataType dataType = null;
-        MidiDeviceSchema schema = (MidiDeviceSchema)_schemas.Find(schemaName);
+        var schema = (MidiDeviceSchema)_schemas.Find(schemaName);
 
         if (schema != null)
         {

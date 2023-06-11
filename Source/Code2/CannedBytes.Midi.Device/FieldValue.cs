@@ -12,7 +12,7 @@ public class FieldValue<T>
     {
         if (!String.IsNullOrEmpty(Field.ExtendedProperties.DevicePropertyName))
         {
-            DeviceProperty prop = context.DeviceProperties.Find(Field.ExtendedProperties.DevicePropertyName);
+            var prop = context.DeviceProperties.Find(Field.ExtendedProperties.DevicePropertyName);
 
             if (prop != null)
             {
@@ -33,21 +33,21 @@ public class FieldValue<T>
 
         Callback = true;
 
-        Constraint minValue = Field.Constraints.Find(ConstraintTypes.MinInclusive);
+        var minValue = Field.Constraints.Find(ConstraintTypes.MinInclusive);
 
         if (minValue != null)
         {
             MinValue = minValue.GetValue<T>();
         }
 
-        Constraint maxValue = Field.Constraints.Find(ConstraintTypes.MaxInclusive);
+        var maxValue = Field.Constraints.Find(ConstraintTypes.MaxInclusive);
 
         if (maxValue != null)
         {
             MaxValue = maxValue.GetValue<T>();
         }
 
-        Constraint fixValue = Field.Constraints.Find(ConstraintTypes.FixedValue);
+        var fixValue = Field.Constraints.Find(ConstraintTypes.FixedValue);
 
         if (fixValue != null)
         {
@@ -55,7 +55,7 @@ public class FieldValue<T>
             Callback = false;
         }
 
-        System.Collections.Generic.IEnumerable<Constraint> enums = Field.Constraints.FindAll(ConstraintTypes.Enumeration);
+        var enums = Field.Constraints.FindAll(ConstraintTypes.Enumeration);
 
         if (enums?.Count() == 1)
         {

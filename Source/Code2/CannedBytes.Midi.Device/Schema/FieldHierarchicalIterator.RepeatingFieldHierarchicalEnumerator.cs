@@ -17,7 +17,7 @@ partial class FieldHierarchicalIterator
         {
             get
             {
-                FieldInfo fieldInfo = base.Current;
+                var fieldInfo = base.Current;
 
                 fieldInfo.InstanceIndex = _repeats.GetValueOrDefault();
 
@@ -27,7 +27,7 @@ partial class FieldHierarchicalIterator
 
         public override bool MoveNext()
         {
-            bool hasMore = base.MoveNext();
+            var hasMore = base.MoveNext();
 
             if (hasMore)
             {
@@ -54,7 +54,7 @@ partial class FieldHierarchicalIterator
 
         protected override IEnumerator<FieldInfo> GetChildEnumerator()
         {
-            IEnumerator<FieldInfo> enumerator = base.GetChildEnumerator();
+            var enumerator = base.GetChildEnumerator();
 
             if (enumerator != null)
             {
@@ -80,7 +80,7 @@ partial class FieldHierarchicalIterator
             {
                 _repeats--;
 
-                IEnumerator<FieldInfo> enumerator = CurrentEnumerator;
+                var enumerator = CurrentEnumerator;
 
                 // do it again
                 enumerator.Reset();

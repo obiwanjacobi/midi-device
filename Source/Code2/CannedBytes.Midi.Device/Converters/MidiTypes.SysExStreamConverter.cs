@@ -27,7 +27,7 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
         Check.IfArgumentNull(context, nameof(context));
 
         // Start of SysEx
-        StreamManager.SysExStream sysExStream = new(context.StreamManager.CurrentStream);
+         var sysExStream = new StreamManager.SysExStream(context.StreamManager.CurrentStream);
 
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {
@@ -46,13 +46,9 @@ public class SysExStreamConverter : StreamConverter, INavigationEvents
         Check.IfArgumentNull(context, nameof(context));
 
         // End of SysEx
-        StreamManager.SysExStream sysExStream = context.StreamManager.CurrentStream as StreamManager.SysExStream;
-
-        if (sysExStream == null)
-        {
-            throw new DeviceDataException(
+        var sysExStream = context.StreamManager.CurrentStream as StreamManager.SysExStream
+            ?? throw new DeviceDataException(
                 "The SysExStreamConverter.INavigationEvents.OnAfterRecord method could not find its stream on the DeviceDataContext.StreamManager.CurrentStream property.");
-        }
 
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {

@@ -41,7 +41,7 @@ public class FieldHierarchicalIteratorTest
     [Fact]
     public void CheckLoadSchema_HierarchicalSchema_LoadsWithoutErrors()
     {
-        DeviceSchema schema = LoadTestSchema();
+        var schema = LoadTestSchema();
 
         schema.Should().NotBeNull();
         schema.RootRecordTypes.Should().NotBeEmpty();
@@ -50,10 +50,10 @@ public class FieldHierarchicalIteratorTest
     [Fact]
     public void MoveNext_HierarchicalSchema_EnumeratorLoopsOnce()
     {
-        DeviceSchema schema = LoadTestSchema();
+        var schema = LoadTestSchema();
         FieldHierarchicalIterator iterator = new(schema.RootRecordTypes[0]);
 
-        IEnumerator<FieldInfo> enumerator = iterator.GetEnumerator();
+        var enumerator = iterator.GetEnumerator();
 
         enumerator.Should().NotBeNull();
         enumerator.MoveNext().Should().BeTrue();
@@ -63,7 +63,7 @@ public class FieldHierarchicalIteratorTest
     [Fact]
     public void MoveNext_HierarchicalSchema_ReturnsFields()
     {
-        DeviceSchema schema = LoadTestSchema();
+        var schema = LoadTestSchema();
         FieldHierarchicalIterator iterator = new(schema.RootRecordTypes[0]);
 
         foreach (FieldInfo field in iterator)
@@ -75,7 +75,7 @@ public class FieldHierarchicalIteratorTest
     [Fact]
     public void MoveNext_HierarchicalSchema_VerifyAllFields()
     {
-        DeviceSchema schema = LoadTestSchema();
+        var schema = LoadTestSchema();
         FieldHierarchicalIterator iterator = new(schema.RootRecordTypes[0]);
 
         int counter = EnumerateFields(iterator);
@@ -88,7 +88,7 @@ public class FieldHierarchicalIteratorTest
     [Fact]
     public void MoveNext_HierarchicalSchema_VerifyAllRepeatedFields()
     {
-        DeviceSchema schema = LoadTestSchema();
+        var schema = LoadTestSchema();
         FieldHierarchicalIterator iterator = new(schema.RootRecordTypes[0])
         {
             ExpandRepeatingFields = true
