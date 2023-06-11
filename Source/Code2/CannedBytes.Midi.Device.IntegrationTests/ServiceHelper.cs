@@ -20,12 +20,13 @@ namespace CannedBytes.Midi.Device.IntegrationTests
             var services = new ServiceCollection();
 
             services.AddSingleton<IDeviceSchemaProvider, MidiDeviceSchemaProvider>();
-
-            services.AddSingleton<ConverterManager.AttributedConverterFactory>();
+            
             services.AddSingletonAll<DataConverter>(DeviceAssembly);
             services.AddSingletonAll<StreamConverter>(DeviceAssembly);
             services.AddSingletonAll<IConverterFactory>(DeviceAssembly);
+            services.AddSingleton<ConverterManager.AttributedConverterFactory>();
             services.AddSingleton<ConverterManager>();
+
             services.AddSingleton<SchemaNodeMapFactory>();
 
             return services.BuildServiceProvider();

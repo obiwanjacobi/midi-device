@@ -20,6 +20,8 @@ public class StreamConverter : IConverter
         RecordType = recordType;
     }
 
+    public DeviceSchema Schema => RecordType.Schema;
+
     /// <summary>Indicates if the contents (Fields) was constructed dynamically (content determined at runtime).</summary>
     //public virtual bool IsDynamic
     //{

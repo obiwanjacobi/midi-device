@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
 
-[Export]
+//[Export]
 public partial class ConverterManager
 {
     private readonly FactoryManager _factoryMgr;
 
-    [ImportingConstructor]
+    //[ImportingConstructor]
     public ConverterManager(
-        [Import] AttributedConverterFactory attributedFactory,
+        //[Import]
+        AttributedConverterFactory attributedFactory,
         //[ImportMany(typeof(IConverterFactory))]
         //IEnumerable<Lazy<IConverterFactory, IConverterFactoryInfo>> factories
         IEnumerable<IConverterFactory> factories)

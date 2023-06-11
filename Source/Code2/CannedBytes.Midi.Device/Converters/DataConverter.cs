@@ -24,6 +24,8 @@ public abstract partial class DataConverter : IConverter
         DataType = dataType;
     }
 
+    public DeviceSchema Schema => DataType.Schema;
+
     /// <summary>
     /// Gets the data type on which this converter was constructed.
     /// </summary>

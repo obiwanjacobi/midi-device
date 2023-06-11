@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 
 namespace CannedBytes.Midi.Device.Schema.Xml;
 
-[Export(typeof(IDeviceSchemaProvider))]
+//[Export(typeof(IDeviceSchemaProvider))]
 public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 {
     private readonly MidiDeviceSchemaSet _schemas = new();

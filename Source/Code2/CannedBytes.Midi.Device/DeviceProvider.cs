@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CannedBytes.ComponentModel.Composition;
 using CannedBytes.Midi.Device.Schema;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -51,35 +50,6 @@ public sealed class DeviceProvider
                    select bcm).FirstOrDefault();
 
         return map;
-    }
-
-    public static DeviceProvider Create(CompositionContext compositionContext, string schemaLocation)
-    {
-        DeviceProvider deviceProvider = new();
-
-        IDeviceSchemaProvider schemaProvider = compositionContext.GetInstance<IDeviceSchemaProvider>();
-        deviceProvider.Schema = schemaProvider.Load(schemaLocation);
-
-        // filter root fields on 'midiSysEx' records
-        List<Field> remove = (from vrf in deviceProvider.Schema.VirtualRootFields
-                      where !vrf.RecordType.IsType(MidiTypes.MidiTypesSchema_SysEx)
-                      select vrf).ToList();
-
-        foreach (Field nonSysExRoot in remove)
-        {
-            deviceProvider.Schema.VirtualRootFields.Remove(nonSysExRoot);
-        }
-
-        if (deviceProvider.Schema.VirtualRootFields.Count == 0)
-        {
-            throw new DeviceDataException(
-                $"The schema '{deviceProvider.Schema.SchemaName}' loaded from '{schemaLocation}' Does not contain any root records that derive from midiSysEx.");
-        }
-
-        SchemaNodeMapFactory mapFactory = compositionContext.GetInstance<SchemaNodeMapFactory>();
-        deviceProvider.BinaryMaps = mapFactory.CreateAll(deviceProvider.Schema);
-
-        return deviceProvider;
     }
 
     public static DeviceProvider Create(IServiceProvider serviceProvider, string schemaLocation)
