@@ -5,7 +5,6 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Roland;
 
-//[StreamConverter("http://schemas.cannedbytes.com/midi-device-schema/Roland/10", "rolandChecksum")]
 public class RolandChecksumStreamConverter : ChecksumStreamConverter
 {
     public RolandChecksumStreamConverter(RecordType recordType)
@@ -14,7 +13,7 @@ public class RolandChecksumStreamConverter : ChecksumStreamConverter
 
     protected override VarUInt64 CalculateChecksum(Stream stream)
     {
-        VarUInt64 total = base.CalculateChecksum(stream);
+        var total = base.CalculateChecksum(stream);
 
         int checksum = total.ConvertTo((VarUInt64.VarTypeCode)ByteLength) % 0x80;
 
