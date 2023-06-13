@@ -5,10 +5,10 @@ using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
-internal partial class AddressMapManager
+internal sealed partial class AddressMapManager
 {
-    private SchemaNode _rootNode;
-    private SchemaNodeNavigator _navigator;
+    private readonly SchemaNode _rootNode;
+    private readonly SchemaNodeNavigator _navigator;
 
     public AddressMapManager(SchemaNode rootNode)
     {
@@ -66,6 +66,8 @@ internal partial class AddressMapManager
         }
 
         var parents = CreateParentNodes(startNode);
+        // is this correct??
+        // lastParent = First()??
         var lastParent = parents.FirstOrDefault();
 
         var nodes = CreateSchemaNodes(lastParent, startNode, endNode);
@@ -112,7 +114,7 @@ internal partial class AddressMapManager
 
         AddressMapSchemaNode lastParent = null;
 
-        foreach (SchemaNode parent in parents)
+        foreach (var parent in parents)
         {
             var newParent = new AddressMapSchemaNode(parent);
             newParents.Add(newParent);

@@ -15,7 +15,7 @@ partial class AddressMapManager
         {
             OriginalNode = thisNode;
 
-            CopyFrom(thisNode);
+            thisNode.CopyTo(this);
         }
 
         public SchemaNode OriginalNode { get; }
@@ -30,27 +30,6 @@ partial class AddressMapManager
         {
             Next = next;
             Next.Previous = this;
-        }
-
-        private void CopyFrom(SchemaNode copyNode)
-        {
-            Address = copyNode.Address;
-            DataLength = copyNode.DataLength;
-            FieldConverterPair = copyNode.FieldConverterPair;
-            InstanceCount = copyNode.InstanceCount;
-            InstanceIndex = copyNode.InstanceIndex;
-            IsAddressMap = copyNode.IsAddressMap;
-            IsClone = copyNode.IsClone;
-            IsRecord = copyNode.IsRecord;
-            IsRoot = copyNode.IsRoot;
-            Key = copyNode.Key;
-            Next = copyNode.Next;
-            NextClone = copyNode.NextClone;
-            NextSibling = copyNode.NextSibling;
-            Parent = copyNode.Parent;
-            Previous = copyNode.Previous;
-            PreviousClone = copyNode.PreviousClone;
-            PreviousSibling = copyNode.PreviousSibling;
         }
     }
 }

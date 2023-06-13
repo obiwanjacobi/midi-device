@@ -353,7 +353,7 @@ public partial class SchemaNode : ILogicalFieldInfo
         return text.ToString();
     }
 
-    protected void CopyTo(SchemaNode targetNode)
+    internal protected void CopyTo(SchemaNode targetNode)
     {
         Check.IfArgumentNull(targetNode, nameof(targetNode));
 
