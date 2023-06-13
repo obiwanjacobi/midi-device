@@ -25,9 +25,9 @@ internal class LogicalWriteAccessor : ILogicalWriteAccessor
         var fieldValue = _context.FieldInfo.GetDataFieldValue<T>();
 
         // intercept the value and set it on the current Record Entry.
-        if (_context.RecordManager?.CurrentEntry != null)
+        if (_context.LogManager?.CurrentEntry != null)
         {
-            _context.RecordManager.CurrentEntry.Data = value;
+            _context.LogManager.CurrentEntry.Data = value;
         }
 
         // validate against field constraints

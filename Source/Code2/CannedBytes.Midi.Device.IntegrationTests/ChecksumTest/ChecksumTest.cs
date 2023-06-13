@@ -31,7 +31,7 @@ public class ChecksumTest
 
         ctx.Should().NotBeNull();
 
-        _output.WriteLine(ctx.RecordManager.ToString());
+        _output.WriteLine(ctx.LogManager.ToString());
     }
 
     //[Fact]

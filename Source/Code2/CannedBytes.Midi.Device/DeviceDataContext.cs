@@ -2,7 +2,7 @@
 
 namespace CannedBytes.Midi.Device;
 
-public partial class DeviceDataContext
+public sealed partial class DeviceDataContext
 {
     public DeviceDataContext(ConversionDirection dir)
     {
@@ -12,7 +12,7 @@ public partial class DeviceDataContext
         StateMap = new ConverterState();
 
         ConversionDirection = dir;
-        RecordManager = new DataRecordManager(this);
+        LogManager = new DataLogManager(this);
     }
 
     /// <summary>
@@ -29,31 +29,31 @@ public partial class DeviceDataContext
     /// <summary>
     /// Gets the current bit carry for 'physical' stream operations.
     /// </summary>
-    public Carry Carry { get; private set; }
+    public Carry Carry { get; }
     
     /// <summary>
     /// Contains the runtime device properties retrieved from the message.
     /// </summary>
-    public DevicePropertyCollection DeviceProperties { get; private set; }
+    public DevicePropertyCollection DeviceProperties { get; }
 
     // Streams
-    public StreamManager StreamManager { get; set; }
+    public StreamManager StreamManager { get; init; }
 
     // log records
-    public DataRecordManager RecordManager { get; set; }
+    public DataLogManager LogManager { get; }
 
     // schema
-    public SchemaNode RootNode { get; set; }
+    public SchemaNode RootNode { get; init; }
 
     /// <summary>
     /// Contains field-specific context information.
     /// </summary>
-    public FieldContext FieldInfo { get; private set; }
+    public FieldContext FieldInfo { get; }
 
     /// <summary>
     /// A place for converters to store state during a conversion run.
     /// </summary>
-    public ConverterState StateMap { get; private set; }
+    public ConverterState StateMap { get; }
 
     // returns a reader for the current node/converter (LE/BE).
     public DeviceStreamReader CreateReader()
@@ -80,7 +80,7 @@ public partial class DeviceDataContext
     /// Creates the context information that is passed to the application
     /// </summary>
     /// <returns>Never returns null.</returns>
-    public virtual LogicalContext CreateLogicalContext()
+    public LogicalContext CreateLogicalContext()
     {
         if (FieldInfo.CurrentNode == null)
         {

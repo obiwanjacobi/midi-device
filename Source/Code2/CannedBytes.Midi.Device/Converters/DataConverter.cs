@@ -60,6 +60,10 @@ public abstract partial class DataConverter : IConverter
 
     public virtual void ToLogical(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
+        Check.IfArgumentNull(context, nameof(context));
+        Check.IfArgumentNull(reader, nameof(reader));
+        Check.IfArgumentNull(writer, nameof(writer));
+
         if (InnerConverter != null)
         {
             ReadFromInnerConverter(context, reader, writer);
@@ -80,5 +84,13 @@ public abstract partial class DataConverter : IConverter
         InnerConverter.ToLogical(context, reader, writer);
     }
 
+    /// <summary>
+    /// As part of the <see cref="ToLogical"/> operation this method reads the physical data 
+    /// from <paramref name="reader"/>, converts it into a logical value that is written to
+    /// the <paramref name="writer"/>.
+    /// </summary>
+    /// <param name="context">Is never null.</param>
+    /// <param name="reader">Is never null.</param>
+    /// <param name="writer">Is never null.</param>
     protected abstract void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer);
 }

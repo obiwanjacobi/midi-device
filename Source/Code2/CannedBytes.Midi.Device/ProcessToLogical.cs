@@ -44,7 +44,7 @@ public class ProcessToLogical
 
     private void RecordToLogical(SchemaNode thisNode)
     {
-        using IDisposable scope = _context.RecordManager.BeginNewEntry();
+        using IDisposable scope = _context.LogManager.BeginNewEntry();
         try
         {
             OnBeforeRecordToLogical(thisNode);
@@ -53,7 +53,7 @@ public class ProcessToLogical
         }
         catch (Exception e)
         {
-            _context.RecordManager.SetError(e);
+            _context.LogManager.SetError(e);
 
             throw;
         }
@@ -61,7 +61,7 @@ public class ProcessToLogical
 
     private void FieldToLogical(SchemaNode thisNode)
     {
-        using IDisposable scope = _context.RecordManager.BeginNewEntry();
+        using IDisposable scope = _context.LogManager.BeginNewEntry();
         try
         {
             OnBeforeFieldToLogical(thisNode);
@@ -70,7 +70,7 @@ public class ProcessToLogical
         }
         catch (Exception e)
         {
-            _context.RecordManager.SetError(e);
+            _context.LogManager.SetError(e);
 
             throw;
         }
@@ -136,9 +136,9 @@ public class ProcessToLogical
     {
         _context.Carry.Clear();
 
-        if (_context.RecordManager.CurrentEntry != null)
+        if (_context.LogManager.CurrentEntry != null)
         {
-            _context.RecordManager.CurrentEntry.CarryCleared = true;
+            _context.LogManager.CurrentEntry.CarryCleared = true;
         }
     }
 }

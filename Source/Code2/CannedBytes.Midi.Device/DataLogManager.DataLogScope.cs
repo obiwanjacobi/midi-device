@@ -2,13 +2,13 @@
 
 namespace CannedBytes.Midi.Device;
 
-partial class DataRecordManager
+partial class DataLogManager
 {
-    private sealed class DataRecordScope : IDisposable
+    private sealed class DataLogScope : IDisposable
     {
-        private readonly DataRecordManager _manager;
+        private readonly DataLogManager _manager;
 
-        public DataRecordScope(DataRecordManager manager)
+        public DataLogScope(DataLogManager manager)
         {
             _manager = manager;
         }

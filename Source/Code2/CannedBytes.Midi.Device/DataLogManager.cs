@@ -4,27 +4,27 @@ using System.Text;
 
 namespace CannedBytes.Midi.Device;
 
-public sealed partial class DataRecordManager
+public sealed partial class DataLogManager
 {
     private DeviceDataContext _context;
 
-    public DataRecordManager(DeviceDataContext context)
+    public DataLogManager(DeviceDataContext context)
     {
         Check.IfArgumentNull(context, nameof(context));
 
         _context = context;
     }
 
-    private List<DataRecordEntry> _entries = new();
+    private List<DataLogEntry> _entries = new();
 
-    public IEnumerable<DataRecordEntry> Entries
+    public IEnumerable<DataLogEntry> Entries
     {
         get { return _entries; }
     }
 
-    private Stack<DataRecordEntry> _currentEntries = new();
+    private readonly Stack<DataLogEntry> _currentEntries = new();
 
-    public DataRecordEntry CurrentEntry
+    public DataLogEntry CurrentEntry
     {
         get
         {
@@ -39,7 +39,7 @@ public sealed partial class DataRecordManager
 
     public IDisposable BeginNewEntry()
     {
-        DataRecordEntry entry = new()
+        DataLogEntry entry = new()
         {
             Node = _context.FieldInfo.CurrentNode,
             PhysicalStreamPosition = _context.StreamManager.PhysicalStream.Position,
@@ -48,14 +48,14 @@ public sealed partial class DataRecordManager
 
         _currentEntries.Push(entry);
 
-        return new DataRecordScope(this);
+        return new DataLogScope(this);
     }
 
     public void SaveCurrentEntry()
     {
         if (CurrentEntry != null)
         {
-            DataRecordEntry entry = _currentEntries.Pop();
+            DataLogEntry entry = _currentEntries.Pop();
 
             _entries.Add(entry);
         }
@@ -73,7 +73,7 @@ public sealed partial class DataRecordManager
     {
         if (CurrentEntry == null)
         {
-            DataRecordEntry errEntry = null;
+            DataLogEntry errEntry = null;
 
             if (_entries.Count > 0)
             {
@@ -89,7 +89,7 @@ public sealed partial class DataRecordManager
             }
             else
             {
-                errEntry = new DataRecordEntry();
+                errEntry = new DataLogEntry();
                 errEntry.AddMessage("Auto-created new entry for Error.");
             }
 
@@ -114,7 +114,7 @@ public sealed partial class DataRecordManager
     {
         var text = new StringBuilder();
 
-        foreach (DataRecordEntry entry in Entries)
+        foreach (var entry in Entries)
         {
             text.AppendLine(entry.ToString());
         }

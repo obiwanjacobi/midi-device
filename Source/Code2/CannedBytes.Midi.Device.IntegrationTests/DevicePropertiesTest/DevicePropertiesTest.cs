@@ -33,6 +33,6 @@ public class DevicePropertiesTest
         ctx.DeviceProperties.Find("ModelId").GetValue<int>().Should().Be(43);
         ctx.DeviceProperties.Find("CommandId").GetValue<int>().Should().Be(17);
 
-        _output.WriteLine(ctx.RecordManager.ToString());
+        _output.WriteLine(ctx.LogManager.ToString());
     }
 }

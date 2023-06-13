@@ -69,7 +69,7 @@ public class CarryTest
         writer[8].Field.Name.Name.Should().Be("secondHi");
 
         ctx.Should().NotBeNull();
-        _output.WriteLine(ctx.RecordManager.ToString());
+        _output.WriteLine(ctx.LogManager.ToString());
     }
 
     /*

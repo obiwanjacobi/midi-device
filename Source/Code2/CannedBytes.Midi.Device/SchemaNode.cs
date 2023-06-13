@@ -95,7 +95,7 @@ public partial class SchemaNode : ILogicalFieldInfo
         if (parent == null)
         {
             // internal error!
-            throw new ArgumentOutOfRangeException("instanceIndex", instanceIndex,
+            throw new ArgumentOutOfRangeException(nameof(instanceIndex), instanceIndex,
                 "Internal Error: Parameter instanceIndex is too large. No more clones found after: " + (instanceIndex - currentIndex));
         }
 

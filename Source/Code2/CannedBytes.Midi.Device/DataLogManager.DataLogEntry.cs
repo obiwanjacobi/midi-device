@@ -3,9 +3,9 @@ using System.Text;
 
 namespace CannedBytes.Midi.Device;
 
-partial class DataRecordManager
+partial class DataLogManager
 {
-    public sealed class DataRecordEntry
+    public sealed class DataLogEntry
     {
         public bool CarryCleared { get; set; }
         public object Data { get; set; }
@@ -15,9 +15,9 @@ partial class DataRecordManager
         public Exception Error { get; set; }
         public string Message { get; private set; }
 
-        public DataRecordEntry Clone()
+        public DataLogEntry Clone()
         {
-            DataRecordEntry clone = new()
+            DataLogEntry clone = new()
             {
                 CarryCleared = CarryCleared,
                 Data = Data,

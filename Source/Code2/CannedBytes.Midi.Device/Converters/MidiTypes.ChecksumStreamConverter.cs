@@ -40,10 +40,10 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
             var checksum = ReadChecksumFromStream(context);
 
             // intercept the value and set it on the current Record Entry.
-            if (context.RecordManager?.CurrentEntry != null)
+            if (context.LogManager?.CurrentEntry != null)
             {
-                context.RecordManager.CurrentEntry.Data = checksum;
-                context.RecordManager.CurrentEntry.AddMessage("Calculated checksum: " + calculatedChecksum);
+                context.LogManager.CurrentEntry.Data = checksum;
+                context.LogManager.CurrentEntry.AddMessage("Calculated checksum: " + calculatedChecksum);
             }
 
             // verify checksum
