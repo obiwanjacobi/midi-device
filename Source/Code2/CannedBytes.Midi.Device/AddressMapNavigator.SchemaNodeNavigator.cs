@@ -43,9 +43,10 @@ partial class AddressMapManager
         public SchemaNode PreviousAddress(SchemaNode currentNode, SevenBitUInt32 address)
         {
             List<SchemaNode> nodes = new()
-        {
-            currentNode
-        };
+            {
+                currentNode
+            };
+
             nodes.AddRange(currentNode.SelectNodes(node => node.Previous));
 
             var prevNode = (from n in nodes
@@ -61,9 +62,9 @@ partial class AddressMapManager
         public IEnumerable<SchemaNode> SelectRange(SchemaNode startNode, SchemaNode endNode)
         {
             List<SchemaNode> range = new()
-        {
-            startNode
-        };
+            {
+                startNode
+            };
 
             var nodes = from n in startNode.SelectNodes(node => node.Next)
                         where n.IsAddressMap

@@ -41,7 +41,6 @@ public class AddressMapManagerTest
 
         var result = mgr.CreateSchemaNodes(address, size).ToList();
 
-        result.Should().NotBeNull();
         result.Should().HaveCount(4);
 
         result[0].Address.Should().Be(0x10);
@@ -75,7 +74,6 @@ public class AddressMapManagerTest
 
         var result = mgr.CreateSchemaNodes(address, size).ToList();
 
-        result.Should().NotBeNull();
         result.Should().HaveCount(6);
 
         result[0].Address.Should().Be(0x10);
@@ -120,7 +118,6 @@ public class AddressMapManagerTest
 
         var result = mgr.CreateSchemaNodes(address, size).ToList();
 
-        result.Should().NotBeNull();
         // two nodes: includes parent record and field itself
         result.Should().HaveCount(2);
 
