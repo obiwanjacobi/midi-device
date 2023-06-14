@@ -3,9 +3,9 @@
 namespace CannedBytes.Midi.Core;
 
 /// <summary>
-/// A variable unsigend value of max 8 bytes.
+/// A variable unsigned value of max 8 bytes.
 /// </summary>
-public struct VarUInt64
+public readonly struct VarUInt64
 {
     private readonly ulong _value;
 
@@ -17,7 +17,6 @@ public struct VarUInt64
     {
         _value = value;
         TypeCode = TypeCodeFor(_value);
-        IsFixed = false;
     }
 
     /// <summary>
@@ -28,7 +27,6 @@ public struct VarUInt64
     {
         _value = value;
         TypeCode = TypeCodeFor(_value);
-        IsFixed = false;
     }
 
     /// <summary>
@@ -39,7 +37,6 @@ public struct VarUInt64
     {
         _value = value;
         TypeCode = TypeCodeFor(_value);
-        IsFixed = false;
     }
 
     /// <summary>
@@ -50,7 +47,6 @@ public struct VarUInt64
     {
         _value = value;
         TypeCode = TypeCodeFor(_value);
-        IsFixed = false;
     }
 
     /// <summary>
@@ -62,13 +58,7 @@ public struct VarUInt64
     {
         _value = value;
         TypeCode = typeCode;
-        IsFixed = true;
     }
-
-    /// <summary>
-    /// Indicates if the size can be changed in-place.
-    /// </summary>
-    public bool IsFixed { get; }
 
     /// <summary>
     /// Indicates if this instance is initialized to a value.
@@ -190,7 +180,7 @@ public struct VarUInt64
     /// <returns>Never returns null or empty.</returns>
     public override string ToString()
     {
-        return _value.ToString() + " (" + TypeCode.ToString() + ")";
+        return $"{_value} ({TypeCode})";
     }
 
     public string ToString(string format)
@@ -252,52 +242,52 @@ public struct VarUInt64
 
     public static VarUInt64 operator +(VarUInt64 left, VarUInt64 right)
     {
-        return CreateNewFrom(left, left._value + right._value);
+        return CreateNew(left._value + right._value);
     }
 
     public static VarUInt64 operator +(VarUInt64 left, byte right)
     {
-        return CreateNewFrom(left, left._value + right);
+        return CreateNew(left._value + right);
     }
 
     public static VarUInt64 operator +(VarUInt64 left, ushort right)
     {
-        return CreateNewFrom(left, left._value + right);
+        return CreateNew(left._value + right);
     }
 
     public static VarUInt64 operator +(VarUInt64 left, uint right)
     {
-        return CreateNewFrom(left, left._value + right);
+        return CreateNew(left._value + right);
     }
 
     public static VarUInt64 operator +(VarUInt64 left, ulong right)
     {
-        return CreateNewFrom(left, left._value + right);
+        return CreateNew(left._value + right);
     }
 
     public static VarUInt64 operator -(VarUInt64 left, VarUInt64 right)
     {
-        return new VarUInt64(left._value - right._value);
+        return CreateNew(left._value - right._value);
     }
 
     public static VarUInt64 operator -(VarUInt64 left, byte right)
     {
-        return new VarUInt64(left._value - right);
+        return CreateNew(left._value - right);
     }
 
     public static VarUInt64 operator -(VarUInt64 left, ushort right)
     {
-        return new VarUInt64(left._value - right);
+        return CreateNew(left._value - right);
     }
 
     public static VarUInt64 operator -(VarUInt64 left, uint right)
     {
-        return new VarUInt64(left._value - right);
+        return CreateNew(left._value - right);
     }
 
     public static VarUInt64 operator -(VarUInt64 left, ulong right)
     {
-        return new VarUInt64(left._value - right);
+        return CreateNew(left._value - right);
     }
 
     public static implicit operator byte(VarUInt64 value)
@@ -324,7 +314,7 @@ public struct VarUInt64
     {
         return new VarUInt64(value);
     }
-    
+
     public static implicit operator VarUInt64(ushort value)
     {
         return new VarUInt64(value);
@@ -438,22 +428,10 @@ public struct VarUInt64
         return maxValue;
     }
 
-    private static VarUInt64 CreateNewFrom(VarUInt64 origin, ulong value)
+    private static VarUInt64 CreateNew(ulong value)
     {
-        if (origin.IsFixed)
-        {
-            VarTypeCode typeCode = TypeCodeFor(value);
-
-            if (origin.TypeCode < typeCode)
-            {
-                throw new OverflowException(
-                    "The result will overflow the fixed VarUInt64.");
-            }
-
-            return new VarUInt64(value, typeCode);
-        }
-
-        return new VarUInt64(value);
+        var typeCode = TypeCodeFor(value);
+        return new VarUInt64(value, typeCode);
     }
 
     private ulong MaskValue(VarTypeCode typeCode)

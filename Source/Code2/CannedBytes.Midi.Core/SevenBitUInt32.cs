@@ -5,12 +5,12 @@ namespace CannedBytes.Midi.Core;
 /// <summary>
 /// Represents a seven-bit value for a maximum of 4 (7 bit) bytes.
 /// </summary>
-public struct SevenBitUInt32 : IConvertible
+public readonly struct SevenBitUInt32 : IConvertible
 {
     /// <summary>
     /// A normal .net native value with top 4 bits always clear.
     /// </summary>
-    private uint _value;
+    private readonly uint _value;
 
     /// <summary>
     /// A conventional (internal) value.
@@ -29,13 +29,13 @@ public struct SevenBitUInt32 : IConvertible
     /// <param name="sevenBitValueString">A string that represents a valid (7 bit) value.</param>
     public SevenBitUInt32(string sevenBitValueString)
     {
-        _value = 0;
-
-        if (!ParseInternal(sevenBitValueString))
+        if (!TryParseUInt(sevenBitValueString, out var val))
         {
             throw new FormatException(
-                "The string could not be parsed into a SeventBitUInt32: " + sevenBitValueString);
+                $"The string could not be parsed into a SeventBitUInt32: {sevenBitValueString}.");
         }
+
+        _value = val;
     }
 
     /// <summary>
@@ -76,20 +76,27 @@ public struct SevenBitUInt32 : IConvertible
     /// <returns>Returns true if successful.</returns>
     public static bool TryParse(string s, out SevenBitUInt32 value)
     {
-        value = new SevenBitUInt32();
+        if (TryParseUInt(s, out var val))
+        {
+            value = new SevenBitUInt32(val);
+            return true;
+        }
 
-        return value.ParseInternal(s);
+        value = default;
+        return false;
     }
 
-    private bool ParseInternal(string s)
+    private static bool TryParseUInt(string s, out uint value)
     {
-        var success = ValueParser.TryParseToBytes(s, Ordering.LittleEndian, out byte[] bytes);
+        var success = ValueParser.TryParseToBytes(s, Ordering.LittleEndian, out var bytes);
 
         if (success)
         {
-            Bytes = bytes;
+            value = ByteConverter.FromSevenBitBytesToUInt32(bytes, Ordering.LittleEndian);
+            return true;
         }
 
+        value = default;
         return success;
     }
 
@@ -114,15 +121,6 @@ public struct SevenBitUInt32 : IConvertible
     public uint ToUInt32()
     {
         return ToSevenBit(_value);
-    }
-
-    /// <summary>
-    /// Gets or sets LittleEndian ordered individual bytes (length = 4).
-    /// </summary>
-    public byte[] Bytes
-    {
-        readonly get { return ByteConverter.FromUint32ToSevenBitBytes(_value, Ordering.LittleEndian); }
-        private set { _value = ByteConverter.FromSevenBitBytesToUInt32(value, Ordering.LittleEndian); }
     }
 
     public bool Equals(SevenBitUInt32 thatValue)
