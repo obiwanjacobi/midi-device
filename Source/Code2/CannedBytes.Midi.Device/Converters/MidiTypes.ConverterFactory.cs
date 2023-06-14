@@ -242,7 +242,7 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
             //    converter = new SplitNibbleBEGroupConverter(constructType);
             //    break;
             case "midiBigEndian":
-                converter = new BigEndianStreamConverter(constructType);
+                converter = new EndianStreamConverter(constructType);
                 break;
             //case "midiSevenByte":
             //    converter = new SevenByteShift56GroupConverter(constructType);

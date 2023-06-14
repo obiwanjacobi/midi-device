@@ -24,7 +24,7 @@ public sealed partial class DeviceDataContext
     /// <summary>
     /// Indicates the direction of conversion.
     /// </summary>
-    public ConversionDirection ConversionDirection { get; protected set; }
+    public ConversionDirection ConversionDirection { get; }
 
     /// <summary>
     /// Gets the current bit carry for 'physical' stream operations.

@@ -69,7 +69,7 @@ partial class ConverterManager
         return null;
     }
 
-    protected static bool IsDynamic(RecordType constructType)
+    private static bool IsDynamic(RecordType constructType)
     {
         Check.IfArgumentNull(constructType, nameof(constructType));
 
@@ -94,7 +94,7 @@ partial class ConverterManager
         return true;
     }
 
-    protected StreamConverter CreateConverter(RecordType matchType, RecordType constructType)
+    private StreamConverter CreateConverter(RecordType matchType, RecordType constructType)
     {
         Check.IfArgumentNull(matchType, nameof(matchType));
         Check.IfArgumentNull(constructType, nameof(constructType));

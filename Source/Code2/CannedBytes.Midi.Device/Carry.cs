@@ -103,7 +103,7 @@ public class Carry
         }
         else
         {
-            _ = ByteLength(BitFlags);
+            //_ = ByteLength(BitFlags);
             newLength = ByteLength(bitFlags);
             BitFlags newFlags;
             if (newLength == 2)

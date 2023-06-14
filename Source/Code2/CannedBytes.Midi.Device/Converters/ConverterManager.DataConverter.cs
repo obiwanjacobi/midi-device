@@ -62,7 +62,7 @@ partial class ConverterManager
         return null;
     }
 
-    protected DataConverter CreateConverter(DataType matchType, DataType constructType)
+    private DataConverter CreateConverter(DataType matchType, DataType constructType)
     {
         Check.IfArgumentNull(matchType, nameof(matchType));
         Check.IfArgumentNull(constructType, nameof(constructType));

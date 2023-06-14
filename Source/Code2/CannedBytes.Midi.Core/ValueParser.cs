@@ -47,7 +47,7 @@ namespace CannedBytes.Midi.Core
             return Int64.TryParse(s, numberStyle, CultureInfo.InvariantCulture, out value);
         }
 
-        public static bool TryParseToBytes(string s, Ordering ordering, out byte[] bytes)
+        public static bool TryParseToBytes(string s, ByteOrder ordering, out byte[] bytes)
         {
             if (String.IsNullOrEmpty(s))
             {
@@ -75,10 +75,10 @@ namespace CannedBytes.Midi.Core
                     return false;
                 }
 
-                results = ByteConverter.FromUInt64ToBytes((ulong)parsed, Ordering.BigEndian);
+                results = ByteConverter.FromUInt64ToBytes((ulong)parsed, ByteOrder.BigEndian);
             }
 
-            if (ordering == Ordering.LittleEndian)
+            if (ordering == ByteOrder.LittleEndian)
             {
                 Array.Reverse(results);
             }

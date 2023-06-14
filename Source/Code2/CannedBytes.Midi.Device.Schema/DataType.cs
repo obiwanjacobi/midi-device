@@ -39,7 +39,7 @@ namespace CannedBytes.Midi.Device.Schema
 
         public int ValueOffset { get; protected set; }
 
-        public Ordering BitOrder { get; protected set; }
+        public ByteOrder BitOrder { get; protected set; }
 
         /// <summary>
         /// Gets a value indicating if this DataType derives from one or more other DataTypes.

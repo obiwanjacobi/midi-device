@@ -16,11 +16,11 @@ public sealed class DeviceProperty
         Value = value;
     }
 
-    public string SchemaName { get; protected set; }
+    public string SchemaName { get; }
 
-    public string Name { get; protected set; }
+    public string Name { get; }
 
-    protected object Value { get; set; }
+    public object Value { get; set; }
 
     public T GetValue<T>()
     {

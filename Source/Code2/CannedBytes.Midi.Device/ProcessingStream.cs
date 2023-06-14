@@ -4,40 +4,27 @@ using CannedBytes.IO;
 
 namespace CannedBytes.Midi.Device;
 
-public abstract class CachedStream : WrappedStream
+public abstract class ProcessingStream : WrappedStream
 {
-    private byte[] _buffer;
+    private readonly byte[] _buffer;
     private int _bufferIndex;
     private int _bufferCount;
 
-    protected CachedStream(Stream stream)
-        : base(stream)
+    protected ProcessingStream(Stream stream, int cacheLength)
+        : this(stream, cacheLength, cacheLength)
     { }
 
-    protected CachedStream(Stream stream, int cacheLength)
-        : base(stream)
-    {
-        UnprocessedLength = cacheLength;
-        ProcessedLength = cacheLength;
-        AllocateBuffer();
-    }
-
-    protected CachedStream(Stream stream, int unprocessedLength, int processedLength)
+    protected ProcessingStream(Stream stream, int unprocessedLength, int processedLength)
         : base(stream)
     {
         UnprocessedLength = unprocessedLength;
         ProcessedLength = processedLength;
-        AllocateBuffer();
+        _buffer = new byte[Math.Max(ProcessedLength, UnprocessedLength)];
     }
 
     protected int UnprocessedLength { get; }
 
     protected int ProcessedLength { get; }
-
-    protected void AllocateBuffer()
-    {
-        _buffer = new byte[Math.Max(ProcessedLength, UnprocessedLength)];
-    }
 
     public override int Read(byte[] buffer, int offset, int count)
     {
@@ -98,12 +85,12 @@ public abstract class CachedStream : WrappedStream
     /// <summary>
     /// During a Read on the stream the raw stream bytes in the <paramref name="unprocessedBuffer"/>
     /// are converted to logical bytes that get stored in the <paramref name="processedBuffer"/>
-    /// starting at <paramref name="offset"/>.
+    /// starting at <paramref name="processedOffset"/>.
     /// </summary>
     /// <param name="unprocessedBuffer">The raw unprocessed bytes read from the stream.</param>
     /// <param name="processedBuffer">Receives the processed bytes.</param>
-    /// <param name="offset">The offset into the <paramref name="processedBuffer"/>.</param>
-    protected virtual void ProcessBufferRead(byte[] unprocessedBuffer, byte[] processedBuffer, int offset)
+    /// <param name="processedOffset">The offset into the <paramref name="processedBuffer"/>.</param>
+    protected virtual void ProcessBufferRead(byte[] unprocessedBuffer, byte[] processedBuffer, int processedOffset)
     {
     }
 
@@ -111,7 +98,7 @@ public abstract class CachedStream : WrappedStream
     {
         if (_bufferCount > 0)
         {
-            int bytesToWrite = 0;
+            int bytesToWrite;
             int cacheIndex = 0;
 
             if (_bufferCount > count)
@@ -218,13 +205,13 @@ public abstract class CachedStream : WrappedStream
 
     /// <summary>
     /// Called during a Write operation on the stream where the logical bytes in the <paramref name="processedBuffer"/>
-    /// starting at <paramref name="offset"/> get translated to physical raw stream bytes stored in the
+    /// starting at <paramref name="processedOffset"/> get translated to physical raw stream bytes stored in the
     /// <paramref name="unprocessedBuffer"/>.
     /// </summary>
     /// <param name="processedbuffer">The logical bytes that need to be converted to raw physical bytes.</param>
-    /// <param name="offset">The offset into the <paramref name="processedBuffer"/> where the conversion should start.</param>
+    /// <param name="processedOffset">The offset into the <paramref name="processedBuffer"/> where the conversion should start.</param>
     /// <param name="unprocessedBuffer">Receives the converted raw physical bytes.</param>
-    protected virtual void ProcessBufferWrite(byte[] processedBuffer, int offset, byte[] unprocessedBuffer)
+    protected virtual void ProcessBufferWrite(byte[] processedBuffer, int processedOffset, byte[] unprocessedBuffer)
     {
     }
 

@@ -8,6 +8,8 @@
 >
     <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
 
+    <!-- String BE width=2 -->
+    
     <mds:recordType name="bigEndianTest">
         <mds:extension base="m:midiSysEx">
             <mds:sequence>
@@ -19,11 +21,13 @@
     <mds:recordType name="bigEndianTestBE" mds:width="2">
         <mds:extension base="m:midiBigEndian">
             <mds:sequence>
-                <mds:field name="SwappedChars" type="TextOf6" />
+                <mds:field name="SwappedChars" type="m:midiString6" />
             </mds:sequence>
         </mds:extension>
     </mds:recordType>
 
+    <!-- String BE width=3 -->
+    
     <mds:recordType name="bigEndianFieldTest">
         <mds:extension base="m:midiSysEx">
             <mds:sequence>
@@ -35,15 +39,29 @@
     <mds:recordType name="bigEndianFieldTestBE" mds:width="3">
         <mds:extension base="m:midiBigEndian">
             <mds:sequence>
-                <mds:field name="SwappedChars" type="TextOf6" />
+                <mds:field name="SwappedChars" type="m:midiString6" />
             </mds:sequence>
         </mds:extension>
     </mds:recordType>
 
-    <mds:dataType name="TextOf6">
-        <mds:restriction base="m:midiString">
-            <mds:length value="6" />
-        </mds:restriction>
-    </mds:dataType>
+    <!-- unsigned BE width=2 -->
+    
+    <!--<mds:recordType name="bigEndianIntTest">
+        <mds:extension base="m:midiSysEx">
+            <mds:sequence>
+                <mds:field name="bigEndian" type="bigEndianIntTestBE" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
+
+    <mds:recordType name="bigEndianIntTestBE" mds:width="2">
+        <mds:extension base="m:midiBigEndian">
+            <mds:sequence>
+                <mds:field name="Int1" type="m:midiUnsigned16" />
+                <mds:field name="Int2" type="m:midiUnsigned16" />
+                <mds:field name="Int3" type="m:midiUnsigned16" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>-->
 
 </mds:deviceSchema>
