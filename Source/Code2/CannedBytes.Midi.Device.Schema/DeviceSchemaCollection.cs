@@ -2,6 +2,7 @@ namespace CannedBytes.Midi.Device.Schema
 {
     using System;
     using System.Collections.ObjectModel;
+    using CannedBytes.Midi.Core;
 
     /// <summary>
     /// The DeviceSchemaCollection class manages a collection of <see cref="DeviceSchema"/>
@@ -16,7 +17,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <param name="schemas">A collection of <see cref="DeviceSchema"/>s. Must not be null.</param>
         public void AddRange(DeviceSchemaCollection schemas)
         {
-            Check.IfArgumentNull(schemas, nameof(schemas));
+            Assert.IfArgumentNull(schemas, nameof(schemas));
 
             foreach (var schema in schemas)
             {

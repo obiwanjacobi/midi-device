@@ -22,7 +22,7 @@ internal sealed class AddressMapConverter : StreamConverter, INavigationEvents
     /// <returns></returns>
     public override IEnumerable<SchemaNode> GetChildNodeIterator(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         var children = context.StateMap.Get<IEnumerable<SchemaNode>>(ChildrenStateName);
 
@@ -31,7 +31,7 @@ internal sealed class AddressMapConverter : StreamConverter, INavigationEvents
 
     public override void OnBeforeRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         GetAddressAndSize(context, out SevenBitUInt32 address, out SevenBitUInt32 size);
 

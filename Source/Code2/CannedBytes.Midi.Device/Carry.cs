@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
@@ -204,7 +205,7 @@ public class Carry
 
     public int WriteTo(Stream stream, ushort value, BitFlags flags)
     {
-        Check.IfArgumentNull(stream, nameof(stream));
+        Assert.IfArgumentNull(stream, nameof(stream));
 
         int bytesWritten = 0;
 
@@ -222,7 +223,7 @@ public class Carry
 
     public int Flush(Stream stream)
     {
-        Check.IfArgumentNull(stream, nameof(stream));
+        Assert.IfArgumentNull(stream, nameof(stream));
 
         int length = ByteLength(BitFlags);
 

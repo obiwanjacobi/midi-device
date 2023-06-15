@@ -1,4 +1,5 @@
-﻿using CannedBytes.Midi.Device.Schema;
+﻿using CannedBytes.Midi.Core;
+using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
 
@@ -14,8 +15,8 @@ public readonly struct FieldConverterPair
     /// <param name="converter">Must not be null.</param>
     public FieldConverterPair(Field field, IConverter converter)
     {
-        Check.IfArgumentNull(field, nameof(field));
-        Check.IfArgumentNull(converter, nameof(converter));
+        Assert.IfArgumentNull(field, nameof(field));
+        Assert.IfArgumentNull(converter, nameof(converter));
 
         Field = field;
         Converter = converter;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema.Xml.Model1;
 
 namespace CannedBytes.Midi.Device.Schema.Xml;
@@ -15,14 +16,14 @@ public class MidiDeviceSchemaParser
 
     public MidiDeviceSchemaParser(MidiDeviceSchemaSet schemas)
     {
-        Check.IfArgumentNull(schemas, nameof(schemas));
+        Assert.IfArgumentNull(schemas, nameof(schemas));
 
         _schemas = schemas;
     }
 
     public DeviceSchema Parse(Stream stream)
     {
-        Check.IfArgumentNull(stream, nameof(stream));
+        Assert.IfArgumentNull(stream, nameof(stream));
 
         var sourceSchema = MidiDeviceSchemaReader.Read(stream)
             ?? throw new DeviceSchemaException(
@@ -81,8 +82,8 @@ public class MidiDeviceSchemaParser
 
     protected virtual void FillSchema(deviceSchema source, MidiDeviceSchema target)
     {
-        Check.IfArgumentNull(source, nameof(source));
-        Check.IfArgumentNull(target, nameof(target));
+        Assert.IfArgumentNull(source, nameof(source));
+        Assert.IfArgumentNull(target, nameof(target));
 
         target.SchemaName = source.schema;
         target.SetVersion(source.version);

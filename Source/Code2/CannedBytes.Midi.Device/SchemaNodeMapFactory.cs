@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
 
@@ -12,14 +13,14 @@ internal sealed class SchemaNodeMapFactory
 
     public SchemaNodeMapFactory(ConverterManager converterMgr)
     {
-        Check.IfArgumentNull(converterMgr, nameof(converterMgr));
+        Assert.IfArgumentNull(converterMgr, nameof(converterMgr));
 
         _converterMgr = converterMgr;
     }
 
     public IEnumerable<SchemaNodeMap> CreateAll(DeviceSchema schema)
     {
-        Check.IfArgumentNull(schema, nameof(schema));
+        Assert.IfArgumentNull(schema, nameof(schema));
 
         List<SchemaNodeMap> maps = new();
 
@@ -35,7 +36,7 @@ internal sealed class SchemaNodeMapFactory
 
     public SchemaNodeMap Create(Field rootField)
     {
-        Check.IfArgumentNull(rootField, nameof(rootField));
+        Assert.IfArgumentNull(rootField, nameof(rootField));
 
         var rootNode = CreateNode(rootField, 0);
         rootNode.IsRoot = true;
@@ -54,7 +55,6 @@ internal sealed class SchemaNodeMapFactory
             LastNode = lastNode
         };
 
-        Carry carry = new();
         var thisNode = rootNode;
 
         while (thisNode != null)
@@ -65,12 +65,11 @@ internal sealed class SchemaNodeMapFactory
 
             if (thisNode.IsRecord)
             {
-                carry.Clear();
                 InitializeRecord(thisNode);
             }
             else
             {
-                InitializeData(thisNode, carry);
+                InitializeData(thisNode);
             }
 
             // next node
@@ -172,12 +171,12 @@ internal sealed class SchemaNodeMapFactory
         }
     }
 
-    private void InitializeData(SchemaNode thisNode, Carry carry)
+    private void InitializeData(SchemaNode thisNode)
     {
         // data fields have always a key of 0.
         BuildKey(thisNode, 0);
 
-        CalculateDataLength(thisNode, carry);
+        thisNode.DataLength = CalculateDataLength(thisNode);
 
         if (thisNode.Parent.IsAddressMap)
         {
@@ -211,25 +210,17 @@ internal sealed class SchemaNodeMapFactory
         }
     }
 
-    private static void CalculateDataLength(SchemaNode thisNode, Carry carry)
+    private static int CalculateDataLength(SchemaNode thisNode)
     {
-        // TODO: How to stack streamConver's calcs?
-
         int byteLength = thisNode.FieldConverterPair.Converter.ByteLength;
 
         if (byteLength < 0)
         {
-            BitFlags flags = (BitFlags)Math.Abs(byteLength);
-
-            byteLength = carry.ReadFrom(null, flags, out ushort temp);
-        }
-        else
-        {
-            // clear
-            carry.Clear();
+            var flags = (BitFlags)Math.Abs(byteLength);
+            byteLength = Carry.ByteLength(flags);
         }
 
-        thisNode.DataLength = byteLength;
+        return byteLength;
     }
 
     private static void BuildKey(SchemaNode thisNode, int instanceIndex)

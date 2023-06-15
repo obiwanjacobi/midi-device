@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device.Converters;
 
@@ -12,7 +13,7 @@ partial class ConverterManager
 
         public FactoryManager(IEnumerable<IConverterFactory> factories)
         {
-            Check.IfArgumentNull(factories, nameof(factories));
+            Assert.IfArgumentNull(factories, nameof(factories));
 
             _factories = factories.ToList();
 

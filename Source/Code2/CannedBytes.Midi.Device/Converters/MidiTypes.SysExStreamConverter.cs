@@ -1,4 +1,5 @@
-﻿using CannedBytes.Midi.Device.Schema;
+﻿using CannedBytes.Midi.Core;
+using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
 
@@ -24,7 +25,7 @@ internal sealed partial class SysExStreamConverter : StreamConverter, INavigatio
     /// <param name="context">Must not be null.</param>
     public override void OnBeforeRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         // Start of SysEx
          var sysExStream = new SysExStream(context.StreamManager.CurrentStream);
@@ -43,7 +44,7 @@ internal sealed partial class SysExStreamConverter : StreamConverter, INavigatio
     /// <param name="context">Must not be null.</param>
     public override void OnAfterRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         // End of SysEx
         var sysExStream = context.StreamManager.CurrentStream as SysExStream

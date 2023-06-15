@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device.Schema;
 
@@ -8,7 +9,7 @@ public sealed partial class FieldHierarchicalIterator : IEnumerable<FieldInfo>
 
     public FieldHierarchicalIterator(RecordType rootRecord)
     {
-        Check.IfArgumentNull(rootRecord, nameof(rootRecord));
+        Assert.IfArgumentNull(rootRecord, nameof(rootRecord));
 
         _rootRecord = rootRecord;
     }

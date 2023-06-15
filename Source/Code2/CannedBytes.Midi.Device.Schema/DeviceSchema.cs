@@ -1,3 +1,5 @@
+using CannedBytes.Midi.Core;
+
 namespace CannedBytes.Midi.Device.Schema
 {
     /// <summary>
@@ -90,7 +92,7 @@ namespace CannedBytes.Midi.Device.Schema
             get { return schemaName; }
             internal protected set
             {
-                Check.IfArgumentNullOrEmpty(value, nameof(SchemaName));
+                Assert.IfArgumentNullOrEmpty(value, nameof(SchemaName));
                 schemaName = value;
 
                 Name = new SchemaObjectName(value, string.Empty);

@@ -1,3 +1,5 @@
+using CannedBytes.Midi.Core;
+
 namespace CannedBytes.Midi.Device.Schema;
 
 public abstract class SchemaObject
@@ -27,7 +29,7 @@ public abstract class SchemaObject
         get { return _schema; }
         internal protected set
         {
-            Check.IfArgumentNull(value, nameof(Schema));
+            Assert.IfArgumentNull(value, nameof(Schema));
 
             _schema = value;
 
@@ -45,7 +47,7 @@ public abstract class SchemaObject
         get { return _name; }
         protected set
         {
-            Check.IfArgumentNull(value, nameof(Name));
+            Assert.IfArgumentNull(value, nameof(Name));
 
             _name = value;
         }

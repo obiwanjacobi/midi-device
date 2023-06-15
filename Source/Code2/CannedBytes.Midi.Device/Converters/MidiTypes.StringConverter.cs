@@ -32,8 +32,8 @@ internal sealed class StringConverter : DataConverter
 
     public override void ToPhysical(DeviceDataContext context, IMidiLogicalReader reader)
     {
-        //Check.IfArgumentNull(context, "context");
-        //Check.IfArgumentNull(reader, "reader");
+        //Assert.IfArgumentNull(context, "context");
+        //Assert.IfArgumentNull(reader, "reader");
 
         //var outputStream = context.CurrentStream;
 

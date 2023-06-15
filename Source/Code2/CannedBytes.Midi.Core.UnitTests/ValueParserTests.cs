@@ -12,7 +12,7 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "01 02 03 04", Ordering.BigEndian, out byte[] bytes);
+            "01 02 03 04", BitOrder.BigEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
@@ -29,7 +29,7 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "B1-C2-D3-E4H", Ordering.BigEndian, out byte[] bytes);
+            "B1-C2-D3-E4H", BitOrder.BigEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
@@ -46,7 +46,7 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "01 02 03 04", Ordering.LittleEndian, out byte[] bytes);
+            "01 02 03 04", BitOrder.LittleEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
@@ -63,7 +63,7 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "B1-C2-D3-E4H", Ordering.LittleEndian, out byte[] bytes);
+            "B1-C2-D3-E4H", BitOrder.LittleEndian, out byte[] bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();

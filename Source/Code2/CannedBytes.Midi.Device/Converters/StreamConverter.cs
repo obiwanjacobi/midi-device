@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CannedBytes.Collections;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
@@ -15,7 +16,7 @@ public class StreamConverter : IConverter
     /// <param name="recordType">Must not be null.</param>
     public StreamConverter(RecordType recordType)
     {
-        Check.IfArgumentNull(recordType, nameof(recordType));
+        Assert.IfArgumentNull(recordType, nameof(recordType));
 
         RecordType = recordType;
     }
@@ -56,7 +57,7 @@ public class StreamConverter : IConverter
     /// <returns>Must never return null.</returns>
     public virtual IEnumerable<SchemaNode> GetChildNodeIterator(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         var aggEnum = new AggregateEnumerator<SchemaNode>();
 
@@ -74,7 +75,7 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnBeforeRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
     }
 
     /// <summary>
@@ -83,7 +84,7 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnBeforeField(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
     }
 
     /// <summary>
@@ -92,7 +93,7 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnAfterField(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
     }
 
     /// <summary>
@@ -101,6 +102,6 @@ public class StreamConverter : IConverter
     /// <param name="context">Must not be null.</param>
     public virtual void OnAfterRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
     }
 }

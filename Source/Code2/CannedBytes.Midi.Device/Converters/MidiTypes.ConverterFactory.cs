@@ -1,4 +1,5 @@
 using System.Linq;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
@@ -22,8 +23,8 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
     /// <returns>Returns null if the factory could not find a converter that matched the <paramref name="matchType"/>.</returns>
     public override DataConverter Create(DataType matchType, DataType constructType)
     {
-        Check.IfArgumentNull(matchType, nameof(matchType));
-        Check.IfArgumentNull(constructType, nameof(constructType));
+        Assert.IfArgumentNull(matchType, nameof(matchType));
+        Assert.IfArgumentNull(constructType, nameof(constructType));
 
         System.Diagnostics.Debug.Assert(matchType.Schema.SchemaName == SchemaName);
 
@@ -229,8 +230,8 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
     /// <returns>Returns null when the factory could not find a suitable group converter that matched the <paramref name="matchType"/>.</returns>
     public override StreamConverter Create(RecordType matchType, RecordType constructType)
     {
-        Check.IfArgumentNull(matchType, nameof(matchType));
-        Check.IfArgumentNull(constructType, nameof(constructType));
+        Assert.IfArgumentNull(matchType, nameof(matchType));
+        Assert.IfArgumentNull(constructType, nameof(constructType));
 
         StreamConverter converter;
         switch (matchType.Name.Name)

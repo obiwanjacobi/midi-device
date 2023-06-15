@@ -1,4 +1,5 @@
 ﻿using System;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
@@ -96,8 +97,8 @@ internal sealed class BitConverter : DataConverter
     /// <inheritdoc/>
     public override void ToPhysical(DeviceDataContext context, IMidiLogicalReader reader)
     {
-        Check.IfArgumentNull(context, nameof(context));
-        Check.IfArgumentNull(reader, nameof(reader));
+        Assert.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(reader, nameof(reader));
 
         //var fieldData = new FieldData<ushort>(context);
         //var outputStream = context.CurrentStream;

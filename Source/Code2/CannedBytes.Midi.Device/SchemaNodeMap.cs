@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
@@ -6,7 +7,7 @@ public sealed class SchemaNodeMap
 {
     public SchemaNodeMap(SchemaNode root)
     {
-        Check.IfArgumentNull(root, nameof(root));
+        Assert.IfArgumentNull(root, nameof(root));
 
         RootNode = root;
         LastNode = root;

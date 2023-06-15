@@ -8,12 +8,12 @@ partial class EndianStreamConverter
 {
     internal sealed class EndianStream : ProcessingStream
     {
-        private readonly Ordering _order;
+        private readonly BitOrder _order;
 
-        public EndianStream(Stream innerStream, Ordering order, int width)
+        public EndianStream(Stream innerStream, BitOrder order, int width)
             : base(innerStream, width)
         {
-            Check.IfArgumentOutOfRange(width, 2, ushort.MaxValue, nameof(width));
+            Assert.IfArgumentOutOfRange(width, 2, ushort.MaxValue, nameof(width));
             _order = order;
         }
 

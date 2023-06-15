@@ -17,7 +17,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
 
     public override void OnBeforeRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         var pos = context.StreamManager.CurrentStream.Position;
 
@@ -26,7 +26,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
 
     public override void OnAfterRecord(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         var pos = context.StateMap.Get<long>(ChecksumStartStreamPosition);
 
@@ -61,7 +61,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
 
     protected virtual VarUInt64 ReadChecksumFromStream(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         var reader = context.CreateReader();
 
@@ -70,7 +70,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
 
     protected virtual void WriteChecksumToStream(DeviceDataContext context, VarUInt64 checksum)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         //var writer = context.CreateWriter();
 
@@ -86,7 +86,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
     /// <returns>Returns the sum of all bytes.</returns>
     protected virtual VarUInt64 CalculateChecksum(Stream stream)
     {
-        Check.IfArgumentNull(stream, nameof(stream));
+        Assert.IfArgumentNull(stream, nameof(stream));
 
         VarUInt64 checksum = new(0);
         int data = stream.ReadByte();

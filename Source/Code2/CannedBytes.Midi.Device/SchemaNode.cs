@@ -79,7 +79,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     /// </summary>
     public IEnumerable<SchemaNode> RepeatedChildren(int instanceIndex)
     {
-        Check.IfArgumentOutOfRange(instanceIndex, 0,
+        Assert.IfArgumentOutOfRange(instanceIndex, 0,
             FieldConverterPair.Field.ExtendedProperties.Repeats, nameof(instanceIndex));
 
         SchemaNode parent = this;
@@ -355,7 +355,7 @@ public partial class SchemaNode : ILogicalFieldInfo
 
     internal protected void CopyTo(SchemaNode targetNode)
     {
-        Check.IfArgumentNull(targetNode, nameof(targetNode));
+        Assert.IfArgumentNull(targetNode, nameof(targetNode));
 
         targetNode.Address = Address;
         targetNode.DataLength = DataLength;

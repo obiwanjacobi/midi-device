@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
@@ -14,7 +15,7 @@ public sealed partial class ConverterManager
 
     public IConverter GetConverter(Field field)
     {
-        Check.IfArgumentNull(field, nameof(field));
+        Assert.IfArgumentNull(field, nameof(field));
 
         if (field.DataType != null)
         {

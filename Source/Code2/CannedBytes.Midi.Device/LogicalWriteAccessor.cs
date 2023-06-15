@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
@@ -11,8 +12,8 @@ internal class LogicalWriteAccessor : ILogicalWriteAccessor
 
     public LogicalWriteAccessor(DeviceDataContext context, IMidiLogicalWriter writer)
     {
-        Check.IfArgumentNull(context, nameof(context));
-        Check.IfArgumentNull(writer, nameof(writer));
+        Assert.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(writer, nameof(writer));
 
         _context = context;
         _writer = writer;

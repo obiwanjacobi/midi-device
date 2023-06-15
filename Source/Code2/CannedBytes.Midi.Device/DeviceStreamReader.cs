@@ -18,8 +18,8 @@ public sealed class DeviceStreamReader
     /// <seealso cref="DeviceDataContext"/>
     internal DeviceStreamReader(Stream stream, Carry carry)
     {
-        Check.IfArgumentNull(stream, nameof(stream));
-        Check.IfArgumentNull(carry, nameof(carry));
+        Assert.IfArgumentNull(stream, nameof(stream));
+        Assert.IfArgumentNull(carry, nameof(carry));
 
         BaseStream = stream;
         Carry = carry;
@@ -53,9 +53,9 @@ public sealed class DeviceStreamReader
     /// <param name="byteOrder">To override the byte-order that is used to build the value.
     /// If not specified the system byte-order is used.</param>
     /// <returns>Returns the value represented by the bytes read.</returns>
-    public VarUInt64 Read(int byteLength, Ordering? byteOrder = null)
+    public VarUInt64 Read(int byteLength, BitOrder? byteOrder = null)
     {
-        Check.IfArgumentOutOfRange(byteLength,
+        Assert.IfArgumentOutOfRange(byteLength,
             (int)VarUInt64.VarTypeCode.UInt8, (int)VarUInt64.VarTypeCode.UInt64, nameof(byteLength));
 
         ReadIntoBuffer(byteLength);
@@ -77,7 +77,7 @@ public sealed class DeviceStreamReader
     /// could be read from the stream.</exception>
     private void ReadIntoBuffer(int numOfBytes)
     {
-        Check.IfArgumentOutOfRange(numOfBytes, 0, MaxBufferSize, nameof(numOfBytes));
+        Assert.IfArgumentOutOfRange(numOfBytes, 0, MaxBufferSize, nameof(numOfBytes));
 
         int bytesRead = BaseStream.Read(_buffer, 0, numOfBytes);
 
@@ -96,7 +96,7 @@ public sealed class DeviceStreamReader
     /// <param name="byteOrder">To override the byte-order that is used to build the value.
     /// If not specified the system byte-order is used.</param>
     /// <returns>Returns the integer value.</returns>
-    private T BufferToValue<T>(int length, Ordering? byteOrder = null)
+    private T BufferToValue<T>(int length, BitOrder? byteOrder = null)
         where T : struct, IConvertible, IComparable
     {
         var type = typeof(T);
@@ -104,7 +104,7 @@ public sealed class DeviceStreamReader
         ulong value = 0;
 
         var order = byteOrder ?? ByteConverter.SystemByteOrder;
-        if (order == Ordering.LittleEndian)
+        if (order == BitOrder.LittleEndian)
         {
             for (int i = 0; i < length; i++)
             {
@@ -143,7 +143,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<byte>(size);
     }
 
-    public short ReadInt16(Ordering? byteOrder = null)
+    public short ReadInt16(BitOrder? byteOrder = null)
     {
         const int size = 2;
 
@@ -152,7 +152,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<short>(size, byteOrder);
     }
 
-    public int ReadInt32(Ordering? byteOrder = null)
+    public int ReadInt32(BitOrder? byteOrder = null)
     {
         const int size = 4;
 
@@ -161,7 +161,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<int>(size, byteOrder);
     }
 
-    public long ReadInt64(Ordering? byteOrder = null)
+    public long ReadInt64(BitOrder? byteOrder = null)
     {
         const int size = 8;
 
@@ -170,7 +170,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<long>(size, byteOrder);
     }
 
-    public ushort ReadUInt16(Ordering? byteOrder = null)
+    public ushort ReadUInt16(BitOrder? byteOrder = null)
     {
         const int size = 2;
 
@@ -179,7 +179,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<ushort>(size, byteOrder);
     }
 
-    public uint ReadUInt24(Ordering? byteOrder = null)
+    public uint ReadUInt24(BitOrder? byteOrder = null)
     {
         const int size = 3;
 
@@ -188,7 +188,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<uint>(size, byteOrder);
     }
 
-    public uint ReadUInt32(Ordering? byteOrder = null)
+    public uint ReadUInt32(BitOrder? byteOrder = null)
     {
         const int size = 4;
 
@@ -197,7 +197,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<uint>(size, byteOrder);
     }
 
-    public ulong ReadUInt40(Ordering? byteOrder = null)
+    public ulong ReadUInt40(BitOrder? byteOrder = null)
     {
         const int size = 5;
 
@@ -206,7 +206,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt48(Ordering? byteOrder = null)
+    public ulong ReadUInt48(BitOrder? byteOrder = null)
     {
         const int size = 6;
 
@@ -215,7 +215,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt56(Ordering? byteOrder = null)
+    public ulong ReadUInt56(BitOrder? byteOrder = null)
     {
         const int size = 7;
 
@@ -224,7 +224,7 @@ public sealed class DeviceStreamReader
         return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt64(Ordering? byteOrder = null)
+    public ulong ReadUInt64(BitOrder? byteOrder = null)
     {
         const int size = 8;
 
@@ -237,12 +237,10 @@ public sealed class DeviceStreamReader
     /// Reads a string of a fixed length from the stream.
     /// </summary>
     /// <param name="byteLength">The number of characters in the stream. No terminating 0.</param>
-    /// <param name="byteOrder">To override the byte-order that is used to build the value.
-    /// If not specified the system byte-order is used.</param>
     /// <returns>Returns the string read.</returns>
     /// <exception cref="EndOfStreamException">Thrown when less than the specified <paramref name="byteLength"/> 
     /// could be read from the stream.</exception>
-    public string ReadStringAscii(int byteLength, Ordering? byteOrder = null)
+    public string ReadStringAscii(int byteLength)
     {
         // use own buffer to be able to read strings with larger length than MaxBufferSize.
         var buffer = new byte[byteLength];
@@ -250,11 +248,6 @@ public sealed class DeviceStreamReader
         if (BaseStream.Read(buffer, 0, byteLength) != byteLength)
         {
             throw new EndOfStreamException();
-        }
-
-        if (byteOrder != ByteConverter.SystemByteOrder)
-        {
-            Array.Reverse(buffer);
         }
 
         return Encoding.ASCII.GetString(buffer);

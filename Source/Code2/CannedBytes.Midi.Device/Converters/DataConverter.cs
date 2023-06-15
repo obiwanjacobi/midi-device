@@ -1,4 +1,5 @@
 ﻿using System;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
@@ -19,7 +20,7 @@ public abstract partial class DataConverter : IConverter
     /// <param name="dataType">The data type the converter represents at runtime. Must not be null.</param>
     protected DataConverter(DataType dataType)
     {
-        Check.IfArgumentNull(dataType, nameof(dataType));
+        Assert.IfArgumentNull(dataType, nameof(dataType));
 
         DataType = dataType;
     }
@@ -60,9 +61,9 @@ public abstract partial class DataConverter : IConverter
 
     public virtual void ToLogical(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
-        Check.IfArgumentNull(context, nameof(context));
-        Check.IfArgumentNull(reader, nameof(reader));
-        Check.IfArgumentNull(writer, nameof(writer));
+        Assert.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(reader, nameof(reader));
+        Assert.IfArgumentNull(writer, nameof(writer));
 
         if (InnerConverter != null)
         {

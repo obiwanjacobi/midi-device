@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device.Schema.Xml;
 
@@ -19,7 +20,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 
     public DeviceSchema Load(string schemaLocation)
     {
-        Check.IfArgumentNullOrEmpty(schemaLocation, nameof(schemaLocation));
+        Assert.IfArgumentNullOrEmpty(schemaLocation, nameof(schemaLocation));
 
         var parts = schemaLocation.Split("::");
 
@@ -61,8 +62,8 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 
     public RecordType FindRecordType(string schemaName, string typeName)
     {
-        Check.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
-        Check.IfArgumentNullOrEmpty(typeName, nameof(typeName));
+        Assert.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
+        Assert.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         RecordType recordType = null;
         var schema = (MidiDeviceSchema)_schemas.Find(schemaName);
@@ -77,8 +78,8 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
 
     public DataType FindDataType(string schemaName, string typeName)
     {
-        Check.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
-        Check.IfArgumentNullOrEmpty(typeName, nameof(typeName));
+        Assert.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
+        Assert.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         DataType dataType = null;
         var schema = (MidiDeviceSchema)_schemas.Find(schemaName);

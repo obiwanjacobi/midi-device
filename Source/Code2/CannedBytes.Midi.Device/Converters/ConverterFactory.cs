@@ -1,5 +1,5 @@
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
-using System;
 
 namespace CannedBytes.Midi.Device.Converters;
 
@@ -14,7 +14,7 @@ public abstract class ConverterFactory : IConverterFactory
     /// <param name="schemaName">Must not be null or empty.</param>
     protected ConverterFactory(string schemaName)
     {
-        Check.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
+        Assert.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
 
         SchemaName = schemaName;
     }

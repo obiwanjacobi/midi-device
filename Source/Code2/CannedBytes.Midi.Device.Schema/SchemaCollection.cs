@@ -2,6 +2,7 @@ namespace CannedBytes.Midi.Device.Schema;
 
 using System;
 using System.Collections.ObjectModel;
+using CannedBytes.Midi.Core;
 
 /// <summary>
 /// Implements a basic collection for schema types.
@@ -40,7 +41,7 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     /// <param name="items">Must not be null.</param>
     public void AddRange(SchemaCollection<T> items)
     {
-        Check.IfArgumentNull(items, nameof(items));
+        Assert.IfArgumentNull(items, nameof(items));
 
         foreach (T item in items)
         {
@@ -56,7 +57,7 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     /// <returns>Returns null if the item could not be found.</returns>
     public T Find(string itemName)
     {
-        Check.IfArgumentNullOrEmpty(itemName, nameof(itemName));
+        Assert.IfArgumentNullOrEmpty(itemName, nameof(itemName));
 
         if (!Contains(itemName) &&
             Schema != null && !itemName.StartsWith(Schema.SchemaName))

@@ -1,3 +1,5 @@
+using CannedBytes.Midi.Core;
+
 namespace CannedBytes.Midi.Device.Schema
 {
     /// <summary>
@@ -50,7 +52,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <returns>Returns true if a match is found in this type or one of its <see cref="BaseType"/>s.</returns>
         public bool IsType(RecordType matchType)
         {
-            Check.IfArgumentNull(matchType, nameof(matchType));
+            Assert.IfArgumentNull(matchType, nameof(matchType));
 
             return IsType(matchType.Name.FullName);
         }
@@ -83,7 +85,7 @@ namespace CannedBytes.Midi.Device.Schema
             get { return _baseType; }
             internal protected set
             {
-                Check.IfArgumentNull(value, nameof(BaseType));
+                Assert.IfArgumentNull(value, nameof(BaseType));
                 _baseType = value;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
@@ -9,7 +10,7 @@ partial class ConverterManager
 
     public FieldConverterPair GetFieldConverterPair(Field field)
     {
-        Check.IfArgumentNull(field, nameof(field));
+        Assert.IfArgumentNull(field, nameof(field));
 
         if (!TryLookupFieldConverterPair(field, out var pair))
         {
@@ -28,7 +29,7 @@ partial class ConverterManager
 
     public bool TryLookupFieldConverterPair(Field field, out FieldConverterPair fieldConverterPair)
     {
-        Check.IfArgumentNull(field, nameof(field));
+        Assert.IfArgumentNull(field, nameof(field));
 
         var fieldKey = BuildFieldTypeKey(field);
         if (_fieldConverterPairs.TryGetValue(fieldKey, out FieldConverterPair pair))

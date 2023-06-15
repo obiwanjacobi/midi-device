@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Converters;
 using static CannedBytes.Midi.Device.Converters.SysExStreamConverter;
 
@@ -14,7 +15,7 @@ public sealed partial class StreamManager
 
     public StreamManager(Stream physicalStream)
     {
-        Check.IfArgumentNull(physicalStream, nameof(physicalStream));
+        Assert.IfArgumentNull(physicalStream, nameof(physicalStream));
 
         PhysicalStream = physicalStream;
     }
@@ -26,12 +27,12 @@ public sealed partial class StreamManager
     /// <param name="stream">Wraps <see cref="CurrentStream"/>.</param>
     public void SetCurrentStream(StreamConverter owner, Stream stream)
     {
-        Check.IfArgumentNull(owner, nameof(owner));
-        Check.IfArgumentNull(stream, nameof(stream));
+        Assert.IfArgumentNull(owner, nameof(owner));
+        Assert.IfArgumentNull(stream, nameof(stream));
 
         if (_streams.Count == 0)
         {
-            Check.IfArgumentNotOfType<SysExStream>(stream, nameof(stream));
+            Assert.IfArgumentNotOfType<SysExStream>(stream, nameof(stream));
 
             RootStream = stream;
         }

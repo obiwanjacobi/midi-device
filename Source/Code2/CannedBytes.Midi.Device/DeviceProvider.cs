@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,7 +34,7 @@ public sealed class DeviceProvider
     // complete structure for each root message.
     public SchemaNodeMap GetBinaryConverterMapFor(string virtualRootFieldName)
     {
-        Check.IfArgumentNullOrEmpty(virtualRootFieldName, nameof(virtualRootFieldName));
+        Assert.IfArgumentNullOrEmpty(virtualRootFieldName, nameof(virtualRootFieldName));
 
         var virtualField = Schema.VirtualRootFields.Find(virtualRootFieldName);
 

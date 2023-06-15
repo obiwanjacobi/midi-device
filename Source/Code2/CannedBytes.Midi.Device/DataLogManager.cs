@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
@@ -10,7 +11,7 @@ public sealed partial class DataLogManager
 
     public DataLogManager(DeviceDataContext context)
     {
-        Check.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(context, nameof(context));
 
         _context = context;
     }

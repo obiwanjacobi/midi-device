@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using CannedBytes.Midi.Device.IntegrationTests;
 using CannedBytes.Midi.Device.IntegrationTests.Stubs;
 using Xunit;
@@ -19,6 +20,8 @@ namespace CannedBytes.Midi.Device.UnitTests.LittleEndianTest
 
         private static void ReadLogical(string virtualRootName, IMidiLogicalWriter writer)
         {
+            Assert.True(BitConverter.IsLittleEndian);
+
             var serviceProvider = ServiceHelper.CreateServices();
             DeviceHelper.ToLogical(serviceProvider,
                 Path.Combine(Folder, TestSchemaFileName),

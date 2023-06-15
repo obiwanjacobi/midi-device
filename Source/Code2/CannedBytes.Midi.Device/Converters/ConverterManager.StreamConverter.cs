@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.Converters;
@@ -18,8 +19,8 @@ partial class ConverterManager
 
     public StreamConverter GetConverter(RecordType matchType, RecordType constructType)
     {
-        Check.IfArgumentNull(matchType, nameof(matchType));
-        Check.IfArgumentNull(constructType, nameof(constructType));
+        Assert.IfArgumentNull(matchType, nameof(matchType));
+        Assert.IfArgumentNull(constructType, nameof(constructType));
 
         // lookup matchtype (matchtype == constructtype on entry)
         // not found -> lookup factory for schema
@@ -59,7 +60,7 @@ partial class ConverterManager
 
     public StreamConverter LookupConverter(RecordType recordType)
     {
-        Check.IfArgumentNull(recordType, nameof(recordType));
+        Assert.IfArgumentNull(recordType, nameof(recordType));
 
         if (_streamConverters.TryGetValue(recordType.Name.FullName, out StreamConverter converter))
         {
@@ -71,7 +72,7 @@ partial class ConverterManager
 
     private static bool IsDynamic(RecordType constructType)
     {
-        Check.IfArgumentNull(constructType, nameof(constructType));
+        Assert.IfArgumentNull(constructType, nameof(constructType));
 
         if (!constructType.IsDynamic)
         {
@@ -96,8 +97,8 @@ partial class ConverterManager
 
     private StreamConverter CreateConverter(RecordType matchType, RecordType constructType)
     {
-        Check.IfArgumentNull(matchType, nameof(matchType));
-        Check.IfArgumentNull(constructType, nameof(constructType));
+        Assert.IfArgumentNull(matchType, nameof(matchType));
+        Assert.IfArgumentNull(constructType, nameof(constructType));
 
         var factory = _factoryMgr.Lookup(matchType.Schema.SchemaName);
 

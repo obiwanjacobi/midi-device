@@ -88,11 +88,11 @@ public readonly struct SevenBitUInt32 : IConvertible
 
     private static bool TryParseUInt(string s, out uint value)
     {
-        var success = ValueParser.TryParseToBytes(s, Ordering.LittleEndian, out var bytes);
+        var success = ValueParser.TryParseToBytes(s, BitOrder.LittleEndian, out var bytes);
 
         if (success)
         {
-            value = ByteConverter.FromSevenBitBytesToUInt32(bytes, Ordering.LittleEndian);
+            value = ByteConverter.FromSevenBitBytesToUInt32(bytes, BitOrder.LittleEndian);
             return true;
         }
 
