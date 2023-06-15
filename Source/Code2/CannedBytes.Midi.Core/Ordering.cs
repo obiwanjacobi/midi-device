@@ -1,6 +1,6 @@
 ﻿namespace CannedBytes.Midi.Core;
 
-public enum ByteOrder
+public enum Ordering
 {
     LittleEndian,
     BigEndian

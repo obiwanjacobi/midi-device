@@ -58,9 +58,7 @@ public sealed partial class DeviceDataContext
     // returns a reader for the current node/converter (LE/BE).
     public DeviceStreamReader CreateReader()
     {
-        DeviceStreamReader reader = new(
-            StreamManager.CurrentStream, Carry);
-
+        var reader = new DeviceStreamReader(StreamManager.CurrentStream, Carry);
         return reader;
     }
 
@@ -88,7 +86,7 @@ public sealed partial class DeviceDataContext
                 "No current node is set");
         }
 
-        LogicalContext ctx = new(FieldInfo.CurrentNode);
+        var ctx = new LogicalContext(FieldInfo.CurrentNode);
 
         return ctx;
     }

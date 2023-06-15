@@ -8,9 +8,9 @@ partial class EndianStreamConverter
 {
     internal sealed class EndianStream : ProcessingStream
     {
-        private readonly ByteOrder _order;
+        private readonly Ordering _order;
 
-        public EndianStream(Stream innerStream, ByteOrder order, int width)
+        public EndianStream(Stream innerStream, Ordering order, int width)
             : base(innerStream, width)
         {
             Check.IfArgumentOutOfRange(width, 2, ushort.MaxValue, nameof(width));

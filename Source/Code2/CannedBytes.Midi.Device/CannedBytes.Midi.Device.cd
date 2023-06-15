@@ -67,12 +67,11 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AQQQDKAAAAABAAAAAAgAAAgAQAAAAAAAAACQAAAAAAA=</HashCode>
+      <HashCode>AQQQDKAAAAABAAAAAAgAAAgAAAAAAAAAAACQAAAgAAA=</HashCode>
       <FileName>DeviceDataContext.ConverterState.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="StreamManager" />
-      <Property Name="RecordManager" />
       <Property Name="RootNode" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
@@ -97,16 +96,11 @@
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="CannedBytes.Midi.Device.StreamManager.StreamOwner" Collapsed="true">
+      <Struct Name="CannedBytes.Midi.Device.StreamManager.StreamOwner" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>StreamManager.StreamOwner.cs</NewMemberFileName>
         </TypeIdentifier>
-      </Class>
-      <Class Name="CannedBytes.Midi.Device.StreamManager.SysExStream" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>StreamManager.SysExStream.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
+      </Struct>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAECAAAQAAAAAQAIAAAAAAAAAE=</HashCode>
@@ -124,7 +118,7 @@
       <FileName>DeviceProperty.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CannedBytes.Midi.Device.DataRecordManager">
+  <Class Name="CannedBytes.Midi.Device.DataLogManager">
     <Position X="0.5" Y="12.25" Width="2" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -132,21 +126,21 @@
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Class Name="CannedBytes.Midi.Device.DataRecordManager.DataRecordEntry" Collapsed="true">
+      <Class Name="CannedBytes.Midi.Device.DataLogManager.DataLogEntry" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>DataRecordManager.DataRecordEntry.cs</NewMemberFileName>
+          <NewMemberFileName>DataLogManager.DataLogEntry.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Class Name="CannedBytes.Midi.Device.DataRecordManager.DataRecordScope" Collapsed="true">
+      <Class Name="CannedBytes.Midi.Device.DataLogManager.DataLogScope" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>DataRecordManager.DataRecordScope.cs</NewMemberFileName>
+          <NewMemberFileName>DataLogManager.DataLogScope.cs</NewMemberFileName>
         </TypeIdentifier>
         <Lollipop Position="0.2" />
       </Class>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQRCEEAAAAAAAAAAAAAAAACAAAgAAEAEA=</HashCode>
-      <FileName>DataRecordManager.cs</FileName>
+      <FileName>DataLogManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CannedBytes.Midi.Device.LogicalFieldNode">

@@ -18,7 +18,7 @@ internal sealed partial class EndianStreamConverter : StreamConverter, INavigati
 
     public override void OnBeforeRecord(DeviceDataContext context)
     {
-        var stream = new EndianStream(context.StreamManager.CurrentStream, ByteOrder.BigEndian, Width);
+        var stream = new EndianStream(context.StreamManager.CurrentStream, Ordering.BigEndian, Width);
         context.StreamManager.SetCurrentStream(this, stream);
     }
 

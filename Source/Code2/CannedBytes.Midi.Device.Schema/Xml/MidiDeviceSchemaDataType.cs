@@ -35,10 +35,10 @@ public class MidiDeviceSchemaDataType : DataType
         switch (bitOrder)
         {
             case Model1.bitOrder.LittleEndian:
-                BitOrder = ByteOrder.LittleEndian;
+                BitOrder = Ordering.LittleEndian;
                 break;
             case Model1.bitOrder.BigEndian:
-                BitOrder = ByteOrder.BigEndian;
+                BitOrder = Ordering.BigEndian;
                 break;
         }
     }

@@ -9,10 +9,10 @@ public static class ByteConverter
     private const uint IntMaskByte3 = 0x001FC000;
     private const uint IntMaskByte4 = 0x0FE00000;
 
-    public static ByteOrder SystemByteOrder { get; } = 
-        System.BitConverter.IsLittleEndian ? ByteOrder.LittleEndian : ByteOrder.BigEndian;
+    public static Ordering SystemByteOrder { get; } = 
+        System.BitConverter.IsLittleEndian ? Ordering.LittleEndian : Ordering.BigEndian;
 
-    public static byte[] FromUint32ToSevenBitBytes(uint value, ByteOrder ordering)
+    public static byte[] FromUint32ToSevenBitBytes(uint value, Ordering ordering)
     {
         var bytes = new byte[4];
 
@@ -21,7 +21,7 @@ public static class ByteConverter
         bytes[2] = (byte)((value & IntMaskByte3) >> 14);
         bytes[3] = (byte)((value & IntMaskByte4) >> 21);
 
-        if (ordering == ByteOrder.BigEndian)
+        if (ordering == Ordering.BigEndian)
         {
             Array.Reverse(bytes);
         }
@@ -31,11 +31,11 @@ public static class ByteConverter
 
     private const uint ByteMask = 0x7F;
 
-    public static uint FromSevenBitBytesToUInt32(byte[] bytes, ByteOrder ordering)
+    public static uint FromSevenBitBytesToUInt32(byte[] bytes, Ordering ordering)
     {
         uint internalValue = 0;
 
-        if (ordering == ByteOrder.LittleEndian)
+        if (ordering == Ordering.LittleEndian)
         {
             for (int i = 0; i < Math.Min(bytes.Length, 4); i++)
             {
@@ -55,11 +55,11 @@ public static class ByteConverter
         return internalValue;
     }
 
-    public static int FromBytesToInt32(byte[] bytes, ByteOrder ordering)
+    public static int FromBytesToInt32(byte[] bytes, Ordering ordering)
     {
         int value = 0;
 
-        if (ordering == ByteOrder.LittleEndian)
+        if (ordering == Ordering.LittleEndian)
         {
             for (int i = 0; i < Math.Min(bytes.Length, 4); i++)
             {
@@ -79,11 +79,11 @@ public static class ByteConverter
         return value;
     }
 
-    public static long FromBytesToInt64(byte[] bytes, ByteOrder ordering)
+    public static long FromBytesToInt64(byte[] bytes, Ordering ordering)
     {
         long value = 0;
 
-        if (ordering == ByteOrder.LittleEndian)
+        if (ordering == Ordering.LittleEndian)
         {
             for (int i = 0; i < Math.Min(bytes.Length, 8); i++)
             {
@@ -105,7 +105,7 @@ public static class ByteConverter
 
     private const ulong LowByteMask = 0xFF;
 
-    public static byte[] FromUInt64ToBytes(ulong value, ByteOrder ordering)
+    public static byte[] FromUInt64ToBytes(ulong value, Ordering ordering)
     {
         var bytes = new byte[8];
 
@@ -118,7 +118,7 @@ public static class ByteConverter
         bytes[6] = (byte)((value >> 48) & LowByteMask);
         bytes[7] = (byte)((value >> 56) & LowByteMask);
 
-        if (ordering == ByteOrder.BigEndian)
+        if (ordering == Ordering.BigEndian)
         {
             Array.Reverse(bytes);
         }

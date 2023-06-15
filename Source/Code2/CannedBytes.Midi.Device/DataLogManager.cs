@@ -55,7 +55,7 @@ public sealed partial class DataLogManager
     {
         if (CurrentEntry != null)
         {
-            DataLogEntry entry = _currentEntries.Pop();
+            var entry = _currentEntries.Pop();
 
             _entries.Add(entry);
         }

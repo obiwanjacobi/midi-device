@@ -8,7 +8,7 @@ namespace CannedBytes.Midi.Device;
 /// <summary>
 /// A StreamReader that transparently reads midi bits/bytes using the <see cref="Carry"/>.
 /// </summary>
-public class DeviceStreamReader
+public sealed class DeviceStreamReader
 {
     /// <summary>
     /// Constructs a new instance.
@@ -16,7 +16,7 @@ public class DeviceStreamReader
     /// <param name="stream">The stream to read from. Must not be null.</param>
     /// <param name="carry">A reference to an existing carry.</param>
     /// <seealso cref="DeviceDataContext"/>
-    public DeviceStreamReader(Stream stream, Carry carry)
+    internal DeviceStreamReader(Stream stream, Carry carry)
     {
         Check.IfArgumentNull(stream, nameof(stream));
         Check.IfArgumentNull(carry, nameof(carry));
@@ -40,7 +40,7 @@ public class DeviceStreamReader
     /// </summary>
     /// <param name="bitFlags">Flags that indicate what bits to read.</param>
     /// <param name="value">The resulting value.</param>
-    /// <returns>Returns the number of bytes actually read from the stream.</returns>
+    /// <returns>Returns the number of bytes actually read from the stream (0, 1 or 2).</returns>
     public int Read(BitFlags bitFlags, out ushort value)
     {
         return Carry.ReadFrom(BaseStream, bitFlags, out value);
@@ -50,21 +50,23 @@ public class DeviceStreamReader
     /// Reads a maximum of 8 bytes from the stream.
     /// </summary>
     /// <param name="byteLength">The number of bytes to read.</param>
+    /// <param name="byteOrder">To override the byte-order that is used to build the value.
+    /// If not specified the system byte-order is used.</param>
     /// <returns>Returns the value represented by the bytes read.</returns>
-    public VarUInt64 Read(int byteLength)
+    public VarUInt64 Read(int byteLength, Ordering? byteOrder = null)
     {
         Check.IfArgumentOutOfRange(byteLength,
             (int)VarUInt64.VarTypeCode.UInt8, (int)VarUInt64.VarTypeCode.UInt64, nameof(byteLength));
 
-        FillBuffer(byteLength);
+        ReadIntoBuffer(byteLength);
 
-        var value = FormatBuffer<ulong>(_buffer, byteLength);
+        var value = BufferToValue<ulong>(byteLength, byteOrder);
 
         return new VarUInt64(value);
     }
 
     // LE/BE implementation
-    protected const int MaxBufferSize = 8;
+    private const int MaxBufferSize = 8;
     private readonly byte[] _buffer = new byte[MaxBufferSize];
 
     /// <summary>
@@ -73,7 +75,7 @@ public class DeviceStreamReader
     /// <param name="numOfBytes">Must be greater than zero and smaller than <see cref="MaxBufferSize"/>.</param>
     /// <exception cref="EndOfStreamException">Thrown when less than the specified <paramref name="numOfBytes"/> 
     /// could be read from the stream.</exception>
-    private void FillBuffer(int numOfBytes)
+    private void ReadIntoBuffer(int numOfBytes)
     {
         Check.IfArgumentOutOfRange(numOfBytes, 0, MaxBufferSize, nameof(numOfBytes));
 
@@ -89,24 +91,44 @@ public class DeviceStreamReader
     /// Implemented by derived class to implement BE/LE formatting
     /// </summary>
     /// <typeparam name="T">The data type to return.</typeparam>
-    /// <param name="buffer">The buffer with the read bytes.</param>
     /// <param name="length">The length of the number of bytes in the buffer. 
     /// Buffer size is fixed and not an indication for target <typeparamref name="T"/>.</param>
+    /// <param name="byteOrder">To override the byte-order that is used to build the value.
+    /// If not specified the system byte-order is used.</param>
     /// <returns>Returns the integer value.</returns>
-    protected virtual T FormatBuffer<T>(byte[] buffer, int length)
+    private T BufferToValue<T>(int length, Ordering? byteOrder = null)
         where T : struct, IConvertible, IComparable
     {
         var type = typeof(T);
         int shift = 0;
         ulong value = 0;
 
-        for (int i = 0; i < length; i++)
+        var order = byteOrder ?? ByteConverter.SystemByteOrder;
+        if (order == Ordering.LittleEndian)
         {
-            var data = (ulong)buffer[i] << shift;
+            for (int i = 0; i < length; i++)
+            {
+                // Little Endian
+                var data = (ulong)_buffer[i] << shift;
 
-            value |= data;
+                value |= data;
 
-            shift += 8;
+                shift += 8;
+            }
+        }
+        else
+        {
+            shift = (length - 1) * 8;
+
+            for (int i = 0; i < length; i++)
+            {
+                // Big Endian
+                var data = (ulong)_buffer[i] << shift;
+
+                value |= data;
+
+                shift -= 8;
+            }
         }
 
         return (T)Convert.ChangeType(value, type);
@@ -116,110 +138,111 @@ public class DeviceStreamReader
     {
         const int size = 1;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<byte>(_buffer, size);
+        return BufferToValue<byte>(size);
     }
 
-    public short ReadInt16()
+    public short ReadInt16(Ordering? byteOrder = null)
     {
         const int size = 2;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<short>(_buffer, size);
+        return BufferToValue<short>(size, byteOrder);
     }
 
-    public int ReadInt32()
+    public int ReadInt32(Ordering? byteOrder = null)
     {
         const int size = 4;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<int>(_buffer, size);
+        return BufferToValue<int>(size, byteOrder);
     }
 
-    public long ReadInt64()
+    public long ReadInt64(Ordering? byteOrder = null)
     {
         const int size = 8;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<long>(_buffer, size);
+        return BufferToValue<long>(size, byteOrder);
     }
 
-    public ushort ReadUInt16()
+    public ushort ReadUInt16(Ordering? byteOrder = null)
     {
         const int size = 2;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<ushort>(_buffer, size);
+        return BufferToValue<ushort>(size, byteOrder);
     }
 
-    public uint ReadUInt24()
+    public uint ReadUInt24(Ordering? byteOrder = null)
     {
         const int size = 3;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<uint>(_buffer, size);
+        return BufferToValue<uint>(size, byteOrder);
     }
 
-    public uint ReadUInt32()
+    public uint ReadUInt32(Ordering? byteOrder = null)
     {
         const int size = 4;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<uint>(_buffer, size);
+        return BufferToValue<uint>(size, byteOrder);
     }
 
-    public ulong ReadUInt40()
+    public ulong ReadUInt40(Ordering? byteOrder = null)
     {
         const int size = 5;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<ulong>(_buffer, size);
+        return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt48()
+    public ulong ReadUInt48(Ordering? byteOrder = null)
     {
         const int size = 6;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<ulong>(_buffer, size);
+        return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt56()
+    public ulong ReadUInt56(Ordering? byteOrder = null)
     {
         const int size = 7;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<ulong>(_buffer, size);
+        return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt64()
+    public ulong ReadUInt64(Ordering? byteOrder = null)
     {
         const int size = 8;
 
-        FillBuffer(size);
+        ReadIntoBuffer(size);
 
-        return FormatBuffer<ulong>(_buffer, size);
+        return BufferToValue<ulong>(size, byteOrder);
     }
 
     /// <summary>
     /// Reads a string of a fixed length from the stream.
     /// </summary>
     /// <param name="byteLength">The number of characters in the stream. No terminating 0.</param>
+    /// <param name="byteOrder">To override the byte-order that is used to build the value.
+    /// If not specified the system byte-order is used.</param>
     /// <returns>Returns the string read.</returns>
     /// <exception cref="EndOfStreamException">Thrown when less than the specified <paramref name="byteLength"/> 
     /// could be read from the stream.</exception>
-    /// <remarks>Uses UTF7 encoding.</remarks>
-    public string ReadString(int byteLength)
+    public string ReadStringAscii(int byteLength, Ordering? byteOrder = null)
     {
         // use own buffer to be able to read strings with larger length than MaxBufferSize.
         var buffer = new byte[byteLength];
@@ -229,6 +252,11 @@ public class DeviceStreamReader
             throw new EndOfStreamException();
         }
 
-        return Encoding.UTF7.GetString(buffer);
+        if (byteOrder != ByteConverter.SystemByteOrder)
+        {
+            Array.Reverse(buffer);
+        }
+
+        return Encoding.ASCII.GetString(buffer);
     }
 }
