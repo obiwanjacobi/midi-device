@@ -6,18 +6,18 @@ using Xunit.Abstractions;
 
 namespace CannedBytes.Midi.Device.IntegrationTests.CarryTest;
 
-public class CarryTest
+public class BitConverterTest
 {
-    public const string Folder = "CarryTest/";
-    public const string TestSchemaFileName = "CarryTestSchema.mds";
-    public const string TestStreamFileName = "CarryTestStream.bin";
+    public const string Folder = "BitConverterTest/";
+    public const string TestSchemaFileName = "BitConverterTestSchema.mds";
+    public const string TestStreamFileName = "BitConverterTestStream.bin";
 
     public const string TestNamespace =
         "http://schemas.cannedbytes.com/MidiDeviceSchema/IntegrationTests/CarryTestSchema";
 
     private readonly ITestOutputHelper _output;
 
-    public CarryTest(ITestOutputHelper output)
+    public BitConverterTest(ITestOutputHelper output)
         => _output = output;
 
     [Fact]
@@ -32,18 +32,24 @@ public class CarryTest
 
         writer.Count.Should().Be(9);
 
+        // A1 F2 4C 0B 74 23 E6 5A 17
+
+        // A1H => clear Bit7 (midiData) => 21H
         writer[0].Value.Should().Be((byte)0x21);
         writer[0].Field.Name.SchemaName.Should().Be(TestNamespace);
         writer[0].Field.Name.Name.Should().Be("loByte");
 
+        // F2 => HiByte-HiNibble => 0F (hi nibble from F2 shifted down)
         writer[1].Value.Should().Be((byte)0x0F);
         writer[1].Field.Name.SchemaName.Should().Be(TestNamespace);
         writer[1].Field.Name.Name.Should().Be("hiByte");
 
+        // 4C => lo nibble => 0C
         writer[2].Value.Should().Be((byte)0x0C);
         writer[2].Field.Name.SchemaName.Should().Be(TestNamespace);
         writer[2].Field.Name.Name.Should().Be("loPart");
 
+        // 0B
         writer[3].Value.Should().Be((byte)0x0D);
         writer[3].Field.Name.SchemaName.Should().Be(TestNamespace);
         writer[3].Field.Name.Name.Should().Be("midPart");

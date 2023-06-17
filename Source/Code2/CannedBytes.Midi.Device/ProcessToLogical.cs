@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CannedBytes.Midi.Device;
 
@@ -79,6 +78,7 @@ public class ProcessToLogical
     protected virtual void OnBeforeRecordToLogical(SchemaNode thisNode)
     {
         ClearCarry();
+        CurrentNode = thisNode;
 
         var navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
 
@@ -111,6 +111,7 @@ public class ProcessToLogical
 
     protected virtual void OnBeforeFieldToLogical(SchemaNode thisNode)
     {
+        CurrentNode = thisNode;
         var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
 
         navEvents?.OnBeforeField(_context);

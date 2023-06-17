@@ -8,8 +8,9 @@ namespace CannedBytes.Midi.Device;
 [Flags]
 public enum BitFlags
 {
-    // single bits
     None = 0x0000,
+    
+    // single bits
     Bit0 = 0x0001,
     Bit1 = 0x0002,
     Bit2 = 0x0004,

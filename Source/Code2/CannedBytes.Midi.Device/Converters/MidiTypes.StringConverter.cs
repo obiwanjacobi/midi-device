@@ -56,6 +56,6 @@ internal sealed class StringConverter : DataConverter
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
         var str = reader.ReadStringAscii(ByteLength);
-        writer.Write(str, ByteLength * 8);
+        writer.Write(str, 0);
     }
 }

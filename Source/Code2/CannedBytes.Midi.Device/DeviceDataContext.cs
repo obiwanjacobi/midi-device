@@ -9,7 +9,7 @@ public sealed partial class DeviceDataContext
         Carry = new Carry();
         FieldInfo = new FieldContext(this);
         DeviceProperties = new DevicePropertyCollection();
-        StateMap = new ConverterState();
+        StateMap = new ConverterState(this);
 
         ConversionDirection = dir;
         LogManager = new DataLogManager(this);

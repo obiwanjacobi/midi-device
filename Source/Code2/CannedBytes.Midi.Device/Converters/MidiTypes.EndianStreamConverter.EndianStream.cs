@@ -20,7 +20,7 @@ partial class EndianStreamConverter
         protected override void ProcessBufferRead(byte[] unprocessedBuffer, byte[] processedBuffer, int processedOffset)
         {
             Array.Copy(unprocessedBuffer, 0, processedBuffer, processedOffset, UnprocessedLength);
-            if (_order != ByteConverter.SystemByteOrder)
+            if (_order == BitOrder.LittleEndian)
             {
                 Array.Reverse(processedBuffer, processedOffset, ProcessedLength);
             }
@@ -29,7 +29,7 @@ partial class EndianStreamConverter
         protected override void ProcessBufferWrite(byte[] processedBuffer, int processedOffset, byte[] unprocessedBuffer)
         {
             Array.Copy(processedBuffer, processedOffset, unprocessedBuffer, 0, ProcessedLength);
-            if (_order != ByteConverter.SystemByteOrder)
+            if (_order == BitOrder.LittleEndian)
             {
                 Array.Reverse(processedBuffer, processedOffset, ProcessedLength);
             }

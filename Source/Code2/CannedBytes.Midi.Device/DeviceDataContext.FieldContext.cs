@@ -27,7 +27,7 @@ partial class DeviceDataContext
         public FieldValue<T> GetDataFieldValue<T>()
             where T : IComparable
         {
-            FieldValue<T> fieldValue = new(_contex);
+            var fieldValue = new FieldValue<T>(_contex);
             return fieldValue;
         }
     }

@@ -21,10 +21,10 @@
 		<None Update="BigEndianTest\BigEndianTestStream.bin">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="CarryTest\CarryTestSchema.mds">
+		<None Update="BitConverterTest\BitConverterTestSchema.mds">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
-		<None Update="CarryTest\CarryTestStream.bin">
+		<None Update="BitConverterTest\BitConverterTestStream.bin">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="ChecksumTest\ChecksumTestSchema.mds">
@@ -39,9 +39,12 @@
 		<None Update="DevicePropertiesTest\DevicePropertiesTestStream.bin">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Update="xunit.runner.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<Content Include="CarryTest\SchemaText.txt" />
+		<Content Include="BitConverterTest\SchemaText.txt" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="FluentAssertions" Version="6.11.0" />
