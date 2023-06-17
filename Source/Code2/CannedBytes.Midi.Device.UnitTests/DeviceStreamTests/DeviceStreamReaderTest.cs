@@ -10,7 +10,7 @@ public class DeviceStreamReaderTest
     private static DeviceStreamReader CreateDeviceStreamReader(byte[] buffer)
     {
         var stream = new MemoryStream(buffer, false);
-        return new DeviceStreamReader(stream, new Carry());
+        return new DeviceStreamReader(stream, new Carry(), new BitStreamReader());
     }
 
     [Fact]
@@ -18,7 +18,7 @@ public class DeviceStreamReaderTest
     {
         var reader = CreateDeviceStreamReader(new byte[] { 0xFF });
 
-        int read = reader.Read(BitFlags.Bit1 | BitFlags.Bit2 | BitFlags.Bit3 | BitFlags.Bit4 | BitFlags.Bit5, out ushort result);
+        int read = reader.ReadBits(BitFlags.Bit1 | BitFlags.Bit2 | BitFlags.Bit3 | BitFlags.Bit4 | BitFlags.Bit5, out ushort result);
         read.Should().BeGreaterThan(0);
 
         // value is **not** shifted down!

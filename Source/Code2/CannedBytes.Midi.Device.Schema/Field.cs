@@ -184,6 +184,8 @@ namespace CannedBytes.Midi.Device.Schema
 
             public int Width { get; set; }
 
+            public ValueRange Range { get; set; }
+
             /// <summary>
             /// Gets the number of times this field can occur within an address map.
             /// </summary>

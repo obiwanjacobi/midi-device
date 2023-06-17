@@ -149,6 +149,7 @@
                 <xs:attribute ref="property" use="optional"/>
                 <xs:attribute ref="address" use="optional"/>
                 <xs:attribute ref="size" use="optional"/>
+                <xs:attribute ref="range" use="optional"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -422,6 +423,15 @@
                 The value is specified in either a decimal value (eg. '2143') or
                 a hex-byte value - usually taken from the documentation. Uses spaces or minus signs to separate the bytes
                 (eg. '00-06-00')
+            </xs:documentation>
+        </xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="range" type="xs:string">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                The range attribute is used to indicate a range of values. For instance it is required for the 'midiBitRange' 
+                data type where identifies the bits that represents the value. Range strings syntax: '1:5' one to five (inclusive).
             </xs:documentation>
         </xs:annotation>
     </xs:attribute>

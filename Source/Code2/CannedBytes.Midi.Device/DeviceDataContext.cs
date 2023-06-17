@@ -4,6 +4,8 @@ namespace CannedBytes.Midi.Device;
 
 public sealed partial class DeviceDataContext
 {
+    
+
     public DeviceDataContext(ConversionDirection dir)
     {
         Carry = new Carry();
@@ -30,7 +32,9 @@ public sealed partial class DeviceDataContext
     /// Gets the current bit carry for 'physical' stream operations.
     /// </summary>
     public Carry Carry { get; }
-    
+
+    public BitStreamReader BitReader = new BitStreamReader();
+
     /// <summary>
     /// Contains the runtime device properties retrieved from the message.
     /// </summary>
@@ -58,7 +62,7 @@ public sealed partial class DeviceDataContext
     // returns a reader for the current node/converter (LE/BE).
     public DeviceStreamReader CreateReader()
     {
-        var reader = new DeviceStreamReader(StreamManager.CurrentStream, Carry);
+        var reader = new DeviceStreamReader(StreamManager.CurrentStream, Carry, BitReader);
         return reader;
     }
 

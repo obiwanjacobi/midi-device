@@ -16,7 +16,7 @@ public class BitStreamReaderTest
         => new MemoryStream(bytes, writable: false);
 
     [Fact]
-    public void ReadBits_Bit1_Len3()
+    public void ReadBits_LoNibble_Twice()
     {
         var reader = new BitStreamReader();
         var stream = NewStream(0b1110_0101, 0b1011_1011);
@@ -29,7 +29,7 @@ public class BitStreamReaderTest
     }
 
     [Fact]
-    public void ReadBits_Bit6_Len5()
+    public void ReadBits_LoNibble_HiNibble()
     {
         var reader = new BitStreamReader();
         var stream = NewStream(0b1110_0101, 0b1011_1011);
@@ -39,5 +39,18 @@ public class BitStreamReaderTest
 
         value = reader.ReadBits(stream, 6, 5);
         value.Should().Be(0b01111);
+    }
+
+    [Fact]
+    public void ReadBits_LoAndHiNibble_From_LoAndHiByte()
+    {
+        var reader = new BitStreamReader();
+        var stream = NewStream(0b1110_0101, 0b1011_1011);
+
+        var value = reader.ReadBits(stream, 1, 3);
+        value.Should().Be(0b010);
+
+        value = reader.ReadBits(stream, 12, 3);
+        value.Should().Be(0b0011);
     }
 }

@@ -95,6 +95,9 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
             case "midiBit15":
                 converter = new BitConverter(constructType, BitFlags.Bit15);
                 break;
+            case "midiBitRange":
+                converter = new BitConverter2(constructType);
+                break;
             case "midiString":
                 converter = new StringConverter(constructType);
                 break;

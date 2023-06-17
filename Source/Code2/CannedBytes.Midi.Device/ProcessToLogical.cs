@@ -135,6 +135,7 @@ public class ProcessToLogical
 
     private void ClearCarry()
     {
+        _context.BitReader.Clear();
         _context.Carry.Clear();
 
         if (_context.LogManager.CurrentEntry != null)

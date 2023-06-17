@@ -19,6 +19,14 @@
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
+    <AssociationLine Name="sequence" Type="CannedBytes.Midi.Device.Schema.Xml.Model1.localField" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.25" Y="8.781" />
+        <Point X="3.625" Y="8.781" />
+        <Point X="3.625" Y="5" />
+        <Point X="5" Y="5" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAUAAAAAAAAA=</HashCode>
       <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
@@ -27,7 +35,7 @@
       <Field Name="sequence" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.fieldSequence">
+  <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.fieldSequence" Collapsed="true">
     <Position X="5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -68,14 +76,14 @@
   <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.dataType" Collapsed="true">
     <Position X="19.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEQAAEAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAEQBAEAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.extension" Collapsed="true">
     <Position X="23" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAAAAAACAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAACAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -137,6 +145,13 @@
   </Class>
   <Class Name="CannedBytes.Midi.Device.Schema.Xml.Model1.recordRestrictionType" Collapsed="true">
     <Position X="1.5" Y="7.75" Width="1.75" />
+    <AssociationLine Name="sequence" Type="CannedBytes.Midi.Device.Schema.Xml.Model1.localField" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.375" Y="7.75" />
+        <Point X="2.375" Y="4.688" />
+        <Point X="5" Y="4.688" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAUAAAAAAAAA=</HashCode>
       <FileName>Xml\Model1\MidiDeviceSchema.cs</FileName>

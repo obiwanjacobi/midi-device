@@ -6,25 +6,44 @@
     xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
     xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
 >
-  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+    <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
 
-  <mds:recordType name="carryTest">
-    <mds:extension base="m:midiSysEx">
-      <mds:sequence>
-        <mds:field name="loByte" type="m:midiData" />
-        <mds:field name="hiByte" type="m:midiBit12-15" />
+    <mds:recordType name="carryTest">
+        <mds:extension base="m:midiSysEx">
+            <mds:sequence>
+                <mds:field name="loByte" type="m:midiData" />
+                <mds:field name="hiByte" type="m:midiBit12-15" />
 
-        <mds:field name="loPart" type="m:midiBit0-4" />
-        <mds:field name="midPart" type="m:midiBit6-10" />
-        <mds:field name="hiPart" type="m:midiBit12-15" />
+                <mds:field name="loPart" type="m:midiBit0-4" />
+                <mds:field name="midPart" type="m:midiBit6-10" />
+                <mds:field name="hiPart" type="m:midiBit12-15" />
 
-        <mds:field name="firstLo" type="m:midiData" />
-        <mds:field name="secondLo" type="m:midiBit0-4" />
+                <mds:field name="firstLo" type="m:midiData" />
+                <mds:field name="secondLo" type="m:midiBit0-4" />
 
-        <mds:field name="firstHi" type="m:midiBit12-15" />
-        <mds:field name="secondHi" type="m:midiBit12-15" />
-      </mds:sequence>
-    </mds:extension>
-  </mds:recordType>
+                <mds:field name="firstHi" type="m:midiBit12-15" />
+                <mds:field name="secondHi" type="m:midiBit12-15" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
+
+    <mds:recordType name="bitConverterTest">
+        <mds:extension base="m:midiSysEx">
+            <mds:sequence>
+                <mds:field name="loByte" type="m:midiBitRange" mds:range="0:6" />
+                <mds:field name="hiByte" type="m:midiBitRange" mds:range="12:15" />
+
+                <mds:field name="loPart" type="m:midiBitRange" mds:range="0:4" />
+                <mds:field name="midPart" type="m:midiBitRange" mds:range="6:10" />
+                <mds:field name="hiPart" type="m:midiBitRange" mds:range="12:15" />
+
+                <mds:field name="firstLo" type="m:midiBitRange" mds:range="0:3" />
+                <mds:field name="secondLo" type="m:midiBitRange" mds:range="0:3" />
+
+                <mds:field name="firstHi" type="m:midiBitRange" mds:range="12:15" />
+                <mds:field name="secondHi" type="m:midiBitRange" mds:range="12:15" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
 
 </mds:deviceSchema>

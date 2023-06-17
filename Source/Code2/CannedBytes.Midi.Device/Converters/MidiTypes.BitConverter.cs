@@ -143,7 +143,7 @@ internal sealed class BitConverter : DataConverter
 
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
-        reader.Read(BitFlag, out ushort value);
+        reader.ReadBits(BitFlag, out ushort value);
 
         int bitLength = ProcessStartAndLength(ProcessPart.LogicalStartAndLength, ref value);
 

@@ -97,7 +97,7 @@ partial class SysExStreamConverter
 
         private static bool IsValidSysExByte(byte value)
         {
-            return value < 0x7F || value == 0xF0 || value == 0xF7;
+            return value <= 0x7F || value == 0xF0 || value == 0xF7;
         }
 
         private void ThrowIfNotSeekable(Stream stream)

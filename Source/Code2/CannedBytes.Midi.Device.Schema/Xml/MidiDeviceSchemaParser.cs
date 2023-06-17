@@ -423,6 +423,8 @@ public class MidiDeviceSchemaParser
         target.ExtendedProperties.DevicePropertyName = source.property;
         target.ExtendedProperties.Size = new Core.SevenBitUInt32(source.size);
         target.ExtendedProperties.Address = new Core.SevenBitUInt32(source.address);
+        target.ExtendedProperties.Range = new Core.ValueRange(source.range);
+
         if (source.widthSpecified)
         {
             target.ExtendedProperties.Width = (int)source.width;

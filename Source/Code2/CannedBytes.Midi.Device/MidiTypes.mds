@@ -5,996 +5,904 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
 
-  <mds:annotation>
-    <mds:documentation xml:lang="en">The midiTypes schema represents the base types used in a midi device schema.</mds:documentation>
-  </mds:annotation>
-
-  <mds:dataType name="midiByte">
     <mds:annotation>
-      <mds:documentation xml:lang="en">midiByte is the base type for all (simple) midi types. It represents an unsigned 8-bit byte.</mds:documentation>
+        <mds:documentation xml:lang="en">The midiTypes schema represents the base types used in a midi device schema.</mds:documentation>
     </mds:annotation>
-    <mds:restriction base="xs:unsignedByte" />
-  </mds:dataType>
-
-  <mds:dataType name="midiData">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiData represents a data byte in a midi system exclusive message. Bit-7 -the most significant bit- is always zero.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:minimum value="0" />
-      <mds:maximum value="127" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiNull">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiNull is an indication that the field is a dummy or a filler.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-    </mds:restriction>
-  </mds:dataType>
-  <mds:dataType name="midiComposite" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiComposite is used as an abstract base type. It represents a single logical value that is made up of multiple physical bytes (abstract).</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="xs:string">
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiString can be used as a base type for character string fields. The derived type must specify the length contraint.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiComposite" />
-  </mds:dataType>
-
-  <mds:dataType name="midiUnsigned" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned is an abstract composite for forming an unsigned integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiComposite" />
-  </mds:dataType>
-
-  <mds:dataType name="midiSigned" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiSigned is an abstract composite for forming a signed integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiComposite" />
-  </mds:dataType>
- 
-  <!-- Single bits -->
-  
-  <mds:dataType name="midiBit0">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit0 marks the first bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit1 marks the second bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit2 marks the third bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit3 marks the fourth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit4 marks the fifth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit5 marks the sixth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit6 marks the seventh bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit7 marks the eighth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit8 marks the nineth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit9">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit9 marks the tenth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit10">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit10 marks the eleventh bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit11">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit11 marks the twelveth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit12">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit12 marks the thirteenth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit13">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit13 marks the fourteenth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit14">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit14 marks the fifteenth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiBit15">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBit15 marks the sixteenth bit.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiByte">
-      <mds:enumeration value="0" name="False" />
-      <mds:enumeration value="1" name="True" />
-      <mds:enumeration value="0" name="Off" />
-      <mds:enumeration value="1" name="On" />
-      <mds:minimum value="0" />
-      <mds:maximum value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-
-  <!-- record types -->
-
-  <mds:recordType name="midiSysEx" abstract="true">
-    <mds:annotation>
-      <mds:documentation lang="en">
-        Derive your root message record from this type.
-        Handles SOX/EOX (F0/F7)
-      </mds:documentation>
-    </mds:annotation>
-  </mds:recordType>
-
-  <mds:recordType name="midiChecksum">
-    <mds:annotation>
-      <mds:documentation lang="en">
-        Implements a checksum on all contained fields.
-        Can be used as a base-type for custom / manufacturer specific checksum implementations.
-      </mds:documentation>
-    </mds:annotation>
-  </mds:recordType>
-
-  <mds:recordType name="midiAddressMap" abstract="true">
-    <mds:annotation>
-      <mds:documentation lang="en">
-        A base type for address maps that injects the Address Map converter.
-        Derive your (root) address map record from this type.
-      </mds:documentation>
-    </mds:annotation>
-  </mds:recordType>
-  
-  <mds:recordType name="midiSplitNibbleBE" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiSplitNibbleBE represents a data block that writes the most significat nibble first.</mds:documentation>
-    </mds:annotation>
-    <mds:extension base="midiBigEndian" />
-  </mds:recordType>
-
-  <mds:recordType name="midiSplitNibbleLE" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiSplitNibbleLE represents a data block that writes the least significat nibble first.</mds:documentation>
-    </mds:annotation>
-    <mds:extension base="midiLittleEndian" />
-  </mds:recordType>
-
-  <mds:recordType name="midiBigEndian" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiBigEndian represents a data block that writes the most significat byte first.</mds:documentation>
-    </mds:annotation>
-  </mds:recordType>
-
-  <mds:recordType name="midiLittleEndian" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiLittleEndian represents a data block that writes the least significat byte first.</mds:documentation>
-    </mds:annotation>
-  </mds:recordType>
-
-  <mds:recordType name="midiSevenByte" abstract="true">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiSeventByte represents a data block that writes 7 full bytes into 8 midi bytes.</mds:documentation>
-    </mds:annotation>
-  </mds:recordType>
-
-
-  <!-- 2 bit rows -->
-
-  <mds:dataType name="midiBit0-1">
-    <mds:union memberTypes="midiBit0 midiBit1" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-2">
-    <mds:union memberTypes="midiBit1 midiBit2" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-3">
-    <mds:union memberTypes="midiBit2 midiBit3" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-4">
-    <mds:union memberTypes="midiBit3 midiBit4" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-5">
-    <mds:union memberTypes="midiBit4 midiBit5" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-6">
-    <mds:union memberTypes="midiBit5 midiBit6" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-7">
-    <mds:union memberTypes="midiBit6 midiBit7" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-8">
-    <mds:union memberTypes="midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8-9">
-    <mds:union memberTypes="midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit9-10">
-    <mds:union memberTypes="midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit10-11">
-    <mds:union memberTypes="midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit11-12">
-    <mds:union memberTypes="midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit12-13">
-    <mds:union memberTypes="midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit13-14">
-    <mds:union memberTypes="midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit14-15">
-    <mds:union memberTypes="midiBit14 midiBit15" />
-  </mds:dataType>
-
-
-  <!-- 3 bit rows -->
-
-  <mds:dataType name="midiBit0-2">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-3">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-4">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-5">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-6">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-7">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-8">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-9">
-    <mds:union memberTypes="midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8-10">
-    <mds:union memberTypes="midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit9-11">
-    <mds:union memberTypes="midiBit9 midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit10-12">
-    <mds:union memberTypes="midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit11-13">
-    <mds:union memberTypes="midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit12-14">
-    <mds:union memberTypes="midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit13-15">
-    <mds:union memberTypes="midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-
-  <!-- 4 bit rows -->
-
-  <mds:dataType name="midiBit0-3">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-4">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-5">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-6">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-7">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-8">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-9">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-10">
-    <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8-11">
-    <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit9-12">
-    <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit10-13">
-    <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit11-14">
-    <mds:union memberTypes="midiBit11 midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit12-15">
-    <mds:union memberTypes="midiBit12 midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-  <!-- 5 bit rows -->
-
-  <mds:dataType name="midiBit0-4">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-5">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-6">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-7">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-8">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-9">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-10">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-11">
-    <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8-12">
-    <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit9-13">
-    <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit10-14">
-    <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit11-15">
-    <mds:union memberTypes="midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-  <!-- 6 bit rows -->
-
-  <mds:dataType name="midiBit0-5">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-6">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-7">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-8">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-9">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-10">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-11">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-12">
-    <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8-13">
-    <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit9-14">
-    <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit10-15">
-    <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-  <!-- 7 bit rows -->
-
-  <mds:dataType name="midiBit0-6">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-7">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-8">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-9">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-10">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-11">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-12">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-13">
-    <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8-14">
-    <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit9-15">
-    <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-  <!-- 8 bit rows -->
-
-  <mds:dataType name="midiBit0-7">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-8">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-9">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-10">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-11">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-12">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-13">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-14">
-    <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit8-15">
-    <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-  <!-- 9 bit rows -->
-
-  <mds:dataType name="midiBit0-8">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-9">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-10">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-11">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-12">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-13">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-14">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit7-15">
-    <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-  <!-- 10 bit rows -->
-
-  <mds:dataType name="midiBit0-9">
-    <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit1-10">
-    <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit2-11">
-    <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit3-12">
-    <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit4-13">
-    <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit5-14">
-    <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
-  </mds:dataType>
-
-  <mds:dataType name="midiBit6-15">
-    <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
-  </mds:dataType>
-
-  <!-- 11 bit rows -->
-  <!-- 12 bit rows -->
-  <!-- 13 bit rows -->
-  <!-- 14 bit rows -->
-  <!-- 15 bit rows -->
-  
-  <!-- strings -->
-
-  <mds:dataType name="midiString1">
-    <mds:restriction base="midiString">
-      <mds:length value="1" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString2">
-    <mds:restriction base="midiString">
-      <mds:length value="2" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString3">
-    <mds:restriction base="midiString">
-      <mds:length value="3" />
-    </mds:restriction>
-  </mds:dataType>
-  
-  <mds:dataType name="midiString4">
-    <mds:restriction base="midiString">
-      <mds:length value="4" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString5">
-    <mds:restriction base="midiString">
-      <mds:length value="5" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString6">
-    <mds:restriction base="midiString">
-      <mds:length value="6" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString7">
-    <mds:restriction base="midiString">
-      <mds:length value="7" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString8">
-    <mds:restriction base="midiString">
-      <mds:length value="8" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString9">
-    <mds:restriction base="midiString">
-      <mds:length value="9" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString10">
-    <mds:restriction base="midiString">
-      <mds:length value="10" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString11">
-    <mds:restriction base="midiString">
-      <mds:length value="11" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString12">
-    <mds:restriction base="midiString">
-      <mds:length value="12" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString13">
-    <mds:restriction base="midiString">
-      <mds:length value="13" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString14">
-    <mds:restriction base="midiString">
-      <mds:length value="14" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString15">
-    <mds:restriction base="midiString">
-      <mds:length value="15" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString16">
-    <mds:restriction base="midiString">
-      <mds:length value="16" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString17">
-    <mds:restriction base="midiString">
-      <mds:length value="17" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString18">
-    <mds:restriction base="midiString">
-      <mds:length value="18" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString19">
-    <mds:restriction base="midiString">
-      <mds:length value="19" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiString20">
-    <mds:restriction base="midiString">
-      <mds:length value="20" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <!-- unsigned integers -->
-
-  <mds:dataType name="midiUnsigned8">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned8 is 1 byte forming an unsigned 8-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="1" />
-    </mds:restriction>
-  </mds:dataType>
-  
-  <mds:dataType name="midiUnsigned16">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned16 is a composite of 2 bytes forming an unsigned 16-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="2" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiUnsigned24">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned24 is a composite of 3 bytes forming an unsigned 24-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="3" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiUnsigned32">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned32 is a composite of 4 bytes forming an unsigned 32-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="4" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiUnsigned40">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned40 is a composite of 5 bytes forming an unsigned 40-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="5" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiUnsigned48">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned48 is a composite of 6 bytes forming an unsigned 48-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="6" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiUnsigned56">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned56 is a composite of 7 bytes forming an unsigned 56-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="7" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiUnsigned64">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiUnsigned64 is a composite of 8 bytes forming an unsigned 64-bit long integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiUnsigned">
-      <mds:length value="8" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <!-- signed integers -->
-  
-  <mds:dataType name="midiSigned16">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiSigned16 is a composite of 2 bytes forming a signed 16-bit short integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiSigned">
-      <mds:length value="2" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiSigned32">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiSigned32 is a composite of 4 bytes forming a signed 32-bit integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiSigned">
-      <mds:length value="4" />
-    </mds:restriction>
-  </mds:dataType>
-
-  <mds:dataType name="midiSigned64">
-    <mds:annotation>
-      <mds:documentation xml:lang="en">midiSigned64 is a composite of 8 bytes forming a signed 64-bit long integer.</mds:documentation>
-    </mds:annotation>
-    <mds:restriction base="midiSigned">
-      <mds:length value="8" />
-    </mds:restriction>
-  </mds:dataType>
+
+    <mds:dataType name="midiByte">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiByte is the base type for all (simple) midi types. It represents an unsigned 8-bit byte.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="xs:unsignedByte" />
+    </mds:dataType>
+
+    <mds:dataType name="midiData">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiData represents a data byte in a midi system exclusive message. Bit-7 -the most significant bit- is always zero.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiByte">
+            <mds:minimum value="0" />
+            <mds:maximum value="127" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiNull">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiNull is an indication that the field is a dummy or a filler.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiByte">
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiComposite" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiComposite is used as an abstract base type. It represents a single logical value that is made up of multiple physical bytes (abstract).</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="xs:string" />
+    </mds:dataType>
+
+    <mds:dataType name="midiString" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiString can be used as a base type for character string fields. The derived type must specify the length contraint.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiComposite" />
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned is an abstract composite for forming an unsigned integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiComposite" />
+    </mds:dataType>
+
+    <mds:dataType name="midiSigned" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiSigned is an abstract composite for forming a signed integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiComposite" />
+    </mds:dataType>
+
+    <!-- Single bits -->
+
+    <mds:dataType name="midiBit" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">A single bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiByte">
+            <mds:enumeration value="0" name="False" />
+            <mds:enumeration value="1" name="True" />
+            <mds:enumeration value="0" name="Off" />
+            <mds:enumeration value="1" name="On" />
+            <mds:minimum value="0" />
+            <mds:maximum value="1" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiBit0">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit0 marks the first bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit1 marks the second bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit2 marks the third bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit3 marks the fourth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit4 marks the fifth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit5 marks the sixth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit6 marks the seventh bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit7 marks the eighth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit8 marks the ninth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit9">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit9 marks the tenth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit10">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit10 marks the eleventh bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit11">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit11 marks the twelveth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit12">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit12 marks the thirteenth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit13">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit13 marks the fourteenth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit14">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit14 marks the fifteenth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit15">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBit15 marks the sixteenth bit.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiBit" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBitRange">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBitRange specifies a free bit range.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiComposite" />
+    </mds:dataType>
+    
+    <!-- record types -->
+
+    <mds:recordType name="midiSysEx" abstract="true">
+        <mds:annotation>
+            <mds:documentation lang="en">
+                Derive your root message record from this type.
+                Handles SOX/EOX (F0/F7)
+            </mds:documentation>
+        </mds:annotation>
+    </mds:recordType>
+
+    <mds:recordType name="midiChecksum">
+        <mds:annotation>
+            <mds:documentation lang="en">
+                Implements a checksum on all contained fields.
+                Can be used as a base-type for custom / manufacturer specific checksum implementations.
+            </mds:documentation>
+        </mds:annotation>
+    </mds:recordType>
+
+    <mds:recordType name="midiAddressMap" abstract="true">
+        <mds:annotation>
+            <mds:documentation lang="en">
+                A base type for address maps that injects the Address Map converter.
+                Derive your (root) address map record from this type.
+            </mds:documentation>
+        </mds:annotation>
+    </mds:recordType>
+
+    <mds:recordType name="midiSplitNibbleBE" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiSplitNibbleBE represents a data block that writes the most significant nibble first.</mds:documentation>
+        </mds:annotation>
+        <mds:extension base="midiBigEndian" />
+    </mds:recordType>
+
+    <mds:recordType name="midiSplitNibbleLE" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiSplitNibbleLE represents a data block that writes the least significant nibble first.</mds:documentation>
+        </mds:annotation>
+        <mds:extension base="midiLittleEndian" />
+    </mds:recordType>
+
+    <mds:recordType name="midiBigEndian" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiBigEndian represents a data block that writes the most significant byte first.</mds:documentation>
+        </mds:annotation>
+    </mds:recordType>
+
+    <mds:recordType name="midiLittleEndian" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiLittleEndian represents a data block that writes the least significant byte first.</mds:documentation>
+        </mds:annotation>
+    </mds:recordType>
+
+    <mds:recordType name="midiSevenByte" abstract="true">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiSeventByte represents a data block that writes 7 full bytes into 8 midi bytes.</mds:documentation>
+        </mds:annotation>
+    </mds:recordType>
+
+
+    <!-- 2 bit rows -->
+
+    <mds:dataType name="midiBit0-1">
+        <mds:union memberTypes="midiBit0 midiBit1" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-2">
+        <mds:union memberTypes="midiBit1 midiBit2" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-3">
+        <mds:union memberTypes="midiBit2 midiBit3" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-4">
+        <mds:union memberTypes="midiBit3 midiBit4" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-5">
+        <mds:union memberTypes="midiBit4 midiBit5" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-6">
+        <mds:union memberTypes="midiBit5 midiBit6" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-7">
+        <mds:union memberTypes="midiBit6 midiBit7" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-8">
+        <mds:union memberTypes="midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8-9">
+        <mds:union memberTypes="midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit9-10">
+        <mds:union memberTypes="midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit10-11">
+        <mds:union memberTypes="midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit11-12">
+        <mds:union memberTypes="midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit12-13">
+        <mds:union memberTypes="midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit13-14">
+        <mds:union memberTypes="midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit14-15">
+        <mds:union memberTypes="midiBit14 midiBit15" />
+    </mds:dataType>
+
+
+    <!-- 3 bit rows -->
+
+    <mds:dataType name="midiBit0-2">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-3">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-4">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-5">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-6">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-7">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-8">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-9">
+        <mds:union memberTypes="midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8-10">
+        <mds:union memberTypes="midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit9-11">
+        <mds:union memberTypes="midiBit9 midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit10-12">
+        <mds:union memberTypes="midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit11-13">
+        <mds:union memberTypes="midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit12-14">
+        <mds:union memberTypes="midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit13-15">
+        <mds:union memberTypes="midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+
+    <!-- 4 bit rows -->
+
+    <mds:dataType name="midiBit0-3">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-4">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-5">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-6">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-7">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-8">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-9">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-10">
+        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8-11">
+        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit9-12">
+        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit10-13">
+        <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit11-14">
+        <mds:union memberTypes="midiBit11 midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit12-15">
+        <mds:union memberTypes="midiBit12 midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+    <!-- 5 bit rows -->
+
+    <mds:dataType name="midiBit0-4">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-5">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-6">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-7">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-8">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-9">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-10">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-11">
+        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8-12">
+        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit9-13">
+        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit10-14">
+        <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit11-15">
+        <mds:union memberTypes="midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+    <!-- 6 bit rows -->
+
+    <mds:dataType name="midiBit0-5">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-6">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-7">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-8">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-9">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-10">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-11">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-12">
+        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8-13">
+        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit9-14">
+        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit10-15">
+        <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+    <!-- 7 bit rows -->
+
+    <mds:dataType name="midiBit0-6">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-7">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-8">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-9">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-10">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-11">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-12">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-13">
+        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8-14">
+        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit9-15">
+        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+    <!-- 8 bit rows -->
+
+    <mds:dataType name="midiBit0-7">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-8">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-9">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-10">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-11">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-12">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-13">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-14">
+        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit8-15">
+        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+    <!-- 9 bit rows -->
+
+    <mds:dataType name="midiBit0-8">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-9">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-10">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-11">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-12">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-13">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-14">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit7-15">
+        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+    <!-- 10 bit rows -->
+
+    <mds:dataType name="midiBit0-9">
+        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-10">
+        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-11">
+        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-12">
+        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-13">
+        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-14">
+        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit6-15">
+        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    </mds:dataType>
+
+    <!-- 11 bit rows -->
+    <!-- 12 bit rows -->
+    <!-- 13 bit rows -->
+    <!-- 14 bit rows -->
+    <!-- 15 bit rows -->
+
+    <!-- strings -->
+
+    <mds:dataType name="midiString1">
+        <mds:restriction base="midiString">
+            <mds:length value="1" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString2">
+        <mds:restriction base="midiString">
+            <mds:length value="2" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString3">
+        <mds:restriction base="midiString">
+            <mds:length value="3" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString4">
+        <mds:restriction base="midiString">
+            <mds:length value="4" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString5">
+        <mds:restriction base="midiString">
+            <mds:length value="5" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString6">
+        <mds:restriction base="midiString">
+            <mds:length value="6" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString7">
+        <mds:restriction base="midiString">
+            <mds:length value="7" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString8">
+        <mds:restriction base="midiString">
+            <mds:length value="8" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString9">
+        <mds:restriction base="midiString">
+            <mds:length value="9" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString10">
+        <mds:restriction base="midiString">
+            <mds:length value="10" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString11">
+        <mds:restriction base="midiString">
+            <mds:length value="11" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString12">
+        <mds:restriction base="midiString">
+            <mds:length value="12" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString13">
+        <mds:restriction base="midiString">
+            <mds:length value="13" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString14">
+        <mds:restriction base="midiString">
+            <mds:length value="14" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString15">
+        <mds:restriction base="midiString">
+            <mds:length value="15" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString16">
+        <mds:restriction base="midiString">
+            <mds:length value="16" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString17">
+        <mds:restriction base="midiString">
+            <mds:length value="17" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString18">
+        <mds:restriction base="midiString">
+            <mds:length value="18" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString19">
+        <mds:restriction base="midiString">
+            <mds:length value="19" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiString20">
+        <mds:restriction base="midiString">
+            <mds:length value="20" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <!-- unsigned integers -->
+
+    <mds:dataType name="midiUnsigned8">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned8 is 1 byte forming an unsigned 8-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="1" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned16">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned16 is a composite of 2 bytes forming an unsigned 16-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="2" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned24">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned24 is a composite of 3 bytes forming an unsigned 24-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="3" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned32">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned32 is a composite of 4 bytes forming an unsigned 32-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="4" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned40">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned40 is a composite of 5 bytes forming an unsigned 40-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="5" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned48">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned48 is a composite of 6 bytes forming an unsigned 48-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="6" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned56">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned56 is a composite of 7 bytes forming an unsigned 56-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="7" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiUnsigned64">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiUnsigned64 is a composite of 8 bytes forming an unsigned 64-bit long integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiUnsigned">
+            <mds:length value="8" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <!-- signed integers -->
+
+    <mds:dataType name="midiSigned16">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiSigned16 is a composite of 2 bytes forming a signed 16-bit short integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiSigned">
+            <mds:length value="2" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiSigned32">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiSigned32 is a composite of 4 bytes forming a signed 32-bit integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiSigned">
+            <mds:length value="4" />
+        </mds:restriction>
+    </mds:dataType>
+
+    <mds:dataType name="midiSigned64">
+        <mds:annotation>
+            <mds:documentation xml:lang="en">midiSigned64 is a composite of 8 bytes forming a signed 64-bit long integer.</mds:documentation>
+        </mds:annotation>
+        <mds:restriction base="midiSigned">
+            <mds:length value="8" />
+        </mds:restriction>
+    </mds:dataType>
 </mds:deviceSchema>

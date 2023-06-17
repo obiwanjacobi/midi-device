@@ -10,19 +10,22 @@ namespace CannedBytes.Midi.Device;
 /// </summary>
 public sealed class DeviceStreamReader
 {
+    private readonly BitStreamReader _bitReader;
+
     /// <summary>
     /// Constructs a new instance.
     /// </summary>
     /// <param name="stream">The stream to read from. Must not be null.</param>
     /// <param name="carry">A reference to an existing carry.</param>
     /// <seealso cref="DeviceDataContext"/>
-    internal DeviceStreamReader(Stream stream, Carry carry)
+    internal DeviceStreamReader(Stream stream, Carry carry, BitStreamReader bitReader)
     {
         Assert.IfArgumentNull(stream, nameof(stream));
         Assert.IfArgumentNull(carry, nameof(carry));
 
         BaseStream = stream;
         Carry = carry;
+        _bitReader = bitReader;
     }
 
     /// <summary>
@@ -36,12 +39,22 @@ public sealed class DeviceStreamReader
     public Carry Carry { get; }
 
     /// <summary>
+    /// Reads individual bits from the stream.
+    /// </summary>
+    /// <param name="range">The range of bits to read.</param>
+    /// <returns>Returns value read from the stream.</returns>
+    public ushort ReadBitRange(ValueRange range)
+    {
+        return _bitReader.ReadBits(BaseStream, range.Start, range.Length);
+    }
+
+    /// <summary>
     /// Reads a maximum of 16 individual bits.
     /// </summary>
     /// <param name="bitFlags">Flags that indicate what bits to read.</param>
     /// <param name="value">The resulting value.</param>
     /// <returns>Returns the number of bytes actually read from the stream (0, 1 or 2).</returns>
-    public int Read(BitFlags bitFlags, out ushort value)
+    public int ReadBits(BitFlags bitFlags, out ushort value)
     {
         return Carry.ReadFrom(BaseStream, bitFlags, out value);
     }

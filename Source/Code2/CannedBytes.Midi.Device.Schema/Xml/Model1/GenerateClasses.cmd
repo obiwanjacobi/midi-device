@@ -5,13 +5,13 @@ xsd MidiDeviceSchema.xsd /c /f /order /n:CannedBytes.Midi.Device.Schema.Xml.Mode
 
 @ECHO WARNING!!!!!
 @ECHO .
-@ECHO Replace public localField[] sequence;  with   public fieldSequence[] sequence; at:
+@ECHO Replace public localField[] sequence;  with   public fieldSequence sequence; at:
 @ECHO .  
 @ECHO public partial class recordExtensionType : annotated
 @ECHO                 - AND -
 @ECHO public partial class recordRestrictionType : annotated
 @ECHO . 
 @ECHO [System.Xml.Serialization.XmlElementAttribute("sequence", typeof(fieldSequence), Order = 0)]
-@ECHO => public localField[] sequence;
+@ECHO public localField[] sequence;
 
 pause
