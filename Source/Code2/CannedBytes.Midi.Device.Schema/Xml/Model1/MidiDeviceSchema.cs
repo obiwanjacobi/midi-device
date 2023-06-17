@@ -28,8 +28,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1
         public openAttrs[] Items;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("dataType", typeof(topLevelDataType), Order = 1)]
-        [System.Xml.Serialization.XmlElementAttribute("recordType", typeof(topLevelRecordType), Order = 1)]
+        [System.Xml.Serialization.XmlElementAttribute("dataType", typeof(topLevelDataType), Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute("recordType", typeof(topLevelRecordType), Order=1)]
         public annotated[] Items1;
 
         /// <remarks/>
