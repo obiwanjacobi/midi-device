@@ -1,6 +1,6 @@
 # Midi Device
 
-[ ] Carry will leave the previous low byte when reading in a high byte. This is correct for little endian but not for big endian. For big endian the carry should be cleared before a hibyte is read.
+[ ] BitConverter: implement bitOrder attribute handling (or create a different converter).
 
 ## Stream Stack
 

@@ -8,7 +8,6 @@ public sealed partial class DeviceDataContext
 
     public DeviceDataContext(ConversionDirection dir)
     {
-        Carry = new Carry();
         FieldInfo = new FieldContext(this);
         DeviceProperties = new DevicePropertyCollection();
         StateMap = new ConverterState(this);
@@ -29,11 +28,9 @@ public sealed partial class DeviceDataContext
     public ConversionDirection ConversionDirection { get; }
 
     /// <summary>
-    /// Gets the current bit carry for 'physical' stream operations.
+    /// Gets the bit reader for 'physical' stream operations.
     /// </summary>
-    public Carry Carry { get; }
-
-    public BitStreamReader BitReader = new BitStreamReader();
+    public BitStreamReader BitReader { get; } = new BitStreamReader();
 
     /// <summary>
     /// Contains the runtime device properties retrieved from the message.
@@ -62,7 +59,7 @@ public sealed partial class DeviceDataContext
     // returns a reader for the current node/converter (LE/BE).
     public DeviceStreamReader CreateReader()
     {
-        var reader = new DeviceStreamReader(StreamManager.CurrentStream, Carry, BitReader);
+        var reader = new DeviceStreamReader(StreamManager.CurrentStream, BitReader);
         return reader;
     }
 

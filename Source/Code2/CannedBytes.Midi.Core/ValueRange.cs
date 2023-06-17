@@ -2,37 +2,37 @@
 
 namespace CannedBytes.Midi.Core
 {
-    public readonly struct ValueRange
+    public sealed class ValueRange
     {
         public const char Separator = ':';
 
-        public ValueRange()
-        {
-            Start = -1;
-            End = -1;
-        }
-
         public ValueRange(string rangeText)
-            : this()
         {
-            if (!String.IsNullOrWhiteSpace(rangeText))
-            {
                 var (start, end) = Parse(rangeText.Trim());
                 Start = start;
                 End = end;
-            }
         }
 
-        public bool IsEmpty => Start == -1 && End == -1;
+        public ValueRange(int single)
+        {
+            Start = single;
+            End = single;
+        }
+
+        public ValueRange(int start, int end)
+        {
+            Start = start;
+            End = end;
+        }
 
         public int Start { get; }
         public int End { get; }
 
-        public int Length => IsEmpty ? 0 : End + 1 - Start;
+        public int Length => End + 1 - Start;
 
         public override string ToString()
         {
-            return IsEmpty ? "[empty]" : $"{Start}{Separator}{End}";
+            return $"{Start}{Separator}{End}";
         }
 
         private static (int start, int end) Parse(string rangeText)

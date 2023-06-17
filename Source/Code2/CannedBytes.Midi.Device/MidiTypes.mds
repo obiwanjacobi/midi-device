@@ -261,425 +261,509 @@
 
     <!-- 2 bit rows -->
 
-    <mds:dataType name="midiBit0-1">
-        <mds:union memberTypes="midiBit0 midiBit1" />
+    <mds:dataType name="midiBit0-1" range="0:1">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-2">
-        <mds:union memberTypes="midiBit1 midiBit2" />
+    <mds:dataType name="midiBit1-2" range="1:2">
+        <mds:restriction base="midiBitRange"/>
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-3">
-        <mds:union memberTypes="midiBit2 midiBit3" />
+    <mds:dataType name="midiBit2-3" range="2:3">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-4">
-        <mds:union memberTypes="midiBit3 midiBit4" />
+    <mds:dataType name="midiBit3-4" range="3:4">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-5">
-        <mds:union memberTypes="midiBit4 midiBit5" />
+    <mds:dataType name="midiBit4-5" range="4:5">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-6">
-        <mds:union memberTypes="midiBit5 midiBit6" />
+    <mds:dataType name="midiBit5-6" range="5:6">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-7">
-        <mds:union memberTypes="midiBit6 midiBit7" />
+    <mds:dataType name="midiBit6-7" range="6:7">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-8">
-        <mds:union memberTypes="midiBit7 midiBit8" />
+    <mds:dataType name="midiBit7-8" range="7:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit8-9">
-        <mds:union memberTypes="midiBit8 midiBit9" />
+    <mds:dataType name="midiBit8-9" range="8:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit9-10">
-        <mds:union memberTypes="midiBit9 midiBit10" />
+    <mds:dataType name="midiBit9-10" range="9:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit10-11">
-        <mds:union memberTypes="midiBit10 midiBit11" />
+    <mds:dataType name="midiBit10-11" range="10:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit11-12">
-        <mds:union memberTypes="midiBit11 midiBit12" />
+    <mds:dataType name="midiBit11-12" range="11:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit12-13">
-        <mds:union memberTypes="midiBit12 midiBit13" />
+    <mds:dataType name="midiBit12-13" range="12:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit13-14">
-        <mds:union memberTypes="midiBit13 midiBit14" />
+    <mds:dataType name="midiBit13-14" range="13:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit14-15">
-        <mds:union memberTypes="midiBit14 midiBit15" />
+    <mds:dataType name="midiBit14-15" range="14:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
 
     <!-- 3 bit rows -->
 
-    <mds:dataType name="midiBit0-2">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2" />
+    <mds:dataType name="midiBit0-2" range="0:2">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-3">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3" />
+    <mds:dataType name="midiBit1-3" range="1:3">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-4">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4" />
+    <mds:dataType name="midiBit2-4" range="2:4">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-5">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5" />
+    <mds:dataType name="midiBit3-5" range="3:5">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-6">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6" />
+    <mds:dataType name="midiBit4-6" range="4:6">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-7">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7" />
+    <mds:dataType name="midiBit5-7" range="5:7">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-8">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8" />
+    <mds:dataType name="midiBit6-8" range="6:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-9">
-        <mds:union memberTypes="midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit7-9" range="7:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit8-10">
-        <mds:union memberTypes="midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit8-10" range="8:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit9-11">
-        <mds:union memberTypes="midiBit9 midiBit10 midiBit11" />
+    <mds:dataType name="midiBit9-11" range="9:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit10-12">
-        <mds:union memberTypes="midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit10-12" range="10:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit11-13">
-        <mds:union memberTypes="midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit11-13" range="11:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit12-14">
-        <mds:union memberTypes="midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit12-14" range="12:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit13-15">
-        <mds:union memberTypes="midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit13-15" range="13:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
 
     <!-- 4 bit rows -->
 
-    <mds:dataType name="midiBit0-3">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3" />
+    <mds:dataType name="midiBit0-3" range="0:3">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-4">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4" />
+    <mds:dataType name="midiBit1-4" range="1:4">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-5">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5" />
+    <mds:dataType name="midiBit2-5" range="2:5">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-6">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6" />
+    <mds:dataType name="midiBit3-6" range="3:6">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-7">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7" />
+    <mds:dataType name="midiBit4-7" range="4:7">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-8">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8" />
+    <mds:dataType name="midiBit5-8" range="5:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-9">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit6-9" range="6:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-10">
-        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit7-10" range="7:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit8-11">
-        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11" />
+    <mds:dataType name="midiBit8-11" range="8:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit9-12">
-        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit9-12" range="9:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit10-13">
-        <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit10-13" range="10:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit11-14">
-        <mds:union memberTypes="midiBit11 midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit11-14" range="11:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit12-15">
-        <mds:union memberTypes="midiBit12 midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit12-15" range="12:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
     <!-- 5 bit rows -->
 
-    <mds:dataType name="midiBit0-4">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4" />
+    <mds:dataType name="midiBit0-4" range="0:4">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-5">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5" />
+    <mds:dataType name="midiBit1-5" range="1:5">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-6">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
+    <mds:dataType name="midiBit2-6" range="2:6">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-7">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    <mds:dataType name="midiBit3-7" range="3:7">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-8">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    <mds:dataType name="midiBit4-8" range="4:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-9">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit5-9" range="5:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-10">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit6-10" range="6:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-11">
-        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    <mds:dataType name="midiBit7-11" range="7:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit8-12">
-        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit8-12" range="8:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit9-13">
-        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit9-13" range="9:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit10-14">
-        <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit10-14" range="10:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit11-15">
-        <mds:union memberTypes="midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit11-15" range="11:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
     <!-- 6 bit rows -->
 
-    <mds:dataType name="midiBit0-5">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5" />
+    <mds:dataType name="midiBit0-5" range="0:5">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-6">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
+    <mds:dataType name="midiBit1-6" range="1:6">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-7">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    <mds:dataType name="midiBit2-7" range="2:7">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-8">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    <mds:dataType name="midiBit3-8" range="3:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-9">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit4-9" range="4:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-10">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit5-10" range="5:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-11">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit12" />
+    <mds:dataType name="midiBit6-11" range="6:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-12">
-        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit7-12" range="7:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit8-13">
-        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit8-13" range="8:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit9-14">
-        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit9-14" range="9:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit10-15">
-        <mds:union memberTypes="midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit10-15" range="10:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
     <!-- 7 bit rows -->
 
-    <mds:dataType name="midiBit0-6">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6" />
+    <mds:dataType name="midiBit0-6" range="0:6">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-7">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    <mds:dataType name="midiBit1-7" range="1:7">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-8">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    <mds:dataType name="midiBit2-8" range="2:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-9">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit3-9" range="3:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-10">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit4-10" range="4:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-11">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    <mds:dataType name="midiBit5-11" range="5:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-12">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit6-12" range="6:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-13">
-        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit7-13" range="7:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit8-14">
-        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit8-14" range="8:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit9-15">
-        <mds:union memberTypes="midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit9-15" range="9:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
     <!-- 8 bit rows -->
 
-    <mds:dataType name="midiBit0-7">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7" />
+    <mds:dataType name="midiBit0-7" range="0:7">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-8">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    <mds:dataType name="midiBit1-8" range="1:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-9">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit2-9" range="2:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-10">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit3-10" range="3:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-11">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    <mds:dataType name="midiBit4-11" range="4:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-12">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit5-12" range="5:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-13">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit6-13" range="6:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-14">
-        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit7-14" range="7:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit8-15">
-        <mds:union memberTypes="midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit8-15" range="8:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
     <!-- 9 bit rows -->
 
-    <mds:dataType name="midiBit0-8">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8" />
+    <mds:dataType name="midiBit0-8" range="0:8">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-9">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit1-9" range="1:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-10">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit2-10" range="2:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-11">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    <mds:dataType name="midiBit3-11" range="3:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-12">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit4-12" range="4:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-13">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit5-13" range="5:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-14">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit6-14" range="6:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit7-15">
-        <mds:union memberTypes="midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit7-15" range="7:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
     <!-- 10 bit rows -->
 
-    <mds:dataType name="midiBit0-9">
-        <mds:union memberTypes="midiBit0 midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9" />
+    <mds:dataType name="midiBit0-9" range="0:9">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit1-10">
-        <mds:union memberTypes="midiBit1 midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10" />
+    <mds:dataType name="midiBit1-10" range="1:10">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit2-11">
-        <mds:union memberTypes="midiBit2 midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11" />
+    <mds:dataType name="midiBit2-11" range="2:11">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit3-12">
-        <mds:union memberTypes="midiBit3 midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12" />
+    <mds:dataType name="midiBit3-12" range="3:12">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit4-13">
-        <mds:union memberTypes="midiBit4 midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13" />
+    <mds:dataType name="midiBit4-13" range="4:13">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit5-14">
-        <mds:union memberTypes="midiBit5 midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14" />
+    <mds:dataType name="midiBit5-14" range="5:14">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
-    <mds:dataType name="midiBit6-15">
-        <mds:union memberTypes="midiBit6 midiBit7 midiBit8 midiBit9 midiBit10 midiBit11 midiBit12 midiBit13 midiBit14 midiBit15" />
+    <mds:dataType name="midiBit6-15" range="6:15">
+        <mds:restriction base="midiBitRange" />
     </mds:dataType>
 
     <!-- 11 bit rows -->
+
+    <mds:dataType name="midiBit0-10" range="0:10">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-11" range="1:11">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-12" range="2:12">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-13" range="3:13">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-14" range="4:14">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit5-15" range="5:15">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
     <!-- 12 bit rows -->
+
+    <mds:dataType name="midiBit0-11" range="0:11">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-12" range="1:12">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-13" range="2:13">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-14" range="3:14">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit4-15" range="4:15">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
     <!-- 13 bit rows -->
+
+    <mds:dataType name="midiBit0-12" range="0:12">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-13" range="1:13">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-14" range="2:14">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit3-15" range="3:15">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+    
     <!-- 14 bit rows -->
+
+    <mds:dataType name="midiBit0-13" range="0:13">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-14" range="1:14">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit2-15" range="2:15">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+    
     <!-- 15 bit rows -->
+
+    <mds:dataType name="midiBit0-14" range="0:14">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
+
+    <mds:dataType name="midiBit1-15" range="1:15">
+        <mds:restriction base="midiBitRange" />
+    </mds:dataType>
 
     <!-- strings -->
 

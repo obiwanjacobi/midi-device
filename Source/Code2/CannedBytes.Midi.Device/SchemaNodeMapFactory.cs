@@ -215,10 +215,7 @@ internal sealed class SchemaNodeMapFactory
         int byteLength = thisNode.FieldConverterPair.Converter.ByteLength;
 
         if (byteLength < 0)
-        {
-            var flags = (BitFlags)Math.Abs(byteLength);
-            byteLength = Carry.ByteLength(flags);
-        }
+            throw new DeviceException("Negative ByteLength (BitFlags) is not supported anymore.");
 
         return byteLength;
     }

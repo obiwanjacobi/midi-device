@@ -28,54 +28,12 @@ public class BitConverterTest
         var serviceProvider = ServiceHelper.CreateServices();
         var ctx = DeviceHelper.ToLogical(serviceProvider,
             Path.Combine(Folder, TestSchemaFileName),
-            Path.Combine(Folder, TestStreamFileName), "carryTest", writer);
-
-        writer.Count.Should().Be(9);
-
-        // A1 F2 4C 0B 74 23 E6 5A 17
-
-        // A1H => clear Bit7 (midiData) => 21H
-        writer[0].Value.Should().Be((byte)0x21);
-        writer[0].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[0].Field.Name.Name.Should().Be("loByte");
-
-        // F2 => HiByte-HiNibble => 0F (hi nibble from F2 shifted down)
-        writer[1].Value.Should().Be((byte)0x0F);
-        writer[1].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[1].Field.Name.Name.Should().Be("hiByte");
-
-        // 4C => lo nibble => 0C
-        writer[2].Value.Should().Be((byte)0x0C);
-        writer[2].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[2].Field.Name.Name.Should().Be("loPart");
-
-        // 0B
-        writer[3].Value.Should().Be((byte)0x0D);
-        writer[3].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[3].Field.Name.Name.Should().Be("midPart");
-
-        writer[4].Value.Should().Be((byte)0x00);
-        writer[4].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[4].Field.Name.Name.Should().Be("hiPart");
-
-        writer[5].Value.Should().Be((byte)0x74);
-        writer[5].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[5].Field.Name.Name.Should().Be("firstLo");
-
-        writer[6].Value.Should().Be((byte)0x03);
-        writer[6].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[6].Field.Name.Name.Should().Be("secondLo");
-
-        writer[7].Value.Should().Be((byte)0x0E);
-        writer[7].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[7].Field.Name.Name.Should().Be("firstHi");
-
-        writer[8].Value.Should().Be((byte)0x01);
-        writer[8].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[8].Field.Name.Name.Should().Be("secondHi");
+            Path.Combine(Folder, TestStreamFileName), "RangeDataTypeTest", writer);
 
         ctx.Should().NotBeNull();
         _output.WriteLine(ctx.LogManager.ToString());
+
+        AssertWriter(writer);
     }
 
     [Fact]
@@ -86,11 +44,16 @@ public class BitConverterTest
         var serviceProvider = ServiceHelper.CreateServices();
         var ctx = DeviceHelper.ToLogical(serviceProvider,
             Path.Combine(Folder, TestSchemaFileName),
-            Path.Combine(Folder, TestStreamFileName), "bitConverterTest", writer);
+            Path.Combine(Folder, TestStreamFileName), "RangeFieldTest", writer);
         
         ctx.Should().NotBeNull();
         _output.WriteLine(ctx.LogManager.ToString());
-        
+
+        AssertWriter(writer);
+    }
+
+    private static void AssertWriter(DictionaryBasedLogicalStub writer)
+    {
         writer.Count.Should().Be(9);
 
         // 71 32 4C 0B 74 23 6E 5A 17 7F

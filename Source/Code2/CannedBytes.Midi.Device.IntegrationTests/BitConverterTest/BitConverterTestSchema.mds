@@ -8,18 +8,18 @@
 >
     <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
 
-    <mds:recordType name="carryTest">
+    <mds:recordType name="RangeDataTypeTest">
         <mds:extension base="m:midiSysEx">
             <mds:sequence>
-                <mds:field name="loByte" type="m:midiData" />
+                <mds:field name="loByte" type="m:midiBit0-6" />
                 <mds:field name="hiByte" type="m:midiBit12-15" />
 
                 <mds:field name="loPart" type="m:midiBit0-4" />
                 <mds:field name="midPart" type="m:midiBit6-10" />
                 <mds:field name="hiPart" type="m:midiBit12-15" />
 
-                <mds:field name="firstLo" type="m:midiData" />
-                <mds:field name="secondLo" type="m:midiBit0-4" />
+                <mds:field name="firstLo" type="m:midiBit0-3" />
+                <mds:field name="secondLo" type="m:midiBit0-3" />
 
                 <mds:field name="firstHi" type="m:midiBit12-15" />
                 <mds:field name="secondHi" type="m:midiBit12-15" />
@@ -27,7 +27,7 @@
         </mds:extension>
     </mds:recordType>
 
-    <mds:recordType name="bitConverterTest">
+    <mds:recordType name="RangeFieldTest">
         <mds:extension base="m:midiSysEx">
             <mds:sequence>
                 <mds:field name="loByte" type="m:midiBitRange" mds:range="0:6" />

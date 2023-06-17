@@ -198,6 +198,7 @@
                 <xs:attribute name="abstract" type="xs:boolean" use="optional" default="false"/>
                 <xs:attribute name="valueOffset" type="xs:int" use="optional" default="0"/>
                 <xs:attribute name="bitOrder" type="bitOrder" use="optional" default="BigEndian"/>
+                <xs:attribute name="range" type="xs:string" use="optional" />
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>

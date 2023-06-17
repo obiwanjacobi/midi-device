@@ -203,6 +203,7 @@ public class MidiDeviceSchemaParser
         target.SetIsAbstract(source.@abstract);
         target.SetBitOrder(source.bitOrder);
         target.SetValueOffset(source.valueOffset);
+        target.SetRange(source.range);
 
         FillAttributed(source.annotation, target.Attributes);
 
@@ -423,7 +424,8 @@ public class MidiDeviceSchemaParser
         target.ExtendedProperties.DevicePropertyName = source.property;
         target.ExtendedProperties.Size = new Core.SevenBitUInt32(source.size);
         target.ExtendedProperties.Address = new Core.SevenBitUInt32(source.address);
-        target.ExtendedProperties.Range = new Core.ValueRange(source.range);
+        if (!String.IsNullOrWhiteSpace(source.range))
+            target.ExtendedProperties.Range = new Core.ValueRange(source.range);
 
         if (source.widthSpecified)
         {

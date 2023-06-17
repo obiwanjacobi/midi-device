@@ -41,6 +41,8 @@ namespace CannedBytes.Midi.Device.Schema
 
         public BitOrder BitOrder { get; protected set; }
 
+        public ValueRange Range { get; protected set; }
+
         /// <summary>
         /// Gets a value indicating if this DataType derives from one or more other DataTypes.
         /// </summary>

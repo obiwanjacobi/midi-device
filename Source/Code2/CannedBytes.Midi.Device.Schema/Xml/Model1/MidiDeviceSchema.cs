@@ -260,6 +260,10 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
         [System.ComponentModel.DefaultValueAttribute(bitOrder.BigEndian)]
         public bitOrder bitOrder;
         
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string range;
+        
         public dataType() {
             this.@abstract = false;
             this.valueOffset = 0;

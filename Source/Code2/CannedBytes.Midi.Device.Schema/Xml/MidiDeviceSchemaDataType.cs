@@ -1,4 +1,5 @@
-﻿using CannedBytes.Midi.Core;
+﻿using System;
+using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device.Schema.Xml;
 
@@ -41,6 +42,12 @@ public class MidiDeviceSchemaDataType : DataType
                 BitOrder = BitOrder.BigEndian;
                 break;
         }
+    }
+
+    public void SetRange(string range)
+    {
+        if (!String.IsNullOrWhiteSpace(range))
+            Range = new ValueRange(range);
     }
 
     internal void SetIsUnion()
