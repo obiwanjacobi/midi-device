@@ -1,6 +1,6 @@
 namespace CannedBytes.Midi.Device.Schema;
 
-public class SchemaAttribute : SchemaObject
+public sealed class SchemaAttribute : SchemaObject
 {
     protected SchemaAttribute()
     { }

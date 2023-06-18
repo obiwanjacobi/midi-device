@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml;
 using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema.Xml.Model1;
@@ -12,9 +13,9 @@ public class MidiDeviceSchemaParser
 {
     private const string XmlSchemaNamespace = "http://www.w3.org/2001/XMLSchema";
 
-    private readonly MidiDeviceSchemaSet _schemas;
+    private readonly DeviceSchemaSet _schemas;
 
-    public MidiDeviceSchemaParser(MidiDeviceSchemaSet schemas)
+    public MidiDeviceSchemaParser(DeviceSchemaSet schemas)
     {
         Assert.IfArgumentNull(schemas, nameof(schemas));
 
@@ -28,7 +29,7 @@ public class MidiDeviceSchemaParser
         var sourceSchema = MidiDeviceSchemaReader.Read(stream)
             ?? throw new DeviceSchemaException(
                 "The provided stream could not be parsed into a Midi Device Schema.");
-        
+
         _targetSchema = new DeviceSchema();
 
         ProcessImports(sourceSchema.Items);
@@ -69,16 +70,16 @@ public class MidiDeviceSchemaParser
                 System.Diagnostics.TraceEventType.Information,
                 "Parser: Importing '{0}' from assembly '{1}'.", import.name, import.assembly);
 
-            _ = MidiDeviceSchemaImportResolver.LoadSchema(
+            _ = DeviceSchemaImportResolver.LoadSchema(
                 _schemas, import.name, import.assembly);
         }
     }
 
     private DeviceSchema _targetSchema;
     private readonly string DocumentationAttributeName = "Documentation";
-    private readonly List<KeyValuePair<XmlQualifiedName, MidiDeviceSchemaDataType>> _deferredDataTypes = new();
-    private readonly List<KeyValuePair<XmlQualifiedName, MidiDeviceSchemaRecordType>> _deferredRecordTypes = new();
-    private readonly List<KeyValuePair<XmlQualifiedName, MidiDeviceSchemaField>> _deferredFields = new();
+    private readonly List<KeyValuePair<XmlQualifiedName, DataType>> _deferredDataTypes = new();
+    private readonly List<KeyValuePair<XmlQualifiedName, RecordType>> _deferredRecordTypes = new();
+    private readonly List<KeyValuePair<XmlQualifiedName, Field>> _deferredFields = new();
 
     protected virtual void FillSchema(deviceSchema source, DeviceSchema target)
     {
@@ -125,10 +126,7 @@ public class MidiDeviceSchemaParser
         {
             if (docOrAppInfo is documentation doc)
             {
-                MidiDeviceSchemaAttribute attr = new();
-
-                FillDocumentation(doc, attr);
-
+                var attr = CreateDocumentationAttribute(doc);
                 target.Add(attr);
             }
 
@@ -140,30 +138,34 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private void FillDocumentation(documentation source, MidiDeviceSchemaAttribute target)
+    private SchemaAttribute CreateDocumentationAttribute(documentation source)
     {
-        target.Schema = _targetSchema;
-
+        string name;
         if (!String.IsNullOrEmpty(source.lang))
         {
-            target.AttributeName = DocumentationAttributeName + "[" + source.lang + "]";
+            name = $"{DocumentationAttributeName} [{source.lang}]";
         }
         else
         {
-            target.AttributeName = DocumentationAttributeName;
+            name = DocumentationAttributeName;
         }
 
-        if (source.Any != null)
+        var value = String.Empty;
+        if (source.Any is not null)
         {
             var texts = from node in source.Any
                         where node is XmlText
                         select ((XmlText)node).Value;
 
-            var value = String.Join("\r\n", texts);
-
-            target.SetValue(value);
+            value = String.Join("\r\n", texts);
         }
+
+        var target = new SchemaAttribute(_targetSchema, CreateName(name), value);
+        return target;
     }
+
+    private SchemaObjectName CreateName(string name)
+        => new(_targetSchema.SchemaName, name);
 
     private void FillDataTypes(IEnumerable<annotated> source, DataTypeCollection dataTypes)
     {
@@ -175,15 +177,12 @@ public class MidiDeviceSchemaParser
 
                 if (dataType != null)
                 {
-                    var dt = new MidiDeviceSchemaDataType();
-
-                    FillDataType(dataType, dt);
-
+                    var dt = CreateDataType(dataType);
                     dataTypes.Add(dt);
                 }
             }
 
-            foreach (KeyValuePair<XmlQualifiedName, MidiDeviceSchemaDataType> pair in _deferredDataTypes)
+            foreach (KeyValuePair<XmlQualifiedName, DataType> pair in _deferredDataTypes)
             {
                 DataType baseType = dataTypes.Find(pair.Key.Name)
                     ?? throw new DeviceSchemaException(
@@ -196,20 +195,24 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private void FillDataType(dataType source, MidiDeviceSchemaDataType target)
+    private DataType CreateDataType(dataType source)
     {
-        target.Schema = _targetSchema;
-        target.DataTypeName = source.name;
-        target.SetIsAbstract(source.@abstract);
-        target.SetBitOrder(source.bitOrder);
-        target.SetValueOffset(source.valueOffset);
-        target.SetRange(source.range);
+        var target = new DataType(_targetSchema, CreateName(source.name))
+        {
+            IsAbstract = source.@abstract,
+            ValueOffset = source.valueOffset,
+            BitOrder = source.bitOrder == bitOrder.LittleEndian
+                ? BitOrder.LittleEndian : BitOrder.BigEndian
+        };
+
+        if (!String.IsNullOrWhiteSpace(source.range))
+            target.Range = new ValueRange(source.range);
 
         FillAttributed(source.annotation, target.Attributes);
 
         if (source.Item is extension extension)
         {
-            target.SetIsExtension();
+            target.IsExtension = true;
             FillNames(extension.baseTypes, target);
 
             FillAttributed(extension.annotation, target.Attributes);
@@ -227,7 +230,7 @@ public class MidiDeviceSchemaParser
             else if (restriction.@base.Namespace != XmlSchemaNamespace)
             {
                 _deferredDataTypes.Add(
-                    new KeyValuePair<XmlQualifiedName, MidiDeviceSchemaDataType>(restriction.@base, target));
+                    new KeyValuePair<XmlQualifiedName, DataType>(restriction.@base, target));
             }
 
             FillAttributed(restriction.annotation, target.Attributes);
@@ -242,19 +245,21 @@ public class MidiDeviceSchemaParser
                     "Nested DataType inside a union is not implemented yet.");
             }
 
-            target.SetIsUnion();
+            target.IsUnion = true;
             FillNames(union.memberTypes, target);
             FillAttributed(union.annotation, target.Attributes);
         }
+
+        return target;
     }
 
-    private void FillNames(IEnumerable<XmlQualifiedName> source, MidiDeviceSchemaDataType target)
+    private void FillNames(IEnumerable<XmlQualifiedName> source, DataType target)
     {
         if (source != null)
         {
             foreach (XmlQualifiedName item in source)
             {
-                MidiDeviceSchemaDataType baseType = _schemas.FindDataType(item.Namespace, item.Name);
+                DataType baseType = _schemas.FindDataType(item.Namespace, item.Name);
 
                 if (baseType != null)
                 {
@@ -263,7 +268,7 @@ public class MidiDeviceSchemaParser
                 else if (item.Namespace != XmlSchemaNamespace)
                 {
                     _deferredDataTypes.Add(
-                        new KeyValuePair<XmlQualifiedName, MidiDeviceSchemaDataType>(item, target));
+                        new KeyValuePair<XmlQualifiedName, DataType>(item, target));
                 }
             }
         }
@@ -278,8 +283,7 @@ public class MidiDeviceSchemaParser
                 facet facet = facets[i];
                 ItemsChoiceType1 itemType = choiceTypes[i];
 
-                MidiDeviceSchemaConstraint constraint = MidiDeviceSchemaConstraint.Create(itemType.ToString(), facet.value);
-
+                var constraint = Constraint.Create(itemType.ToString(), facet.value);
                 constraintCollection.Add(constraint);
             }
         }
@@ -294,7 +298,7 @@ public class MidiDeviceSchemaParser
                 facet facet = facets[i];
                 var itemType = choiceTypes[i];
 
-                var constraint = MidiDeviceSchemaConstraint.Create(itemType.ToString(), facet.value);
+                var constraint = Constraint.Create(itemType.ToString(), facet.value);
 
                 constraintCollection.Add(constraint);
             }
@@ -309,28 +313,26 @@ public class MidiDeviceSchemaParser
             {
                 if (item is recordType recordType)
                 {
-                    MidiDeviceSchemaRecordType rt = new();
-
-                    FillRecordType(recordType, rt);
+                    var rt = CreateRecordType(recordType);
 
                     recordTypeCollection.Add(rt);
                     _targetSchema.RootRecordTypes.Add(rt);
                 }
             }
 
-            foreach (KeyValuePair<XmlQualifiedName, MidiDeviceSchemaRecordType> pair in _deferredRecordTypes)
+            foreach (KeyValuePair<XmlQualifiedName, RecordType> pair in _deferredRecordTypes)
             {
-                var baseType = (MidiDeviceSchemaRecordType)_targetSchema.AllRecordTypes.Find(pair.Key.Name)
+                var baseType = _targetSchema.AllRecordTypes.Find(pair.Key.Name)
                     ?? throw new DeviceSchemaException(
                         $"The base type '{pair.Key.Name}' ({pair.Key.Namespace}) used for record type '{pair.Value.Name}' was not found.");
 
-                pair.Value.SetBaseType(baseType);
+                pair.Value.BaseType = baseType;
                 _targetSchema.RootRecordTypes.Remove(baseType);
             }
 
             _deferredRecordTypes.Clear();
 
-            foreach (KeyValuePair<XmlQualifiedName, MidiDeviceSchemaField> pair in _deferredFields)
+            foreach (KeyValuePair<XmlQualifiedName, Field> pair in _deferredFields)
             {
                 if (SetFieldType(pair.Key.Namespace, pair.Key.Name, pair.Value))
                 {
@@ -350,14 +352,16 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private void FillRecordType(recordType source, MidiDeviceSchemaRecordType target)
+    private RecordType CreateRecordType(recordType source)
     {
-        target.Schema = _targetSchema;
-        target.RecordTypeName = source.name;
-        target.SetIsAbstract(source.@abstract);
+        var target = new RecordType(_targetSchema, CreateName(source.name))
+        {
+            IsAbstract = source.@abstract
+        };
+
         if (source.widthSpecified)
         {
-            target.SetWidth((int)source.width);
+            target.Width = (int)source.width;
         }
 
         FillAttributed(source.annotation, target.Attributes);
@@ -374,12 +378,12 @@ public class MidiDeviceSchemaParser
 
             if (baseType != null)
             {
-                target.SetBaseType(baseType);
+                target.BaseType = baseType;
             }
             else
             {
                 _deferredRecordTypes.Add(
-                    new KeyValuePair<XmlQualifiedName, MidiDeviceSchemaRecordType>(extension.@base, target));
+                    new KeyValuePair<XmlQualifiedName, RecordType>(extension.@base, target));
             }
 
             FillFields(extension.sequence, target);
@@ -389,9 +393,11 @@ public class MidiDeviceSchemaParser
         {
             FillFields(sequence.field, target);
         }
+
+        return target;
     }
 
-    private void FillFields(fieldSequence source, MidiDeviceSchemaRecordType target)
+    private void FillFields(fieldSequence source, RecordType target)
     {
         if (source != null)
         {
@@ -399,26 +405,23 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private void FillFields(IEnumerable<localField> source, MidiDeviceSchemaRecordType recordType)
+    private void FillFields(IEnumerable<localField> source, RecordType recordType)
     {
         if (source != null)
         {
             foreach (var field in source)
             {
-                MidiDeviceSchemaField fld = new();
-                fld.SetDeclaringRecord(recordType);
+                var fld = CreateField(field);
 
-                FillField(field, fld);
-
+                fld.DeclaringRecord = recordType;
                 recordType.Fields.Add(fld);
             }
         }
     }
 
-    private void FillField(localField source, MidiDeviceSchemaField target)
+    private Field CreateField(localField source)
     {
-        target.Schema = _targetSchema;
-        target.SetName(source.name);
+        var target = new Field(_targetSchema, CreateName(source.name));
 
         target.ExtendedProperties.Repeats = Int32.Parse(source.repeats);
         target.ExtendedProperties.DevicePropertyName = source.property;
@@ -439,7 +442,7 @@ public class MidiDeviceSchemaParser
         if (!SetFieldType(source.type.Namespace, source.type.Name, target))
         {
             _deferredFields.Add(
-                    new KeyValuePair<XmlQualifiedName, MidiDeviceSchemaField>(source.type, target));
+                    new KeyValuePair<XmlQualifiedName, Field>(source.type, target));
         }
         else
         {
@@ -457,22 +460,24 @@ public class MidiDeviceSchemaParser
                 _targetSchema.RootRecordTypes.Remove(target.RecordType);
             }
         }
+
+        return target;
     }
 
     private static void SetFixedConstraint(string fixedValue, ConstraintCollection target)
     {
         if (!String.IsNullOrEmpty(fixedValue))
         {
-            var constraint = MidiDeviceSchemaConstraint.Create("fixed", fixedValue);
+            var constraint = Constraint.Create("fixed", fixedValue);
             target.Add(constraint);
         }
     }
 
-    private bool SetFieldType(string schema, string name, MidiDeviceSchemaField target)
+    private bool SetFieldType(string schema, string name, Field target)
     {
         SchemaObjectName fullName = new(schema, name);
         var dataType = _schemas.FindDataType(schema, name)
-            ?? (MidiDeviceSchemaDataType)_targetSchema.AllDataTypes.Find(fullName.FullName);
+            ?? (DataType)_targetSchema.AllDataTypes.Find(fullName.FullName);
 
         if (dataType == null)
         {
@@ -480,7 +485,7 @@ public class MidiDeviceSchemaParser
 
             if (recordType == null)
             {
-                recordType = (MidiDeviceSchemaRecordType)_targetSchema.AllRecordTypes.Find(fullName.FullName);
+                recordType = (RecordType)_targetSchema.AllRecordTypes.Find(fullName.FullName);
 
                 if (recordType == null)
                 {
@@ -488,11 +493,11 @@ public class MidiDeviceSchemaParser
                 }
             }
 
-            target.SetRecordType(recordType);
+            target.RecordType = recordType;
         }
         else
         {
-            target.SetDataType(dataType);
+            target.DataType = dataType;
         }
 
         return true;
@@ -500,13 +505,13 @@ public class MidiDeviceSchemaParser
 
     private static void FillVirtulaRootFields(DeviceSchema target)
     {
-        foreach (MidiDeviceSchemaRecordType root in target.RootRecordTypes)
+        foreach (RecordType root in target.RootRecordTypes)
         {
-            MidiDeviceSchemaField field = new();
-
-            field.SetRecordType(root);
-            field.SetName(root.Name.FullName);
-            field.Schema = target;
+            var field = new Field(root.Name.FullName)
+            {
+                RecordType = root,
+                Schema = target
+            };
 
             target.VirtualRootFields.Add(field);
         }

@@ -3,7 +3,6 @@ using System.Reflection;
 using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
-using CannedBytes.Midi.Device.Schema.Xml;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CannedBytes.Midi.Device.IntegrationTests;
@@ -17,7 +16,7 @@ internal static class ServiceHelper
     {
         var services = new ServiceCollection();
 
-        services.AddSingleton<IDeviceSchemaProvider, MidiDeviceSchemaProvider>();
+        services.AddSingleton<IDeviceSchemaProvider, DeviceSchemaProvider>();
         
         services.AddSingletonAll<DataConverter>(DeviceAssembly);
         services.AddSingletonAll<StreamConverter>(DeviceAssembly);

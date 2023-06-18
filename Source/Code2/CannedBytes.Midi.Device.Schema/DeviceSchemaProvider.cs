@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using CannedBytes.Midi.Core;
+using CannedBytes.Midi.Device.Schema.Xml;
 
-namespace CannedBytes.Midi.Device.Schema.Xml;
+namespace CannedBytes.Midi.Device.Schema;
 
-public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
+public sealed class DeviceSchemaProvider : IDeviceSchemaProvider
 {
-    private readonly MidiDeviceSchemaSet _schemas = new();
+    private readonly DeviceSchemaSet _schemas = new();
 
     public IEnumerable<string> SchemaNames
     {
@@ -44,9 +44,9 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
             System.Diagnostics.TraceEventType.Information,
             "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
 
-        using var stream = MidiDeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
+        using var stream = DeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
             ?? throw new DeviceSchemaNotFoundException($"{schemaName} - {schemaAssembly}");
-        
+
         MidiDeviceSchemaParser parser = new(_schemas);
         var deviceSchema = parser.Parse(stream);
 

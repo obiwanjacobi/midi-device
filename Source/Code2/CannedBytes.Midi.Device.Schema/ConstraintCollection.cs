@@ -1,123 +1,122 @@
-namespace CannedBytes.Midi.Device.Schema
+namespace CannedBytes.Midi.Device.Schema;
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+
+/// <summary>
+/// The ConstraintCollection class manages <see cref="Constraint"/> items.
+/// </summary>
+public sealed class ConstraintCollection : Collection<Constraint>
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
+    public IEnumerable<Constraint> FindAll<T>()
+    {
+        return from constraint in Items
+               where constraint is T
+               select constraint;
+    }
+
+    public IEnumerable<Constraint> FindAll(ConstraintTypes type)
+    {
+        return from constraint in Items
+               where constraint.ConstraintType == type
+               select constraint;
+    }
+
+    public Constraint Find<T>()
+    {
+        return FindAll<T>().FirstOrDefault();
+    }
+
+    public Constraint Find(ConstraintTypes type)
+    {
+        return FindAll(type).FirstOrDefault();
+    }
 
     /// <summary>
-    /// The ConstraintCollection class manages <see cref="Constraint"/> items.
+    /// Validates the <paramref name="value"/> against all <see cref="Constraint"/>s
+    /// in the collection.
     /// </summary>
-    public class ConstraintCollection : Collection<Constraint>
+    /// <param name="value">The data byte to validate.</param>
+    /// <returns>Returns true if the <paramref name="value"/> passed validation
+    /// otherwise false is returned.</returns>
+    public bool Validate<T>(T value)
+        where T : IComparable
     {
-        public Constraint Find<T>()
-        {
-            return FindAll<T>().FirstOrDefault();
-        }
+        bool success = true;
+        Dictionary<string, bool> typeResults = new();
 
-        public IEnumerable<Constraint> FindAll<T>()
+        foreach (Constraint constraint in this)
         {
-            return from constraint in Items
-                   where constraint is T
-                   select constraint;
-        }
-
-        public Constraint Find(ConstraintTypes type)
-        {
-            return FindAll(type).FirstOrDefault();
-        }
-
-        public IEnumerable<Constraint> FindAll(ConstraintTypes type)
-        {
-            return from constraint in Items
-                   where constraint.ConstraintType == type
-                   select constraint;
-        }
-
-        /// <summary>
-        /// Validates the <paramref name="value"/> against all <see cref="Constraint"/>s
-        /// in the collection.
-        /// </summary>
-        /// <param name="value">The data byte to validate.</param>
-        /// <returns>Returns true if the <paramref name="value"/> passed validation
-        /// otherwise false is returned.</returns>
-        public bool Validate<T>(T value)
-            where T : IComparable
-        {
-            bool success = true;
-            Dictionary<string, bool> typeResults = new();
-
-            foreach (Constraint constraint in this)
+            if (constraint.ValidationType == ConstraintValidationTypes.OneOf)
             {
-                if (constraint.ValidationType == ConstraintValidationTypes.One)
+                if (!typeResults.ContainsKey(constraint.Name))
                 {
-                    if (!typeResults.ContainsKey(constraint.Name))
-                    {
-                        typeResults.Add(constraint.Name, false);
-                    }
-
-                    if (!typeResults[constraint.Name])
-                    {
-                        typeResults[constraint.Name] =
-                            constraint.Validate<T>(value);
-                    }
+                    typeResults.Add(constraint.Name, false);
                 }
-                else
-                {
-                    success = constraint.Validate<T>(value);
 
-                    if (!success)
-                    {
-                        break;
-                    }
+                if (!typeResults[constraint.Name])
+                {
+                    typeResults[constraint.Name] =
+                        constraint.Validate<T>(value);
                 }
             }
-
-            if (success)
+            else
             {
-                foreach (KeyValuePair<string, bool> item in typeResults)
+                success = constraint.Validate<T>(value);
+
+                if (!success)
                 {
-                    if (!item.Value)
-                    {
-                        success = false;
-                    }
+                    break;
                 }
             }
-
-            return success;
         }
 
-        public void Merge(ConstraintCollection constraints)
+        if (success)
         {
-            ConstraintCollection newConstraints = new();
-
-            foreach (var constraint in constraints)
+            foreach (KeyValuePair<string, bool> item in typeResults)
             {
-                var currentConstraints = FindAll(constraint.ConstraintType);
-
-                if (currentConstraints == null || currentConstraints.Count() == 0)
+                if (!item.Value)
                 {
-                    newConstraints.Add(constraint);
+                    success = false;
                 }
-                else
+            }
+        }
+
+        return success;
+    }
+
+    public void Merge(ConstraintCollection constraints)
+    {
+        ConstraintCollection newConstraints = new();
+
+        foreach (var constraint in constraints)
+        {
+            var currentConstraints = FindAll(constraint.ConstraintType);
+
+            if (currentConstraints == null || currentConstraints.Count() == 0)
+            {
+                newConstraints.Add(constraint);
+            }
+            else
+            {
+                if (constraint.ConstraintType == ConstraintTypes.Enumeration)
                 {
-                    if (constraint.ConstraintType == ConstraintTypes.Enumeration)
+                    foreach (Constraint enumConstraint in currentConstraints)
                     {
-                        foreach (Constraint enumConstraint in currentConstraints)
+                        // add enums with a value not yet in collection.
+                        if (enumConstraint.GetValue<long>() != constraint.GetValue<long>())
                         {
-                            // add enums with a value not yet in collection.
-                            if (enumConstraint.GetValue<long>() != constraint.GetValue<long>())
-                            {
-                                newConstraints.Add(constraint);
-                            }
+                            newConstraints.Add(constraint);
                         }
                     }
                 }
+            }
 
-                foreach (Constraint newConstraint in newConstraints)
-                {
-                    Add(newConstraint);
-                }
+            foreach (Constraint newConstraint in newConstraints)
+            {
+                Add(newConstraint);
             }
         }
     }

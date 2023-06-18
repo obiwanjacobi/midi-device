@@ -8,7 +8,7 @@ namespace CannedBytes.Midi.Device.Schema;
 public enum ConstraintValidationTypes
 {
     /// <summary>All <see cref="Constraint"/>s of this type must pass.</summary>
-    All,
+    AllOf,
     /// <summary>At least one <see cref="Constraint"/> of this type must pass.</summary>
-    One,
+    OneOf,
 }

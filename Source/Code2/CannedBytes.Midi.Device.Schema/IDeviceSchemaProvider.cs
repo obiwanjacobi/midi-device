@@ -18,14 +18,15 @@ public interface IDeviceSchemaProvider
     IEnumerable<string> SchemaNames { get; }
 
     /// <summary>
-    /// Retrieves the <see cref="DeviceSchema"/> with the specified <paramref name="schemaName"/>.
+    /// Loads the <see cref="DeviceSchema"/> with the specified <paramref name="schemaName"/>.
     /// </summary>
     /// <param name="schemaLocation">The location of the schema. Must not be null or empty.</param>
     /// <returns>Returns null if the provider was unable to load the schema.</returns>
     DeviceSchema Load(string schemaLocation);
 
     /// <summary>
-    /// Retrieves the <see cref="DeviceSchema"/> with the specified <paramref name="schemaName"/>.
+    /// Retrieves the <see cref="DeviceSchema"/> with the specified <paramref name="schemaName"/>
+    /// from the already loaded schemas or Loads it if not available yet.
     /// </summary>
     /// <param name="schemaName">The name of the schema. Must not be null or empty.</param>
     /// <returns>Returns null if the provider was unable to locate the schema.</returns>

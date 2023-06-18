@@ -1,25 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using CannedBytes.Midi.Device.Schema.Xml;
 
-namespace CannedBytes.Midi.Device.Schema.Xml;
+namespace CannedBytes.Midi.Device.Schema;
 
-public static class MidiDeviceSchemaImportResolver
+public static class DeviceSchemaImportResolver
 {
-    public static DeviceSchema LoadSchema(MidiDeviceSchemaSet schemas, string name, string assembly)
+    public static DeviceSchema LoadSchema(DeviceSchemaSet schemas, string name, string assembly)
     {
         using var stream = OpenSchema(name, assembly)
             ?? throw new DeviceSchemaException(
                 $"Failed to open schema (import) {name} ({assembly}).");
 
-        MidiDeviceSchemaParser parser = new(schemas);
+        var parser = new MidiDeviceSchemaParser(schemas);
         var schema = parser.Parse(stream);
-
-        //if (schema != null)
-        //{
-        //    _schemas.Add(schema);
-        //}
-
         return schema;
     }
 
@@ -27,7 +22,7 @@ public static class MidiDeviceSchemaImportResolver
     {
         Stream stream = null;
 
-        if (String.IsNullOrEmpty(assemblyName) &&
+        if (string.IsNullOrEmpty(assemblyName) &&
             !Path.IsPathRooted(name))
         {
             name = Path.Combine(Environment.CurrentDirectory, name);
@@ -40,7 +35,7 @@ public static class MidiDeviceSchemaImportResolver
         else
         {
             Assembly assembly;
-            if (String.IsNullOrEmpty(assemblyName))
+            if (string.IsNullOrEmpty(assemblyName))
             {
                 assembly = Assembly.GetEntryAssembly();
             }

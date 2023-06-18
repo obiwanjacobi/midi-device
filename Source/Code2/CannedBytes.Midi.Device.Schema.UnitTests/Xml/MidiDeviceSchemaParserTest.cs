@@ -22,7 +22,7 @@ public class MidiDeviceSchemaParserTest
 
     public sealed class ParserTestState : IDisposable
     {
-        public MidiDeviceSchemaSet Schemas;
+        public DeviceSchemaSet Schemas;
         public MidiDeviceSchemaParser Parser;
         public Stream Stream;
 
@@ -44,7 +44,7 @@ public class MidiDeviceSchemaParserTest
     public static ParserTestState CreateParserTestState(string schema)
     {
         string path = Path.Combine(Folder, schema);
-        MidiDeviceSchemaSet schemas = new();
+        DeviceSchemaSet schemas = new();
         
         return new ParserTestState
         {
@@ -65,7 +65,7 @@ public class MidiDeviceSchemaParserTest
     //[Fact]
     public void Parse_ImportResource_NoErrors()
     {
-        MidiDeviceSchemaSet schemas = new();
+        DeviceSchemaSet schemas = new();
         MidiDeviceSchemaParser parser = new(schemas);
 
         using FileStream stream = File.OpenRead(DeviceSchema3);
