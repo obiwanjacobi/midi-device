@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <mds:deviceSchema
-    schema="urn:Roland/D-110/10"
-    xmlns="urn:Roland/D-110/10"
+    schema="urn:midi-device-schema:Roland:D-110:v1.0"
+    xmlns="urn:midi-device-schema:Roland:D-110:v1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:mds="urn:midi-device-schema:v1.0"
     xmlns:m="urn:midi-device-schema:midi-types:v1.0"
-    xmlns:r="urn:Roland/10"
+    xmlns:r="urn:midi-device-schema:Roland:v1.0"
 >
   <mds:import schema="urn:midi-device-schema:midi-types:v1.0" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
-  <mds:import schema="urn:Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
+  <mds:import schema="urn:midi-device-schema:Roland:v1.0" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
 
   <mds:recordType name="AddressMap">
     <mds:extension base="m:midiAddressMap">

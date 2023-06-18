@@ -41,15 +41,8 @@
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
-    <NestedTypes>
-      <Enum Name="CannedBytes.Midi.Device.Converters.BitConverter.ProcessPart" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Converters\MidiTypes.BitConverter.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAABAAAAAAAAQAAgAAAAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAACAAAABAAAAAAAAAAAgAAAAAAAAAAEAA=</HashCode>
       <FileName>Converters\MidiTypes.BitConverter.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -65,7 +58,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CannedBytes.Midi.Device.Converters.AddressMapConverter" Collapsed="true">
-    <Position X="3.5" Y="8.25" Width="1.75" />
+    <Position X="3.5" Y="8.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
@@ -77,7 +70,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CannedBytes.Midi.Device.Converters.ChecksumStreamConverter" Collapsed="true">
-    <Position X="5.75" Y="8.25" Width="2.25" />
+    <Position X="5.75" Y="8.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAgAAAAAAAAAAAAAgIAAAAAAAEAAAAAgAAAAA=</HashCode>
       <FileName>Converters\MidiTypes.ChecksumStreamConverter.AutoPositioningSubStream.cs</FileName>
@@ -85,7 +78,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CannedBytes.Midi.Device.Converters.SysExStreamConverter" Collapsed="true">
-    <Position X="8.25" Y="8.25" Width="2" />
+    <Position X="8.25" Y="8.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\MidiTypes.SysExStreamConverter.cs</FileName>
@@ -117,8 +110,8 @@
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="_dataConverters" />
-      <Field Name="_streamConverters" />
       <Field Name="_fieldConverterPairs" />
+      <Field Name="_streamConverters" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CannedBytes.Midi.Device.Converters.ConverterFactory" Collapsed="true">
@@ -132,7 +125,7 @@
   <Class Name="CannedBytes.Midi.Device.Converters.MidiTypesConverterFactory" Collapsed="true">
     <Position X="7.5" Y="2.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\MidiTypes.ConverterFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
