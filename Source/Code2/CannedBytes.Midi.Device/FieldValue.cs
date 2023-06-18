@@ -10,9 +10,9 @@ public class FieldValue<T>
     public FieldValue(DeviceDataContext context)
         : this(context.FieldInfo.CurrentNode.FieldConverterPair.Field)
     {
-        if (!String.IsNullOrEmpty(Field.ExtendedProperties.DevicePropertyName))
+        if (!String.IsNullOrEmpty(Field.Properties.DevicePropertyName))
         {
-            var prop = context.DeviceProperties.Find(Field.ExtendedProperties.DevicePropertyName);
+            var prop = context.DeviceProperties.Find(Field.Properties.DevicePropertyName);
 
             if (prop != null)
             {

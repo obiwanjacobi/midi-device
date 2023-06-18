@@ -106,9 +106,9 @@ internal sealed class SchemaNodeMapFactory
             // use it as the current address
             //
             if (!thisNode.IsClone &&
-                thisNode.FieldConverterPair.Field.ExtendedProperties.Address != 0)
+                thisNode.FieldConverterPair.Field.Properties.Address != 0)
             {
-                thisNode.Address = thisNode.FieldConverterPair.Field.ExtendedProperties.Address;
+                thisNode.Address = thisNode.FieldConverterPair.Field.Properties.Address;
             }
             //
             // use the size of the previous record to calculate the new address
@@ -116,20 +116,20 @@ internal sealed class SchemaNodeMapFactory
             //
             else if (!thisNode.IsClone && thisNode.IsRecord &&
                      thisNode.PreviousRecord != null &&
-                     thisNode.PreviousRecord.FieldConverterPair.Field.ExtendedProperties.Size != 0)
+                     thisNode.PreviousRecord.FieldConverterPair.Field.Properties.Size != 0)
             {
                 thisNode.Address = thisNode.PreviousRecord.Address +
-                    thisNode.PreviousRecord.FieldConverterPair.Field.ExtendedProperties.Size;
+                    thisNode.PreviousRecord.FieldConverterPair.Field.Properties.Size;
             }
             //
             // if thisNode is a clone and a size is specified in the schema,
             // use it to calculate a new address
             //
-            else if (thisNode.FieldConverterPair.Field.ExtendedProperties.Size != 0 &&
+            else if (thisNode.FieldConverterPair.Field.Properties.Size != 0 &&
                      thisNode.IsClone)
             {
                 thisNode.Address = thisNode.PreviousClone.Address +
-                    thisNode.FieldConverterPair.Field.ExtendedProperties.Size;
+                    thisNode.FieldConverterPair.Field.Properties.Size;
             }
             //
             // if the previous node is a record, 

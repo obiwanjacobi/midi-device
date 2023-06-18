@@ -22,7 +22,7 @@ public sealed partial class FieldIterator : IEnumerable<FieldInfo>
         Assert.IfArgumentNull(field.RecordType, "field.RecordType");
 
         _root = field.RecordType;
-        _repeat = field.ExtendedProperties.Repeats;
+        _repeat = field.Properties.Repeats;
     }
 
     public IEnumerator<FieldInfo> GetEnumerator()

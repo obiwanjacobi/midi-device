@@ -57,7 +57,7 @@ internal sealed class BitConverter : DataConverter
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
         var field = context.FieldInfo.CurrentField;
-        var range = field.ExtendedProperties.Range;
+        var range = field.Properties.Range;
 
         if (range is null)
         {

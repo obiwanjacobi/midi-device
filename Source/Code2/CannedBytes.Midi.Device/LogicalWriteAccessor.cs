@@ -34,7 +34,7 @@ internal class LogicalWriteAccessor : ILogicalWriteAccessor
         // validate against field constraints
         fieldValue.Validate(value);
 
-        var devicePropName = _context.FieldInfo.CurrentField.ExtendedProperties.DevicePropertyName;
+        var devicePropName = _context.FieldInfo.CurrentField.Properties.DevicePropertyName;
         
         // write device property value
         if (!String.IsNullOrEmpty(devicePropName))

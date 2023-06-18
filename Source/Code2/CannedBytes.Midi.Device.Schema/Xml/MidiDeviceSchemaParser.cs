@@ -421,16 +421,16 @@ public class MidiDeviceSchemaParser
     {
         var target = new Field(_targetSchema, CreateName(source.name));
 
-        target.ExtendedProperties.Repeats = Int32.Parse(source.repeats);
-        target.ExtendedProperties.DevicePropertyName = source.property;
-        target.ExtendedProperties.Size = new Core.SevenBitUInt32(source.size);
-        target.ExtendedProperties.Address = new Core.SevenBitUInt32(source.address);
+        target.Properties.Repeats = Int32.Parse(source.repeats);
+        target.Properties.DevicePropertyName = source.property;
+        target.Properties.Size = new Core.SevenBitUInt32(source.size);
+        target.Properties.Address = new Core.SevenBitUInt32(source.address);
         if (!String.IsNullOrWhiteSpace(source.range))
-            target.ExtendedProperties.Range = new Core.ValueRange(source.range);
+            target.Properties.Range = new Core.ValueRange(source.range);
 
         if (source.widthSpecified)
         {
-            target.ExtendedProperties.Width = (int)source.width;
+            target.Properties.Width = (int)source.width;
         }
 
         SetFixedConstraint(source.@fixed, target.Constraints);

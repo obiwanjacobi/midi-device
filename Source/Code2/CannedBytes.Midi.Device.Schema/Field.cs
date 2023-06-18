@@ -48,7 +48,7 @@ public sealed class Field : AttributedSchemaObject
     /// <summary>
     /// Gets the values of the extended schema attributes.
     /// </summary>
-    public ExtendedFieldProperties ExtendedProperties { get; } = new();
+    public FieldProperties Properties { get; } = new();
 
     private DataType _dataType;
     /// <summary>
@@ -158,7 +158,7 @@ public sealed class Field : AttributedSchemaObject
     /// <summary>
     /// Contains the values of the extended schema attributes.
     /// </summary>
-    public class ExtendedFieldProperties
+    public class FieldProperties
     {
         public string DevicePropertyName { get; set; }
 

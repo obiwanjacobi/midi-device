@@ -16,7 +16,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     {
         FieldConverterPair = pair;
         InstanceIndex = instanceIndex;
-        InstanceCount = pair.Field.ExtendedProperties.Repeats;
+        InstanceCount = pair.Field.Properties.Repeats;
 
         IsRecord = pair.StreamConverter != null;
 
@@ -80,7 +80,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     public IEnumerable<SchemaNode> RepeatedChildren(int instanceIndex)
     {
         Assert.IfArgumentOutOfRange(instanceIndex, 0,
-            FieldConverterPair.Field.ExtendedProperties.Repeats, nameof(instanceIndex));
+            FieldConverterPair.Field.Properties.Repeats, nameof(instanceIndex));
 
         SchemaNode parent = this;
         int currentIndex = instanceIndex;

@@ -31,9 +31,9 @@ partial class FieldHierarchicalIterator
 
             if (hasMore)
             {
-                if (Current.Field.ExtendedProperties.Repeats > 1)
+                if (Current.Field.Properties.Repeats > 1)
                 {
-                    _repeats = Current.Field.ExtendedProperties.Repeats - 1;
+                    _repeats = Current.Field.Properties.Repeats - 1;
                 }
                 else
                 {
