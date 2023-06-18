@@ -20,7 +20,7 @@ namespace CannedBytes.Midi.Device.Schema
         /// <summary>
         /// For derived classes.
         /// </summary>
-        protected DeviceSchema()
+        internal protected DeviceSchema()
         {
             base.Schema = this;
         }
@@ -29,14 +29,13 @@ namespace CannedBytes.Midi.Device.Schema
         /// Constructs a new instance.
         /// </summary>
         /// <param name="name">The name of the schema. Must not be null or an empty string.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DeviceSchema(string name)
             : this()
         {
             SchemaName = name;
         }
 
-        public string Version { get; protected set; }
+        public string Version { get; internal protected set; }
 
         private RecordTypeCollection recordTypes;
 

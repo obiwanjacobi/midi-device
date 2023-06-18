@@ -1,4 +1,3 @@
-using System.Linq;
 using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
 
@@ -127,12 +126,12 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
     }
 
     /// <summary>
-    /// Creates a group converter instance on the specified <paramref name="constructType"/>
+    /// Creates a stream converter instance on the specified <paramref name="constructType"/>
     /// that supports the <paramref name="matchType"/>.
     /// </summary>
-    /// <param name="matchType">The record type used to match the group converter. Must not be null.</param>
+    /// <param name="matchType">The record type used to match the stream converter. Must not be null.</param>
     /// <param name="constructType">The record type passed to the converter when it is created. Must not be null.</param>
-    /// <returns>Returns null when the factory could not find a suitable group converter that matched the <paramref name="matchType"/>.</returns>
+    /// <returns>Returns null when the factory could not find a suitable stream converter that matched the <paramref name="matchType"/>.</returns>
     public override StreamConverter Create(RecordType matchType, RecordType constructType)
     {
         Assert.IfArgumentNull(matchType, nameof(matchType));
@@ -142,16 +141,16 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
         switch (matchType.Name.Name)
         {
             //case "midiSplitNibbleLE":
-            //    converter = new SplitNibbleLEGroupConverter(constructType);
+            //    converter = new SplitNibbleLEStreamConverter(constructType);
             //    break;
             //case "midiSplitNibbleBE":
-            //    converter = new SplitNibbleBEGroupConverter(constructType);
+            //    converter = new SplitNibbleBEStreamConverter(constructType);
             //    break;
             case "midiBigEndian":
                 converter = new EndianStreamConverter(constructType);
                 break;
             //case "midiSevenByte":
-            //    converter = new SevenByteShift56GroupConverter(constructType);
+            //    converter = new SevenByteShift56StreamConverter(constructType);
             //    break;
             case "midiSysEx":
                 converter = new SysExStreamConverter(constructType);

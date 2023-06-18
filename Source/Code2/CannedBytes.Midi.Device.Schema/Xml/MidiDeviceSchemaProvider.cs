@@ -66,7 +66,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
         Assert.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         RecordType recordType = null;
-        var schema = (MidiDeviceSchema)_schemas.Find(schemaName);
+        var schema = _schemas.Find(schemaName);
 
         if (schema != null)
         {
@@ -82,7 +82,7 @@ public class MidiDeviceSchemaProvider : IDeviceSchemaProvider
         Assert.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
         DataType dataType = null;
-        var schema = (MidiDeviceSchema)_schemas.Find(schemaName);
+        var schema = _schemas.Find(schemaName);
 
         if (schema != null)
         {

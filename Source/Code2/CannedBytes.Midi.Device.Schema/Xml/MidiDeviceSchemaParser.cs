@@ -29,7 +29,7 @@ public class MidiDeviceSchemaParser
             ?? throw new DeviceSchemaException(
                 "The provided stream could not be parsed into a Midi Device Schema.");
         
-        _targetSchema = new MidiDeviceSchema();
+        _targetSchema = new DeviceSchema();
 
         ProcessImports(sourceSchema.Items);
         FillSchema(sourceSchema, _targetSchema);
@@ -74,19 +74,19 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private MidiDeviceSchema _targetSchema;
+    private DeviceSchema _targetSchema;
     private readonly string DocumentationAttributeName = "Documentation";
     private readonly List<KeyValuePair<XmlQualifiedName, MidiDeviceSchemaDataType>> _deferredDataTypes = new();
     private readonly List<KeyValuePair<XmlQualifiedName, MidiDeviceSchemaRecordType>> _deferredRecordTypes = new();
     private readonly List<KeyValuePair<XmlQualifiedName, MidiDeviceSchemaField>> _deferredFields = new();
 
-    protected virtual void FillSchema(deviceSchema source, MidiDeviceSchema target)
+    protected virtual void FillSchema(deviceSchema source, DeviceSchema target)
     {
         Assert.IfArgumentNull(source, nameof(source));
         Assert.IfArgumentNull(target, nameof(target));
 
         target.SchemaName = source.schema;
-        target.SetVersion(source.version);
+        target.Version = source.version;
 
         FillAttributes(source.Items, target.Attributes);
         FillDataTypes(source.Items1, target.AllDataTypes);
@@ -498,7 +498,7 @@ public class MidiDeviceSchemaParser
         return true;
     }
 
-    private static void FillVirtulaRootFields(MidiDeviceSchema target)
+    private static void FillVirtulaRootFields(DeviceSchema target)
     {
         foreach (MidiDeviceSchemaRecordType root in target.RootRecordTypes)
         {
