@@ -2,7 +2,7 @@
 
 static class SchemaConstants
 {
-    public const string DeviceTypesSchemaName = "http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/DeviceSchemaTypes";
+    public const string DeviceTypesSchemaName = "urn:XmlUnitTests/DeviceSchemaTypes";
 
     public const string DeviceType_MidiByte = DeviceTypesSchemaName + ":midiByte";
 }

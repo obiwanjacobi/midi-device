@@ -11,9 +11,7 @@ public class BitConverterTest
     public const string Folder = "BitConverterTest/";
     public const string TestSchemaFileName = "BitConverterTestSchema.mds";
     public const string TestStreamFileName = "BitConverterTestStream.bin";
-
-    public const string TestNamespace =
-        "http://schemas.cannedbytes.com/MidiDeviceSchema/IntegrationTests/CarryTestSchema";
+    public const string TestNamespace = "urn:CarryTestSchema";
 
     private readonly ITestOutputHelper _output;
 

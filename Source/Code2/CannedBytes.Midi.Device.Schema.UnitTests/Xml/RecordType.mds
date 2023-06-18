@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<mds:deviceSchema schema="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/RecordTypes" version="1.0"
-  xmlns="http://schemas.cannedbytes.com/midi-device-schema/XmlUnitTests/RecordTypes"
-  xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+<mds:deviceSchema schema="urn:XmlUnitTests/RecordTypes" version="1.0"
+  xmlns="urn:XmlUnitTests/RecordTypes"
+  xmlns:mds="urn:midi-device-schema:v1.0"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
 

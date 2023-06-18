@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <mds:deviceSchema
-    schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/A-880/10"
-    xmlns="http://schemas.cannedbytes.com/midi-device-schema/Roland/A-880/10"
+    schema="urn:Roland/A-880/10"
+    xmlns="urn:Roland/A-880/10"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
-    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
-    xmlns:r="http://schemas.cannedbytes.com/midi-device-schema/Roland/10"
+    xmlns:mds="urn:midi-device-schema:v1.0"
+    xmlns:m="urn:midi-device-schema:midi-types:v1.0"
+    xmlns:r="urn:Roland/10"
 >
   <mds:annotation>
     <mds:documentation>Midi Device Schema for the Roland A-880 Midi 8x8 Patchbay.</mds:documentation>
   </mds:annotation>
   
-  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
-  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
+  <mds:import schema="urn:midi-device-schema:midi-types:v1.0" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="urn:Roland/10" assembly="CannedBytes.Midi.Device.Roland" name="Roland.mds" />
 
   <!--  -->
   <mds:recordType name="AddressMap">

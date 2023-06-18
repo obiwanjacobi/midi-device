@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests.ConverterTests;
 using FluentAssertions;

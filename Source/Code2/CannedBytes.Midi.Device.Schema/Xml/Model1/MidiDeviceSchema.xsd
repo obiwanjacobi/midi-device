@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="MidiDeviceSchema" elementFormDefault="qualified" version="1.0"
-    targetNamespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
-    xmlns="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
+    targetNamespace="urn:midi-device-schema:v1.0"
+    xmlns="urn:midi-device-schema:v1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
 

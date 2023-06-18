@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <mds:deviceSchema
-    schema="http://schemas.cannedbytes.com/midi-device-schema/BinaryConverterMapTest"
-    xmlns="http://schemas.cannedbytes.com/midi-device-schema/BinaryConverterMapTest"
+    schema="urn:BinaryConverterMapTest"
+    xmlns="urn:BinaryConverterMapTest"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:mds="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10"
-    xmlns:m="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10"
+    xmlns:mds="urn:midi-device-schema:v1.0"
+    xmlns:m="urn:midi-device-schema:midi-types:v1.0"
 >
-  <mds:import schema="http://schemas.cannedbytes.com/midi-device-schema/midi-types/10" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+  <mds:import schema="urn:midi-device-schema:midi-types:v1.0" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
 
   <mds:recordType name="rootRecord">
     <mds:sequence>

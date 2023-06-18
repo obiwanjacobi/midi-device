@@ -71,7 +71,7 @@ public class MidiDeviceSchemaParserTest
         using FileStream stream = File.OpenRead(DeviceSchema3);
         DeviceSchema schema = parser.Parse(stream);
 
-        schemas.Find("http://schemas.cannedbytes.com/midi-device-schema/midi-types/10")
+        schemas.Find(Schema.Constants.MidiDeviceSchemaNamespace)
             .Should().NotBeNull();
 
         schema.Should().NotBeNull();

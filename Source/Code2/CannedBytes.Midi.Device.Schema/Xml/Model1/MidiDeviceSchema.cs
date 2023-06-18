@@ -20,8 +20,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class deviceSchema : openAttrs {
         
         /// <remarks/>
@@ -48,8 +48,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class annotation : openAttrs {
         
         /// <remarks/>
@@ -63,8 +63,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class appInfo {
         
         /// <remarks/>
@@ -86,7 +86,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public partial class recordExtensionType {
         
         /// <remarks/>
@@ -107,8 +107,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute("sequence", Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute("sequence", Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class fieldSequence {
         
         /// <remarks/>
@@ -121,7 +121,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public partial class localField : field {
     }
     
@@ -131,7 +131,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public abstract partial class field : annotated {
         
         /// <remarks/>
@@ -196,7 +196,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public partial class annotated : openAttrs {
         
         /// <remarks/>
@@ -221,7 +221,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public partial class openAttrs {
     }
     
@@ -232,7 +232,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public abstract partial class dataType : annotated {
         
         /// <remarks/>
@@ -276,8 +276,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class extension : annotated {
         
         /// <remarks/>
@@ -304,8 +304,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute("enumeration", Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute("enumeration", Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class enumFacet : facet {
         
         /// <remarks/>
@@ -321,8 +321,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute("minimum", Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute("minimum", Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class facet : annotated {
         
         /// <remarks/>
@@ -335,7 +335,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public partial class intFacet : facet {
     }
     
@@ -344,15 +344,15 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute("length", Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute("length", Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class uintFacet : facet {
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IncludeInSchema=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0", IncludeInSchema=false)]
     public enum ItemsChoiceType {
         
         /// <remarks/>
@@ -376,8 +376,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class restriction : annotated {
         
         /// <remarks/>
@@ -402,7 +402,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IncludeInSchema=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0", IncludeInSchema=false)]
     public enum ItemsChoiceType1 {
         
         /// <remarks/>
@@ -426,8 +426,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class union : annotated {
         
         /// <remarks/>
@@ -444,14 +444,14 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public partial class localDataType : dataType {
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public enum bitOrder {
         
         /// <remarks/>
@@ -467,7 +467,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public abstract partial class recordType : annotated {
         
         /// <remarks/>
@@ -503,7 +503,7 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
     public partial class recordRestrictionType {
         
         /// <remarks/>
@@ -524,8 +524,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class documentation {
         
         /// <remarks/>
@@ -551,8 +551,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class import : annotated {
         
         /// <remarks/>
@@ -573,8 +573,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute("dataType", Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute("dataType", Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class topLevelDataType : dataType {
     }
     
@@ -583,8 +583,8 @@ namespace CannedBytes.Midi.Device.Schema.Xml.Model1 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10")]
-    [System.Xml.Serialization.XmlRootAttribute("recordType", Namespace="http://schemas.cannedbytes.com/midi-device-schema/midi-device-schema/10", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:midi-device-schema:v1.0")]
+    [System.Xml.Serialization.XmlRootAttribute("recordType", Namespace="urn:midi-device-schema:v1.0", IsNullable=false)]
     public partial class topLevelRecordType : recordType {
     }
 }
