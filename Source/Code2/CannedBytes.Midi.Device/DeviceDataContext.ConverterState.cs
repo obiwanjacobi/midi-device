@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
+﻿using System.Collections.Generic;
 
 namespace CannedBytes.Midi.Device;
 
@@ -57,7 +55,8 @@ partial class DeviceDataContext
         {
             if (_stateMap.TryGetValue(fullName, out object value))
             {
-                return (T)Convert.ChangeType(value, typeof(T));
+                //return (T)Convert.ChangeType(value, typeof(T));
+                return (T)value;
             }
 
             return default;

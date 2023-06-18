@@ -2,7 +2,7 @@
 
 namespace CannedBytes.Midi.Device.UnitTests;
 
-internal static class DeviceSchemaHelper
+public static class DeviceSchemaHelper
 {
     public static DeviceSchema LoadSchema(string schemaName)
     {

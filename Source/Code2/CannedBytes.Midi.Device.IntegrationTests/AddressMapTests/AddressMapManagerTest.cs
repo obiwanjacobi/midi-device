@@ -6,12 +6,12 @@ using CannedBytes.Midi.Device.UnitTests.SchemaNodeMapTests;
 using FluentAssertions;
 using Xunit;
 
-namespace CannedBytes.Midi.Device.UnitTests.AddressMapManagerTests;
+namespace CannedBytes.Midi.Device.UnitTests.AddressMapTests;
 
 public class AddressMapManagerTest
 {
-    public const string Folder = "AddressMapManagerTests/";
-    public const string AddressMapManagerTestSchema = "AddressMapManagerTestSchema.mds";
+    public const string Folder = "AddressMapTests/";
+    public const string AddressMapManagerTestSchema = "AddressMapTestSchema.mds";
 
     private static AddressMapManager CreateAddressMapManager(DeviceSchema schema)
     {

@@ -12,9 +12,16 @@
 	<ItemGroup>
 		<ProjectReference Include="..\CannedBytes.Midi.Core\CannedBytes.Midi.Core.csproj" />
 		<ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj" />
+		<ProjectReference Include="..\CannedBytes.Midi.Device.UnitTests\CannedBytes.Midi.Device.UnitTests.csproj" />
 		<ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Update="AddressMapTests\AddressMapTestSchema.mds">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="AddressMapTests\AddressMapTestStream21.bin">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="BigEndianTest\BigEndianTestSchema.mds">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

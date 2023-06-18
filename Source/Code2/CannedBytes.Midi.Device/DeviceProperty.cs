@@ -28,4 +28,9 @@ public sealed class DeviceProperty
 
         return (T)Convert.ChangeType(Value, requestedType);
     }
+
+    public override string ToString()
+    {
+        return $"{Name}={Value}";
+    }
 }

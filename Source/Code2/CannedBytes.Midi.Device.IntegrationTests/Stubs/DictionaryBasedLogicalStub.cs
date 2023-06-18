@@ -14,12 +14,7 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
 
     public T GetValue<T>(ILogicalFieldInfo fieldInfo)
     {
-        return GetValue<T>(fieldInfo.Field.Name.FullName, fieldInfo.Key.Values.Last());
-    }
-
-    public T GetValue<T>(string fieldName, int instanceIndex)
-    {
-        string key = BuildKey(fieldName, instanceIndex);
+        string key = BuildKey(fieldInfo);
 
         var fldInfo = this[key];
 
@@ -32,7 +27,7 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
         {
             InstanceIndex = logicFieldInfo.Key.Values.Last()
         };
-        fldInfo.Key = BuildKey(logicFieldInfo.Field.Name.FullName, fldInfo.InstanceIndex);
+        fldInfo.Key = BuildKey(logicFieldInfo);
         fldInfo.Field = logicFieldInfo.Field;
         fldInfo.LogicalFieldInfo = logicFieldInfo;
         fldInfo.Value = value;
@@ -42,9 +37,9 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
         return fldInfo;
     }
 
-    public static string BuildKey(string fieldName, int instanceIndex)
+    public static string BuildKey(ILogicalFieldInfo fieldInfo)
     {
-        return fieldName + "[" + instanceIndex + "]";
+        return $"{fieldInfo.Field.Name.FullName}[{fieldInfo.Key}]";
     }
 
     public bool WriteBool(LogicalContext context, bool data)
@@ -129,5 +124,10 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
         public object Value { get; set; }
 
         public ILogicalFieldInfo LogicalFieldInfo { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Field}[{InstanceIndex}] = {Value}";
+        }
     }
 }
