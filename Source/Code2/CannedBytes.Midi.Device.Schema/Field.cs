@@ -15,16 +15,13 @@ public sealed class Field : AttributedSchemaObject
     /// Constructs a new instance.
     /// </summary>
     /// <param name="fullName">The long (and unique) name. Must not be null.</param>
-    public Field(string fullName)
-    {
-        Name = new SchemaObjectName(fullName);
-    }
+    public Field(DeviceSchema schema, string fullName)
+        : base(schema, new SchemaObjectName(fullName))
+    { }
 
     public Field(DeviceSchema schema, SchemaObjectName name)
-    {
-        Schema = schema;
-        Name = name;
-    }
+        : base(schema, name)
+    { }
 
     private bool? _isAbstract;
     /// <summary>

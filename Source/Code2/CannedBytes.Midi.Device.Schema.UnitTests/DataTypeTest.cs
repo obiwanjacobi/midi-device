@@ -10,10 +10,12 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests;
 
 public class DataTypeTest
 {
+    private static DeviceSchema TestSchema = new("DataTypeTestSchema");
+
     [Fact]
     public void Constructor_WithName_ParsesCorrectly()
     {
-        DataType target = new(Constants.SchemaTypeName);
+        var target = new DataType(TestSchema, Constants.SchemaTypeName);
 
         SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.TypeName);
     }
@@ -21,8 +23,8 @@ public class DataTypeTest
     [Fact]
     public void BaseTypesAdd_NewDataType_Sticks()
     {
-        DataType target = new(Constants.SchemaTypeName);
-        DataType baseType = new(Constants.SchemaBaseTypeName);
+        DataType target = new(TestSchema, Constants.SchemaTypeName);
+        DataType baseType = new(TestSchema, Constants.SchemaBaseTypeName);
 
         target.BaseTypes.Add(baseType);
 
@@ -36,8 +38,9 @@ public class DataTypeTest
     public void DataTypeSchema_SchemaProperty_IsSame()
     {
         DeviceSchema schema = new(Constants.SchemaName);
-        DataType target = new(Constants.SchemaTypeName);
+        DataType target = new(schema, Constants.SchemaTypeName);
 
+        // should not throw
         schema.AllDataTypes.Add(target);
 
         target.Schema.Should().NotBeNull();
@@ -47,8 +50,8 @@ public class DataTypeTest
     [Fact]
     public void IsType_OwnType_IsFound()
     {
-        DataType target = new(Constants.SchemaTypeName);
-        DataType baseType = new(Constants.SchemaBaseTypeName);
+        DataType target = new(TestSchema, Constants.SchemaTypeName);
+        DataType baseType = new(TestSchema, Constants.SchemaBaseTypeName);
 
         target.BaseTypes.Add(baseType);
 
@@ -60,8 +63,8 @@ public class DataTypeTest
     [Fact]
     public void IsType_BaseType_IsFound()
     {
-        DataType target = new(Constants.SchemaTypeName);
-        DataType baseType = new(Constants.SchemaBaseTypeName);
+        DataType target = new(TestSchema, Constants.SchemaTypeName);
+        DataType baseType = new(TestSchema, Constants.SchemaBaseTypeName);
 
         target.BaseTypes.Add(baseType);
 

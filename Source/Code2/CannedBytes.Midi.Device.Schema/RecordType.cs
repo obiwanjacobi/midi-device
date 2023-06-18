@@ -12,26 +12,13 @@ public sealed class RecordType : AttributedSchemaObject
     /// Constructs a new instance.
     /// </summary>
     /// <param name="fullName">The long (and unique) name. Must not be null.</param>
-    public RecordType(string fullName)
-    {
-        Name = new SchemaObjectName(fullName);
-    }
+    public RecordType(DeviceSchema schema, string fullName)
+        : base(schema, new SchemaObjectName(fullName))
+    { }
 
     public RecordType(DeviceSchema schema, SchemaObjectName name)
-    {
-        Schema = schema;
-        Name = name;
-    }
-
-    protected override void OnSchemaChanged()
-    {
-        base.OnSchemaChanged();
-
-        if (_fields != null)
-        {
-            _fields.Schema = Schema;
-        }
-    }
+        : base(schema, name)
+    { }
 
     /// <summary>
     /// Gets an indication if the type was dynamically created.
@@ -99,6 +86,6 @@ public sealed class RecordType : AttributedSchemaObject
     /// <remarks>The collection contains only the fields declared in this RecordType instance.</remarks>
     public FieldCollection Fields
     {
-        get { return _fields ??= new FieldCollection { Schema = Schema }; }
+        get { return _fields ??= new FieldCollection(Schema); }
     }
 }

@@ -30,13 +30,8 @@ public class MidiDeviceSchemaParser
             ?? throw new DeviceSchemaException(
                 "The provided stream could not be parsed into a Midi Device Schema.");
 
-        _targetSchema = new DeviceSchema();
-
         ProcessImports(sourceSchema.Items);
-        FillSchema(sourceSchema, _targetSchema);
-
-        _schemas.Add(_targetSchema);
-
+        CreateTargetSchema(sourceSchema);
         return _targetSchema;
     }
 
@@ -81,18 +76,21 @@ public class MidiDeviceSchemaParser
     private readonly List<KeyValuePair<XmlQualifiedName, RecordType>> _deferredRecordTypes = new();
     private readonly List<KeyValuePair<XmlQualifiedName, Field>> _deferredFields = new();
 
-    protected virtual void FillSchema(deviceSchema source, DeviceSchema target)
+    protected virtual DeviceSchema CreateTargetSchema(deviceSchema source)
     {
-        Assert.IfArgumentNull(source, nameof(source));
-        Assert.IfArgumentNull(target, nameof(target));
+        _targetSchema = new DeviceSchema(source.schema)
+        {
+            Version = source.version
+        };
+        
+        _schemas.Add(_targetSchema);
 
-        target.SchemaName = source.schema;
-        target.Version = source.version;
+        FillAttributes(source.Items, _targetSchema.Attributes);
+        FillDataTypes(source.Items1, _targetSchema.AllDataTypes);
+        FillRecordTypes(source.Items1, _targetSchema.AllRecordTypes);
+        FillVirtulaRootFields(_targetSchema);
 
-        FillAttributes(source.Items, target.Attributes);
-        FillDataTypes(source.Items1, target.AllDataTypes);
-        FillRecordTypes(source.Items1, target.AllRecordTypes);
-        FillVirtulaRootFields(target);
+        return _targetSchema;
     }
 
     private void FillAttributes(IEnumerable<openAttrs> source, SchemaAttributeCollection schemaAttributes)
@@ -477,7 +475,7 @@ public class MidiDeviceSchemaParser
     {
         SchemaObjectName fullName = new(schema, name);
         var dataType = _schemas.FindDataType(schema, name)
-            ?? (DataType)_targetSchema.AllDataTypes.Find(fullName.FullName);
+            ?? _targetSchema.AllDataTypes.Find(fullName.FullName);
 
         if (dataType == null)
         {
@@ -485,7 +483,7 @@ public class MidiDeviceSchemaParser
 
             if (recordType == null)
             {
-                recordType = (RecordType)_targetSchema.AllRecordTypes.Find(fullName.FullName);
+                recordType = _targetSchema.AllRecordTypes.Find(fullName.FullName);
 
                 if (recordType == null)
                 {
@@ -507,10 +505,9 @@ public class MidiDeviceSchemaParser
     {
         foreach (RecordType root in target.RootRecordTypes)
         {
-            var field = new Field(root.Name.FullName)
+            var field = new Field(target, root.Name.FullName)
             {
-                RecordType = root,
-                Schema = target
+                RecordType = root
             };
 
             target.VirtualRootFields.Add(field);

@@ -11,28 +11,19 @@ using CannedBytes.Midi.Core;
 public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     where T : SchemaObject
 {
-    private DeviceSchema _schema;
+    private readonly bool _enforceSchema;
+
+    protected SchemaCollection(DeviceSchema schema, bool enforceSchema = true)
+    {
+        Schema = schema;
+        _enforceSchema = enforceSchema;
+    }
+
     /// <summary>
     /// Gets the <see cref="DeviceSchema"/> this instance is part of.
     /// </summary>
     /// <value>Derived classes can set the value for this property. Must not be null.</value>
-    public DeviceSchema Schema
-    {
-        get { return _schema; }
-        internal protected set
-        {
-            _schema = value;
-
-            // update the collection's items
-            foreach (var item in this)
-            {
-                if (item.Schema == null && Schema != null)
-                {
-                    item.Schema = Schema;
-                }
-            }
-        }
-    }
+    public DeviceSchema Schema { get; }
 
     /// <summary>
     /// Adds all the <see cref="SchemaObject"/> instances in the <paramref name="items"/>
@@ -101,9 +92,12 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     /// <paramref name="item"/> is set.</remarks>
     protected override void InsertItem(int index, T item)
     {
-        if (Schema != null && item.Schema == null)
+        if (_enforceSchema &&
+            Schema is not null &&
+            item.Schema != Schema)
         {
-            item.Schema = Schema;
+            throw new DeviceSchemaException(
+                "The item does not belong to this schema.");
         }
 
         base.InsertItem(index, item);

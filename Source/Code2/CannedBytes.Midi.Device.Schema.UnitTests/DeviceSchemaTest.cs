@@ -46,7 +46,7 @@ public class DeviceSchemaTest
     public void Add_AllDataTypes_Sticks()
     {
         DeviceSchema target = new(Constants.SchemaName);
-        DataType type = new(Constants.SchemaTypeName);
+        DataType type = new(target, Constants.SchemaTypeName);
 
         target.AllDataTypes.Add(type);
 
@@ -59,7 +59,7 @@ public class DeviceSchemaTest
     public void Clear_AllDataTypes_IsEmpty()
     {
         DeviceSchema target = new(Constants.SchemaName);
-        DataType type = new(Constants.SchemaTypeName);
+        DataType type = new(target, Constants.SchemaTypeName);
 
         target.AllDataTypes.Add(type);
         target.AllDataTypes.Clear();
@@ -71,7 +71,7 @@ public class DeviceSchemaTest
     public void Add_AllRecordTypes_Sticks()
     {
         DeviceSchema target = new(Constants.SchemaName);
-        RecordType type = new(Constants.SchemaTypeName);
+        RecordType type = new(target, Constants.SchemaTypeName);
 
         target.AllRecordTypes.Add(type);
 
@@ -84,7 +84,7 @@ public class DeviceSchemaTest
     public void Clear_AllRecordTypes_IsEmpty()
     {
         DeviceSchema target = new(Constants.SchemaName);
-        RecordType type = new(Constants.SchemaTypeName);
+        RecordType type = new(target, Constants.SchemaTypeName);
 
         target.AllRecordTypes.Add(type);
         target.AllRecordTypes.Clear();
@@ -96,7 +96,7 @@ public class DeviceSchemaTest
     public void Add_RootRecordTypes_Sticks()
     {
         DeviceSchema target = new(Constants.SchemaName);
-        RecordType type = new(Constants.SchemaTypeName);
+        RecordType type = new(target, Constants.SchemaTypeName);
 
         target.RootRecordTypes.Add(type);
 
@@ -109,7 +109,7 @@ public class DeviceSchemaTest
     public void Clear_RootRecordTypes_IsEmpty()
     {
         DeviceSchema target = new(Constants.SchemaName);
-        RecordType type = new(Constants.SchemaTypeName);
+        RecordType type = new(target, Constants.SchemaTypeName);
 
         target.RootRecordTypes.Add(type);
         target.RootRecordTypes.Clear();

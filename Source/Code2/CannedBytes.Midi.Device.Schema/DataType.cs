@@ -11,26 +11,13 @@ public sealed class DataType : AttributedSchemaObject
     /// Constructs a new instance.
     /// </summary>
     /// <param name="fullName">The long (and unique) name. Must not be null.</param>
-    public DataType(string fullName)
-    {
-        Name = new SchemaObjectName(fullName);
-    }
+    public DataType(DeviceSchema schema, string fullName)
+        : base(schema, new SchemaObjectName(fullName))
+    { }
 
     public DataType(DeviceSchema schema, SchemaObjectName name)
-    {
-        Schema = schema;
-        Name = name;
-    }
-
-    protected override void OnSchemaChanged()
-    {
-        base.OnSchemaChanged();
-
-        if (baseTypes != null)
-        {
-            baseTypes.Schema = Schema;
-        }
-    }
+        : base(schema, name)
+    { }
 
     /// <summary>
     /// Gets an indication if the DataType can be instantiated.
@@ -63,15 +50,14 @@ public sealed class DataType : AttributedSchemaObject
     /// </summary>
     public bool IsExtension { get; internal set; }
 
-    private DataTypeCollection baseTypes;
-
+    private BaseTypeCollection baseTypes;
     /// <summary>
     /// Gets the collection of <see cref="DataType"/>s this definition is based on.
     /// </summary>
     /// <value>Derived classes can set this property. Must not be null.</value>
-    public DataTypeCollection BaseTypes
+    public BaseTypeCollection BaseTypes
     {
-        get { return baseTypes ??= new DataTypeCollection { Schema = Schema }; }
+        get { return baseTypes ??= new BaseTypeCollection(Schema); }
     }
 
     /// <summary>

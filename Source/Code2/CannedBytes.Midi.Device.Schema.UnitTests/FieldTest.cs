@@ -9,10 +9,12 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests;
 
 public class FieldTest
 {
+    private static DeviceSchema TestSchema = new("FieldTestSchema");
+
     [Fact]
     public void Constructor_WithName_ParsedCorrectly()
     {
-        Field target = new(Constants.SchemaFieldName);
+        Field target = new(TestSchema, Constants.SchemaFieldName);
 
         SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.FieldName);
     }

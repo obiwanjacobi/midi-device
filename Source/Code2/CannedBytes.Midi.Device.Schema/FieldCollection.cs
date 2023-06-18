@@ -7,4 +7,7 @@ namespace CannedBytes.Midi.Device.Schema;
 /// <remarks>The <see cref="Field"/> items can be accessed by index or by (short or full) name.</remarks>
 public class FieldCollection : SchemaCollection<Field>
 {
+    public FieldCollection(DeviceSchema schema)
+        : base(schema)
+    { }
 }

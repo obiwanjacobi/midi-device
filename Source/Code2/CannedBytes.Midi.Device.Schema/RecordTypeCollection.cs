@@ -7,4 +7,7 @@ namespace CannedBytes.Midi.Device.Schema;
 /// <remarks>The <see cref="RecordType"/> items can be accessed by index or by (short) name.</remarks>
 public class RecordTypeCollection : SchemaCollection<RecordType>
 {
+    public RecordTypeCollection(DeviceSchema schema)
+        : base(schema)
+    { }
 }

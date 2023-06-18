@@ -18,22 +18,12 @@ namespace CannedBytes.Midi.Device.Schema;
 public sealed class DeviceSchema : AttributedSchemaObject
 {
     /// <summary>
-    /// For derived classes.
+    /// constructs a new schema by name.
     /// </summary>
-    internal DeviceSchema()
-    {
-        base.Schema = this;
-    }
-
-    /// <summary>
-    /// Constructs a new instance.
-    /// </summary>
-    /// <param name="name">The name of the schema. Must not be null or an empty string.</param>
+    /// <param name="name">The name of the schema.</param>
     public DeviceSchema(string name)
-        : this()
-    {
-        SchemaName = name;
-    }
+        : base(null, new SchemaObjectName(name, string.Empty))
+    { }
 
     public string Version { get; internal set; }
 
@@ -45,7 +35,7 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public RecordTypeCollection AllRecordTypes
     {
-        get { return recordTypes ??= new RecordTypeCollection { Schema = this }; }
+        get { return recordTypes ??= new RecordTypeCollection(this); }
     }
 
     private DataTypeCollection dataTypes;
@@ -56,7 +46,7 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public DataTypeCollection AllDataTypes
     {
-        get { return dataTypes ??= new DataTypeCollection { Schema = this }; }
+        get { return dataTypes ??= new DataTypeCollection(this); }
     }
 
     private RecordTypeCollection rootTypes;
@@ -67,7 +57,7 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public RecordTypeCollection RootRecordTypes
     {
-        get { return rootTypes ??= new RecordTypeCollection { Schema = this }; }
+        get { return rootTypes ??= new RecordTypeCollection(this); }
     }
 
     private FieldCollection _virtualRootFields;
@@ -77,10 +67,8 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// </summary>
     public FieldCollection VirtualRootFields
     {
-        get { return _virtualRootFields ??= new FieldCollection { Schema = this }; }
+        get { return _virtualRootFields ??= new FieldCollection(this); }
     }
-
-    private string schemaName;
 
     /// <summary>
     /// Gets the schema name.
@@ -88,14 +76,7 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set this property.</remarks>
     public string SchemaName
     {
-        get { return schemaName; }
-        internal set
-        {
-            Assert.IfArgumentNullOrEmpty(value, nameof(SchemaName));
-            schemaName = value;
-
-            Name = new SchemaObjectName(value, string.Empty);
-        }
+        get { return Name.SchemaName; }
     }
 
     /// <summary>
@@ -105,6 +86,6 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <returns>Never returns null.</returns>
     public string FormatFullName(string localName)
     {
-        return new SchemaObjectName(schemaName, localName).ToString();
+        return new SchemaObjectName(SchemaName, localName).ToString();
     }
 }

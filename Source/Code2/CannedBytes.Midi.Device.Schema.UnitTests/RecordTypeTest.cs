@@ -10,10 +10,12 @@ namespace CannedBytes.Midi.Device.Schema.UnitTests;
 
 public class RecordTypeTest
 {
+    private static DeviceSchema TestSchema = new("RecordTypeTestSchema");
+
     [Fact]
     public void Constructor_WithName_ParsedCorrectly()
     {
-        RecordType target = new(Constants.SchemaTypeName);
+        RecordType target = new(TestSchema, Constants.SchemaTypeName);
 
         SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.TypeName);
     }
@@ -21,7 +23,7 @@ public class RecordTypeTest
     [Fact]
     public void Fields_OnNewRecordType_IsNotNull()
     {
-        RecordType target = new(Constants.SchemaTypeName);
+        RecordType target = new(TestSchema, Constants.SchemaTypeName);
 
         target.Fields.Should().NotBeNull();
     }
@@ -29,8 +31,8 @@ public class RecordTypeTest
     [Fact]
     public void FieldsAdd_NewField_Sticks()
     {
-        RecordType target = new(Constants.SchemaTypeName);
-        Field field = new(Constants.SchemaFieldName);
+        RecordType target = new(TestSchema, Constants.SchemaTypeName);
+        Field field = new(TestSchema, Constants.SchemaFieldName);
 
         target.Fields.Add(field);
 
@@ -43,8 +45,9 @@ public class RecordTypeTest
     public void RecordTypeSchema_SchemaProperty_IsSame()
     {
         DeviceSchema schema = new(Constants.SchemaName);
-        RecordType target = new(Constants.SchemaTypeName);
+        RecordType target = new(schema, Constants.SchemaTypeName);
 
+        // should not throw
         schema.AllRecordTypes.Add(target);
 
         target.Schema.Should().NotBeNull();
