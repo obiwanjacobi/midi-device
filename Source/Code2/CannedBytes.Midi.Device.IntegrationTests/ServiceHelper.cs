@@ -6,27 +6,26 @@ using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.Schema.Xml;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CannedBytes.Midi.Device.IntegrationTests
+namespace CannedBytes.Midi.Device.IntegrationTests;
+
+internal static class ServiceHelper
 {
-    internal static class ServiceHelper
+    private readonly static Assembly DeviceAssembly =
+        Assembly.GetAssembly(typeof(DataConverter));
+
+    public static IServiceProvider CreateServices()
     {
-        private readonly static Assembly DeviceAssembly =
-            Assembly.GetAssembly(typeof(DataConverter));
+        var services = new ServiceCollection();
 
-        public static IServiceProvider CreateServices()
-        {
-            var services = new ServiceCollection();
+        services.AddSingleton<IDeviceSchemaProvider, MidiDeviceSchemaProvider>();
+        
+        services.AddSingletonAll<DataConverter>(DeviceAssembly);
+        services.AddSingletonAll<StreamConverter>(DeviceAssembly);
+        services.AddSingletonAll<IConverterFactory>(DeviceAssembly);
+        services.AddSingleton<ConverterManager>();
 
-            services.AddSingleton<IDeviceSchemaProvider, MidiDeviceSchemaProvider>();
-            
-            services.AddSingletonAll<DataConverter>(DeviceAssembly);
-            services.AddSingletonAll<StreamConverter>(DeviceAssembly);
-            services.AddSingletonAll<IConverterFactory>(DeviceAssembly);
-            services.AddSingleton<ConverterManager>();
+        services.AddSingleton<SchemaNodeMapFactory>();
 
-            services.AddSingleton<SchemaNodeMapFactory>();
-
-            return services.BuildServiceProvider();
-        }
+        return services.BuildServiceProvider();
     }
 }

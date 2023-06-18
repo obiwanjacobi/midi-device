@@ -38,15 +38,6 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
             case "midiData": // bit0-bit6
                 converter = new BitConverter(constructType, new ValueRange(0, 6));
                 break;
-            //case "midiNibble": // 0-15 (logical)
-            //    converter = new BitConverter(constructType, BitFlags.LoByteLoNibble);
-            //    break;
-            //case "midiLSNibble":	// bit0-bit3
-            //    converter = new BitConverter(constructType, BitFlags.LoByteLoNibble);
-            //    break;
-            //case "midiMSNibble": // bit4-bit7
-            //    converter = new BitConverter(constructType, BitFlags.LoByteHiNibble);
-            //    break;
             case "midiBit0":
                 converter = new BitConverter(constructType, new ValueRange(0));
                 break;
