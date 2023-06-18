@@ -30,29 +30,6 @@ internal sealed class StringConverter : DataConverter
     /// <remarks>This value is retrieved from the fixed length constraint defined in the <see cref="DataType"/>.</remarks>
     public override int ByteLength { get; }
 
-    public override void ToPhysical(DeviceDataContext context, IMidiLogicalReader reader)
-    {
-        //Assert.IfArgumentNull(context, "context");
-        //Assert.IfArgumentNull(reader, "reader");
-
-        //var outputStream = context.CurrentStream;
-
-        //var carryLength = context.Carry.Flush(outputStream);
-
-        //int length = (byte)ByteLength;
-        //long pos = context.PhysicalStream.Position;
-        //string data = reader.ReadString(context.CreateLogicalContext());
-
-        //context.CurrentFieldConverter.Field.Constraints.Validate((ushort)data.Length);
-
-        //var writer = new MidiBinaryStreamWriter(outputStream);
-        //writer.Write(data, length);
-
-        //context.DataRecords.Add(pos, data, context.CurrentFieldConverter.Field, carryLength > 0);
-
-        throw new NotImplementedException();
-    }
-
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
         var str = reader.ReadStringAscii(ByteLength);

@@ -37,7 +37,7 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
 
         if (context.ConversionDirection == ConversionDirection.ToLogical)
         {
-            var checksum = ReadChecksumFromStream(context);
+            var checksum = ReadChecksumFromStream((LogicalDeviceDataContext)context);
 
             // intercept the value and set it on the current Record Entry.
             if (context.LogManager?.CurrentEntry != null)
@@ -59,11 +59,12 @@ public partial class ChecksumStreamConverter : StreamConverter, INavigationEvent
         }
     }
 
-    protected virtual VarUInt64 ReadChecksumFromStream(DeviceDataContext context)
+    protected virtual VarUInt64 ReadChecksumFromStream(LogicalDeviceDataContext context)
     {
         Assert.IfArgumentNull(context, nameof(context));
 
-        var reader = context.CreateReader();
+        var reader = new DeviceStreamReader(
+            context.StreamManager.CurrentStream, context.BitReader);
 
         return reader.Read(ByteLength);
     }

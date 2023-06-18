@@ -5,21 +5,21 @@ namespace CannedBytes.Midi.Device;
 /// <summary>
 /// Single class to manage going from a physical stream to logical values
 /// </summary>
-public class DeviceToLogicalProcess
+public partial class DeviceToLogicalProcess
 {
     public virtual DeviceDataContext Execute(SchemaNode rootNode, Stream physicalStream, IMidiLogicalWriter logicalWriter)
     {
         var context = CreateContext(physicalStream, rootNode);
-        ProcessToLogical navigator = new(context, rootNode);
+        var navigator = new ProcessToLogical(context, rootNode);
 
         navigator.ToLogical(logicalWriter);
 
         return context;
     }
 
-    protected virtual DeviceDataContext CreateContext(Stream physicalStream, SchemaNode rootNode)
+    protected virtual LogicalDeviceDataContext CreateContext(Stream physicalStream, SchemaNode rootNode)
     {
-        DeviceDataContext ctx = new(ConversionDirection.ToLogical)
+        var ctx = new LogicalDeviceDataContext()
         {
             RootNode = rootNode,
             StreamManager = new StreamManager(physicalStream)

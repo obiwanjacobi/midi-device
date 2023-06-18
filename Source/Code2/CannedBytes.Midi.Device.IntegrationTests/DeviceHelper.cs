@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using CannedBytes.Midi.Device.IntegrationTests.Stubs;
 
 namespace CannedBytes.Midi.Device.IntegrationTests;
 
@@ -16,7 +15,7 @@ internal static class DeviceHelper
         var deviceProvider = DeviceProvider.Create(serviceProvider, schemaLocation);
         var binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
 
-        DeviceToLogicalProcess process = new();
+        var process = new DeviceToLogicalProcess();
 
         using var stream = File.OpenRead(binStreamPath);
         var dataCtx = process.Execute(binMap.RootNode, stream, writer);

@@ -51,7 +51,10 @@ public abstract partial class DataConverter : IConverter
 
     /// <inheritdoc/>
     /// <remarks>Derived classes must override and implement.</remarks>
-    public abstract void ToPhysical(DeviceDataContext context, IMidiLogicalReader reader);
+    public virtual void ToPhysical(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader)
+    {
+
+    }
 
     // decorator pattern
     /// <summary>

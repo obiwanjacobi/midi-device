@@ -2,11 +2,9 @@
 
 namespace CannedBytes.Midi.Device;
 
-public sealed partial class DeviceDataContext
+public abstract partial class DeviceDataContext
 {
-    
-
-    public DeviceDataContext(ConversionDirection dir)
+    protected DeviceDataContext(ConversionDirection dir)
     {
         FieldInfo = new FieldContext(this);
         DeviceProperties = new DevicePropertyCollection();
@@ -17,20 +15,9 @@ public sealed partial class DeviceDataContext
     }
 
     /// <summary>
-    /// Gets or sets a value indicating whether to always call the logical reader or writer
-    /// even when the Converter/DataType would otherwise not (true).
-    /// </summary>
-    public bool ForceLogicCall { get; set; }
-
-    /// <summary>
     /// Indicates the direction of conversion.
     /// </summary>
     public ConversionDirection ConversionDirection { get; }
-
-    /// <summary>
-    /// Gets the bit reader for 'physical' stream operations.
-    /// </summary>
-    public BitStreamReader BitReader { get; } = new BitStreamReader();
 
     /// <summary>
     /// Contains the runtime device properties retrieved from the message.
@@ -56,30 +43,11 @@ public sealed partial class DeviceDataContext
     /// </summary>
     public ConverterState StateMap { get; }
 
-    // returns a reader for the current node/converter (LE/BE).
-    public DeviceStreamReader CreateReader()
-    {
-        var reader = new DeviceStreamReader(StreamManager.CurrentStream, BitReader);
-        return reader;
-    }
-
-    /// <summary>
-    /// Contains an object that writes logical values to the application.
-    /// </summary>
-    /// <remarks>Only set when ToLogical.</remarks>
-    public ILogicalWriteAccessor LogicalWriteAccessor { get; set; }
-
-    /// <summary>
-    /// Contains an object that reads logical values from the application.
-    /// </summary>
-    /// <remarks>Only set when ToPhysical.</remarks>
-    public ILogicalReadAccessor LogicalReadAccessor { get; set; }
-
     /// <summary>
     /// Creates the context information that is passed to the application
     /// </summary>
     /// <returns>Never returns null.</returns>
-    public LogicalContext CreateLogicalContext()
+    internal LogicalContext CreateLogicalContext(int bitLength)
     {
         if (FieldInfo.CurrentNode == null)
         {
@@ -87,7 +55,7 @@ public sealed partial class DeviceDataContext
                 "No current node is set");
         }
 
-        var ctx = new LogicalContext(FieldInfo.CurrentNode);
+        var ctx = new LogicalContext(FieldInfo.CurrentNode, bitLength);
 
         return ctx;
     }

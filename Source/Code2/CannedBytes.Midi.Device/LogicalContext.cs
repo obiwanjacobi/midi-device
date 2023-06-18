@@ -1,10 +1,11 @@
 ﻿namespace CannedBytes.Midi.Device;
 
-public class LogicalContext
+public sealed class LogicalContext
 {
-    public LogicalContext(ILogicalFieldInfo fieldInfo)
+    public LogicalContext(ILogicalFieldInfo fieldInfo, int bitLength)
     {
         FieldInfo = fieldInfo;
+        BitLength = bitLength;
     }
 
     /// <summary>
@@ -15,5 +16,5 @@ public class LogicalContext
     /// <summary>
     /// Number of bits of the value (divide by 8 to get number of bytes).
     /// </summary>
-    public int BitLength { get; set; }
+    public int BitLength { get; }
 }

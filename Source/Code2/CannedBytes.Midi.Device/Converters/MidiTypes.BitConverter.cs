@@ -47,13 +47,6 @@ internal sealed class BitConverter : DataConverter
         }
     }
 
-    /// <inheritdoc/>
-    public override void ToPhysical(DeviceDataContext context, IMidiLogicalReader reader)
-    {
-        Assert.IfArgumentNull(context, nameof(context));
-        Assert.IfArgumentNull(reader, nameof(reader));
-    }
-
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
         var field = context.FieldInfo.CurrentField;
