@@ -9,7 +9,7 @@ public sealed class BitStreamReader
     private int _bitPosition;
     private int _byteLength;
 
-    public BitStreamReader(int bufferSize = 4)
+    public BitStreamReader(int bufferSize = 2)
     {
         _buffer = new byte[bufferSize];
         Clear();
@@ -34,16 +34,15 @@ public sealed class BitStreamReader
         }
 
         ushort result = 0;
-        _bitPosition = bitStartIndex;
         for (int i = 0; i < bitCount; i++)
         {
             int pos = bitStartIndex + i;
             int byteIndex = pos / 8;
             int bitOffset = pos % 8;
             result |= (ushort)((_buffer[byteIndex] >> bitOffset & 1) << i);
-
-            _bitPosition++;
         }
+
+        _bitPosition = bitStartIndex + bitCount;
 
         return result;
     }
