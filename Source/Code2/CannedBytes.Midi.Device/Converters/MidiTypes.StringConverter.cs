@@ -30,9 +30,26 @@ internal sealed class StringConverter : DataConverter
     /// <remarks>This value is retrieved from the fixed length constraint defined in the <see cref="DataType"/>.</remarks>
     public override int ByteLength { get; }
 
+    protected override void WriteToWriter(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader)
+    {
+        if (!reader.ReadString(out var value))
+        {
+            throw new DeviceDataException(
+                $"Could not read string from the accessor with length of {ByteLength}.");
+        }
+        else
+        {
+            writer.WriteStringAscii(value, ByteLength);
+        }
+    }
+
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
         var str = reader.ReadStringAscii(ByteLength);
-        writer.Write(str, 0);
+        if (!writer.Write(str, 0))
+        {
+            throw new DeviceDataException(
+                $"Could not write string to the accessor with length of {ByteLength}.");
+        }
     }
 }

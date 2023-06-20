@@ -246,6 +246,6 @@ public sealed class DeviceStreamReader
             throw new EndOfStreamException();
         }
 
-        return Encoding.ASCII.GetString(buffer);
+        return Encoding.ASCII.GetString(buffer).TrimEnd();
     }
 }

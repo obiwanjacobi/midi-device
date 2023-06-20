@@ -49,18 +49,41 @@ public abstract partial class DataConverter : IConverter
         get { return 1; }
     }
 
-    /// <inheritdoc/>
-    /// <remarks>Derived classes must override and implement.</remarks>
-    public virtual void ToPhysical(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader)
-    {
-
-    }
-
     // decorator pattern
     /// <summary>
     /// The converter called when used in extension.
     /// </summary>
     public DataConverter InnerConverter { get; set; }
+
+    /// <inheritdoc/>
+    /// <remarks>Derived classes must override and implement.</remarks>
+    public virtual void ToPhysical(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader)
+    {
+        Assert.IfArgumentNull(context, nameof(context));
+        Assert.IfArgumentNull(reader, nameof(reader));
+        Assert.IfArgumentNull(writer, nameof(writer));
+
+        if (InnerConverter != null)
+        {
+            WriteToInnerConverter(context, writer, reader);
+        }
+        else
+        {
+            WriteToWriter(context, writer, reader);
+        }
+    }
+
+    protected virtual void WriteToInnerConverter(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader)
+    {
+        if (InnerConverter == null)
+        {
+            throw new InvalidOperationException("The InnerConverter property is not set.");
+        }
+
+        InnerConverter.ToPhysical(context, writer, reader);
+    }
+
+    protected abstract void WriteToWriter(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader);
 
     public virtual void ToLogical(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {

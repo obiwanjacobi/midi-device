@@ -47,7 +47,29 @@ internal sealed class BitConverter : DataConverter
         }
     }
 
+    protected override void WriteToWriter(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader)
+    {
+        var range = GetRange(context);
+        if (!reader.ReadBits(range.Length, out var value))
+        {
+            throw new DeviceDataException(
+                $"Could not read from the accessor with bit-length of {range.Length}.");
+        }
+        writer.WriteBitRange(range, value);
+    }
+
     protected override void ReadFromReader(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
+    {
+        var range = GetRange(context);
+        var value = reader.ReadBitRange(range);
+        if (!writer.Write(value, range.Length))
+        {
+            throw new DeviceDataException(
+                $"Could not write to the accessor with bit-length of {range.Length}.");
+        }
+    }
+
+    private ValueRange GetRange(DeviceDataContext context)
     {
         var field = context.FieldInfo.CurrentField;
         var range = field.Properties.Range;
@@ -64,7 +86,6 @@ internal sealed class BitConverter : DataConverter
             range = Range;
         }
 
-        var value = reader.ReadBitRange(range);
-        writer.Write(value, range.Length);
+        return range;
     }
 }

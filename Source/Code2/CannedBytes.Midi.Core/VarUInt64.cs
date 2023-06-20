@@ -400,10 +400,10 @@ public readonly struct VarUInt64
         switch (typeCode)
         {
             case VarTypeCode.UInt8:
-                maxValue = byte.MaxValue;
+                maxValue = Byte.MaxValue;
                 break;
             case VarTypeCode.UInt16:
-                maxValue = ushort.MaxValue;
+                maxValue = UInt16.MaxValue;
                 break;
             case VarTypeCode.UInt24:
                 maxValue = 0xFFFFFF;
@@ -421,7 +421,7 @@ public readonly struct VarUInt64
                 maxValue = 0xFFFFFFFFFFFFFF;
                 break;
             case VarTypeCode.UInt64:
-                maxValue = ulong.MaxValue;
+                maxValue = UInt64.MaxValue;
                 break;
         }
 
@@ -448,6 +448,39 @@ public readonly struct VarUInt64
             throw new InvalidCastException(
                 $"The value '{_value}' can not be cast to type code '{typeCode}'. It is too big '{TypeCode}'.");
         }
+    }
+
+    /// <summary>
+    /// Returns a buffer filled with the value of this instance.
+    /// </summary>
+    /// <param name="buffer">Receives the buffer bytes.</param>
+    /// <returns>The number of bytes that are valid in the buffer.</returns>
+    public int ToBytes(out byte[] buffer)
+    {
+        switch (TypeCode)
+        {
+            case VarUInt64.VarTypeCode.UInt8:
+                buffer = BitConverter.GetBytes((byte)_value);
+                break;
+            case VarUInt64.VarTypeCode.UInt16:
+                buffer = BitConverter.GetBytes((ushort)_value);
+                break;
+            case VarUInt64.VarTypeCode.UInt24:
+            case VarUInt64.VarTypeCode.UInt32:
+                buffer = BitConverter.GetBytes((uint)_value);
+                break;
+            case VarUInt64.VarTypeCode.UInt40:
+            case VarUInt64.VarTypeCode.UInt48:
+            case VarUInt64.VarTypeCode.UInt56:
+            case VarUInt64.VarTypeCode.UInt64:
+                buffer = BitConverter.GetBytes(_value);
+                break;
+            default:
+                buffer = Array.Empty<byte>();
+                break;
+        }
+
+        return (int)TypeCode;
     }
 
     public static readonly VarUInt64 Zero = new();

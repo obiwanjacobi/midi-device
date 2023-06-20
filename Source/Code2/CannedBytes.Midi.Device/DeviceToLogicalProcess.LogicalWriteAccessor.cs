@@ -50,7 +50,8 @@ partial class DeviceToLogicalProcess
                 return DispatchValue<T>(value, bitLength);
             }
 
-            return false;
+            // no callback does not mean error
+            return true;
         }
 
         private bool DispatchValue<T>(T value, int bitLength)

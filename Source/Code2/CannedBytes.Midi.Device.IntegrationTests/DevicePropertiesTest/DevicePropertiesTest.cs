@@ -11,8 +11,18 @@ public class DevicePropertiesTest
     public const string Folder = "DevicePropertiesTest/";
     public const string SchemaFileName = "DevicePropertiesTestSchema.mds";
     public const string StreamFileName = "DevicePropertiesTestStream.bin";
-    
+
     private readonly ITestOutputHelper _output;
+
+    private static DeviceDataContext ToLogical(IMidiLogicalWriter writer, string name)
+    {
+        var serviceProvider = ServiceHelper.CreateServices();
+        var ctx = DeviceHelper.ToLogical(serviceProvider,
+            Path.Combine(Folder, SchemaFileName),
+            Path.Combine(Folder, StreamFileName), name, writer);
+
+        return ctx;
+    }
 
     public DevicePropertiesTest(ITestOutputHelper output)
         => _output = output;
@@ -21,11 +31,7 @@ public class DevicePropertiesTest
     public void ToLogical_SchemaWithProperties_LogicalPropertyValuesInContext()
     {
         DictionaryBasedLogicalStub writer = new();
-
-        var serviceProvider = ServiceHelper.CreateServices();
-        var ctx = DeviceHelper.ToLogical(serviceProvider,
-            Path.Combine(Folder, SchemaFileName),
-            Path.Combine(Folder, StreamFileName), "RQ1", writer);
+        var ctx = ToLogical(writer, "RQ1");
 
         ctx.DeviceProperties.Count.Should().Be(4);
         ctx.DeviceProperties.Find("ManufacturerId").GetValue<int>().Should().Be(65);

@@ -21,11 +21,11 @@ public class FieldValue<T>
             }
         }
 
-        // TODO:
-        //if (context.ForceLogicCall)
-        //{
-        //    Callback = true;
-        //}
+        if (context is LogicalDeviceDataContext logicalContext &&
+            logicalContext.ForceLogicCall)
+        {
+            Callback = true;
+        }
     }
 
     protected FieldValue(Field field)
