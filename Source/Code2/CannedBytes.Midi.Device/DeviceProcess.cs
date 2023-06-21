@@ -1,120 +1,119 @@
 ﻿using System;
 
-namespace CannedBytes.Midi.Device
+namespace CannedBytes.Midi.Device;
+
+public abstract class DeviceProcess<T> where T : DeviceDataContext
 {
-    public abstract class DeviceProcess<T> where T : DeviceDataContext
+    protected DeviceProcess(T context, SchemaNode rootNode)
     {
-        protected DeviceProcess(T context, SchemaNode rootNode)
+        Context = context;
+        RootNode = rootNode;
+    }
+
+    protected T Context { get; }
+
+    public SchemaNode RootNode { get; }
+
+    public SchemaNode CurrentNode
+    {
+        get { return Context.FieldInfo.CurrentNode; }
+        protected set { Context.FieldInfo.CurrentNode = value; }
+    }
+
+    protected void Execute(SchemaNode thisNode)
+    {
+        if (thisNode.IsRecord)
         {
-            Context = context;
-            RootNode = rootNode;
+            ProcessRecord(thisNode);
         }
-
-        protected T Context { get; }
-
-        public SchemaNode RootNode { get; }
-
-        public SchemaNode CurrentNode
+        else
         {
-            get { return Context.FieldInfo.CurrentNode; }
-            protected set { Context.FieldInfo.CurrentNode = value; }
+            ProcessField(thisNode);
         }
+    }
 
-        protected void Execute(SchemaNode thisNode)
+    private void ProcessRecord(SchemaNode thisNode)
+    {
+        using IDisposable scope = Context.LogManager.BeginNewEntry();
+        try
         {
-            if (thisNode.IsRecord)
-            {
-                ProcessRecord(thisNode);
-            }
-            else
-            {
-                ProcessField(thisNode);
-            }
+            OnBeforeRecord(thisNode);
+            OnRecord(thisNode);
+            OnAfterRecord(thisNode);
         }
-
-        private void ProcessRecord(SchemaNode thisNode)
+        catch (Exception e)
         {
-            using IDisposable scope = Context.LogManager.BeginNewEntry();
-            try
-            {
-                OnBeforeRecord(thisNode);
-                OnRecord(thisNode);
-                OnAfterRecord(thisNode);
-            }
-            catch (Exception e)
-            {
-                Context.LogManager.SetError(e);
+            Context.LogManager.SetError(e);
 
-                throw;
-            }
+            throw;
         }
+    }
 
-        private void ProcessField(SchemaNode thisNode)
+    private void ProcessField(SchemaNode thisNode)
+    {
+        using IDisposable scope = Context.LogManager.BeginNewEntry();
+        try
         {
-            using IDisposable scope = Context.LogManager.BeginNewEntry();
-            try
-            {
-                OnBeforeField(thisNode);
-                OnField(thisNode);
-                OnAfterField(thisNode);
-            }
-            catch (Exception e)
-            {
-                Context.LogManager.SetError(e);
-
-                throw;
-            }
+            OnBeforeField(thisNode);
+            OnField(thisNode);
+            OnAfterField(thisNode);
         }
-
-        protected virtual void OnBeforeRecord(SchemaNode thisNode)
+        catch (Exception e)
         {
-            CurrentNode = thisNode;
+            Context.LogManager.SetError(e);
 
-            var navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
-
-            navEvents?.OnBeforeRecord(Context);
+            throw;
         }
+    }
 
-        protected virtual void OnRecord(SchemaNode thisNode)
+    protected virtual void OnBeforeRecord(SchemaNode thisNode)
+    {
+        CurrentNode = thisNode;
+
+        var navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
+
+        navEvents?.OnBeforeRecord(Context);
+    }
+
+    protected virtual void OnRecord(SchemaNode thisNode)
+    {
+        var iterator = thisNode.FieldConverterPair.StreamConverter.GetChildNodeIterator(Context);
+
+        foreach (SchemaNode node in iterator)
         {
-            var iterator = thisNode.FieldConverterPair.StreamConverter.GetChildNodeIterator(Context);
-
-            foreach (SchemaNode node in iterator)
-            {
-                Execute(node);
-            }
+            Execute(node);
         }
+    }
 
-        protected virtual void OnAfterRecord(SchemaNode thisNode)
+    protected virtual void OnAfterRecord(SchemaNode thisNode)
+    {
+        var navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
+
+        navEvents?.OnAfterRecord(Context);
+    }
+
+    private void OnBeforeField(SchemaNode thisNode)
+    {
+        CurrentNode = thisNode;
+        var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
+
+        navEvents?.OnBeforeField(Context);
+    }
+
+    protected abstract void OnField(SchemaNode thisNode);
+
+    private void OnAfterField(SchemaNode thisNode)
+    {
+        var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
+
+        navEvents?.OnAfterField(Context);
+    }
+
+    protected void LogCarryCleared()
+    {
+        if (Context.LogManager.CurrentEntry != null)
         {
-            var navEvents = thisNode.FieldConverterPair.StreamConverter as INavigationEvents;
-
-            navEvents?.OnAfterRecord(Context);
-        }
-
-        private void OnBeforeField(SchemaNode thisNode)
-        {
-            CurrentNode = thisNode;
-            var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
-
-            navEvents?.OnBeforeField(Context);
-        }
-
-        protected abstract void OnField(SchemaNode thisNode);
-
-        private void OnAfterField(SchemaNode thisNode)
-        {
-            var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
-
-            navEvents?.OnAfterField(Context);
-        }
-
-        protected void LogCarryCleared()
-        {
-            if (Context.LogManager.CurrentEntry != null)
-            {
-                Context.LogManager.CurrentEntry.CarryCleared = true;
-            }
+            Context.LogManager.CurrentEntry.CarryCleared = true;
         }
     }
 }
