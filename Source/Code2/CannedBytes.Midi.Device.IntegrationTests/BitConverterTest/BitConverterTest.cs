@@ -12,21 +12,38 @@ public class BitConverterTest
     public const string TestSchemaFileName = "BitConverterTestSchema.mds";
     public const string TestStreamFileName = "BitConverterTestStream.bin";
     public const string TestNamespace = "urn:CarryTestSchema";
+    public const string FieldNamespace = TestNamespace + ":";
 
     private readonly ITestOutputHelper _output;
 
     public BitConverterTest(ITestOutputHelper output)
         => _output = output;
 
+    private DeviceDataContext ToLogical(string virtualRootNode, IMidiLogicalWriter writer)
+    {
+        var serviceProvider = ServiceHelper.CreateServices();
+        var ctx = DeviceHelper.ToLogical(serviceProvider,
+            Path.Combine(Folder, TestSchemaFileName),
+            Path.Combine(Folder, TestStreamFileName), virtualRootNode, writer);
+
+        return ctx;
+    }
+
+    private DeviceDataContext ToPhysical(string virtualRootNode, IMidiLogicalReader reader)
+    {
+        var serviceProvider = ServiceHelper.CreateServices();
+        var ctx = DeviceHelper.ToPhysical(serviceProvider,
+            Path.Combine(Folder, TestSchemaFileName), virtualRootNode, reader);
+
+        return ctx;
+    }
+
     [Fact]
     public void Read_SchemaWithCarry_ByteAndWordValues()
     {
         DictionaryBasedLogicalStub writer = new();
 
-        var serviceProvider = ServiceHelper.CreateServices();
-        var ctx = DeviceHelper.ToLogical(serviceProvider,
-            Path.Combine(Folder, TestSchemaFileName),
-            Path.Combine(Folder, TestStreamFileName), "RangeDataTypeTest", writer);
+        var ctx = ToLogical("RangeDataTypeTest", writer);
 
         ctx.Should().NotBeNull();
         _output.WriteLine(ctx.LogManager.ToString());
@@ -39,10 +56,7 @@ public class BitConverterTest
     {
         DictionaryBasedLogicalStub writer = new();
 
-        var serviceProvider = ServiceHelper.CreateServices();
-        var ctx = DeviceHelper.ToLogical(serviceProvider,
-            Path.Combine(Folder, TestSchemaFileName),
-            Path.Combine(Folder, TestStreamFileName), "RangeFieldTest", writer);
+        var ctx = ToLogical("RangeFieldTest", writer);
         
         ctx.Should().NotBeNull();
         _output.WriteLine(ctx.LogManager.ToString());
@@ -103,48 +117,48 @@ public class BitConverterTest
         writer[8].Field.Name.Name.Should().Be("secondHi");
     }
 
-    /*
     [Fact]
     public void Write_SchemaWithCarry_ByteAndWordValues()
     {
         var reader = new DictionaryBasedLogicalStub();
-        reader.AddValue(FieldNamespace + "loByte", 0, 0x21);
-        reader.AddValue(FieldNamespace + "hiByte", 0, 0x0F);
 
-        reader.AddValue(FieldNamespace + "loPart", 0, 0x0C);
-        reader.AddValue(FieldNamespace + "midPart", 0, 0x0D);
-        reader.AddValue(FieldNamespace + "hiPart", 0, 0x06);
+        reader.AddStub(FieldNamespace + "loByte", 0x71);
+        reader.AddStub(FieldNamespace + "hiByte", 0x03);
 
-        reader.AddValue(FieldNamespace + "firstLo", 0, 0x74);
-        reader.AddValue(FieldNamespace + "secondLo", 0, 0x03);
+        reader.AddStub(FieldNamespace + "loPart", 0x0C);
+        reader.AddStub(FieldNamespace + "midPart", 0b01101);
+        reader.AddStub(FieldNamespace + "hiPart", 0x00);
 
-        reader.AddValue(FieldNamespace + "firstHi", 0, 0x0E);
-        reader.AddValue(FieldNamespace + "secondHi", 0, 0x01);
+        reader.AddStub(FieldNamespace + "firstLo", 0x04);
+        reader.AddStub(FieldNamespace + "secondLo", 0x03);
 
-        var ctx = DeviceHelper.WritePhysical(TestSchemaFileName, "carryTest", reader);
-        var stream = ctx.PhysicalStream;
+        reader.AddStub(FieldNamespace + "firstHi", 0x06);
+        reader.AddStub(FieldNamespace + "secondHi", 0x07);
+
+        var ctx = ToPhysical("RangeDataTypeTest", reader);
+        var stream = ctx.StreamManager.CurrentStream;
         stream.Position = 0;
 
-        // 21-F0-4C-63-74-03-E0-00-10
+        Assert.Equal(9 + 2, stream.Length);
+        Assert.Equal(0xF0, stream.ReadByte());
 
-        Assert.AreEqual(9 + 2, stream.Length);
-        Assert.AreEqual(0xF0, stream.ReadByte());
+        Assert.Equal(0x71, stream.ReadByte());
+        Assert.Equal(0x30, stream.ReadByte());
 
-        Assert.AreEqual(0x21, stream.ReadByte());
-        Assert.AreEqual(0xF0, stream.ReadByte());
+        // 000(0_1100) 000(0_1101) 0000_0000
+        // (011|01)0(0_1100)
+        Assert.Equal(0x4C, stream.ReadByte());
+        Assert.Equal(0x03, stream.ReadByte());
 
-        Assert.AreEqual(0x4C, stream.ReadByte());
-        Assert.AreEqual(0x63, stream.ReadByte());
+        Assert.Equal(0x04, stream.ReadByte());
+        Assert.Equal(0x03, stream.ReadByte());
 
-        Assert.AreEqual(0x74, stream.ReadByte());
-        Assert.AreEqual(0x03, stream.ReadByte());
+        // 0000_(0110) => 0110_0000
+        Assert.Equal(0x60, stream.ReadByte());
 
-        Assert.AreEqual(0xE0, stream.ReadByte());
+        Assert.Equal(0x00, stream.ReadByte());
+        Assert.Equal(0x70, stream.ReadByte());
 
-        Assert.AreEqual(0x00, stream.ReadByte());
-        Assert.AreEqual(0x10, stream.ReadByte());
-
-        Assert.AreEqual(0xF7, stream.ReadByte());
+        Assert.Equal(0xF7, stream.ReadByte());
     }
-    */
 }
