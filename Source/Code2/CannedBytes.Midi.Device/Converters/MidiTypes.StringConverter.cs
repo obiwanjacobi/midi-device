@@ -18,8 +18,8 @@ internal sealed class StringConverter : DataConverter
         : base(dataType)
     {
         Constraint constraint = DataType.FindConstraint(ConstraintTypes.FixedLength)
-            ?? throw new ArgumentException(
-                $"The StringConverter could not find the mandatory FixedLengthConstraint on {DataType.Name.FullName}.", nameof(dataType));
+            ?? throw new DeviceSchemaException(
+                $"The StringConverter could not find the mandatory FixedLengthConstraint on {DataType.Name.FullName}.");
 
         ByteLength = constraint.GetValue<int>();
     }

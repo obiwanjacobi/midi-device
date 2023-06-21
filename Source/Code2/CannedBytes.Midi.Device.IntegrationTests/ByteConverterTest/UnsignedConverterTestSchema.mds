@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="urn:UnsignedConverterTestSchema"
+    xmlns="urn:UnsignedConverterTestSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:m="urn:midi-device-schema:midi-types:v1.0"
+    xmlns:mds="urn:midi-device-schema:v1.0"
+>
+    <mds:import schema="urn:midi-device-schema:midi-types:v1.0" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+    <mds:recordType name="UnsignedRecord">
+        <mds:extension base="m:midiSysEx">
+            <mds:sequence>
+                <mds:field name="unsigned8" type="m:midiUnsigned8" />
+                <mds:field name="unsigned24" type="m:midiUnsigned24" />
+                <mds:field name="unsigned40" type="m:midiUnsigned40" />
+            </mds:sequence>
+        </mds:extension>
+    </mds:recordType>
+
+</mds:deviceSchema>

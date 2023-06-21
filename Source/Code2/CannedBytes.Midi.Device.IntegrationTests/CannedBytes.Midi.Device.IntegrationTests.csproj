@@ -34,6 +34,12 @@
 		<None Update="BitConverterTest\BitConverterTestStream.bin">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Update="ByteConverterTest\UnsignedConverterTestSchema.mds">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="ByteConverterTest\UnsignedConverterTestStream.bin">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="ChecksumTest\ChecksumTestSchema.mds">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

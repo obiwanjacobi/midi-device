@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Converters;

@@ -14,14 +14,12 @@ partial class ConverterManager
 
         if (!TryLookupFieldConverterPair(field, out var pair))
         {
-            var converter = GetConverter(field);
+            var converter = GetConverter(field)
+                ?? throw new DeviceSchemaException(
+                    $"No DataConverter could be created for field '{field.Name.FullName}' with dataType '{field.DataType.Name.FullName}'.");
 
-            if (converter != null)
-            {
-                pair = new FieldConverterPair(field, converter);
-
-                _fieldConverterPairs.Add(BuildFieldTypeKey(field), pair);
-            }
+            pair = new FieldConverterPair(field, converter);
+            _fieldConverterPairs.Add(BuildFieldTypeKey(field), pair);
         }
 
         return pair;

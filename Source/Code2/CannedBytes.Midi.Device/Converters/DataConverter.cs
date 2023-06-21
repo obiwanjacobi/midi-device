@@ -12,7 +12,7 @@ namespace CannedBytes.Midi.Device.Converters;
 /// converter with the necessary meta (and context) information.
 /// The <see cref="ConverterFacory"/> determines what converter is created for which <see cref="DataType"/>.
 /// </remarks>
-public abstract partial class DataConverter : IConverter
+public abstract class DataConverter : IConverter
 {
     /// <summary>
     /// A constructor for derived classes.
@@ -44,10 +44,7 @@ public abstract partial class DataConverter : IConverter
     }
 
     /// <inheritdoc/>
-    public virtual int ByteLength
-    {
-        get { return 1; }
-    }
+    public abstract int ByteLength { get; }
 
     // decorator pattern
     /// <summary>

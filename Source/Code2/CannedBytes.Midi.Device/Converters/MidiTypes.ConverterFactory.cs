@@ -97,9 +97,9 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
             //case "midiChecksum":
             //    converter = new ChecksumConverter(constructType);
             //    break;
-            //case "midiUnsigned":
-            //    converter = new UnsignedConverter(constructType);
-            //    break;
+            case "midiUnsigned":
+                converter = new UnsignedConverter(constructType);
+                break;
             //case "midiSigned":
             //    converter = new SignedConverter(constructType);
             //    break;
