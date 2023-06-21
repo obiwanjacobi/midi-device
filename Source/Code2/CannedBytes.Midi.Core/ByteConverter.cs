@@ -79,13 +79,13 @@ public static class ByteConverter
         return value;
     }
 
-    public static long FromBytesToInt64(byte[] bytes, BitOrder ordering)
+    public static long FromBytesToInt64(byte[] bytes, int byteLength, BitOrder ordering)
     {
         long value = 0;
 
         if (ordering == BitOrder.LittleEndian)
         {
-            for (int i = 0; i < Math.Min(bytes.Length, 8); i++)
+            for (int i = 0; i < byteLength; i++)
             {
                 value |= ((long)bytes[i]) << (i * 8);
             }
@@ -93,7 +93,7 @@ public static class ByteConverter
         else
         {
             int s = 0;
-            for (int i = Math.Min(bytes.Length, 8) - 1; i >= 0; i--)
+            for (int i = byteLength - 1; i >= 0; i--)
             {
                 value |= ((long)bytes[i]) << (s * 8);
                 s++;
@@ -105,7 +105,7 @@ public static class ByteConverter
 
     private const ulong LowByteMask = 0xFF;
 
-    public static byte[] FromUInt64ToBytes(ulong value, BitOrder ordering)
+    public static byte[] FromUInt64ToBytes(ulong value, int byteLength, BitOrder byteOrder)
     {
         var bytes = new byte[8];
 
@@ -118,17 +118,18 @@ public static class ByteConverter
         bytes[6] = (byte)((value >> 48) & LowByteMask);
         bytes[7] = (byte)((value >> 56) & LowByteMask);
 
-        if (ordering == BitOrder.BigEndian)
+        if (byteOrder == BitOrder.BigEndian)
         {
-            Array.Reverse(bytes);
+            Array.Reverse(bytes, 0, byteLength);
         }
 
         return bytes;
     }
 
-    //public static byte[] TrimEnd(byte[] bytes)
-    //{
-    //    // TODO: trim empty slots
-    //    return bytes;
-    //}
+    public static int FromVarUInt64ToBytes(VarUInt64 value, BitOrder ordering, out byte[] buffer)
+    {
+        var length = (int)value.TypeCode;
+        buffer = FromUInt64ToBytes(value, length, ordering);
+        return length;
+    }
 }

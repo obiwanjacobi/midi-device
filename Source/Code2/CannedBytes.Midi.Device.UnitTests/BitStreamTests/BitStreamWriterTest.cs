@@ -3,7 +3,7 @@ using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace CannedBytes.Midi.Device.DeviceTests.CarryTest;
+namespace CannedBytes.Midi.Device.UnitTests.BitStreamTests;
 
 public class BitStreamWriterTest
 {

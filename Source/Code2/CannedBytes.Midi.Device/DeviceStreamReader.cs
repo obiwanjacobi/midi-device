@@ -6,10 +6,13 @@ using CannedBytes.Midi.Core;
 namespace CannedBytes.Midi.Device;
 
 /// <summary>
-/// A StreamReader that transparently reads midi bits/bytes using the <see cref="Carry"/>.
+/// A StreamReader that transparently reads midi bits/bytes using the <see cref="BitStreamReader"/>.
 /// </summary>
 public sealed class DeviceStreamReader
 {
+    private const int MaxBufferSize = 8;
+    private readonly byte[] _buffer = new byte[MaxBufferSize];
+
     private readonly BitStreamReader _bitReader;
 
     /// <summary>
@@ -46,10 +49,9 @@ public sealed class DeviceStreamReader
     /// Reads a maximum of 8 bytes from the stream.
     /// </summary>
     /// <param name="byteLength">The number of bytes to read.</param>
-    /// <param name="byteOrder">To override the byte-order that is used to build the value.
-    /// If not specified the system byte-order is used.</param>
+    /// <param name="byteOrder">To override the byte-order that is used to build the value.</param>
     /// <returns>Returns the value represented by the bytes read.</returns>
-    public VarUInt64 Read(int byteLength, BitOrder? byteOrder = null)
+    public VarUInt64 Read(int byteLength, BitOrder byteOrder = BitOrder.LittleEndian)
     {
         Assert.IfArgumentOutOfRange(byteLength,
             (int)VarUInt64.VarTypeCode.UInt8, (int)VarUInt64.VarTypeCode.UInt64, nameof(byteLength));
@@ -60,10 +62,6 @@ public sealed class DeviceStreamReader
 
         return new VarUInt64(value);
     }
-
-    // LE/BE implementation
-    private const int MaxBufferSize = 8;
-    private readonly byte[] _buffer = new byte[MaxBufferSize];
 
     /// <summary>
     /// Reads the <paramref name="numOfBytes"/> from the stream.
@@ -89,143 +87,89 @@ public sealed class DeviceStreamReader
     /// <typeparam name="T">The data type to return.</typeparam>
     /// <param name="length">The length of the number of bytes in the buffer. 
     /// Buffer size is fixed and not an indication for target <typeparamref name="T"/>.</param>
-    /// <param name="byteOrder">To override the byte-order that is used to build the value.
-    /// If not specified the system byte-order is used.</param>
+    /// <param name="byteOrder">To override the byte-order that is used to build the value.</param>
     /// <returns>Returns the integer value.</returns>
-    private T BufferToValue<T>(int length, BitOrder? byteOrder = null)
+    private T BufferToValue<T>(int length, BitOrder byteOrder)
         where T : struct, IConvertible, IComparable
     {
-        var type = typeof(T);
-        int shift = 0;
-        ulong value = 0;
-
-        var order = byteOrder ?? ByteConverter.SystemByteOrder;
-        if (order == BitOrder.LittleEndian)
-        {
-            for (int i = 0; i < length; i++)
-            {
-                // Little Endian
-                var data = (ulong)_buffer[i] << shift;
-
-                value |= data;
-
-                shift += 8;
-            }
-        }
-        else
-        {
-            shift = (length - 1) * 8;
-
-            for (int i = 0; i < length; i++)
-            {
-                // Big Endian
-                var data = (ulong)_buffer[i] << shift;
-
-                value |= data;
-
-                shift -= 8;
-            }
-        }
-
-        return (T)Convert.ChangeType(value, type);
+        var value = (ulong)ByteConverter.FromBytesToInt64(_buffer, length, byteOrder);
+        return (T)Convert.ChangeType(value, typeof(T));
     }
 
     public byte ReadInt8()
     {
         const int size = 1;
-
         ReadIntoBuffer(size);
-
-        return BufferToValue<byte>(size);
+        return BufferToValue<byte>(size, BitOrder.LittleEndian);
     }
 
-    public short ReadInt16(BitOrder? byteOrder = null)
+    public short ReadInt16(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 2;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<short>(size, byteOrder);
     }
 
-    public int ReadInt32(BitOrder? byteOrder = null)
+    public int ReadInt32(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 4;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<int>(size, byteOrder);
     }
 
-    public long ReadInt64(BitOrder? byteOrder = null)
+    public long ReadInt64(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 8;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<long>(size, byteOrder);
     }
 
-    public ushort ReadUInt16(BitOrder? byteOrder = null)
+    public ushort ReadUInt16(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 2;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<ushort>(size, byteOrder);
     }
 
-    public uint ReadUInt24(BitOrder? byteOrder = null)
+    public uint ReadUInt24(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 3;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<uint>(size, byteOrder);
     }
 
-    public uint ReadUInt32(BitOrder? byteOrder = null)
+    public uint ReadUInt32(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 4;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<uint>(size, byteOrder);
     }
 
-    public ulong ReadUInt40(BitOrder? byteOrder = null)
+    public ulong ReadUInt40(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 5;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt48(BitOrder? byteOrder = null)
+    public ulong ReadUInt48(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 6;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt56(BitOrder? byteOrder = null)
+    public ulong ReadUInt56(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 7;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<ulong>(size, byteOrder);
     }
 
-    public ulong ReadUInt64(BitOrder? byteOrder = null)
+    public ulong ReadUInt64(BitOrder byteOrder = BitOrder.LittleEndian)
     {
         const int size = 8;
-
         ReadIntoBuffer(size);
-
         return BufferToValue<ulong>(size, byteOrder);
     }
 

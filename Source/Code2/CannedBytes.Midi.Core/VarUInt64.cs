@@ -450,39 +450,6 @@ public readonly struct VarUInt64
         }
     }
 
-    /// <summary>
-    /// Returns a buffer filled with the value of this instance.
-    /// </summary>
-    /// <param name="buffer">Receives the buffer bytes.</param>
-    /// <returns>The number of bytes that are valid in the buffer.</returns>
-    public int ToBytes(out byte[] buffer)
-    {
-        switch (TypeCode)
-        {
-            case VarUInt64.VarTypeCode.UInt8:
-                buffer = BitConverter.GetBytes((byte)_value);
-                break;
-            case VarUInt64.VarTypeCode.UInt16:
-                buffer = BitConverter.GetBytes((ushort)_value);
-                break;
-            case VarUInt64.VarTypeCode.UInt24:
-            case VarUInt64.VarTypeCode.UInt32:
-                buffer = BitConverter.GetBytes((uint)_value);
-                break;
-            case VarUInt64.VarTypeCode.UInt40:
-            case VarUInt64.VarTypeCode.UInt48:
-            case VarUInt64.VarTypeCode.UInt56:
-            case VarUInt64.VarTypeCode.UInt64:
-                buffer = BitConverter.GetBytes(_value);
-                break;
-            default:
-                buffer = Array.Empty<byte>();
-                break;
-        }
-
-        return (int)TypeCode;
-    }
-
     public static readonly VarUInt64 Zero = new();
 
     /// <summary>

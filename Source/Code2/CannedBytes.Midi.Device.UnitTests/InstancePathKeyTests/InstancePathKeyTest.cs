@@ -3,7 +3,6 @@ using Xunit;
 
 namespace CannedBytes.Midi.Device.UnitTests.InstancePathKeyTests;
 
-
 public class InstancePathKeyTest
 {
     [Fact]

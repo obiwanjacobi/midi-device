@@ -23,12 +23,12 @@ public class ByteConverterTests
     public void FromUint64ToBytes_ValueBE_RoundtripSameValue()
     {
         const ulong value = (ulong)0x7040201008040201;
-        byte[] bytes = ByteConverter.FromUInt64ToBytes(value, BitOrder.BigEndian);
+        byte[] bytes = ByteConverter.FromUInt64ToBytes(value, 8, BitOrder.BigEndian);
 
         bytes.Should().NotBeNull();
         bytes.Should().HaveCount(8);
 
-        long result = ByteConverter.FromBytesToInt64(bytes, BitOrder.BigEndian);
+        long result = ByteConverter.FromBytesToInt64(bytes, 8, BitOrder.BigEndian);
 
         result.Should().Be((long)value);
     }
@@ -51,12 +51,12 @@ public class ByteConverterTests
     public void FromUint64ToBytes_ValueLE_RoundtripSameValue()
     {
         const ulong value = (ulong)0x7040201008040201;
-        byte[] bytes = ByteConverter.FromUInt64ToBytes(value, BitOrder.LittleEndian);
+        byte[] bytes = ByteConverter.FromUInt64ToBytes(value, 8, BitOrder.LittleEndian);
 
         bytes.Should().NotBeNull();
         bytes.Should().HaveCount(8);
 
-        long result = ByteConverter.FromBytesToInt64(bytes, BitOrder.LittleEndian);
+        long result = ByteConverter.FromBytesToInt64(bytes, 8, BitOrder.LittleEndian);
 
         result.Should().Be((long)value);
     }

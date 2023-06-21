@@ -75,7 +75,9 @@ namespace CannedBytes.Midi.Core
                     return false;
                 }
 
-                results = ByteConverter.FromUInt64ToBytes((ulong)parsed, BitOrder.BigEndian);
+                var len = 8; //??
+                results = ByteConverter.FromUInt64ToBytes(
+                    (ulong)parsed, len, BitOrder.BigEndian);
             }
 
             if (ordering == BitOrder.LittleEndian)
