@@ -26,15 +26,16 @@ internal sealed partial class SysExStreamConverter : StreamConverter, INavigatio
     public override void OnBeforeRecord(DeviceDataContext context)
     {
         Assert.IfArgumentNull(context, nameof(context));
+        
+        var sysExStream = new SysExStream(context.StreamManager.CurrentStream);
 
         // Start of SysEx
-        var sysExStream = new SysExStream(context.StreamManager.CurrentStream);
-        context.StreamManager.SetCurrentStream(this, sysExStream);
-
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {
             sysExStream.WriteStartMarker();
         }
+
+        context.StreamManager.SetCurrentStream(this, sysExStream);
     }
 
     /// <summary>
@@ -46,13 +47,12 @@ internal sealed partial class SysExStreamConverter : StreamConverter, INavigatio
         Assert.IfArgumentNull(context, nameof(context));
 
         // End of SysEx
-        var sysExStream = context.StreamManager.CurrentStream as SysExStream
-            ?? throw new DeviceDataException(
-                "The SysExStreamConverter.INavigationEvents.OnAfterRecord method could not find its stream (Type) on the DeviceDataContext.StreamManager.CurrentStream property.");
-
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {
+            var sysExStream = context.StreamManager.CurrentStreamAs<SysExStream>();
             sysExStream.WriteEndMarker();
         }
+
+        context.StreamManager.RemoveCurrentStream(this);
     }
 }

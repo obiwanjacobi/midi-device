@@ -20,11 +20,6 @@ public sealed partial class StreamManager
         PhysicalStream = physicalStream;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="owner"></param>
-    /// <param name="stream">Wraps <see cref="CurrentStream"/>.</param>
     public void SetCurrentStream(StreamConverter owner, Stream stream)
     {
         Assert.IfArgumentNull(owner, nameof(owner));
@@ -44,6 +39,8 @@ public sealed partial class StreamManager
 
     public Stream RemoveCurrentStream(StreamConverter owner)
     {
+        ThrowIfCurrentStreamNotOwned(owner);
+
         Stream stream = null;
 
         if (_streams.Count > 0 &&
@@ -53,13 +50,36 @@ public sealed partial class StreamManager
             stream = streamOwner.Stream;
         }
 
-        if (_streams.Count == 0)
-        {
-            stream = RootStream;
-            RootStream = null;
-        }
-
         return stream;
+    }
+
+    public bool CurrentStreamIsOwnedBy(StreamConverter owner)
+    {
+        if (_streams.Count > 0)
+        {
+            var actual = _streams.Peek().Owner;
+            return actual == owner;
+        }
+        return false;
+    }
+
+    internal void ThrowIfCurrentStreamNotOwned(StreamConverter owner)
+    {
+        if (_streams.Count > 0)
+        {
+            var actual = _streams.Peek().Owner;
+            if (actual != owner)
+                throw new DeviceException(
+                    $"The current Stream is not owned by {owner.GetType().Name} but by {actual.GetType().Name}.");
+        }
+        else
+            throw new DeviceException(
+                $"The current Stream is not owned by {owner.GetType().Name} but by the system.");
+    }
+
+    public T CurrentStreamAs<T>() where T : Stream
+    {
+        return CurrentStream as T;
     }
 
     /// <summary>
