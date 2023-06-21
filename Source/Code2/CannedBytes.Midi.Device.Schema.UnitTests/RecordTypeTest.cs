@@ -17,7 +17,7 @@ public class RecordTypeTest
     {
         RecordType target = new(TestSchema, Constants.SchemaTypeName);
 
-        SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.TypeName);
+        SchemaObjectHelper.AssertName(target, Constants.SchemaName, Constants.TypeName);
     }
 
     [Fact]

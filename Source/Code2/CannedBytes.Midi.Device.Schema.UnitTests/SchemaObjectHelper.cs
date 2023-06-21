@@ -1,9 +1,8 @@
-using Xunit;
 using FluentAssertions;
 
 namespace CannedBytes.Midi.Device.Schema.UnitTests;
 
-public class SchemaObjectTest
+public static class SchemaObjectHelper
 {
     public static void AssertName(SchemaObject schemaObject, string schemaName, string objName)
     {

@@ -16,6 +16,6 @@ public class FieldTest
     {
         Field target = new(TestSchema, Constants.SchemaFieldName);
 
-        SchemaObjectTest.AssertName(target, Constants.SchemaName, Constants.FieldName);
+        SchemaObjectHelper.AssertName(target, Constants.SchemaName, Constants.FieldName);
     }
 }
