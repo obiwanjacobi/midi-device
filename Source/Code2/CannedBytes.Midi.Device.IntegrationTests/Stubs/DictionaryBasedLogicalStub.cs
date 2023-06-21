@@ -5,7 +5,8 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device.IntegrationTests.Stubs;
 
-public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBasedLogicalStub.FieldInfo>, IMidiLogicalWriter, IMidiLogicalReader
+public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBasedLogicalStub.FieldInfo>,
+    IMidiLogicalWriter, IMidiLogicalReader
 {
     protected override string GetKeyForItem(FieldInfo item)
     {
@@ -23,23 +24,32 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
 
     public FieldInfo Add(ILogicalFieldInfo logicFieldInfo, object value)
     {
-        FieldInfo fldInfo = new()
+        var fldInfo = new FieldInfo()
         {
-            InstanceIndex = logicFieldInfo.Key.Values.Last()
+            InstanceIndex = logicFieldInfo.Key.Values.Last(),
+            Key = BuildKey(logicFieldInfo),
+            Field = logicFieldInfo.Field,
+            LogicalFieldInfo = logicFieldInfo,
+            Value = value
         };
-        fldInfo.Key = BuildKey(logicFieldInfo);
-        fldInfo.Field = logicFieldInfo.Field;
-        fldInfo.LogicalFieldInfo = logicFieldInfo;
-        fldInfo.Value = value;
 
         Add(fldInfo);
 
         return fldInfo;
     }
 
-    public static string BuildKey(ILogicalFieldInfo fieldInfo)
+    public FieldInfo AddStub(string fullFieldName, object value)
     {
-        return $"{fieldInfo.Field.Name.FullName}[{fieldInfo.Key}]";
+        var fldInfo = new FieldInfo()
+        {
+            InstanceIndex = 0,
+            Key = BuildKey(fullFieldName, "0"),
+            Value = value
+        };
+
+        Add(fldInfo);
+
+        return fldInfo;
     }
 
     public bool WriteBool(LogicalContext context, bool data)
@@ -112,6 +122,16 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
     {
         value = GetValue<string>(context.FieldInfo);
         return true;
+    }
+
+    private static string BuildKey(ILogicalFieldInfo fieldInfo)
+    {
+        return $"{fieldInfo.Field.Name.FullName}[{fieldInfo.Key}]";
+    }
+
+    private static string BuildKey(string fullFieldName, string instanceKey)
+    {
+        return $"{fullFieldName}[{instanceKey}]";
     }
 
     //-------------------------------------------------------------------------

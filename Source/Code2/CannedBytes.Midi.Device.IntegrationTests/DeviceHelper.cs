@@ -22,4 +22,21 @@ internal static class DeviceHelper
 
         return dataCtx;
     }
+
+    public static DeviceDataContext ToPhysical(
+        IServiceProvider serviceProvider,
+        string schemaLocation,
+        string virtualRootName,
+        IMidiLogicalReader reader)
+    {
+        var deviceProvider = DeviceProvider.Create(serviceProvider, schemaLocation);
+        var binMap = deviceProvider.GetBinaryConverterMapFor(virtualRootName);
+
+        var process = new DeviceToPhysicalProcess();
+
+        var stream = new MemoryStream();
+        var dataCtx = process.Execute(binMap.RootNode, stream, reader);
+
+        return dataCtx;
+    }
 }

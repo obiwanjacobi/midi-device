@@ -52,10 +52,6 @@ partial class SysExStreamConverter
             {
                 SetSubLength(endPos - startPos);
             }
-            else if (Length == rePos && CanWrite)
-            {
-                WriteStartMarker();
-            }
         }
 
         public void WriteStartMarker()

@@ -28,14 +28,13 @@ internal sealed partial class SysExStreamConverter : StreamConverter, INavigatio
         Assert.IfArgumentNull(context, nameof(context));
 
         // Start of SysEx
-         var sysExStream = new SysExStream(context.StreamManager.CurrentStream);
+        var sysExStream = new SysExStream(context.StreamManager.CurrentStream);
+        context.StreamManager.SetCurrentStream(this, sysExStream);
 
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {
             sysExStream.WriteStartMarker();
         }
-
-        context.StreamManager.SetCurrentStream(this, sysExStream);
     }
 
     /// <summary>

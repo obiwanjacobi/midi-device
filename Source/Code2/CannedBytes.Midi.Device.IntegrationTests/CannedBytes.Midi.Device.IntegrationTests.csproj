@@ -46,6 +46,12 @@
 		<None Update="DevicePropertiesTest\DevicePropertiesTestStream.bin">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Update="StringConverterTest\StringConverterTestSchema.mds">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="StringConverterTest\StringConverterTestStream.bin">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="xunit.runner.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
