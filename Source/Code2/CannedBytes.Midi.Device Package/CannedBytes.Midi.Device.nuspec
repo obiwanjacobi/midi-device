@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>CannedBytes.Midi.Device</id>
+    <title>CannedBytes Midi Device</title>
+    <version>1.0.0</version>
+    <authors>Marc Jacobi</authors>
+    <owners>CannedBytes / Jacobi Software</owners>
+    <license type="expression">LGPL-2.1-only</license>
+    <projectUrl>https://github.com/obiwanjacobi/midi-device</projectUrl>
+    <repository type="git" url="https://github.com/obiwanjacobi/midi-device" />
+    <!--<icon></icon>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Midi Device Schema and SysEx converter mechanism.</description>
+    <releaseNotes>
+    </releaseNotes>
+    <copyright>Copyright © 2023 CannedBytes / Jacobi Software</copyright>
+    <tags>MIDI SysEx</tags>
+    <dependencies>
+      <group targetFramework="net7.0">
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="7.0.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\CannedBytes.Midi.Core\bin\Release\net7.0\CannedBytes.Midi.Core.dll" target="lib\net7.0"></file>
+    <file src="..\CannedBytes.Midi.Device\bin\Release\net7.0\CannedBytes.Midi.Device.dll" target="lib\net7.0"></file>
+    <file src="..\CannedBytes.Midi.Device.Schema\bin\Release\net7.0\CannedBytes.Midi.Device.Schema.dll" target="lib\net7.0"></file>
+    <file src="..\CannedBytes.Midi.Device.Roland\bin\Release\net7.0\CannedBytes.Midi.Device.Roland.dll" target="lib\net7.0"></file>
+    <file src="..\CannedBytes.Tools.DgmlBuilder\bin\Release\net7.0\CannedBytes.Tools.DgmlBuilder.dll" target="lib\net7.0"></file>
+  </files>
+</package>
