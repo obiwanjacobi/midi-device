@@ -23,7 +23,7 @@ public class AddressMapManagerTest
     private static AddressMapManager CreateAddressMapManager()
     {
         var path = Path.Combine(Folder, AddressMapManagerTestSchema);
-        var schema = DeviceSchemaHelper.LoadSchema(path);
+        var schema = DeviceSchemaHelper.LoadSchemaFile(path);
         var mgr = CreateAddressMapManager(schema);
         return mgr;
     }

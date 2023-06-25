@@ -8,7 +8,7 @@ namespace CannedBytes.Midi.Device.UnitTests.ConvertersTests;
 
 public class MidiTypesConverterFactoryTest
 {
-    private static readonly DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+    private static readonly DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
     private static readonly MidiTypesConverterFactory ConverterFactory = new();
 
     private static void TestFactoryDataType(string dataTypeName, System.Type converterType)

@@ -26,16 +26,11 @@ internal class OpenDeviceSchemaCommand : Command
     {
         if (parameter is string name)
         {
-            var schema = _schemaProvider.Open(name);
-            if (schema is not null)
-            {
-                _schemas.Add(schema);
-            }
+            //var schema = _schemaProvider.Open(name);
+            //if (schema is not null)
+            //{
+            //    _schemas.Add(schema);
+            //}
         }
-    }
-
-    public void LoadMidiTypes()
-    {
-        var schema = _schemaProvider.Open(MidiTypes.MidiTypesSchemaName);
     }
 }

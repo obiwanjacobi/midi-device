@@ -13,7 +13,7 @@ public class FieldIteratorTest
     private static DeviceSchema LoadTestSchema()
     {
         string path = Path.Combine(Folder, HierarchicalSchema);
-        return DeviceSchemaHelper.LoadSchema(path);
+        return DeviceSchemaHelper.LoadSchemaFile(path);
     }
 
     [Fact]

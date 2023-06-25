@@ -26,7 +26,7 @@ public class SchemaNodeMapTest
     private static SchemaNodeMap CreateSchemaNodeMap(string name)
     {
         string path = Path.Combine(Folder, name);
-        var schema = DeviceSchemaHelper.LoadSchema(path);
+        var schema = DeviceSchemaHelper.LoadSchemaFile(path);
         return CreateSchemaNodeMap(schema);
     }
 

@@ -53,12 +53,12 @@ public sealed class DeviceProvider
         return map;
     }
 
-    public static DeviceProvider Create(IServiceProvider serviceProvider, string schemaLocation)
+    public static DeviceProvider Create(IServiceProvider serviceProvider, SchemaName schemaName)
     {
         DeviceProvider deviceProvider = new();
 
         IDeviceSchemaProvider schemaProvider = serviceProvider.GetRequiredService<IDeviceSchemaProvider>();
-        deviceProvider.Schema = schemaProvider.Load(schemaLocation);
+        deviceProvider.Schema = schemaProvider.Load(schemaName);
 
         // filter root fields on 'midiSysEx' records
         var remove = (from vrf in deviceProvider.Schema.VirtualRootFields
@@ -73,7 +73,7 @@ public sealed class DeviceProvider
         if (deviceProvider.Schema.VirtualRootFields.Count == 0)
         {
             throw new DeviceDataException(
-                $"The schema '{deviceProvider.Schema.SchemaName}' loaded from '{schemaLocation}' Does not contain any root records that derive from midiSysEx.");
+                $"The schema '{deviceProvider.Schema.SchemaName}' loaded from '{schemaName}' does not contain any root records that derive from midiSysEx.");
         }
 
         var mapFactory = serviceProvider.GetRequiredService<SchemaNodeMapFactory>();

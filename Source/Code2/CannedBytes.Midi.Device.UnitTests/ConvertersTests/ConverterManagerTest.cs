@@ -15,7 +15,7 @@ public class ConverterManagerTest
     private static DeviceSchema LoadTestSchema()
     {
         string path = Path.Combine(Folder, ConverterManagerTestSchema);
-        return DeviceSchemaHelper.LoadSchema(path);
+        return DeviceSchemaHelper.LoadSchemaFile(path);
     }
 
     public static ConverterManager CreateConverterManager()
@@ -33,7 +33,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetConverter_MidiTypesMidiData_IsNotNull()
     {
-        var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+        var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
         var dataType = schema.AllDataTypes.Find("midiData");
 
         var mgr = CreateConverterManager();
@@ -45,7 +45,7 @@ public class ConverterManagerTest
     [Fact]
     public void GetConverter_MidiTypesMidiData_HasCorrectDataType()
     {
-        var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+        var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
         var dataType = schema.AllDataTypes.Find("midiData");
 
         var mgr = CreateConverterManager();

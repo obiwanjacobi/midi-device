@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema.Xml;
@@ -18,44 +19,51 @@ public sealed class DeviceSchemaProvider : IDeviceSchemaProvider
         }
     }
 
-    public DeviceSchema Load(string schemaLocation)
+    public DeviceSchema Load(SchemaName schemaName)
     {
-        Assert.IfArgumentNullOrEmpty(schemaLocation, nameof(schemaLocation));
-
-        var parts = schemaLocation.Split("::");
-
-        string schemaAssembly = null;
-        string schemaName;
-        if (parts.Length == 1)
-        {
-            schemaName = parts[0];
-        }
-        else if (parts.Length == 2)
-        {
-            schemaAssembly = parts[0];
-            schemaName = parts[1];
-        }
-        else
-        {
-            schemaName = schemaLocation;
-        }
-
-        Tracer.TraceEvent(
-            System.Diagnostics.TraceEventType.Information,
-            "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
-
-        using var stream = DeviceSchemaImportResolver.OpenSchema(schemaName, schemaAssembly)
-            ?? throw new DeviceSchemaNotFoundException($"{schemaName} - {schemaAssembly}");
-
-        MidiDeviceSchemaParser parser = new(_schemas);
-        var deviceSchema = parser.Parse(stream);
-
+        var loader = new SchemaLoader(_schemas);
+        var deviceSchema = loader.LoadSchema(schemaName);
         return deviceSchema;
     }
 
-    public DeviceSchema Open(string schemaName)
+    //public DeviceSchema Load(string schemaLocation)
+    //{
+    //    Assert.IfArgumentNullOrEmpty(schemaLocation, nameof(schemaLocation));
+
+    //    var parts = schemaLocation.Split("::");
+
+    //    string schemaAssembly = null;
+    //    string schemaName;
+    //    if (parts.Length == 1)
+    //    {
+    //        schemaName = parts[0];
+    //    }
+    //    else if (parts.Length == 2)
+    //    {
+    //        schemaAssembly = parts[0];
+    //        schemaName = parts[1];
+    //    }
+    //    else
+    //    {
+    //        schemaName = schemaLocation;
+    //    }
+
+    //    Tracer.TraceEvent(
+    //        System.Diagnostics.TraceEventType.Information,
+    //        "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
+
+    //    using var stream = DeviceSchemaImportResolver.OpenSchemaStream(schemaName, schemaAssembly)
+    //        ?? throw new DeviceSchemaNotFoundException($"{schemaName} - {schemaAssembly}");
+
+    //    MidiDeviceSchemaParser parser = new(_schemas);
+    //    var deviceSchema = parser.Parse(stream);
+
+    //    return deviceSchema;
+    //}
+
+    public DeviceSchema Open(SchemaName schemaName)
     {
-        var deviceSchema = _schemas.Find(schemaName)
+        var deviceSchema = _schemas.Find(schemaName.SchemaNamespace!)
             ?? Load(schemaName);
         return deviceSchema;
     }

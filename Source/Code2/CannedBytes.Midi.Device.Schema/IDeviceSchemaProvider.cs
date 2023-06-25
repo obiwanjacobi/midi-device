@@ -20,17 +20,17 @@ public interface IDeviceSchemaProvider
     /// <summary>
     /// Loads the <see cref="DeviceSchema"/> with the specified <paramref name="schemaName"/>.
     /// </summary>
-    /// <param name="schemaLocation">The location of the schema. Must not be null or empty.</param>
+    /// <param name="schemaName">The location of the schema. Must not be empty.</param>
     /// <returns>Returns null if the provider was unable to load the schema.</returns>
-    DeviceSchema Load(string schemaLocation);
+    DeviceSchema Load(SchemaName schemaName);
 
     /// <summary>
     /// Retrieves the <see cref="DeviceSchema"/> with the specified <paramref name="schemaName"/>
-    /// from the already loaded schemas or Loads it if not available yet.
+    /// from the already loaded schemas or tries to Load it if not available yet.
     /// </summary>
     /// <param name="schemaName">The name of the schema. Must not be null or empty.</param>
     /// <returns>Returns null if the provider was unable to locate the schema.</returns>
-    DeviceSchema Open(string schemaName);
+    DeviceSchema Open(SchemaName schemaName);
 
     /// <summary>
     /// Retrieves the <see cref="RecordType"/> with the <paramref name="typeName"/>

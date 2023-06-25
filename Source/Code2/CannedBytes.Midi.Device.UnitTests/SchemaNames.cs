@@ -1,6 +1,9 @@
-﻿namespace CannedBytes.Midi.Device.UnitTests;
+﻿using CannedBytes.Midi.Device.Schema;
+
+namespace CannedBytes.Midi.Device.UnitTests;
 
 internal static class SchemaNames
 {
-    public const string MidiTypesSchema = "CannedBytes.Midi.Device::MidiTypes.mds";
+    public static readonly SchemaName MidiTypes =
+        SchemaName.FromAssemblyResource("CannedBytes.Midi.Device", "MidiTypes.mds");
 }

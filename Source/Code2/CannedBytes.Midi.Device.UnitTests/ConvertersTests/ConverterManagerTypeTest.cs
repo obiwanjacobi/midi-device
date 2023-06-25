@@ -8,7 +8,7 @@ namespace CannedBytes.Midi.Device.UnitTests.ConverterTests;
 
 public class ConverterManagerTypeTest
 {
-    private static readonly DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+    private static readonly DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
 
     private static void TestManagerDataType(string dataTypeName, System.Type converterType)
     {

@@ -64,8 +64,9 @@ public class MidiDeviceSchemaParser
                 System.Diagnostics.TraceEventType.Information,
                 "Parser: Importing '{0}' from assembly '{1}'.", import.name, import.assembly);
 
-            _ = DeviceSchemaImportResolver.LoadSchema(
-                _schemas, import.name, import.assembly);
+            var loader = new SchemaLoader(_schemas);
+            _ = loader.LoadSchema(
+                SchemaName.FromAssemblyResource(import.assembly, import.name));
         }
     }
 

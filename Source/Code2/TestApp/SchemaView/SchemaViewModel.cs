@@ -13,7 +13,7 @@ internal partial class SchemaViewModel : ViewModelBase
     public SchemaViewModel(MainViewModel mainModel)
     {
         var schemaProvider = mainModel.Services.GetRequiredService<IDeviceSchemaProvider>();
-        var deviceSchema = schemaProvider.Open("CannedBytes.Midi.Device.Roland::Roland FC-300.mds");
+        var deviceSchema = schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland D-110.mds"));
         Roots = FillTree(deviceSchema);
     }
 

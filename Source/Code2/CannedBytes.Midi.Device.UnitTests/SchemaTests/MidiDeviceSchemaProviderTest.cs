@@ -8,7 +8,7 @@ public class MidiDeviceSchemaProviderTest
     [Fact]
     public void Load_MidiTypesSchema_LoadedFormAssembly()
     {
-        Schema.DeviceSchema schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypesSchema);
+        Schema.DeviceSchema schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
 
         schema.Should().NotBeNull();
     }

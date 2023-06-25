@@ -14,7 +14,7 @@ public class FieldHierarchicalIteratorTest
     private static DeviceSchema LoadTestSchema()
     {
         string path = Path.Combine(Folder, HierarchicalSchema);
-        return DeviceSchemaHelper.LoadSchema(path);
+        return DeviceSchemaHelper.LoadSchemaFile(path);
     }
 
     public static int EnumerateFields(IEnumerable<FieldInfo> iterator)
