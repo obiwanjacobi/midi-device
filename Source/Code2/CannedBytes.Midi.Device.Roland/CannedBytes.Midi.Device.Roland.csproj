@@ -10,12 +10,15 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Roland R-8.mds" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Roland A-880.mds" />
     <EmbeddedResource Include="Roland D-110.mds" />
     <EmbeddedResource Include="Roland FC-300.mds" />
-    <None Update="Roland R-8.mds">
+    <EmbeddedResource Include="Roland R-8.mds">
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
     <EmbeddedResource Include="Roland U-220.mds" />
     <EmbeddedResource Include="Roland.mds" />
   </ItemGroup>

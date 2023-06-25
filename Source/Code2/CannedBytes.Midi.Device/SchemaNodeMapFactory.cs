@@ -6,7 +6,7 @@ using CannedBytes.Midi.Device.Schema;
 
 namespace CannedBytes.Midi.Device;
 
-internal sealed class SchemaNodeMapFactory
+public sealed class SchemaNodeMapFactory
 {
     private readonly ConverterManager _converterMgr;
 

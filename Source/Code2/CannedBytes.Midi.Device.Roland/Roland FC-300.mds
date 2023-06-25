@@ -35,8 +35,8 @@
         <!-- Read/Write -->
         <mds:field name="ControllerStatus" type="ControllerStatus" mds:address="50-00H" />
         <!-- Write -->
-        <mds:field name="MessageDisplayStatus1" type="MessageDisplayStatus" mds:address="60-00H" />
-        <mds:field name="MessageDisplayStatus2" type="MessageDisplayStatus" mds:address="64-00H" />
+        <mds:field name="MessageDisplayStatus1" type="MessageDisplayStatus60" mds:address="60-00H" />
+        <mds:field name="MessageDisplayStatus2" type="MessageDisplayStatus64" mds:address="64-00H" />
         <!-- Write -->
         <mds:field name="MessageDisplayStatusUserFont" type="MessageDisplayStatusUserFont" mds:address="68-00H" />
         <!-- Write -->
@@ -286,7 +286,7 @@
   </mds:dataType>
 
   <mds:dataType name="TunerStringNumber">
-    <mds:restriction base="m:midiBi0-2">
+    <mds:restriction base="m:midiBit0-2">
       <mds:enumeration name="Off" value="0" />
       <mds:enumeration name="1" value="1" />
       <mds:enumeration name="2" value="2" />
