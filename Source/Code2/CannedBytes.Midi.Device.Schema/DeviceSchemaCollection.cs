@@ -31,9 +31,10 @@ public class DeviceSchemaCollection : KeyedCollection<string, DeviceSchema>
     /// </summary>
     /// <param name="name">The name of a DeviceSchema.</param>
     /// <returns>Returns null if the DeviceSchema could not be found.</returns>
-    public DeviceSchema Find(string name)
+    public DeviceSchema? Find(string? name)
     {
-        if (Contains(name))
+        if (name is not null &&
+            Contains(name))
         {
             return base[name];
         }

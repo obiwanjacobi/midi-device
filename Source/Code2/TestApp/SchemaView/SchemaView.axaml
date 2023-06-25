@@ -11,8 +11,15 @@
     <sv:SchemaViewModel />
   </Design.DataContext>
   
-  <ScrollViewer VerticalScrollBarVisibility="Visible">
-    <TreeDataGrid Source="{Binding Roots}" />  
-  </ScrollViewer>
-  
+  <Grid RowDefinitions="Auto, Auto, *">
+    <TextBlock Text="Device Schemas:"
+        Grid.Row="0" Padding="8, 8, 8, 8" />
+    <ComboBox ItemsSource="{Binding SchemaNames}"
+        MinWidth="450" MaxWidth="450" Padding="8, 8, 8, 8"
+        SelectedItem="{Binding SelectedDeviceSchema, Mode=TwoWay}"
+        Grid.Row="1" />
+    
+    <TreeDataGrid Source="{Binding Roots}" Padding="8, 8, 8, 8"
+        Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+  </Grid>
 </UserControl>
