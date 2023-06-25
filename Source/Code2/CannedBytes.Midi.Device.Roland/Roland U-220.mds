@@ -41,7 +41,7 @@
         <mds:field name="ChorusSwitch" type="m:midiBit13" />
         <mds:field name="SetupEmpty1" type="m:midiNull" />
         <mds:field name="SetupEmpty2" type="m:midiNull" />
-        <mds:field name="RxCtrlChannel" type="m:midiLSNibble" />
+        <mds:field name="RxCtrlChannel" type="m:midiBit0-3" />
         <mds:field name="SetupEmpty3" type="m:midiNull" />
         <mds:field name="PatchChange" type="m:midiBit0-2" />
         <mds:field name="TimbreChange" type="m:midiBit4-6" />
@@ -135,10 +135,10 @@
         <mds:field name="LevelChannelPressSens" type="m:midiBit4-7" />
         <mds:field name="TimbreLevel" type="m:midiData" />
 
-        <mds:field name="EnvAttack" type="m:midiLSNibble" />
-        <mds:field name="EnvDecay" type="m:midiMSNibble" />
-        <mds:field name="EnvSustain" type="m:midiLSNibble" />
-        <mds:field name="EnvRelease" type="m:midiMSNibble" />
+        <mds:field name="EnvAttack" type="m:midiBit0-3" />
+        <mds:field name="EnvDecay" type="m:midiBit4-7" />
+        <mds:field name="EnvSustain" type="m:midiBit0-3" />
+        <mds:field name="EnvRelease" type="m:midiBit4-7" />
 
         <mds:field name="PitchShiftFine" type="m:midiBit0-5" />
         <mds:field name="PitchShiftCoarse" type="m:midiBit0-4" />

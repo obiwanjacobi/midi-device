@@ -27,8 +27,8 @@ internal partial class SchemaViewModel : ViewModelBase
         _schemaProvider = mainModel.Services.GetRequiredService<IDeviceSchemaProvider>();
         _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland A-880.mds"));
         _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland FC-300.mds"));
-        //        _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland R-8.mds"));
-        //        _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland U-220.mds"));
+        //_schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland R-8.mds"));
+        _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland U-220.mds"));
 
         var deviceSchema = _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland D-110.mds"));
 
