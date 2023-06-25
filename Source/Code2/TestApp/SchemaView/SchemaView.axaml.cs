@@ -1,22 +1,21 @@
 using Avalonia.Controls;
 using TestApp.MainView;
 
-namespace TestApp.SchemaView
+namespace TestApp.SchemaView;
+
+public partial class SchemaView : UserControl
 {
-    public partial class SchemaView : UserControl
+    public SchemaView()
     {
-        public SchemaView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        protected override void OnLoaded()
-        {
-            base.OnLoaded();
+    protected override void OnLoaded()
+    {
+        base.OnLoaded();
 
-            var mainModel = DataContext as MainViewModel;
-            if (mainModel is not null)
-                DataContext = new SchemaViewModel(mainModel);
-        }
+        var mainModel = DataContext as MainViewModel;
+        if (mainModel is not null)
+            DataContext = new SchemaViewModel(mainModel);
     }
 }

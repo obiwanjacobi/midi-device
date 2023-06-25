@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:sv="clr-namespace:TestApp.SchemaView"
+             x:Class="TestApp.SchemaView.SchemaPropertyView"
+             x:DataType="sv:SchemaViewModel">
+
+  <Design.DataContext>
+    <sv:SchemaViewModel />
+  </Design.DataContext>
+
+  <Grid RowDefinitions="Auto, *">
+    <TextBlock Text="Field Properties" FontSize="24" FontWeight="Bold" />
+
+    <DataGrid ItemsSource="{Binding FieldProperties}" MaxWidth="300"
+              Margin="8, 8, 8, 8"
+              ScrollViewer.VerticalScrollBarVisibility="Visible"
+              Grid.Row="1">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Property"  Binding="{Binding Key}" CanUserResize="True" IsReadOnly="True" />
+        <DataGridTextColumn Header="Value" Binding="{Binding Value}" CanUserResize="True" IsReadOnly="True" />
+      </DataGrid.Columns>
+    </DataGrid>
+
+  </Grid>
+</UserControl>

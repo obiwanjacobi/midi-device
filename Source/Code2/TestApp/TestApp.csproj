@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.0-rc1.1" />
     <PackageReference Include="Avalonia.Controls.TreeDataGrid" Version="11.0.0-rc1.1" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
@@ -27,5 +28,11 @@
     <ProjectReference Include="..\CannedBytes.Midi.Device.Roland\CannedBytes.Midi.Device.Roland.csproj" />
     <ProjectReference Include="..\CannedBytes.Midi.Device.Schema\CannedBytes.Midi.Device.Schema.csproj" />
     <ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="SchemaView\SchemaPropertyView.axaml.cs">
+      <DependentUpon>SchemaPropertyView.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

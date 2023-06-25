@@ -10,16 +10,24 @@
   <Design.DataContext>
     <sv:SchemaViewModel />
   </Design.DataContext>
-  
-  <Grid RowDefinitions="Auto, Auto, *">
+
+  <Grid RowDefinitions="Auto, Auto, Auto, *">
     <TextBlock Text="Device Schemas:"
-        Grid.Row="0" Padding="8, 8, 8, 8" />
+        Grid.Row="0" Margin="8, 8, 8, 8" />
     <ComboBox ItemsSource="{Binding SchemaNames}"
-        MinWidth="450" MaxWidth="450" Padding="8, 8, 8, 8"
-        SelectedItem="{Binding SelectedDeviceSchema, Mode=TwoWay}"
+        MinWidth="450" MaxWidth="450" Padding="8, 8, 8, 8" Margin="8, 8, 8, 8"
+        SelectedItem="{Binding SelectedSchemaName, Mode=TwoWay}"
         Grid.Row="1" />
+
+    <Separator Grid.Row="2" Margin="8, 8, 8, 8"/>
     
-    <TreeDataGrid Source="{Binding Roots}" Padding="8, 8, 8, 8"
-        Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+    <SplitView Grid.Row="3" DisplayMode="CompactInline" IsPaneOpen="True" PanePlacement="Right" >
+      <TreeDataGrid Source="{Binding Roots}" Margin="8, 8, 8, 8"
+          ScrollViewer.VerticalScrollBarVisibility="Visible" />
+
+      <SplitView.Pane>
+        <sv:SchemaPropertyView MinWidth="250"/>
+      </SplitView.Pane>
+    </SplitView>
   </Grid>
 </UserControl>
