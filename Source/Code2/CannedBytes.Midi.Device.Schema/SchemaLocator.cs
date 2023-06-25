@@ -17,16 +17,8 @@ internal static class SchemaLocator
 
     public static Stream? OpenAssemblyResource(string assemblyName, string fileName)
     {
-        Assembly? assembly;
-        if (String.IsNullOrEmpty(assemblyName))
-        {
-            assembly = Assembly.GetEntryAssembly();
-        }
-        else
-        {
-            // Assembly.Load() does not work (the same)...
-            assembly = Assembly.LoadFrom(assemblyName + ".dll");
-        }
+        // Assembly.Load() does not work (the same)...
+        var assembly = Assembly.LoadFrom(assemblyName + ".dll");
 
         Stream? stream = null;
         if (assembly != null)
