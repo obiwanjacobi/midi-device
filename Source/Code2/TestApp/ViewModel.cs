@@ -2,6 +2,6 @@
 
 namespace TestApp;
 
-internal abstract class ViewModelBase : ObservableObject
+internal abstract class ViewModel : ObservableObject
 {
 }

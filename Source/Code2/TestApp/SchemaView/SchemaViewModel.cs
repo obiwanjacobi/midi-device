@@ -10,7 +10,7 @@ using TestApp.MainView;
 
 namespace TestApp.SchemaView;
 
-internal partial class SchemaViewModel : ViewModelBase
+internal partial class SchemaViewModel : ViewModel
 {
     private readonly IDeviceSchemaProvider _schemaProvider;
 
