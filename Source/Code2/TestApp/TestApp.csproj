@@ -21,6 +21,7 @@
 
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="RtMidi.Core" Version="1.0.51" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,9 +31,9 @@
     <ProjectReference Include="..\CannedBytes.Midi.Device\CannedBytes.Midi.Device.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Compile Update="SchemaView\SchemaPropertyView.axaml.cs">
       <DependentUpon>SchemaPropertyView.axaml</DependentUpon>
     </Compile>
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>
