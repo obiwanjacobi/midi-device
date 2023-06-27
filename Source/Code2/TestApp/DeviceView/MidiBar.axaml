@@ -8,16 +8,18 @@
              x:DataType="dv:MidiViewModel">
 
   <Design.DataContext>
-    <dv:DeviceViewModel />
+    <dv:MidiViewModel />
   </Design.DataContext>
 
+  <Grid RowDefinitions="48" ColumnDefinitions="Auto, Auto, Auto, Auto, *">
+    
   
   <TextBlock Text="Midi In:" />
-  <ComboBox ItemsSource="{Binding MidiInPorts}" />
+  <ComboBox ItemsSource="{Binding MidiInPorts}" Grid.Column="1" />
 
-  <TextBlock Text="Midi Out:" />
-  <ComboBox ItemsSource="{Binding MidiOutPorts}" />
+  <TextBlock Text="Midi Out:" Grid.Column="2" />
+  <ComboBox ItemsSource="{Binding MidiOutPorts}" Grid.Column="3" />
 
-  <Button Content="Start/Stop" Command="{Binding StartStopCommand}" />
-  
+  <Button Content="Start/Stop" Grid.Column="4" />
+  </Grid>
 </UserControl>

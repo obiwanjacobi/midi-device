@@ -4,18 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:mv="clr-namespace:TestApp.MainView"
              xmlns:sv="clr-namespace:TestApp.SchemaView"
+             xmlns:dv="clr-namespace:TestApp.DeviceView"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="TestApp.MainView.MainView"
              x:DataType="mv:MainViewModel">
   <Design.DataContext>
     <mv:MainViewModel />
   </Design.DataContext>
+  
   <TabControl>
     <TabItem Header="Schema Viewer">
       <sv:SchemaView />
     </TabItem>
     <TabItem Header="Device Viewer">
-      
+      <dv:DeviceView />
     </TabItem>
   </TabControl>
 </UserControl>

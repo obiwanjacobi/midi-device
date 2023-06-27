@@ -11,4 +11,8 @@
     <dv:DeviceViewModel />
   </Design.DataContext>
 
+  <Grid>
+    <dv:MidiBar />
+  </Grid>
+  
 </UserControl>

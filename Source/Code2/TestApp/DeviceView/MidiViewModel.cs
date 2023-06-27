@@ -8,6 +8,6 @@ namespace TestApp.DeviceView
         public IEnumerable<string> MidiInPorts { get; }
         public IEnumerable<string> MidiOutPorts { get; }
 
-        public Command StartSopCommand { get; }
+        public Command StartStopCommand { get; }
     }
 }
