@@ -19,8 +19,6 @@ internal class MainViewModel : ViewModel
         Services = ConfigureServices();
     }
 
-    public IServiceProvider Services { get; }
-
     private static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();

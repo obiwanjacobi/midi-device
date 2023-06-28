@@ -1,13 +1,32 @@
 ﻿using System.Collections.Generic;
-using TestApp.Commands;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
+using TestApp.Services;
 
 namespace TestApp.DeviceView
 {
     internal partial class MidiViewModel : ViewModel
     {
-        public IEnumerable<string> MidiInPorts { get; }
-        public IEnumerable<string> MidiOutPorts { get; }
+        // designer support
+        public MidiViewModel()
+        {
 
-        public Command StartStopCommand { get; }
+        }
+
+        private readonly MidiService _midiService;
+
+        public MidiViewModel(DeviceViewModel deviceModel)
+            : base(deviceModel)
+        {
+            _midiService = deviceModel.Services.GetRequiredService<MidiService>();
+        }
+
+        public IEnumerable<string> MidiInPorts => _midiService.GetMidiInPorts();
+        public IEnumerable<string> MidiOutPorts => _midiService.GetMidiOutPorts();
+
+        [ObservableProperty]
+        private string _selectedMidiInPort;
+        [ObservableProperty]
+        private string _selectedMidiOutPort;
     }
 }

@@ -46,19 +46,17 @@ namespace TestApp.Services
 
         public IMidiInPort CreateMidiInPort(string name)
         {
-            var inputDeviceInfo = MidiDeviceManager.Default.InputDevices.FirstOrDefault(indev => indev.Name == name);
-            if (inputDeviceInfo is null)
-                throw new ArgumentException($"The Midi InPort '{name}' was not found.");
-
+            var inputDeviceInfo = MidiDeviceManager.Default.InputDevices.FirstOrDefault(indev => indev.Name == name)
+                ?? throw new ArgumentException($"The Midi InPort '{name}' was not found.");
+            
             var inputDevice = inputDeviceInfo.CreateDevice();
             return new MidiInPort(inputDevice);
         }
 
         public IMidiOutPort CreateMidiOutPort(string name)
         {
-            var outputDeviceInfo = MidiDeviceManager.Default.OutputDevices.FirstOrDefault(indev => indev.Name == name);
-            if (outputDeviceInfo is null)
-                throw new ArgumentException($"The Midi OutPort '{name}' was not found.");
+            var outputDeviceInfo = MidiDeviceManager.Default.OutputDevices.FirstOrDefault(indev => indev.Name == name)
+                ?? throw new ArgumentException($"The Midi OutPort '{name}' was not found.");
 
             var outputDevice = outputDeviceInfo.CreateDevice();
             return new MidiOutPort(outputDevice);
@@ -105,7 +103,7 @@ namespace TestApp.Services
                 MidiMessage?.Invoke(this, new MidiMessage(msg.Data));
             }
 
-            public event EventHandler<MidiMessage> MidiMessage;
+            public event EventHandler<MidiMessage>? MidiMessage;
 
             public void Dispose()
             {

@@ -12,14 +12,14 @@
   </Design.DataContext>
 
   <Grid RowDefinitions="48" ColumnDefinitions="Auto, Auto, Auto, Auto, *">
-    
-  
-  <TextBlock Text="Midi In:" />
-  <ComboBox ItemsSource="{Binding MidiInPorts}" Grid.Column="1" />
+    <TextBlock Text="Midi In:" Padding="8, 8, 8, 8" />
+    <ComboBox ItemsSource="{Binding MidiInPorts}" Grid.Column="1" 
+              Width="300" Padding="8, 8, 8, 8"
+              SelectedItem="{Binding SelectedMidiInPort}"/>
 
-  <TextBlock Text="Midi Out:" Grid.Column="2" />
-  <ComboBox ItemsSource="{Binding MidiOutPorts}" Grid.Column="3" />
-
-  <Button Content="Start/Stop" Grid.Column="4" />
+    <TextBlock Text="Midi Out:" Grid.Column="2" Padding="8, 8, 8, 8" />
+    <ComboBox ItemsSource="{Binding MidiOutPorts}" Grid.Column="3" 
+              Width="300" Padding="8, 8, 8, 8"
+              SelectedItem="{Binding SelectedMidiOutPort}"/>
   </Grid>
 </UserControl>

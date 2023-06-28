@@ -6,7 +6,6 @@ using Avalonia.Controls.Models.TreeDataGrid;
 using CannedBytes.Midi.Device.Schema;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
-using TestApp.MainView;
 
 namespace TestApp.SchemaView;
 
@@ -22,9 +21,10 @@ internal partial class SchemaViewModel : ViewModel
         SelectedSchemaName = "Schema1";
     }
 
-    public SchemaViewModel(MainViewModel mainModel)
+    public SchemaViewModel(ViewModel viewModel)
+        : base(viewModel)
     {
-        _schemaProvider = mainModel.Services.GetRequiredService<IDeviceSchemaProvider>();
+        _schemaProvider = viewModel.Services.GetRequiredService<IDeviceSchemaProvider>();
         _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland A-880.mds"));
         _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland FC-300.mds"));
         _schemaProvider.Open(SchemaName.FromAssemblyResource("CannedBytes.Midi.Device.Roland", "Roland U-220.mds"));
@@ -47,13 +47,13 @@ internal partial class SchemaViewModel : ViewModel
 
     [ObservableProperty]
     private string _selectedSchemaName;
-
-    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+    partial void OnSelectedSchemaNameChanged(string value)
     {
-        base.OnPropertyChanged(e);
-        if (_schemaProvider != null &&
-            e.PropertyName == nameof(SelectedSchemaName))
+        if (_schemaProvider is not null)
         {
+            if (Roots?.RowSelection is not null)
+                Roots.RowSelection.PropertyChanged -= SchemaRowSelection_PropertyChanged;
+
             var deviceSchema = _schemaProvider.Open(SchemaName.FromSchemaNamespace(SelectedSchemaName));
             Roots = FillTree(deviceSchema);
             // add selection changed trigger

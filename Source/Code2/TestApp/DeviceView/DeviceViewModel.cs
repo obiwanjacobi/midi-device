@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TestApp.MainView;
 
 namespace TestApp.DeviceView
 {
-    internal class DeviceViewModel
+    internal class DeviceViewModel : ViewModel
     {
+        // designer support
+        public DeviceViewModel()
+        {
+        }
+
+        public DeviceViewModel(MainViewModel mainModel)
+            : base(mainModel)
+        {
+        }
     }
 }
