@@ -13,7 +13,7 @@
 
   <Grid RowDefinitions="Auto, Auto, *"
         ColumnDefinitions="Auto, *">
-    <TextBlock Text="Device Schemas:" Padding="8, 8, 8, 8"
+    <TextBlock Text="Device Schema:" Padding="8, 8, 8, 8"
         Grid.Row="0" Grid.Column="0" />
     <ComboBox ItemsSource="{Binding SchemaNames}"
         MinWidth="450" MaxWidth="450" Padding="8, 8, 8, 8" Margin="8, 8, 8, 8"

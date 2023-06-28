@@ -11,8 +11,26 @@
     <dv:DeviceViewModel />
   </Design.DataContext>
 
-  <Grid>
-    <dv:MidiBar />
+  <Grid RowDefinitions="Auto, Auto, Auto, *" ColumnDefinitions="Auto, *">
+    <dv:MidiBar Grid.ColumnSpan="2" />
+
+    <TextBlock Text="Device Schema:" Padding="8, 8, 8, 8"
+        Grid.Row="1" Grid.Column="0" />
+    <ComboBox ItemsSource="{Binding SchemaNames}"
+        MinWidth="450" MaxWidth="450" Padding="8, 8, 8, 8" Margin="8, 8, 8, 8"
+        SelectedItem="{Binding SelectedSchemaName, Mode=TwoWay}"
+        Grid.Row="1" Grid.Column="1" />
+
+    <ListBox Grid.Row="2"
+      ItemsSource="{Binding SysExMessageTypes}"
+      SelectedItem="{Binding SelectedMessageType}"/>
+
+    <TreeDataGrid
+      Source="{Binding MessageFields}"
+      Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" />
+    
+    <Button Grid.Row="3"
+      Content="Send" />
   </Grid>
   
 </UserControl>

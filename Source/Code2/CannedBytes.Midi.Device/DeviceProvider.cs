@@ -58,7 +58,7 @@ public sealed class DeviceProvider
         DeviceProvider deviceProvider = new();
 
         IDeviceSchemaProvider schemaProvider = serviceProvider.GetRequiredService<IDeviceSchemaProvider>();
-        deviceProvider.Schema = schemaProvider.Load(schemaName);
+        deviceProvider.Schema = schemaProvider.Open(schemaName);
 
         // filter root fields on 'midiSysEx' records
         var remove = (from vrf in deviceProvider.Schema.VirtualRootFields

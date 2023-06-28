@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using CannedBytes.Midi.Core;
-using CannedBytes.Midi.Device.Schema.Xml;
 
 namespace CannedBytes.Midi.Device.Schema;
 
@@ -26,46 +24,14 @@ public sealed class DeviceSchemaProvider : IDeviceSchemaProvider
         return deviceSchema;
     }
 
-    //public DeviceSchema Load(string schemaLocation)
-    //{
-    //    Assert.IfArgumentNullOrEmpty(schemaLocation, nameof(schemaLocation));
-
-    //    var parts = schemaLocation.Split("::");
-
-    //    string schemaAssembly = null;
-    //    string schemaName;
-    //    if (parts.Length == 1)
-    //    {
-    //        schemaName = parts[0];
-    //    }
-    //    else if (parts.Length == 2)
-    //    {
-    //        schemaAssembly = parts[0];
-    //        schemaName = parts[1];
-    //    }
-    //    else
-    //    {
-    //        schemaName = schemaLocation;
-    //    }
-
-    //    Tracer.TraceEvent(
-    //        System.Diagnostics.TraceEventType.Information,
-    //        "Provider: Opening Schema with name '{0}' from assembly '{1}'.", schemaName, schemaAssembly);
-
-    //    using var stream = DeviceSchemaImportResolver.OpenSchemaStream(schemaName, schemaAssembly)
-    //        ?? throw new DeviceSchemaNotFoundException($"{schemaName} - {schemaAssembly}");
-
-    //    MidiDeviceSchemaParser parser = new(_schemas);
-    //    var deviceSchema = parser.Parse(stream);
-
-    //    return deviceSchema;
-    //}
-
     public DeviceSchema Open(SchemaName schemaName)
     {
-        var deviceSchema = _schemas.Find(schemaName.SchemaNamespace!)
-            ?? Load(schemaName);
-        return deviceSchema;
+        DeviceSchema? deviceSchema = null;
+
+        if (schemaName.HasSchemaNamespace)
+            deviceSchema = _schemas.Find(schemaName.SchemaNamespace!);
+
+        return deviceSchema ?? Load(schemaName);
     }
 
     public RecordType FindRecordType(string schemaName, string typeName)
