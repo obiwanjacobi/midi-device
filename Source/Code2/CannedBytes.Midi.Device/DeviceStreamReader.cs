@@ -93,7 +93,7 @@ public sealed class DeviceStreamReader
         where T : struct, IConvertible, IComparable
     {
         var value = (ulong)ByteConverter.FromBytesToInt64(_buffer, length, byteOrder);
-        return (T)Convert.ChangeType(value, typeof(T));
+        return ConvertTo.ChangeType<ulong, T>(value);
     }
 
     public byte ReadInt8()

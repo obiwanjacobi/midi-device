@@ -24,9 +24,7 @@ public sealed class DeviceProperty
 
     public T GetValue<T>()
     {
-        var requestedType = typeof(T);
-
-        return (T)Convert.ChangeType(Value, requestedType);
+        return ConvertTo.ChangeType<object, T>(Value);
     }
 
     public override string ToString()

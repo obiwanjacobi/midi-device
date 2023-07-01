@@ -1,5 +1,4 @@
-﻿using System;
-using CannedBytes.Midi.Core;
+﻿using CannedBytes.Midi.Core;
 
 namespace CannedBytes.Midi.Device;
 
@@ -34,19 +33,19 @@ partial class DeviceToPhysicalProcess
             if (bitLength == 1)
             {
                 var r = _reader.ReadBool(ctx, out var b);
-                value = (ushort)Convert.ChangeType(b, typeof(ushort));
+                value = ConvertTo.ChangeType<bool, ushort>(b);
                 return r;
             }
             else if (bitLength <= 8)
             {
                 var r = _reader.ReadByte(ctx, out var b);
-                value = (ushort)Convert.ChangeType(b, typeof(ushort));
+                value = ConvertTo.ChangeType<byte, ushort>(b);
                 return r;
             }
             else if (bitLength <= 16)
             {
                 var r = _reader.ReadShort(ctx, out var s);
-                value = (ushort)Convert.ChangeType(s, typeof(ushort));
+                value = ConvertTo.ChangeType<short, ushort>(s);
                 return r;
             }
 
@@ -59,12 +58,12 @@ partial class DeviceToPhysicalProcess
             if (byteLength < 1)
             {
                 throw new DeviceDataException(
-                    $"The specified byteLength {byteLength} is too small.");
+                    $"The specified byteLength {byteLength} is too small (< 1).");
             }
             if (byteLength > 8)
             {
                 throw new DeviceDataException(
-                    $"The specified byteLength {byteLength} is too big.");
+                    $"The specified byteLength {byteLength} is too big (> 8).");
             }
 
             var ctx = _context.CreateLogicalContext(byteLength * 8);
@@ -76,7 +75,7 @@ partial class DeviceToPhysicalProcess
                 return r;
             }
             if (byteLength == 2)
-                {
+            {
                 var r = _reader.ReadShort(ctx, out var s);
                 value = s;
                 return r;

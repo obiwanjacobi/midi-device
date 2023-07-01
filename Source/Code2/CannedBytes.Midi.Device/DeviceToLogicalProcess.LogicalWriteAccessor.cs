@@ -72,31 +72,31 @@ partial class DeviceToLogicalProcess
 
             if (bitLength == 1)
             {
-                bool nativeValue = (bool)Convert.ChangeType(value, typeof(bool));
+                bool nativeValue = ConvertTo.ChangeType<T, bool>(value);
 
                 return _writer.WriteBool(ctx, nativeValue);
             }
             else if (bitLength <= 8)
             {
-                byte nativeValue = (byte)Convert.ChangeType(value, typeof(byte));
+                byte nativeValue = ConvertTo.ChangeType<T, byte>(value);
 
                 return _writer.WriteByte(ctx, nativeValue);
             }
             else if (bitLength <= 16)
             {
-                short nativeValue = (short)Convert.ChangeType(value, typeof(short));
+                short nativeValue = ConvertTo.ChangeType<T, short>(value);
 
                 return _writer.WriteShort(ctx, nativeValue);
             }
             else if (bitLength <= 32)
             {
-                int nativeValue = (int)Convert.ChangeType(value, typeof(int));
+                int nativeValue = ConvertTo.ChangeType<T, int>(value);
 
                 return _writer.WriteInt(ctx, nativeValue);
             }
             else if (bitLength <= 64)
             {
-                long nativeValue = (long)Convert.ChangeType(value, typeof(long));
+                long nativeValue = ConvertTo.ChangeType<T, long>(value);
 
                 return _writer.WriteLong(ctx, nativeValue);
             }

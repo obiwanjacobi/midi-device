@@ -19,8 +19,7 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
 
         var fldInfo = this[key];
 
-        return (T?)Convert.ChangeType(fldInfo.Value, typeof(T))
-            ?? throw new DeviceException("Value could not be converted.");
+        return ConvertTo.ChangeType<object?, T>(fldInfo.Value);
     }
 
     public FieldInfo Add(ILogicalFieldInfo logicFieldInfo, object value)
