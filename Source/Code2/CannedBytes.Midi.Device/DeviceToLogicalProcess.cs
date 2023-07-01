@@ -19,12 +19,7 @@ public partial class DeviceToLogicalProcess
 
     protected virtual LogicalDeviceDataContext CreateContext(Stream physicalStream, SchemaNode rootNode)
     {
-        var ctx = new LogicalDeviceDataContext()
-        {
-            RootNode = rootNode,
-            StreamManager = new StreamManager(physicalStream)
-        };
-
+        var ctx = new LogicalDeviceDataContext(rootNode, new StreamManager(physicalStream));
         return ctx;
     }
 }

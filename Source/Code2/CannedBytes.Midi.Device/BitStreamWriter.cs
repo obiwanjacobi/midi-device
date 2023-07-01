@@ -56,4 +56,3 @@ public sealed class BitStreamWriter
         _bitPosition = bitStartIndex + bitCount;
     }
 }
-

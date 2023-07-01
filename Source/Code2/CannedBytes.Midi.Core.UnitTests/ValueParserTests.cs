@@ -12,13 +12,13 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "01 02 03 04", BitOrder.BigEndian, out byte[] bytes);
+            "01 02 03 04", BitOrder.BigEndian, out var bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
         bytes.Should().HaveCount(4);
 
-        bytes[0].Should().Be(1);
+        bytes![0].Should().Be(1);
         bytes[1].Should().Be(2);
         bytes[2].Should().Be(3);
         bytes[3].Should().Be(4);
@@ -29,13 +29,13 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "B1-C2-D3-E4H", BitOrder.BigEndian, out byte[] bytes);
+            "B1-C2-D3-E4H", BitOrder.BigEndian, out var bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
         bytes.Should().HaveCount(4);
 
-        bytes[0].Should().Be(0xB1);
+        bytes![0].Should().Be(0xB1);
         bytes[1].Should().Be(0xC2);
         bytes[2].Should().Be(0xD3);
         bytes[3].Should().Be(0xE4);
@@ -46,13 +46,13 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "01 02 03 04", BitOrder.LittleEndian, out byte[] bytes);
+            "01 02 03 04", BitOrder.LittleEndian, out var bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
         bytes.Should().HaveCount(4);
 
-        bytes[3].Should().Be(1);
+        bytes![3].Should().Be(1);
         bytes[2].Should().Be(2);
         bytes[1].Should().Be(3);
         bytes[0].Should().Be(4);
@@ -63,13 +63,13 @@ public class ValueParserTests
     {
 
         bool success = ValueParser.TryParseToBytes(
-            "B1-C2-D3-E4H", BitOrder.LittleEndian, out byte[] bytes);
+            "B1-C2-D3-E4H", BitOrder.LittleEndian, out var bytes);
 
         success.Should().BeTrue();
         bytes.Should().NotBeNull();
         bytes.Should().HaveCount(4);
 
-        bytes[3].Should().Be(0xB1);
+        bytes![3].Should().Be(0xB1);
         bytes[2].Should().Be(0xC2);
         bytes[1].Should().Be(0xD3);
         bytes[0].Should().Be(0xE4);

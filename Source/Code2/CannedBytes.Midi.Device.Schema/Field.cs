@@ -32,7 +32,7 @@ public sealed class Field : AttributedSchemaObject
         get
         {
             if (!_isAbstract.HasValue
-                && RecordType != null)
+                && RecordType is not null)
             {
                 return RecordType.IsAbstract;
             }
@@ -50,13 +50,13 @@ public sealed class Field : AttributedSchemaObject
     /// </summary>
     public FieldProperties Properties { get; } = new();
 
-    private DataType _dataType;
+    private DataType? _dataType;
     /// <summary>
     /// Gets the DataType for this Field. Can be null.
     /// </summary>
     /// <value>Derived classes can set this property. Must not be null.
     /// Setting this property will reset the <see cref="P:RecordType"/> property.</value>
-    public DataType DataType
+    public DataType? DataType
     {
         get { return _dataType; }
         internal set
@@ -68,13 +68,13 @@ public sealed class Field : AttributedSchemaObject
         }
     }
 
-    private RecordType _recordType;
+    private RecordType? _recordType;
     /// <summary>
     /// Gets the RecordType for this field. Can be null.
     /// </summary>
     /// <value>Derived classes can set this property. Must not be null.
     /// Setting this property will reset the <see cref="P:DataType"/> property.</value>
-    public RecordType RecordType
+    public RecordType? RecordType
     {
         get { return _recordType; }
         internal set
@@ -86,12 +86,12 @@ public sealed class Field : AttributedSchemaObject
         }
     }
 
-    private RecordType _declaringRecord;
+    private RecordType? _declaringRecord;
     /// <summary>
     /// Gets the <see cref="RecordType"/> this Field is part of.
     /// </summary>
     /// <value>Derived classes can set this property. Must not be null.</value>
-    public RecordType DeclaringRecord
+    public RecordType? DeclaringRecord
     {
         get { return _declaringRecord; }
         internal set
@@ -101,7 +101,7 @@ public sealed class Field : AttributedSchemaObject
         }
     }
 
-    private ConstraintCollection _constraints;
+    private ConstraintCollection? _constraints;
     /// <summary>
     /// Gets the collection of all <see cref="Constraint"/>s relevant for this field.
     /// </summary>
@@ -111,12 +111,7 @@ public sealed class Field : AttributedSchemaObject
     {
         get
         {
-            if (_constraints == null)
-            {
-                Constraints = new ConstraintCollection();
-            }
-
-            return _constraints;
+            return _constraints ??= new ConstraintCollection();
         }
         internal set
         {
@@ -132,20 +127,20 @@ public sealed class Field : AttributedSchemaObject
 
         text.Append(Name.SchemaName);
         text.Append(':');
-        if (DeclaringRecord != null)
+        if (DeclaringRecord is not null)
         {
             text.Append(DeclaringRecord.Name.Name);
             text.Append(':');
         }
         text.Append(Name.Name);
 
-        if (DataType != null)
+        if (DataType is not null)
         {
             text.Append(" (");
             text.Append(DataType.Name.FullName);
             text.Append(')');
         }
-        else if (RecordType != null)
+        else if (RecordType is not null)
         {
             text.Append(" (");
             text.Append(RecordType.Name.FullName);
@@ -160,7 +155,7 @@ public sealed class Field : AttributedSchemaObject
     /// </summary>
     public class FieldProperties
     {
-        public string DevicePropertyName { get; set; }
+        public string? DevicePropertyName { get; set; }
 
         public SevenBitUInt32 Address { get; set; }
 
@@ -168,7 +163,7 @@ public sealed class Field : AttributedSchemaObject
 
         public int Width { get; set; }
 
-        public ValueRange Range { get; set; }
+        public ValueRange? Range { get; set; }
 
         /// <summary>
         /// Gets the number of times this field can occur within an address map.

@@ -15,7 +15,7 @@ partial class AddressMapManager
             _rootNode = rootNode;
         }
 
-        public SchemaNode FindFirst(SevenBitUInt32 address)
+        public SchemaNode? FindFirst(SevenBitUInt32 address)
         {
             var firstNode = (from n in _rootNode.SelectNodes(node => node.Next)
                              where n.IsAddressMap
@@ -25,14 +25,14 @@ partial class AddressMapManager
             return firstNode;
         }
 
-        public SchemaNode FindLast(SevenBitUInt32 address)
+        public SchemaNode? FindLast(SevenBitUInt32 address)
         {
             var lastNode = (from n in _rootNode.SelectNodes(node => node.Next)
                             where n.Address <= address
                             where n.IsAddressMap
                             select n).LastOrDefault();
 
-            if (lastNode != null)
+            if (lastNode is not null)
             {
                 lastNode = lastNode.LastFieldOfAddress;
             }
@@ -59,7 +59,7 @@ partial class AddressMapManager
             return prevNode;
         }
 
-        public IEnumerable<SchemaNode> SelectRange(SchemaNode startNode, SchemaNode endNode)
+        public IEnumerable<SchemaNode> SelectRange(SchemaNode startNode, SchemaNode? endNode)
         {
             List<SchemaNode> range = new()
             {
@@ -68,7 +68,7 @@ partial class AddressMapManager
 
             var nodes = from n in startNode.SelectNodes(node => node.Next)
                         where n.IsAddressMap
-                        where endNode == null || n.Address <= endNode.Address
+                        where endNode is null || n.Address <= endNode.Address
                         select n;
 
             range.AddRange(nodes);

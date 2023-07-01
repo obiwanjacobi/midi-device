@@ -34,10 +34,10 @@ public class DevicePropertiesTest
         var ctx = ToLogical(writer, "RQ1");
 
         ctx.DeviceProperties.Count.Should().Be(4);
-        ctx.DeviceProperties.Find("ManufacturerId").GetValue<int>().Should().Be(65);
-        ctx.DeviceProperties.Find("SysExChannel").GetValue<int>().Should().Be(16);
-        ctx.DeviceProperties.Find("ModelId").GetValue<int>().Should().Be(43);
-        ctx.DeviceProperties.Find("CommandId").GetValue<int>().Should().Be(17);
+        ctx.DeviceProperties.Find("ManufacturerId")!.GetValue<int>().Should().Be(65);
+        ctx.DeviceProperties.Find("SysExChannel")!.GetValue<int>().Should().Be(16);
+        ctx.DeviceProperties.Find("ModelId")!.GetValue<int>().Should().Be(43);
+        ctx.DeviceProperties.Find("CommandId")!.GetValue<int>().Should().Be(17);
 
         _output.WriteLine(ctx.LogManager.ToString());
     }

@@ -21,7 +21,7 @@ public sealed partial class FieldIterator : IEnumerable<FieldInfo>
         Assert.IfArgumentNull(field, nameof(field));
         Assert.IfArgumentNull(field.RecordType, "field.RecordType");
 
-        _root = field.RecordType;
+        _root = field.RecordType!;
         _repeat = field.Properties.Repeats;
     }
 

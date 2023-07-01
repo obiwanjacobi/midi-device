@@ -6,7 +6,7 @@ partial class DeviceDataContext
 {
     public sealed class ConverterState
     {
-        private readonly Dictionary<string, object> _stateMap = new();
+        private readonly Dictionary<string, object?> _stateMap = new();
         private readonly DeviceDataContext _context;
 
         internal ConverterState(DeviceDataContext context)
@@ -25,38 +25,38 @@ partial class DeviceDataContext
             return _stateMap.ContainsKey(fullName);
         }
 
-        public T Get<T>(string name)
+        public T? Get<T>(string name)
         {
             var fullName = GetFullName(name);
             return GetInternal<T>(fullName);
         }
 
-        public T Set<T>(string name, T value)
+        public T? Set<T>(string name, T value)
         {
             var fullName = GetFullName(name);
-            T oldValue = GetInternal<T>(fullName);
+            T? oldValue = GetInternal<T>(fullName);
 
             _stateMap[fullName] = value;
 
             return oldValue;
         }
 
-        public T Remove<T>(string name)
+        public T? Remove<T>(string name)
         {
             var fullName = GetFullName(name);
-            T oldValue = GetInternal<T>(fullName);
+            T? oldValue = GetInternal<T>(fullName);
 
             _stateMap.Remove(fullName);
 
             return oldValue;
         }
 
-        public T GetInternal<T>(string fullName)
+        public T? GetInternal<T>(string fullName)
         {
-            if (_stateMap.TryGetValue(fullName, out object value))
+            if (_stateMap.TryGetValue(fullName, out var value))
             {
                 //return (T)Convert.ChangeType(value, typeof(T));
-                return (T)value;
+                return (T?)value;
             }
 
             return default;

@@ -13,16 +13,16 @@ public sealed partial class ConverterManager
         _factoryMgr = new FactoryManager(factories);
     }
 
-    public IConverter GetConverter(Field field)
+    public IConverter? GetConverter(Field field)
     {
         Assert.IfArgumentNull(field, nameof(field));
 
-        if (field.DataType != null)
+        if (field.DataType is not null)
         {
             return GetConverter(field.DataType);
         }
 
-        if (field.RecordType != null)
+        if (field.RecordType is not null)
         {
             return GetConverter(field.RecordType);
         }

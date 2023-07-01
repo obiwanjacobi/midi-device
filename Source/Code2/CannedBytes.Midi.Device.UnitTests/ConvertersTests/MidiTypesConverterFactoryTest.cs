@@ -11,14 +11,14 @@ public class MidiTypesConverterFactoryTest
     private static readonly DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
     private static readonly MidiTypesConverterFactory ConverterFactory = new();
 
-    private static void TestFactoryDataType(string dataTypeName, System.Type converterType)
+    private static void TestFactoryDataType(string dataTypeName, System.Type? converterType)
     {
         var dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
         dataType.Should().NotBeNull();
 
-        var converter = ConverterFactory.Create(dataType, dataType);
+        var converter = ConverterFactory.Create(dataType!, dataType!);
 
-        if (converterType == null)
+        if (converterType is null)
         {
             converter.Should().BeNull();
         }
@@ -33,9 +33,9 @@ public class MidiTypesConverterFactoryTest
         var recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
         recordType.Should().NotBeNull();
 
-        var converter = ConverterFactory.Create(recordType, recordType);
+        var converter = ConverterFactory.Create(recordType!, recordType!);
 
-        if (converterType == null)
+        if (converterType is null)
         {
             converter.Should().BeNull();
         }

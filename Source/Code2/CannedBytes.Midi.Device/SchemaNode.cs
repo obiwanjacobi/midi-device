@@ -18,9 +18,9 @@ public partial class SchemaNode : ILogicalFieldInfo
         InstanceIndex = instanceIndex;
         InstanceCount = pair.Field.Properties.Repeats;
 
-        IsRecord = pair.StreamConverter != null;
+        IsRecord = pair.StreamConverter is not null;
 
-        if (pair.StreamConverter != null)
+        if (pair.StreamConverter is not null)
         {
             IsAddressMap = pair.StreamConverter.IsAddressMap;
         }
@@ -29,29 +29,29 @@ public partial class SchemaNode : ILogicalFieldInfo
     /// <summary>
     /// Next node in the flattened hierarchy.
     /// </summary>
-    public SchemaNode Next { get; internal protected set; }
+    public SchemaNode? Next { get; internal protected set; }
 
     /// <summary>
     /// Previous node in the flattened hierarchy.
     /// </summary>
-    public SchemaNode Previous { get; internal protected set; }
+    public SchemaNode? Previous { get; internal protected set; }
 
     /// <summary>
     /// Next node at the same level (depth) within a record.
     /// </summary>
-    public SchemaNode NextSibling { get; internal protected set; }
+    public SchemaNode? NextSibling { get; internal protected set; }
 
     /// <summary>
     /// Previous node at the same level (depth) within a record.
     /// </summary>
-    public SchemaNode PreviousSibling { get; internal protected set; }
+    public SchemaNode? PreviousSibling { get; internal protected set; }
 
     /// <summary>
     /// A parent (record) node.
     /// </summary>
-    public SchemaNode Parent { get; internal protected set; }
+    public SchemaNode? Parent { get; internal protected set; }
 
-    private SchemaNodeCollection _children;
+    private SchemaNodeCollection? _children;
 
     /// <summary>
     /// Gets the immediate children of this (parent) node (not including clones).
@@ -82,17 +82,17 @@ public partial class SchemaNode : ILogicalFieldInfo
         Assert.IfArgumentOutOfRange(instanceIndex, 0,
             FieldConverterPair.Field.Properties.Repeats, nameof(instanceIndex));
 
-        SchemaNode parent = this;
+        SchemaNode? parent = this;
         int currentIndex = instanceIndex;
 
-        while (currentIndex > 0 && parent != null)
+        while (currentIndex > 0 && parent is not null)
         {
             parent = parent.NextClone;
 
             currentIndex--;
         }
 
-        if (parent == null)
+        if (parent is null)
         {
             // internal error!
             throw new ArgumentOutOfRangeException(nameof(instanceIndex), instanceIndex,
@@ -110,28 +110,28 @@ public partial class SchemaNode : ILogicalFieldInfo
     /// <summary>
     /// Next duplicated node (unique InstanceIndex) at the same level (depth) within a record.
     /// </summary>
-    public SchemaNode NextClone { get; internal protected set; }
+    public SchemaNode? NextClone { get; internal protected set; }
 
     /// <summary>
     /// Previous duplicated node (unique InstanceIndex) at the same level (depth) within a record.
     /// </summary>
-    public SchemaNode PreviousClone { get; internal protected set; }
+    public SchemaNode? PreviousClone { get; internal protected set; }
 
     /// <summary>
     /// Previous IsRecord node at the same level (using clones and siblings).
     /// </summary>
-    public SchemaNode PreviousRecord
+    public SchemaNode? PreviousRecord
     {
         get
         {
             if (IsRecord)
             {
-                if (PreviousClone != null)
+                if (PreviousClone is not null)
                 {
                     return PreviousClone;
                 }
 
-                if (PreviousSibling != null)
+                if (PreviousSibling is not null)
                 {
                     return PreviousSibling.Last(node => node.NextClone);
                 }
@@ -144,11 +144,11 @@ public partial class SchemaNode : ILogicalFieldInfo
     /// <summary>
     /// Next node in the flattened hierarchy that is not a record.
     /// </summary>
-    public SchemaNode NextField
+    public SchemaNode? NextField
     {
         get
         {
-            if (Next != null)
+            if (Next is not null)
             {
                 if (Next.IsRecord)
                 {
@@ -165,11 +165,11 @@ public partial class SchemaNode : ILogicalFieldInfo
     /// <summary>
     /// Previous node in the flattened hierarchy that is not a record.
     /// </summary>
-    public SchemaNode PreviousField
+    public SchemaNode? PreviousField
     {
         get
         {
-            if (Previous != null)
+            if (Previous is not null)
             {
                 if (Previous.IsRecord)
                 {
@@ -190,7 +190,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     {
         get
         {
-            if (PreviousField != null &&
+            if (PreviousField is not null &&
                 PreviousField.Address == Address)
             {
                 return PreviousField.FirstFieldOfAddress;
@@ -207,7 +207,7 @@ public partial class SchemaNode : ILogicalFieldInfo
     {
         get
         {
-            if (NextField != null &&
+            if (NextField is not null &&
                 NextField.Address == Address)
             {
                 return NextField.LastFieldOfAddress;
@@ -224,27 +224,27 @@ public partial class SchemaNode : ILogicalFieldInfo
                 select node).Any();
     }
 
-    public IEnumerable<SchemaNode> SelectNodes(Func<SchemaNode, SchemaNode> newNodeFunc)
+    public IEnumerable<SchemaNode> SelectNodes(Func<SchemaNode, SchemaNode?> newNodeFunc)
     {
         var node = newNodeFunc(this);
 
-        while (node != null)
+        while (node is not null)
         {
             yield return node;
             node = newNodeFunc(node);
         }
     }
 
-    public SchemaNode Last(Func<SchemaNode, SchemaNode> nextNodeFunc)
+    public SchemaNode? Last(Func<SchemaNode, SchemaNode?> nextNodeFunc)
     {
         var node = nextNodeFunc(this);
         var lastNode = node;
 
-        while (node != null)
+        while (node is not null)
         {
             node = nextNodeFunc(node);
 
-            if (node != null)
+            if (node is not null)
             {
                 lastNode = node;
             }
@@ -383,7 +383,7 @@ public partial class SchemaNode : ILogicalFieldInfo
         get { return FieldConverterPair.Field; }
     }
 
-    ILogicalFieldInfo ILogicalFieldInfo.Parent
+    ILogicalFieldInfo? ILogicalFieldInfo.Parent
     {
         get { return Parent; }
     }

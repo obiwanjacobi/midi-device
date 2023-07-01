@@ -17,11 +17,18 @@ partial class DeviceDataContext
             _contex = context;
         }
 
-        public SchemaNode CurrentNode { get; set; }
+        public SchemaNode? CurrentNode { get; set; }
 
         public Field CurrentField
         {
-            get { return CurrentNode?.FieldConverterPair.Field; }
+            get
+            {
+                if (CurrentNode is not null)
+                    return CurrentNode.FieldConverterPair.Field;
+
+                throw new InvalidOperationException(
+                    "The CurrentNode property must be set before accessing the CurrentField property.");
+            }
         }
 
         public FieldValue<T> GetDataFieldValue<T>()

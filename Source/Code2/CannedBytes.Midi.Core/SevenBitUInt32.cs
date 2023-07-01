@@ -88,16 +88,14 @@ public readonly struct SevenBitUInt32 : IConvertible
 
     private static bool TryParseUInt(string s, out uint value)
     {
-        var success = ValueParser.TryParseToBytes(s, BitOrder.LittleEndian, out var bytes);
-
-        if (success)
+        if (ValueParser.TryParseToBytes(s, BitOrder.LittleEndian, out var bytes))
         {
             value = ByteConverter.FromSevenBitBytesToUInt32(bytes, BitOrder.LittleEndian);
             return true;
         }
 
         value = default;
-        return success;
+        return false;
     }
 
     /// <summary>
@@ -128,7 +126,7 @@ public readonly struct SevenBitUInt32 : IConvertible
         return _value == thatValue._value;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is SevenBitUInt32 sevenBitUInt32)
         {
@@ -213,82 +211,82 @@ public readonly struct SevenBitUInt32 : IConvertible
         return TypeCode.UInt32;
     }
 
-    bool IConvertible.ToBoolean(IFormatProvider provider)
+    bool IConvertible.ToBoolean(IFormatProvider? provider)
     {
         return _value != 0;
     }
 
-    byte IConvertible.ToByte(IFormatProvider provider)
+    byte IConvertible.ToByte(IFormatProvider? provider)
     {
         return (byte)ToUInt32();
     }
 
-    char IConvertible.ToChar(IFormatProvider provider)
+    char IConvertible.ToChar(IFormatProvider? provider)
     {
         return (char)ToInt32();
     }
 
-    DateTime IConvertible.ToDateTime(IFormatProvider provider)
+    DateTime IConvertible.ToDateTime(IFormatProvider? provider)
     {
         throw new NotSupportedException();
     }
 
-    decimal IConvertible.ToDecimal(IFormatProvider provider)
+    decimal IConvertible.ToDecimal(IFormatProvider? provider)
     {
         return (decimal)ToUInt32();
     }
 
-    double IConvertible.ToDouble(IFormatProvider provider)
+    double IConvertible.ToDouble(IFormatProvider? provider)
     {
         return (double)ToUInt32();
     }
 
-    short IConvertible.ToInt16(IFormatProvider provider)
+    short IConvertible.ToInt16(IFormatProvider? provider)
     {
         return (short)ToInt32();
     }
 
-    int IConvertible.ToInt32(IFormatProvider provider)
+    int IConvertible.ToInt32(IFormatProvider? provider)
     {
         return ToInt32();
     }
 
-    long IConvertible.ToInt64(IFormatProvider provider)
+    long IConvertible.ToInt64(IFormatProvider? provider)
     {
         return ToInt32();
     }
 
-    sbyte IConvertible.ToSByte(IFormatProvider provider)
+    sbyte IConvertible.ToSByte(IFormatProvider? provider)
     {
         return (sbyte)ToInt32();
     }
 
-    float IConvertible.ToSingle(IFormatProvider provider)
+    float IConvertible.ToSingle(IFormatProvider? provider)
     {
         return (float)ToUInt32();
     }
 
-    string IConvertible.ToString(IFormatProvider provider)
+    string IConvertible.ToString(IFormatProvider? provider)
     {
         return ToString();
     }
 
-    object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+    object IConvertible.ToType(Type? conversionType, IFormatProvider? provider)
     {
         throw new NotSupportedException();
     }
 
-    ushort IConvertible.ToUInt16(IFormatProvider provider)
+    ushort IConvertible.ToUInt16(IFormatProvider? provider)
     {
         return (ushort)ToUInt32();
     }
 
-    uint IConvertible.ToUInt32(IFormatProvider provider)
+    uint IConvertible.ToUInt32(IFormatProvider? provider)
     {
         return ToUInt32();
     }
 
-    ulong IConvertible.ToUInt64(IFormatProvider provider)
+    ulong IConvertible.ToUInt64(IFormatProvider? provider)
     {
         return ToUInt32();
     }

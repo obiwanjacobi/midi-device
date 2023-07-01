@@ -10,7 +10,7 @@ namespace CannedBytes.Midi.Device.IntegrationTests;
 internal static class ServiceHelper
 {
     private readonly static Assembly DeviceAssembly =
-        Assembly.GetAssembly(typeof(DataConverter));
+        Assembly.GetAssembly(typeof(DataConverter))!;
 
     public static IServiceProvider CreateServices()
     {

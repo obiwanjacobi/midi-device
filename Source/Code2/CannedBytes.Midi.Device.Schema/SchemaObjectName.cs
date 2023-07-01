@@ -5,12 +5,9 @@ namespace CannedBytes.Midi.Device.Schema;
 /// <summary>
 /// Manages the schema (namespace) and object name.
 /// </summary>
-public class SchemaObjectName
+public sealed class SchemaObjectName
 {
     private const char SchemaNameSeparator = ':';
-
-    protected SchemaObjectName()
-    { }
 
     public SchemaObjectName(string fullName)
     {
@@ -33,11 +30,11 @@ public class SchemaObjectName
         FullName = schemaName + SchemaNameSeparator + objectName;
     }
 
-    public string Name { get; protected set; }
+    public string Name { get; }
 
-    public string SchemaName { get; protected set; }
+    public string SchemaName { get; }
 
-    public string FullName { get; protected set; }
+    public string FullName { get; }
 
     public override string ToString()
     {

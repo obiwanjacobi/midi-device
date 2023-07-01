@@ -22,18 +22,18 @@ public class MidiDeviceSchemaParserTest
 
     public sealed class ParserTestState : IDisposable
     {
-        public DeviceSchemaSet Schemas;
-        public MidiDeviceSchemaParser Parser;
-        public Stream Stream;
+        public DeviceSchemaSet? Schemas;
+        public MidiDeviceSchemaParser? Parser;
+        public Stream? Stream;
 
         public DeviceSchema Parse()
         {
-            return Parser.Parse(Stream);
+            return Parser!.Parse(Stream!);
         }
 
         public void Dispose()
         {
-            if (Stream != null)
+            if (Stream is not null)
             {
                 Stream.Dispose();
                 Stream = null;
@@ -65,11 +65,11 @@ public class MidiDeviceSchemaParserTest
     //[Fact]
     public void Parse_ImportResource_NoErrors()
     {
-        DeviceSchemaSet schemas = new();
-        MidiDeviceSchemaParser parser = new(schemas);
+        var schemas = new DeviceSchemaSet();
+        var parser = new MidiDeviceSchemaParser(schemas);
 
-        using FileStream stream = File.OpenRead(DeviceSchema3);
-        DeviceSchema schema = parser.Parse(stream);
+        using var stream = File.OpenRead(DeviceSchema3);
+        var schema = parser.Parse(stream);
 
         schemas.Find(Schema.Constants.MidiDeviceSchemaNamespace)
             .Should().NotBeNull();
@@ -77,14 +77,14 @@ public class MidiDeviceSchemaParserTest
         schema.Should().NotBeNull();
         schema.AllDataTypes.Should().BeEmpty();
 
-        DataType dataType = schema.AllDataTypes.Find("derivedDataType");
+        var dataType = schema.AllDataTypes.Find("derivedDataType")!;
         dataType.Should().NotBeNull();
 
-        RecordType recordType = schema.AllRecordTypes.Find("testRecord");
+        var recordType = schema.AllRecordTypes.Find("testRecord")!;
         recordType.Should().NotBeNull();
 
         recordType.Fields.Should().HaveCount(1);
-        Field field = recordType.Fields[0];
+        var field = recordType.Fields[0];
         field.Should().NotBeNull();
 
         field.Name.Name.Should().Be("Field1");
@@ -114,8 +114,8 @@ public class MidiDeviceSchemaParserTest
     {
         DeviceSchema schema = ParseSchema(DeviceSchemaTypes);
 
-        SchemaAttribute docAttr = schema.Attributes.Find("Documentation");
-        docAttr.Value.Should().NotBeNullOrWhiteSpace();
+        var docAttr = schema.Attributes.Find("Documentation");
+        docAttr!.Value.Should().NotBeNullOrWhiteSpace();
     }
 
     [Fact]
@@ -154,9 +154,9 @@ public class MidiDeviceSchemaParserTest
     public void Parse_DataTypeSchema_HasTypeDocumentation()
     {
         DeviceSchema schema = ParseSchema(DataType);
-        DataType type = schema.AllDataTypes.Find("midiByte");
+        var type = schema.AllDataTypes.Find("midiByte");
         
-        type.Attributes.Should().NotBeNull();
+        type!.Attributes.Should().NotBeNull();
         type.Attributes.Should().NotBeEmpty();
         type.Attributes.Find("Documentation").Should().NotBeNull();
     }
@@ -165,96 +165,96 @@ public class MidiDeviceSchemaParserTest
     public void Parse_DataTypeSchema_HasTypeDocumentationText()
     {
         DeviceSchema schema = ParseSchema(DataType);
-        DataType type = schema.AllDataTypes.Find("midiByte");
+        var type = schema.AllDataTypes.Find("midiByte");
 
-        SchemaAttribute docAttr = type.Attributes.Find("Documentation");
-        docAttr.Value.Should().NotBeNullOrWhiteSpace();
+        var docAttr = type!.Attributes.Find("Documentation");
+        docAttr!.Value.Should().NotBeNullOrWhiteSpace();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_HasTypeWithConstraints()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiData");
+        var type = schema.AllDataTypes.Find("midiData");
         
         type.Should().NotBeNull();
-        type.Constraints.Should().NotBeEmpty();
+        type!.Constraints.Should().NotBeEmpty();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_HasMinConstraint()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiData");
+        var type = schema.AllDataTypes.Find("midiData");
 
-        type.Constraints.Find(ConstraintTypes.MinInclusive).Should().NotBeNull();
+        type!.Constraints.Find(ConstraintTypes.MinInclusive).Should().NotBeNull();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_MinConstraintValidates()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiData");
+        var type = schema.AllDataTypes.Find("midiData");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.MinInclusive);
-        constraint.Validate(0).Should().BeTrue();
+        var constraint = type!.Constraints.Find(ConstraintTypes.MinInclusive);
+        constraint!.Validate(0).Should().BeTrue();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_MinConstraintValidationFails()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiData");
+        var type = schema.AllDataTypes.Find("midiData");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.MinInclusive);
-        constraint.Validate(-1).Should().BeFalse();
+        var constraint = type!.Constraints.Find(ConstraintTypes.MinInclusive);
+        constraint!.Validate(-1).Should().BeFalse();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_HasMaxConstraint()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiData");
+        var type = schema.AllDataTypes.Find("midiData");
 
-        type.Constraints.Find(ConstraintTypes.MaxInclusive).Should().NotBeNull();
+        type!.Constraints.Find(ConstraintTypes.MaxInclusive).Should().NotBeNull();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_MaxConstraintValidates()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiData");
+        var type = schema.AllDataTypes.Find("midiData");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.MaxInclusive);
-        constraint.Validate(127).Should().BeTrue();
+        var constraint = type!.Constraints.Find(ConstraintTypes.MaxInclusive);
+        constraint!.Validate(127).Should().BeTrue();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_MaxConstraintValidationFails()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiData");
+        var type = schema.AllDataTypes.Find("midiData");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.MaxInclusive);
-        constraint.Validate(128).Should().BeFalse();
+        var constraint = type!.Constraints.Find(ConstraintTypes.MaxInclusive);
+        constraint!.Validate(128).Should().BeFalse();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_HasEnumConstraint()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiStatus");
+        var type = schema.AllDataTypes.Find("midiStatus");
 
-        type.Constraints.Find(ConstraintTypes.Enumeration).Should().NotBeNull();
+        type!.Constraints.Find(ConstraintTypes.Enumeration).Should().NotBeNull();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_EnumConstraintValidatesFirst()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiStatus");
+        var type = schema.AllDataTypes.Find("midiStatus");
 
-        Constraint constraint = type.Constraints.FindAll(ConstraintTypes.Enumeration).First();
+        var constraint = type!.Constraints.FindAll(ConstraintTypes.Enumeration).First();
         constraint.Validate(8).Should().BeTrue();
     }
 
@@ -262,9 +262,9 @@ public class MidiDeviceSchemaParserTest
     public void Parse_DataTypeConstraintSchema_EnumConstraintValidatesLast()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiStatus");
+        var type = schema.AllDataTypes.Find("midiStatus");
 
-        Constraint constraint = type.Constraints.FindAll(ConstraintTypes.Enumeration).Last();
+        var constraint = type!.Constraints.FindAll(ConstraintTypes.Enumeration).Last();
         constraint.Validate(15).Should().BeTrue();
     }
 
@@ -272,68 +272,68 @@ public class MidiDeviceSchemaParserTest
     public void Parse_DataTypeConstraintSchema_EnumConstraintValidationFails()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiStatus");
+        var type = schema.AllDataTypes.Find("midiStatus");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.Enumeration);
-        constraint.Validate(0).Should().BeFalse();
+        var constraint = type!.Constraints.Find(ConstraintTypes.Enumeration);
+        constraint!.Validate(0).Should().BeFalse();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_HasLengthConstraint()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiString");
+        var type = schema.AllDataTypes.Find("midiString");
 
-        type.Constraints.Find(ConstraintTypes.FixedLength).Should().NotBeNull();
+        type!.Constraints.Find(ConstraintTypes.FixedLength).Should().NotBeNull();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_LengthConstraintValidates()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiString");
+        var type = schema.AllDataTypes.Find("midiString");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.FixedLength);
-        constraint.Validate("0123456789").Should().BeTrue();
+        var constraint = type!.Constraints.Find(ConstraintTypes.FixedLength);
+        constraint!.Validate("0123456789").Should().BeTrue();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_LengthConstraintValidationFails()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("midiString");
+        var type = schema.AllDataTypes.Find("midiString");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.FixedLength);
-        constraint.Validate("01234567890").Should().BeFalse();
+        var constraint = type!.Constraints.Find(ConstraintTypes.FixedLength);
+        constraint!.Validate("01234567890").Should().BeFalse();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_HasFixedConstraint()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("modelId");
+        var type = schema.AllDataTypes.Find("modelId");
 
-        type.Constraints.Find(ConstraintTypes.FixedValue).Should().NotBeNull();
+        type!.Constraints.Find(ConstraintTypes.FixedValue).Should().NotBeNull();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_FixedConstraintValidates()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("modelId");
+        var type = schema.AllDataTypes.Find("modelId");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.FixedValue);
-        constraint.Validate(16).Should().BeTrue();
+        var constraint = type!.Constraints.Find(ConstraintTypes.FixedValue);
+        constraint!.Validate(16).Should().BeTrue();
     }
 
     [Fact]
     public void Parse_DataTypeConstraintSchema_FixedConstraintValidationFails()
     {
         DeviceSchema schema = ParseSchema(DataTypeConstraints);
-        DataType type = schema.AllDataTypes.Find("modelId");
+        var type = schema.AllDataTypes.Find("modelId");
 
-        Constraint constraint = type.Constraints.Find(ConstraintTypes.FixedValue);
-        constraint.Validate(0).Should().BeFalse();
+        var constraint = type!.Constraints.Find(ConstraintTypes.FixedValue);
+        constraint!.Validate(0).Should().BeFalse();
     }
 
     [Fact]
@@ -380,9 +380,9 @@ public class MidiDeviceSchemaParserTest
     public void Parse_RecordTypeSchema_HasTypeDocumentation()
     {
         DeviceSchema schema = ParseSchema(RecordType);
-        RecordType type = schema.AllRecordTypes.Find("midiBigEndian");
+        var type = schema.AllRecordTypes.Find("midiBigEndian");
 
-        type.Attributes.Should().NotBeNull();
+        type!.Attributes.Should().NotBeNull();
         type.Attributes.Should().NotBeEmpty();
         type.Attributes.Find("Documentation").Should().NotBeNull();
     }
@@ -391,10 +391,10 @@ public class MidiDeviceSchemaParserTest
     public void Parse_RecordTypeSchema_HasTypeDocumentationText()
     {
         DeviceSchema schema = ParseSchema(RecordType);
-        RecordType type = schema.AllRecordTypes.Find("midiBigEndian");
+        var type = schema.AllRecordTypes.Find("midiBigEndian");
 
-        SchemaAttribute docAttr = type.Attributes.Find("Documentation");
-        docAttr.Value.Should().NotBeNullOrWhiteSpace();
+        var docAttr = type!.Attributes.Find("Documentation");
+        docAttr!.Value.Should().NotBeNullOrWhiteSpace();
     }
 
     [Fact]
@@ -402,9 +402,9 @@ public class MidiDeviceSchemaParserTest
     {
         using ParserTestState state = CreateParserTestState(DataTypeFromImport);
         DeviceSchema depSchema = ParseSchema(DeviceSchemaTypes);
-        state.Schemas.Add(depSchema);
+        state.Schemas!.Add(depSchema);
 
-        DeviceSchema schema = state.Parse();
+        _ = state.Parse();
 
         state.Schemas.Should().NotBeEmpty();
         state.Schemas.Find(SchemaConstants.DeviceTypesSchemaName);
@@ -415,7 +415,7 @@ public class MidiDeviceSchemaParserTest
     {
         using ParserTestState state = CreateParserTestState(DataTypeFromImport);
         DeviceSchema depSchema = ParseSchema(DeviceSchemaTypes);
-        state.Schemas.Add(depSchema);
+        state.Schemas!.Add(depSchema);
         DeviceSchema schema = state.Parse();
 
         schema.AllDataTypes.Find("derivedDataType").Should().NotBeNull();
@@ -426,13 +426,13 @@ public class MidiDeviceSchemaParserTest
     {
         using ParserTestState state = CreateParserTestState(DataTypeFromImport);
         DeviceSchema depSchema = ParseSchema(DeviceSchemaTypes);
-        state.Schemas.Add(depSchema);
+        state.Schemas!.Add(depSchema);
 
         DeviceSchema schema = state.Parse();
-        DataType type = schema.AllDataTypes.Find("derivedDataType");
+        var type = schema.AllDataTypes.Find("derivedDataType");
 
-        type.BaseType.Should().NotBeNull();
-        type.BaseType.Name.FullName.Should().Be(SchemaConstants.DeviceType_MidiByte);
+        type!.BaseType.Should().NotBeNull();
+        type.BaseType!.Name.FullName.Should().Be(SchemaConstants.DeviceType_MidiByte);
     }
 
     [Fact]

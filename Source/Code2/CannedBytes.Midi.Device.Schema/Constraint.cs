@@ -42,7 +42,7 @@ public abstract class Constraint
     /// Gets the value used in validation.
     /// </summary>
     /// <remarks>Derived classes must implement this method.</remarks>
-    public abstract T GetValue<T>();
+    public abstract T? GetValue<T>();
 
     /// <summary>
     /// Validates the <paramref name="data"/> byte against the value.
@@ -58,9 +58,9 @@ public abstract class Constraint
         return Name;
     }
 
-    public static Constraint Create(string constraintType, string value)
+    public static Constraint? Create(string constraintType, string value)
     {
-        Constraint constraint = null;
+        Constraint? constraint = null;
 
         switch (constraintType)
         {

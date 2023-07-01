@@ -12,7 +12,8 @@ internal static class SchemaLocator
             ? OpenAssemblyResource(schemaName.AssemblyName!, schemaName.FileName!)
             : OpenSchemaFileStream(schemaName.FileName!);
 
-        return stream;
+        return stream 
+            ?? throw new DeviceSchemaException($"Could not open: {schemaName}.");
     }
 
     public static Stream? OpenAssemblyResource(string assemblyName, string fileName)
@@ -21,7 +22,7 @@ internal static class SchemaLocator
         var assembly = Assembly.LoadFrom(assemblyName + ".dll");
 
         Stream? stream = null;
-        if (assembly != null)
+        if (assembly is not null)
         {
             stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{fileName}");
         }

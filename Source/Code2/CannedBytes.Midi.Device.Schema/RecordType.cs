@@ -48,7 +48,7 @@ public sealed class RecordType : AttributedSchemaObject
     {
         var type = this;
 
-        while (type != null)
+        while (type is not null)
         {
             if (type.Name.FullName == matchFullTypeName)
             {
@@ -61,13 +61,13 @@ public sealed class RecordType : AttributedSchemaObject
         return false;
     }
 
-    private RecordType _baseType;
+    private RecordType? _baseType;
 
     /// <summary>
     /// Gets the base <see cref="RecordType"/>. Can be null.
     /// </summary>
     /// <value>Derived classes can set this property. Must not be null.</value>
-    public RecordType BaseType
+    public RecordType? BaseType
     {
         get { return _baseType; }
         internal set
@@ -77,7 +77,7 @@ public sealed class RecordType : AttributedSchemaObject
         }
     }
 
-    private FieldCollection _fields;
+    private FieldCollection? _fields;
 
     /// <summary>
     /// Gets the collection of <see cref="Field"/>s for this <see cref="RecordType"/> definition.

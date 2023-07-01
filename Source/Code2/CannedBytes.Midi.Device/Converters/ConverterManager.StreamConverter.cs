@@ -12,12 +12,12 @@ partial class ConverterManager
     /// Returns a converter container for the specified <paramref name="recordType"/>.
     /// </summary>
     /// <returns>Returns null if no converter suited for type was found.</returns>
-    public StreamConverter GetConverter(RecordType recordType)
+    public StreamConverter? GetConverter(RecordType recordType)
     {
         return GetConverter(recordType, recordType);
     }
 
-    public StreamConverter GetConverter(RecordType matchType, RecordType constructType)
+    public StreamConverter? GetConverter(RecordType matchType, RecordType constructType)
     {
         Assert.IfArgumentNull(matchType, nameof(matchType));
         Assert.IfArgumentNull(constructType, nameof(constructType));
@@ -27,17 +27,17 @@ partial class ConverterManager
         //   not found -> matchtype = matchtype.basetype - repeat
         // factory found: create - return converter
 
-        StreamConverter converter;
+        StreamConverter? converter;
 
         do
         {
             converter = LookupConverter(matchType);
 
-            if (converter == null)
+            if (converter is null)
             {
                 converter = CreateConverter(matchType, constructType);
 
-                if (converter != null)
+                if (converter is not null)
                 {
                     if (!IsDynamic(constructType))
                     {
@@ -46,11 +46,11 @@ partial class ConverterManager
                 }
                 else
                 {
-                    matchType = matchType.BaseType;
+                    matchType = matchType.BaseType!;
                 }
             }
         }
-        while (matchType != null && converter == null);
+        while (matchType is not null && converter is null);
 
         // always create a StreamConverter for a RecordType.
         converter ??= _factoryMgr.DefaultFactory.Create(constructType, constructType);
@@ -58,11 +58,11 @@ partial class ConverterManager
         return converter;
     }
 
-    public StreamConverter LookupConverter(RecordType recordType)
+    public StreamConverter? LookupConverter(RecordType recordType)
     {
         Assert.IfArgumentNull(recordType, nameof(recordType));
 
-        if (_streamConverters.TryGetValue(recordType.Name.FullName, out StreamConverter converter))
+        if (_streamConverters.TryGetValue(recordType.Name.FullName, out var converter))
         {
             return converter;
         }
@@ -80,7 +80,7 @@ partial class ConverterManager
 
             //foreach (var field in constructType.Fields)
             //{
-            //    if (field.RecordType != null)
+            //    if (field.RecordType is not null)
             //    {
             //        if (IsDynamic(field.RecordType))
             //        {
@@ -95,15 +95,15 @@ partial class ConverterManager
         return true;
     }
 
-    private StreamConverter CreateConverter(RecordType matchType, RecordType constructType)
+    private StreamConverter? CreateConverter(RecordType matchType, RecordType constructType)
     {
         Assert.IfArgumentNull(matchType, nameof(matchType));
         Assert.IfArgumentNull(constructType, nameof(constructType));
 
         var factory = _factoryMgr.Lookup(matchType.Schema.SchemaName);
 
-        StreamConverter converter = null;
-        if (factory != null)
+        StreamConverter? converter = null;
+        if (factory is not null)
         {
             converter = factory.Create(matchType, constructType);
         }

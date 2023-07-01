@@ -11,11 +11,11 @@ namespace CannedBytes.Midi.Device.Schema
                 : base(fields)
             { }
 
-            protected override IEnumerator<FieldInfo> GetChildEnumerator()
+            protected override IEnumerator<FieldInfo>? GetChildEnumerator()
             {
                 var fieldInfo = Current;
 
-                if (fieldInfo.Field?.RecordType != null)
+                if (fieldInfo.Field?.RecordType is not null)
                 {
                     return ToFieldInfos(fieldInfo.Field.RecordType.Fields).GetEnumerator();
                 }

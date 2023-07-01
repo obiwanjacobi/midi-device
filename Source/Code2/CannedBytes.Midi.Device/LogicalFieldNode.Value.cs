@@ -7,7 +7,7 @@ partial class LogicalFieldNode
 {
     public sealed class LogicalValue
     {
-        public object Data { get; set; }
+        public object? Data { get; set; }
         public int BitLength { get; set; }
         public int ByteLength { get; set; }
 

@@ -52,20 +52,20 @@ partial class FieldHierarchicalIterator
             _repeatStack.Clear();
         }
 
-        protected override IEnumerator<FieldInfo> GetChildEnumerator()
+        protected override IEnumerator<FieldInfo>? GetChildEnumerator()
         {
             var enumerator = base.GetChildEnumerator();
 
-            if (enumerator != null)
+            if (enumerator is not null)
             {
-                _repeatStack.Push(_repeats.Value);
+                _repeatStack.Push(_repeats.GetValueOrDefault());
                 _repeats = null;
             }
 
             return enumerator;
         }
 
-        protected override IEnumerator<FieldInfo> GetParentEnumerator()
+        protected override IEnumerator<FieldInfo>? GetParentEnumerator()
         {
             if (_repeatStack.Count > 0)
             {
@@ -83,7 +83,7 @@ partial class FieldHierarchicalIterator
                 var enumerator = CurrentEnumerator;
 
                 // do it again
-                enumerator.Reset();
+                enumerator?.Reset();
 
                 return enumerator;
             }

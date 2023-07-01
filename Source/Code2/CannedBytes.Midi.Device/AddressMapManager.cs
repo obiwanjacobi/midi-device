@@ -24,7 +24,7 @@ internal sealed partial class AddressMapManager
         var startNode = _navigator.FindFirst(address);
         var endNode = _navigator.FindLast(endAddress);
 
-        if (startNode == null)
+        if (startNode is null)
         {
             throw new DeviceDataException(
                 $"The address '{address}' was not found in the Address Map.");
@@ -40,7 +40,7 @@ internal sealed partial class AddressMapManager
             endNode = null;
         }
 
-        if (endNode != null)
+        if (endNode is not null)
         {
             // we find the address after the last field we need.
             endNode = _navigator.PreviousAddress(endNode, endAddress);
@@ -51,7 +51,7 @@ internal sealed partial class AddressMapManager
         return nodes;
     }
 
-    public IEnumerable<SchemaNode> CreateSchemaNodes(SchemaNode startNode, SchemaNode endNode)
+    public IEnumerable<SchemaNode> CreateSchemaNodes(SchemaNode startNode, SchemaNode? endNode)
     {
         Assert.IfArgumentNull(startNode, nameof(startNode));
         if (!startNode.IsAddressMap)
@@ -66,8 +66,6 @@ internal sealed partial class AddressMapManager
         }
 
         var parents = CreateParentNodes(startNode);
-        // is this correct??
-        // lastParent = First()??
         var lastParent = parents.FirstOrDefault();
 
         var nodes = CreateSchemaNodes(lastParent, startNode, endNode);
@@ -75,12 +73,12 @@ internal sealed partial class AddressMapManager
         return nodes;
     }
 
-    private IEnumerable<SchemaNode> CreateSchemaNodes(AddressMapSchemaNode parent, SchemaNode startNode, SchemaNode endNode)
+    private IEnumerable<SchemaNode> CreateSchemaNodes(AddressMapSchemaNode? parent, SchemaNode startNode, SchemaNode? endNode)
     {
         var nodes = _navigator.SelectRange(startNode, endNode);
         var newNodes = new List<SchemaNode>();
 
-        AddressMapSchemaNode lastNode = null;
+        AddressMapSchemaNode? lastNode = null;
 
         foreach (SchemaNode node in nodes)
         {
@@ -88,11 +86,11 @@ internal sealed partial class AddressMapManager
 
             newNodes.Add(newNode);
 
-            if (lastNode != null)
+            if (lastNode is not null)
             {
                 lastNode.SetNext(newNode);
             }
-            else if (parent != null)
+            else if (parent is not null)
             {
                 newNode.SetParent(parent);
                 parent.SetNext(newNode);
@@ -112,14 +110,14 @@ internal sealed partial class AddressMapManager
 
         var newParents = new List<AddressMapSchemaNode>();
 
-        AddressMapSchemaNode lastParent = null;
+        AddressMapSchemaNode? lastParent = null;
 
         foreach (var parent in parents)
         {
             var newParent = new AddressMapSchemaNode(parent);
             newParents.Add(newParent);
 
-            if (lastParent != null)
+            if (lastParent is not null)
             {
                 newParent.SetParent(lastParent);
                 lastParent.SetNext(newParent);

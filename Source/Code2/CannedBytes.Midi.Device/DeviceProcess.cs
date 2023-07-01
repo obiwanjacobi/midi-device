@@ -14,7 +14,7 @@ public abstract class DeviceProcess<T> where T : DeviceDataContext
 
     public SchemaNode RootNode { get; }
 
-    public SchemaNode CurrentNode
+    public SchemaNode? CurrentNode
     {
         get { return Context.FieldInfo.CurrentNode; }
         protected set { Context.FieldInfo.CurrentNode = value; }
@@ -77,7 +77,7 @@ public abstract class DeviceProcess<T> where T : DeviceDataContext
 
     protected virtual void OnRecord(SchemaNode thisNode)
     {
-        var iterator = thisNode.FieldConverterPair.StreamConverter.GetChildNodeIterator(Context);
+        var iterator = thisNode.FieldConverterPair.StreamConverter!.GetChildNodeIterator(Context);
 
         foreach (SchemaNode node in iterator)
         {
@@ -95,7 +95,7 @@ public abstract class DeviceProcess<T> where T : DeviceDataContext
     private void OnBeforeField(SchemaNode thisNode)
     {
         CurrentNode = thisNode;
-        var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
+        var navEvents = thisNode.Parent?.FieldConverterPair.StreamConverter as INavigationEvents;
 
         navEvents?.OnBeforeField(Context);
     }
@@ -104,14 +104,14 @@ public abstract class DeviceProcess<T> where T : DeviceDataContext
 
     private void OnAfterField(SchemaNode thisNode)
     {
-        var navEvents = thisNode.Parent.FieldConverterPair.StreamConverter as INavigationEvents;
+        var navEvents = thisNode.Parent?.FieldConverterPair.StreamConverter as INavigationEvents;
 
         navEvents?.OnAfterField(Context);
     }
 
     protected void LogCarryCleared()
     {
-        if (Context.LogManager.CurrentEntry != null)
+        if (Context.LogManager.CurrentEntry is not null)
         {
             Context.LogManager.CurrentEntry.CarryCleared = true;
         }

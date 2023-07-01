@@ -10,15 +10,15 @@ public class ConverterManagerTypeTest
 {
     private static readonly DeviceSchema MidiTypesSchema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
 
-    private static void TestManagerDataType(string dataTypeName, System.Type converterType)
+    private static void TestManagerDataType(string dataTypeName, System.Type? converterType)
     {
         var converterMgr = ConverterManagerTest.CreateConverterManager();
         var dataType = MidiTypesSchema.AllDataTypes.Find(dataTypeName);
         dataType.Should().NotBeNull();
 
-        var converter = converterMgr.GetConverter(dataType);
+        var converter = converterMgr.GetConverter(dataType!);
 
-        if (converterType == null)
+        if (converterType is null)
         {
             converter.Should().BeNull();
         }
@@ -34,9 +34,9 @@ public class ConverterManagerTypeTest
         var recordType = MidiTypesSchema.AllRecordTypes.Find(recordTypeName);
         recordType.Should().NotBeNull();
 
-        var converter = converterMgr.GetConverter(recordType);
+        var converter = converterMgr.GetConverter(recordType!);
 
-        if (converterType == null)
+        if (converterType is null)
         {
             converter.Should().BeNull();
         }

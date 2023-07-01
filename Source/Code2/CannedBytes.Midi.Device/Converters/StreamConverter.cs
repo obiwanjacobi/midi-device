@@ -61,7 +61,7 @@ public class StreamConverter : IConverter
 
         var aggEnum = new AggregateEnumerator<SchemaNode>();
 
-        for (int i = 0; i < context.FieldInfo.CurrentNode.InstanceCount; i++)
+        for (int i = 0; i < context.FieldInfo.CurrentNode!.InstanceCount; i++)
         {
             aggEnum.Add(context.FieldInfo.CurrentNode.RepeatedChildren(i));
         }

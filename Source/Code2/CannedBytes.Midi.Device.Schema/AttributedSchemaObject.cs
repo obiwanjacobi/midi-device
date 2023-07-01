@@ -12,7 +12,7 @@ public abstract class AttributedSchemaObject : SchemaObject
         : base(schema, name)
     { }
 
-    private SchemaAttributeCollection _attributes;
+    private SchemaAttributeCollection? _attributes;
 
     public SchemaAttributeCollection Attributes
     {

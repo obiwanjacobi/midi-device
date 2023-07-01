@@ -7,7 +7,7 @@ partial class DeviceToPhysicalProcess
     /// </summary>
     public sealed class ProcessToPhysical : DeviceProcess<PhysicalDeviceDataContext>
     {
-        private LogicalReadAccessor _accessor;
+        private LogicalReadAccessor? _accessor;
 
         public ProcessToPhysical(PhysicalDeviceDataContext context, SchemaNode rootNode)
             : base(context, rootNode)
@@ -31,7 +31,7 @@ partial class DeviceToPhysicalProcess
             var writer = new DeviceStreamWriter(
                 Context.StreamManager.CurrentStream, Context.BitWriter);
 
-            thisNode.FieldConverterPair.DataConverter.ToPhysical(Context, writer, _accessor);
+            thisNode.FieldConverterPair.DataConverter!.ToPhysical(Context, writer, _accessor!);
         }
 
         private void FlushCarry()

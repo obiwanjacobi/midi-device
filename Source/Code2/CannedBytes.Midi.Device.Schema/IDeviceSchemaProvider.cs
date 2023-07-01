@@ -40,7 +40,7 @@ public interface IDeviceSchemaProvider
     /// <param name="typeName">The name of the RecordType to fetch.</param>
     /// <returns>Returns null if either the <paramref name="schemaName"/> or
     /// <paramref name="typeName"/> were not found.</returns>
-    RecordType FindRecordType(string schemaName, string typeName);
+    RecordType? FindRecordType(string schemaName, string typeName);
 
     /// <summary>
     /// Retrieves the <see cref="DataType"/> with the <paramref name="typeName"/>
@@ -50,5 +50,5 @@ public interface IDeviceSchemaProvider
     /// <param name="typeName">The name of the DataType to fetch.</param>
     /// <returns>Returns null if either the <paramref name="schemaName"/> or
     /// <paramref name="typeName"/> were not found.</returns>
-    DataType FindDataType(string schemaName, string typeName);
+    DataType? FindDataType(string schemaName, string typeName);
 }

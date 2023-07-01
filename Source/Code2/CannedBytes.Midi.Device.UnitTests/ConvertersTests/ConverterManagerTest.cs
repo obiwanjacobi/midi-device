@@ -35,9 +35,10 @@ public class ConverterManagerTest
     {
         var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
         var dataType = schema.AllDataTypes.Find("midiData");
+        dataType.Should().NotBeNull();
 
         var mgr = CreateConverterManager();
-        var converter = mgr.GetConverter(dataType);
+        var converter = mgr.GetConverter(dataType!);
 
         converter.Should().NotBeNull();
     }
@@ -47,11 +48,13 @@ public class ConverterManagerTest
     {
         var schema = DeviceSchemaHelper.LoadSchema(SchemaNames.MidiTypes);
         var dataType = schema.AllDataTypes.Find("midiData");
+        dataType.Should().NotBeNull();
 
         var mgr = CreateConverterManager();
-        var converter = mgr.GetConverter(dataType);
+        var converter = mgr.GetConverter(dataType!);
+        converter.Should().NotBeNull();
 
-        converter.DataType.Should().BeSameAs(dataType);
+        converter!.DataType.Should().BeSameAs(dataType);
     }
 
     // DataType based tests
@@ -115,12 +118,12 @@ public class ConverterManagerTest
     public void GetFieldConverterPair_MidiTypeDataAndRecordField_SameFieldNameResultsInDifferentPairs()
     {
         var schema = LoadTestSchema();
-        var field2a = schema.AllRecordTypes.Find("rootRecord").Fields.Find("Field2");
-        var field2b = schema.AllRecordTypes.Find("subRecord").Fields.Find("Field2");
+        var field2a = schema.AllRecordTypes.Find("rootRecord")!.Fields.Find("Field2");
+        var field2b = schema.AllRecordTypes.Find("subRecord")!.Fields.Find("Field2");
 
         var mgr = CreateConverterManager();
-        var pair2a = mgr.GetFieldConverterPair(field2a);
-        var pair2b = mgr.GetFieldConverterPair(field2b);
+        var pair2a = mgr.GetFieldConverterPair(field2a!);
+        var pair2b = mgr.GetFieldConverterPair(field2b!);
 
         pair2a.Field.Should().Be(field2a);
         pair2b.Field.Should().Be(field2b);

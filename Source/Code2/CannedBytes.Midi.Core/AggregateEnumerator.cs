@@ -8,7 +8,7 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
 {
     private readonly List<IEnumerator<T>> _enumerators = new();
     private int _enumIndex = -1;
-    private IEnumerator<T> _currentEnum;
+    private IEnumerator<T>? _currentEnum;
 
     public int Count
     {
@@ -73,11 +73,15 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
         get
         {
             ThrowIfDisposed();
-            return _currentEnum != null ? _currentEnum.Current : default;
+            if (_currentEnum is not null)
+                return _currentEnum.Current;
+
+            throw new InvalidOperationException(
+                "A call to MoveNext() must return true before the Current property can be accessed.");
         }
     }
 
-    object System.Collections.IEnumerator.Current
+    object? System.Collections.IEnumerator.Current
     {
         get { return Current; }
     }
@@ -90,16 +94,16 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
 
         _currentEnum ??= GetNextEnumerator();
 
-        if (_currentEnum != null)
+        if (_currentEnum is not null)
         {
             hasMore = _currentEnum.MoveNext();
         }
 
-        while (_currentEnum != null && !hasMore)
+        while (_currentEnum is not null && !hasMore)
         {
             _currentEnum = GetNextEnumerator();
 
-            if (_currentEnum != null)
+            if (_currentEnum is not null)
             {
                 hasMore = _currentEnum.MoveNext();
             }
@@ -118,11 +122,11 @@ public class AggregateEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumerato
         _currentEnum = null;
     }
 
-    protected virtual IEnumerator<T> GetNextEnumerator()
+    protected virtual IEnumerator<T>? GetNextEnumerator()
     {
         ThrowIfDisposed();
 
-        IEnumerator<T> myEnum = null;
+        IEnumerator<T>? myEnum = null;
 
         _enumIndex++;
 

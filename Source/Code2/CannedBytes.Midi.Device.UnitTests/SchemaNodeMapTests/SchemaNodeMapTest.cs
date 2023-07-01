@@ -83,6 +83,6 @@ public class SchemaNodeMapTest
         _output.WriteLine(map.ToString());
 
         map.AddressMap.Should().NotBeNull();
-        map.AddressMap.IsRecord.Should().BeTrue();
+        map.AddressMap!.IsRecord.Should().BeTrue();
     }
 }

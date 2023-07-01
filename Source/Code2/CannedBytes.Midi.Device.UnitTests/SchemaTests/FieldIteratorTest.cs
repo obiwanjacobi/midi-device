@@ -20,7 +20,7 @@ public class FieldIteratorTest
     public void MoveNext_SchemaRecordType_VerifyAllFields()
     {
         var schema = LoadTestSchema();
-        FieldIterator iterator = new(schema.AllRecordTypes.Find("subRecord"), 2);
+        var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord")!, 2);
 
         int counter = FieldHierarchicalIteratorTest.EnumerateFields(iterator);
 
@@ -31,7 +31,7 @@ public class FieldIteratorTest
     public void MoveNext_SchemaRecordType_VerifyFieldInstanceIndex()
     {
         var schema = LoadTestSchema();
-        FieldIterator iterator = new(schema.AllRecordTypes.Find("subRecord"), 2);
+        var iterator = new FieldIterator(schema.AllRecordTypes.Find("subRecord")!, 2);
 
         int counter = 0;
 

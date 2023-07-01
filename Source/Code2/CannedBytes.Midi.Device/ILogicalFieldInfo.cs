@@ -15,7 +15,7 @@ public interface ILogicalFieldInfo
     /// <summary>
     /// Parent record for the field.
     /// </summary>
-    ILogicalFieldInfo Parent { get; }
+    ILogicalFieldInfo? Parent { get; }
 
     /// <summary>
     /// Gets a unique key value for the current node (Field position).

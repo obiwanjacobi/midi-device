@@ -32,12 +32,12 @@ public readonly struct FieldConverterPair
     /// </summary>
     public IConverter Converter { get; }
 
-    public DataConverter DataConverter
+    public DataConverter? DataConverter
     {
         get { return Converter as DataConverter; }
     }
 
-    public StreamConverter StreamConverter
+    public StreamConverter? StreamConverter
     {
         get { return Converter as StreamConverter; }
     }

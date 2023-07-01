@@ -7,7 +7,7 @@ partial class DeviceToLogicalProcess
     /// </summary>
     public sealed class ProcessToLogical : DeviceProcess<LogicalDeviceDataContext>
     {
-        private LogicalWriteAccessor _accessor;
+        private LogicalWriteAccessor? _accessor;
 
         public ProcessToLogical(LogicalDeviceDataContext context, SchemaNode rootNode)
             : base(context, rootNode)
@@ -31,7 +31,7 @@ partial class DeviceToLogicalProcess
             var reader = new DeviceStreamReader(
                 Context.StreamManager.CurrentStream, Context.BitReader);
 
-            thisNode.FieldConverterPair.DataConverter.ToLogical(Context, reader, _accessor);
+            thisNode.FieldConverterPair.DataConverter!.ToLogical(Context, reader, _accessor!);
         }
 
         private void ClearCarry()

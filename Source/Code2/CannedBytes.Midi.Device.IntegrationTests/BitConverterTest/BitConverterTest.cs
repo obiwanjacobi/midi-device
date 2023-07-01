@@ -72,49 +72,49 @@ public class BitConverterTest
 
         // 71 => (0:6) => 71
         writer[0].Value.Should().Be((byte)0x71);
-        writer[0].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[0].Field.Name.Name.Should().Be("loByte");
+        writer[0].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[0].Field!.Name.Name.Should().Be("loByte");
 
         // 32 => (12:15) => 03
         writer[1].Value.Should().Be((byte)0x03);
-        writer[1].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[1].Field.Name.Name.Should().Be("hiByte");
+        writer[1].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[1].Field!.Name.Name.Should().Be("hiByte");
 
         // 4C => (0:4) => 0C
         writer[2].Value.Should().Be((byte)0x0C);
-        writer[2].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[2].Field.Name.Name.Should().Be("loPart");
+        writer[2].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[2].Field!.Name.Name.Should().Be("loPart");
 
         // 4C-0B => (6:10) => 14
         // (01)00_1100 0000_1(011)
         writer[3].Value.Should().Be((byte)0b01101);
-        writer[3].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[3].Field.Name.Name.Should().Be("midPart");
+        writer[3].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[3].Field!.Name.Name.Should().Be("midPart");
 
         // 0B => (12:15) => 0
         writer[4].Value.Should().Be((byte)0x00);
-        writer[4].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[4].Field.Name.Name.Should().Be("hiPart");
+        writer[4].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[4].Field!.Name.Name.Should().Be("hiPart");
 
         // 74 => (0:3) => 04
         writer[5].Value.Should().Be((byte)0x04);
-        writer[5].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[5].Field.Name.Name.Should().Be("firstLo");
+        writer[5].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[5].Field!.Name.Name.Should().Be("firstLo");
 
         // 23 => (0:3) => 03
         writer[6].Value.Should().Be((byte)0x03);
-        writer[6].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[6].Field.Name.Name.Should().Be("secondLo");
+        writer[6].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[6].Field!.Name.Name.Should().Be("secondLo");
 
         // 23 6E => (12:15) => 06
         writer[7].Value.Should().Be((byte)0x06);
-        writer[7].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[7].Field.Name.Name.Should().Be("firstHi");
+        writer[7].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[7].Field!.Name.Name.Should().Be("firstHi");
 
         // 5A 7F => (12:15) => 07
         writer[8].Value.Should().Be((byte)0x07);
-        writer[8].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[8].Field.Name.Name.Should().Be("secondHi");
+        writer[8].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[8].Field!.Name.Name.Should().Be("secondHi");
     }
 
     [Fact]

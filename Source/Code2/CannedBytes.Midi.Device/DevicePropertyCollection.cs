@@ -15,14 +15,14 @@ public sealed class DevicePropertyCollection : Collection<DeviceProperty>
         return property;
     }
 
-    public DeviceProperty Find(string propertyName)
+    public DeviceProperty? Find(string propertyName)
     {
         return (from property in this
                 where property.Name == propertyName
                 select property).FirstOrDefault();
     }
 
-    public DeviceProperty Find(string schemaName, string propertyName)
+    public DeviceProperty? Find(string schemaName, string propertyName)
     {
         return (from property in this
                 where property.SchemaName == schemaName

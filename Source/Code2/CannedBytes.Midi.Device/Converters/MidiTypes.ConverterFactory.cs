@@ -20,14 +20,14 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
     /// <param name="matchType">The data type that is used to match the converter. Must not be null.</param>
     /// <param name="constructType">The data type that is passed to the converter when it is created.</param>
     /// <returns>Returns null if the factory could not find a converter that matched the <paramref name="matchType"/>.</returns>
-    public override DataConverter Create(DataType matchType, DataType constructType)
+    public override DataConverter? Create(DataType matchType, DataType constructType)
     {
         Assert.IfArgumentNull(matchType, nameof(matchType));
         Assert.IfArgumentNull(constructType, nameof(constructType));
 
         System.Diagnostics.Debug.Assert(matchType.Schema.SchemaName == SchemaName);
 
-        DataConverter converter = null;
+        DataConverter? converter = null;
 
         switch (matchType.Name.Name)
         {
@@ -109,7 +109,7 @@ public sealed class MidiTypesConverterFactory : ConverterFactory
                     throw new DeviceSchemaException("Unions are not supported.");
                 }
 
-                //if (converter == null)
+                //if (converter is null)
                 //{
                 //    // it is our schema, but dataType is not recognized.
                 //    if (SchemaName == matchType.Schema.SchemaName)

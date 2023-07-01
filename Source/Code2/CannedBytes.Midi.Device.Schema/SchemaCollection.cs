@@ -46,12 +46,12 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     /// </summary>
     /// <param name="itemName">The full name of an item.</param>
     /// <returns>Returns null if the item could not be found.</returns>
-    public T Find(string itemName)
+    public T? Find(string itemName)
     {
         Assert.IfArgumentNullOrEmpty(itemName, nameof(itemName));
 
         if (!Contains(itemName) &&
-            Schema != null && !itemName.StartsWith(Schema.SchemaName))
+            Schema is not null && !itemName.StartsWith(Schema.SchemaName))
         {
             itemName = Schema.FormatFullName(itemName);
         }
@@ -74,7 +74,7 @@ public abstract class SchemaCollection<T> : KeyedCollection<string, T>
     /// than <see cref="P:SchemaObject.FullName"/> as key.</remarks>
     protected override string GetKeyForItem(T item)
     {
-        if (item != null)
+        if (item is not null)
         {
             return item.Name.FullName;
         }

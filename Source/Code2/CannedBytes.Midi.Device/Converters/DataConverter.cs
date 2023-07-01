@@ -30,7 +30,7 @@ public abstract class DataConverter : IConverter
     /// <summary>
     /// Gets the data type on which this converter was constructed.
     /// </summary>
-    public DataType DataType { get; private set; }
+    public DataType DataType { get; }
 
     /// <summary>
     /// Gets the name of the converter.
@@ -50,7 +50,7 @@ public abstract class DataConverter : IConverter
     /// <summary>
     /// The converter called when used in extension.
     /// </summary>
-    public DataConverter InnerConverter { get; set; }
+    public DataConverter? InnerConverter { get; set; }
 
     /// <inheritdoc/>
     /// <remarks>Derived classes must override and implement.</remarks>
@@ -60,7 +60,7 @@ public abstract class DataConverter : IConverter
         Assert.IfArgumentNull(reader, nameof(reader));
         Assert.IfArgumentNull(writer, nameof(writer));
 
-        if (InnerConverter != null)
+        if (InnerConverter is not null)
         {
             WriteToInnerConverter(context, writer, reader);
         }
@@ -72,7 +72,7 @@ public abstract class DataConverter : IConverter
 
     protected virtual void WriteToInnerConverter(DeviceDataContext context, DeviceStreamWriter writer, ILogicalReadAccessor reader)
     {
-        if (InnerConverter == null)
+        if (InnerConverter is null)
         {
             throw new InvalidOperationException("The InnerConverter property is not set.");
         }
@@ -88,7 +88,7 @@ public abstract class DataConverter : IConverter
         Assert.IfArgumentNull(reader, nameof(reader));
         Assert.IfArgumentNull(writer, nameof(writer));
 
-        if (InnerConverter != null)
+        if (InnerConverter is not null)
         {
             ReadFromInnerConverter(context, reader, writer);
         }
@@ -100,7 +100,7 @@ public abstract class DataConverter : IConverter
 
     protected virtual void ReadFromInnerConverter(DeviceDataContext context, DeviceStreamReader reader, ILogicalWriteAccessor writer)
     {
-        if (InnerConverter == null)
+        if (InnerConverter is null)
         {
             throw new InvalidOperationException("The InnerConverter property is not set.");
         }

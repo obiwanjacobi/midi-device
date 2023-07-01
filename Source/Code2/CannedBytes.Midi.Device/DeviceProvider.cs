@@ -13,11 +13,11 @@ namespace CannedBytes.Midi.Device;
 public sealed class DeviceProvider
 {
     // device and manufacturer information
-    public string Manufacturer { get; set; }
+    public string? Manufacturer { get; set; }
 
     public uint ManufacturerId { get; set; }
 
-    public string ModelName { get; set; }
+    public string? ModelName { get; set; }
 
     public uint ModelId { get; set; }
 
@@ -26,9 +26,9 @@ public sealed class DeviceProvider
     public byte DeviceId { get; set; }
 
     // MidiDeviceSchema for device (type)
-    public DeviceSchema Schema { get; private set; }
+    public DeviceSchema? Schema { get; private set; }
 
-    public IEnumerable<SchemaNodeMap> BinaryMaps { get; private set; }
+    public IEnumerable<SchemaNodeMap>? BinaryMaps { get; private set; }
 
     // BinaryConverterMap / BinaryConverterView
     // complete structure for each root message.
@@ -36,15 +36,20 @@ public sealed class DeviceProvider
     {
         Assert.IfArgumentNullOrEmpty(virtualRootFieldName, nameof(virtualRootFieldName));
 
-        var virtualField = Schema.VirtualRootFields.Find(virtualRootFieldName);
+        var virtualField = Schema!.VirtualRootFields.Find(virtualRootFieldName);
 
-        return virtualField != null
+        var schemaNodeMap =
+            virtualField is not null
             ? GetBinaryConverterMapFor(virtualField)
+            : null;
+
+        return schemaNodeMap is not null
+            ? schemaNodeMap
             : throw new ArgumentException(
                 $"The specified virtual root field name was not found in the schema: {virtualRootFieldName}", nameof(virtualRootFieldName));
     }
 
-    public SchemaNodeMap GetBinaryConverterMapFor(Field virtualRootField)
+    public SchemaNodeMap? GetBinaryConverterMapFor(Field virtualRootField)
     {
         var map = (from bcm in BinaryMaps
                    where bcm.RootNode.FieldConverterPair.Field == virtualRootField
@@ -55,14 +60,14 @@ public sealed class DeviceProvider
 
     public static DeviceProvider Create(IServiceProvider serviceProvider, SchemaName schemaName)
     {
-        DeviceProvider deviceProvider = new();
+        var deviceProvider = new DeviceProvider();
 
         IDeviceSchemaProvider schemaProvider = serviceProvider.GetRequiredService<IDeviceSchemaProvider>();
         deviceProvider.Schema = schemaProvider.Open(schemaName);
 
         // filter root fields on 'midiSysEx' records
         var remove = (from vrf in deviceProvider.Schema.VirtualRootFields
-                              where !vrf.RecordType.IsType(MidiTypes.MidiTypesSchema_SysEx)
+                              where !vrf.RecordType!.IsType(MidiTypes.MidiTypesSchema_SysEx)
                               select vrf).ToList();
 
         foreach (var nonSysExRoot in remove)

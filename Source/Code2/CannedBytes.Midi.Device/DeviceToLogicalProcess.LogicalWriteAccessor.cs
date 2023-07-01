@@ -28,7 +28,7 @@ partial class DeviceToLogicalProcess
             var fieldValue = _context.FieldInfo.GetDataFieldValue<T>();
 
             // intercept the value and set it on the current Record Entry.
-            if (_context.LogManager?.CurrentEntry != null)
+            if (_context.LogManager?.CurrentEntry is not null)
             {
                 _context.LogManager.CurrentEntry.Data = value;
             }
@@ -67,7 +67,7 @@ partial class DeviceToLogicalProcess
 
             if (type == typeof(string))
             {
-                return _writer.WriteString(ctx, value as string);
+                return _writer.WriteString(ctx, (value as string)!);
             }
 
             if (bitLength == 1)
@@ -107,7 +107,7 @@ partial class DeviceToLogicalProcess
 
         private int DetermineBitLength(Type type)
         {
-            int length = _context.FieldInfo.CurrentNode.FieldConverterPair.Converter.ByteLength;
+            int length = _context.FieldInfo.CurrentNode!.FieldConverterPair.Converter.ByteLength;
 
             if (length < 0)
             {

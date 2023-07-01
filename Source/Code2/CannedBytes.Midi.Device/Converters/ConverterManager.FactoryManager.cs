@@ -24,7 +24,7 @@ partial class ConverterManager
 
         public IConverterFactory DefaultFactory { get; }
 
-        public IConverterFactory Lookup(string schemaName)
+        public IConverterFactory? Lookup(string schemaName)
         {
             IEnumerable<IConverterFactory> all = LookupAll(schemaName);
 

@@ -10,7 +10,7 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
 {
     protected override string GetKeyForItem(FieldInfo item)
     {
-        return item.Key;
+        return item.Key!;
     }
 
     public T GetValue<T>(ILogicalFieldInfo fieldInfo)
@@ -19,7 +19,8 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
 
         var fldInfo = this[key];
 
-        return (T)Convert.ChangeType(fldInfo.Value, typeof(T));
+        return (T?)Convert.ChangeType(fldInfo.Value, typeof(T))
+            ?? throw new DeviceException("Value could not be converted.");
     }
 
     public FieldInfo Add(ILogicalFieldInfo logicFieldInfo, object value)
@@ -138,12 +139,12 @@ public class DictionaryBasedLogicalStub : KeyedCollection<string, DictionaryBase
 
     public class FieldInfo
     {
-        public string Key { get; set; }
-        public Field Field { get; set; }
+        public string? Key { get; set; }
+        public Field? Field { get; set; }
         public int InstanceIndex { get; set; }
-        public object Value { get; set; }
+        public object? Value { get; set; }
 
-        public ILogicalFieldInfo LogicalFieldInfo { get; set; }
+        public ILogicalFieldInfo? LogicalFieldInfo { get; set; }
 
         public override string ToString()
         {

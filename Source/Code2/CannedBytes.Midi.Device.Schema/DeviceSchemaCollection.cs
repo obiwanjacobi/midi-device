@@ -52,7 +52,7 @@ public class DeviceSchemaCollection : KeyedCollection<string, DeviceSchema>
     /// than <see cref="P:DeviceSchema.Name"/> as key.</remarks>
     protected override string GetKeyForItem(DeviceSchema item)
     {
-        if (item != null)
+        if (item is not null)
         {
             return item.SchemaName;
         }

@@ -34,15 +34,15 @@ public sealed class DeviceSchemaProvider : IDeviceSchemaProvider
         return deviceSchema ?? Load(schemaName);
     }
 
-    public RecordType FindRecordType(string schemaName, string typeName)
+    public RecordType? FindRecordType(string schemaName, string typeName)
     {
         Assert.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
         Assert.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
-        RecordType recordType = null;
+        RecordType? recordType = null;
         var schema = _schemas.Find(schemaName);
 
-        if (schema != null)
+        if (schema is not null)
         {
             recordType = schema.AllRecordTypes.Find(typeName);
         }
@@ -50,15 +50,15 @@ public sealed class DeviceSchemaProvider : IDeviceSchemaProvider
         return recordType;
     }
 
-    public DataType FindDataType(string schemaName, string typeName)
+    public DataType? FindDataType(string schemaName, string typeName)
     {
         Assert.IfArgumentNullOrEmpty(schemaName, nameof(schemaName));
         Assert.IfArgumentNullOrEmpty(typeName, nameof(typeName));
 
-        DataType dataType = null;
+        DataType? dataType = null;
         var schema = _schemas.Find(schemaName);
 
-        if (schema != null)
+        if (schema is not null)
         {
             dataType = schema.AllDataTypes.Find(typeName);
         }

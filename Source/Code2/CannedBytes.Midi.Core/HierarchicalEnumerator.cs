@@ -8,7 +8,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
 {
     private readonly IEnumerator<T> _root;
     private readonly Stack<IEnumerator<T>> _enumStack = new();
-    private IEnumerator<T> _currentEnum;
+    private IEnumerator<T>? _currentEnum;
 
     public HierarchicalEnumerator(IEnumerable<T> root)
     {
@@ -32,7 +32,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
         {
             ThrowIfDisposed();
 
-            if (_currentEnum != null)
+            if (_currentEnum is not null)
             {
                 return _currentEnum.Current;
             }
@@ -48,15 +48,15 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
 
         var hasMore = false;
 
-        if (_currentEnum != null)
+        if (_currentEnum is not null)
         {
             var current = _currentEnum.Current;
 
-            if (current != null)
+            if (current is not null)
             {
-                IEnumerator<T> enumerator = GetChildEnumerator();
+                var enumerator = GetChildEnumerator();
 
-                if (enumerator != null)
+                if (enumerator is not null)
                 {
                     _enumStack.Push(_currentEnum);
                     _currentEnum = enumerator;
@@ -72,7 +72,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
         {
             _currentEnum = GetParentEnumerator();
 
-            if (_currentEnum != null)
+            if (_currentEnum is not null)
             {
                 hasMore = _currentEnum.MoveNext();
             }
@@ -98,15 +98,15 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
 
     object System.Collections.IEnumerator.Current
     {
-        get { return Current; }
+        get { return Current!; }
     }
 
-    protected virtual IEnumerator<T> CurrentEnumerator
+    protected virtual IEnumerator<T>? CurrentEnumerator
     {
         get { return _currentEnum; }
     }
 
-    protected virtual IEnumerator<T> GetChildEnumerator()
+    protected virtual IEnumerator<T>? GetChildEnumerator()
     {
         if (Current is IEnumerable<T> enumerable)
         {
@@ -118,7 +118,7 @@ public class HierarchicalEnumerator<T> : DisposableBase, IEnumerable<T>, IEnumer
         return enumerator;
     }
 
-    protected virtual IEnumerator<T> GetParentEnumerator()
+    protected virtual IEnumerator<T>? GetParentEnumerator()
     {
         if (_enumStack.Count > 0)
         {

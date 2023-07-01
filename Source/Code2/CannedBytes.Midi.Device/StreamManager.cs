@@ -37,11 +37,11 @@ public sealed partial class StreamManager
         _streams.Push(streamOwner);
     }
 
-    public Stream RemoveCurrentStream(StreamConverter owner)
+    public Stream? RemoveCurrentStream(StreamConverter owner)
     {
         ThrowIfCurrentStreamNotOwned(owner);
 
-        Stream stream = null;
+        Stream? stream = null;
 
         if (_streams.Count > 0 &&
             _streams.Peek().Owner == owner)
@@ -77,7 +77,7 @@ public sealed partial class StreamManager
                 $"The current Stream is not owned by {owner.GetType().Name} but by the system.");
     }
 
-    public T CurrentStreamAs<T>() where T : Stream
+    public T? CurrentStreamAs<T>() where T : Stream
     {
         return CurrentStream as T;
     }
@@ -102,7 +102,7 @@ public sealed partial class StreamManager
     /// <summary>
     /// <see cref="SysExStream"/> that represents the root of the message.
     /// </summary>
-    public Stream RootStream { get; private set; }
+    public Stream? RootStream { get; private set; }
 
     /// <summary>
     /// Raw MIDI stream containing the SysEx bytes

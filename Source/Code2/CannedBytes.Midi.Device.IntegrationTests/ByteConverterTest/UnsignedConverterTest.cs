@@ -54,18 +54,18 @@ public class UnsignedConverterTest
 
         // 71
         writer[0].Value.Should().Be((byte)0x71);
-        writer[0].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[0].Field.Name.Name.Should().Be("unsigned8");
+        writer[0].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[0].Field!.Name.Name.Should().Be("unsigned8");
 
         // 32 4C 0B
         writer[1].Value.Should().Be(0x0B4C32);
-        writer[1].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[1].Field.Name.Name.Should().Be("unsigned24");
+        writer[1].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[1].Field!.Name.Name.Should().Be("unsigned24");
 
         // 74 23 6E 5A 7F
         writer[2].Value.Should().Be(0x7F5A6E2374);
-        writer[2].Field.Name.SchemaName.Should().Be(TestNamespace);
-        writer[2].Field.Name.Name.Should().Be("unsigned40");
+        writer[2].Field!.Name.SchemaName.Should().Be(TestNamespace);
+        writer[2].Field!.Name.Name.Should().Be("unsigned40");
     }
 
     [Fact]

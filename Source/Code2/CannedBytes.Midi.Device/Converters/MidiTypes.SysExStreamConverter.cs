@@ -50,7 +50,7 @@ internal sealed partial class SysExStreamConverter : StreamConverter, INavigatio
         if (context.ConversionDirection == ConversionDirection.ToPhysical)
         {
             var sysExStream = context.StreamManager.CurrentStreamAs<SysExStream>();
-            sysExStream.WriteEndMarker();
+            sysExStream!.WriteEndMarker();
         }
 
         context.StreamManager.RemoveCurrentStream(this);

@@ -2,8 +2,8 @@
 
 public sealed class PhysicalDeviceDataContext : DeviceDataContext
 {
-    public PhysicalDeviceDataContext()
-        : base(ConversionDirection.ToPhysical)
+    public PhysicalDeviceDataContext(SchemaNode rootNode, StreamManager streamManager)
+        : base(ConversionDirection.ToPhysical, rootNode, streamManager)
     {
         BitWriter = new BitStreamWriter();
     }

@@ -56,7 +56,7 @@ public sealed class SchemaNodeMapFactory
 
         var thisNode = rootNode;
 
-        while (thisNode != null)
+        while (thisNode is not null)
         {
             // initialize each node
 
@@ -86,7 +86,7 @@ public sealed class SchemaNodeMapFactory
     private void InitializeIsAddressMap(SchemaNode thisNode)
     {
         if (!thisNode.IsAddressMap &&
-            thisNode.Parent != null)
+            thisNode.Parent is not null)
         {
             thisNode.IsAddressMap = thisNode.Parent.IsAddressMap;
         }
@@ -114,7 +114,7 @@ public sealed class SchemaNodeMapFactory
             // if no address was specified for the record (previous condition).
             //
             else if (!thisNode.IsClone && thisNode.IsRecord &&
-                     thisNode.PreviousRecord != null &&
+                     thisNode.PreviousRecord is not null &&
                      thisNode.PreviousRecord.FieldConverterPair.Field.Properties.Size != 0)
             {
                 thisNode.Address = thisNode.PreviousRecord.Address +
@@ -127,7 +127,7 @@ public sealed class SchemaNodeMapFactory
             else if (thisNode.FieldConverterPair.Field.Properties.Size != 0 &&
                      thisNode.IsClone)
             {
-                thisNode.Address = thisNode.PreviousClone.Address +
+                thisNode.Address = thisNode.PreviousClone!.Address +
                     thisNode.FieldConverterPair.Field.Properties.Size;
             }
             //
@@ -159,7 +159,7 @@ public sealed class SchemaNodeMapFactory
                         prevField = prevField.PreviousField;
                     }
 
-                    if (prevField != null)
+                    if (prevField is not null)
                     {
                         dataLength = prevField.DataLength;
                     }
@@ -177,7 +177,7 @@ public sealed class SchemaNodeMapFactory
 
         thisNode.DataLength = CalculateDataLength(thisNode);
 
-        if (thisNode.Parent.IsAddressMap)
+        if (thisNode.Parent?.IsAddressMap == true)
         {
             if (thisNode.IsFirstInRecord)
             {
@@ -185,9 +185,9 @@ public sealed class SchemaNodeMapFactory
             }
             else
             {
-                thisNode.Address = thisNode.PreviousField.Address;
+                thisNode.Address = thisNode.PreviousField?.Address ?? SevenBitUInt32.Zero;
 
-                int dataLength = thisNode.PreviousField.DataLength;
+                int dataLength = thisNode.PreviousField?.DataLength ?? 0;
 
                 if (dataLength == 0)
                 {
@@ -198,7 +198,7 @@ public sealed class SchemaNodeMapFactory
                         prevFieldNode = prevFieldNode.PreviousField;
                     }
 
-                    if (prevFieldNode != null)
+                    if (prevFieldNode is not null)
                     {
                         dataLength = prevFieldNode.DataLength;
                     }
@@ -248,7 +248,7 @@ public sealed class SchemaNodeMapFactory
             Dictionary<string, SchemaNode> clones = new();
 
             var parentNode = thisNode;
-            SchemaNode lastSibling = null;
+            SchemaNode? lastSibling = null;
 
             FieldIterator iterator = new(thisNode.FieldConverterPair.Field);
             int lastIndex = 0;
@@ -280,9 +280,9 @@ public sealed class SchemaNodeMapFactory
         return thisNode;
     }
 
-    private static void ManageSiblings(ref SchemaNode lastSibling, SchemaNode newNode)
+    private static void ManageSiblings(ref SchemaNode? lastSibling, SchemaNode newNode)
     {
-        if (lastSibling != null)
+        if (lastSibling is not null)
         {
             lastSibling.NextSibling = newNode;
             newNode.PreviousSibling = lastSibling;

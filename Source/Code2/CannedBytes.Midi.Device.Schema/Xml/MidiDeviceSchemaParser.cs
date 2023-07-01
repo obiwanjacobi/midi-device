@@ -31,12 +31,12 @@ public class MidiDeviceSchemaParser
 
         ProcessImports(sourceSchema.Items);
         CreateTargetSchema(sourceSchema);
-        return _targetSchema;
+        return _targetSchema!;
     }
 
     private void ProcessImports(object[] importsAndAnnotations)
     {
-        if (importsAndAnnotations == null) return;
+        if (importsAndAnnotations is null) return;
 
         Tracer.TraceEvent(
             System.Diagnostics.TraceEventType.Information,
@@ -47,7 +47,7 @@ public class MidiDeviceSchemaParser
         {
             var import = item as import;
 
-            if (import != null)
+            if (import is not null)
             {
                 ProcessImport(import);
             }
@@ -58,7 +58,7 @@ public class MidiDeviceSchemaParser
     {
         var deviceSchema = _schemas.Find(import.schema);
 
-        if (deviceSchema == null)
+        if (deviceSchema is null)
         {
             Tracer.TraceEvent(
                 System.Diagnostics.TraceEventType.Information,
@@ -70,7 +70,7 @@ public class MidiDeviceSchemaParser
         }
     }
 
-    private DeviceSchema _targetSchema;
+    private DeviceSchema? _targetSchema;
     private readonly string DocumentationAttributeName = "Documentation";
     private readonly List<KeyValuePair<XmlQualifiedName, DataType>> _deferredDataTypes = new();
     private readonly List<KeyValuePair<XmlQualifiedName, RecordType>> _deferredRecordTypes = new();
@@ -95,7 +95,7 @@ public class MidiDeviceSchemaParser
 
     private void FillAttributes(IEnumerable<openAttrs> source, SchemaAttributeCollection schemaAttributes)
     {
-        if (source != null)
+        if (source is not null)
         {
             foreach (openAttrs openAttr in source)
             {
@@ -109,7 +109,7 @@ public class MidiDeviceSchemaParser
 
     private void FillAttributed(annotation source, SchemaAttributeCollection target)
     {
-        if (source != null)
+        if (source is not null)
         {
             foreach (object item in source.Items)
             {
@@ -120,7 +120,7 @@ public class MidiDeviceSchemaParser
 
     private void FillAppInfo(object docOrAppInfo, SchemaAttributeCollection target)
     {
-        if (docOrAppInfo != null)
+        if (docOrAppInfo is not null)
         {
             if (docOrAppInfo is documentation doc)
             {
@@ -158,22 +158,22 @@ public class MidiDeviceSchemaParser
             value = String.Join("\r\n", texts);
         }
 
-        var target = new SchemaAttribute(_targetSchema, CreateName(name), value);
+        var target = new SchemaAttribute(_targetSchema!, CreateName(name), value);
         return target;
     }
 
     private SchemaObjectName CreateName(string name)
-        => new(_targetSchema.SchemaName, name);
+        => new(_targetSchema!.SchemaName, name);
 
     private void FillDataTypes(IEnumerable<annotated> source, DataTypeCollection dataTypes)
     {
-        if (source != null)
+        if (source is not null)
         {
             foreach (annotated item in source)
             {
                 var dataType = item as dataType;
 
-                if (dataType != null)
+                if (dataType is not null)
                 {
                     var dt = CreateDataType(dataType);
                     dataTypes.Add(dt);
@@ -195,7 +195,7 @@ public class MidiDeviceSchemaParser
 
     private DataType CreateDataType(dataType source)
     {
-        var target = new DataType(_targetSchema, CreateName(source.name))
+        var target = new DataType(_targetSchema!, CreateName(source.name))
         {
             IsAbstract = source.@abstract,
             ValueOffset = source.valueOffset,
@@ -221,7 +221,7 @@ public class MidiDeviceSchemaParser
         {
             var baseType = _schemas.FindDataType(restriction.@base.Namespace, restriction.@base.Name);
 
-            if (baseType != null)
+            if (baseType is not null)
             {
                 target.BaseTypes.Add(baseType);
             }
@@ -237,7 +237,7 @@ public class MidiDeviceSchemaParser
 
         if (source.Item is union union)
         {
-            if (union.dataType != null)
+            if (union.dataType is not null)
             {
                 throw new DeviceSchemaException(
                     "Nested DataType inside a union is not implemented yet.");
@@ -253,13 +253,13 @@ public class MidiDeviceSchemaParser
 
     private void FillNames(IEnumerable<XmlQualifiedName> source, DataType target)
     {
-        if (source != null)
+        if (source is not null)
         {
             foreach (XmlQualifiedName item in source)
             {
-                DataType baseType = _schemas.FindDataType(item.Namespace, item.Name);
+                DataType? baseType = _schemas.FindDataType(item.Namespace, item.Name);
 
-                if (baseType != null)
+                if (baseType is not null)
                 {
                     target.BaseTypes.Add(baseType);
                 }
@@ -274,7 +274,7 @@ public class MidiDeviceSchemaParser
 
     private static void FillFacets(facet[] facets, ItemsChoiceType1[] choiceTypes, ConstraintCollection constraintCollection)
     {
-        if (facets != null)
+        if (facets is not null)
         {
             for (int i = 0; i < facets.Length; i++)
             {
@@ -282,14 +282,14 @@ public class MidiDeviceSchemaParser
                 ItemsChoiceType1 itemType = choiceTypes[i];
 
                 var constraint = Constraint.Create(itemType.ToString(), facet.value);
-                constraintCollection.Add(constraint);
+                constraintCollection.Add(constraint!);
             }
         }
     }
 
     private static void FillFacets(facet[] facets, ItemsChoiceType[] choiceTypes, ConstraintCollection constraintCollection)
     {
-        if (facets != null)
+        if (facets is not null)
         {
             for (int i = 0; i < facets.Length; i++)
             {
@@ -297,15 +297,14 @@ public class MidiDeviceSchemaParser
                 var itemType = choiceTypes[i];
 
                 var constraint = Constraint.Create(itemType.ToString(), facet.value);
-
-                constraintCollection.Add(constraint);
+                constraintCollection.Add(constraint!);
             }
         }
     }
 
     private void FillRecordTypes(IEnumerable<annotated> annotated, RecordTypeCollection recordTypeCollection)
     {
-        if (annotated != null)
+        if (annotated is not null)
         {
             foreach (annotated item in annotated)
             {
@@ -314,18 +313,18 @@ public class MidiDeviceSchemaParser
                     var rt = CreateRecordType(recordType);
 
                     recordTypeCollection.Add(rt);
-                    _targetSchema.RootRecordTypes.Add(rt);
+                    _targetSchema!.RootRecordTypes.Add(rt);
                 }
             }
 
             foreach (KeyValuePair<XmlQualifiedName, RecordType> pair in _deferredRecordTypes)
             {
-                var baseType = _targetSchema.AllRecordTypes.Find(pair.Key.Name)
+                var baseType = _targetSchema!.AllRecordTypes.Find(pair.Key.Name)
                     ?? throw new DeviceSchemaException(
                         $"The base type '{pair.Key.Name}' ({pair.Key.Namespace}) used for record type '{pair.Value.Name}' was not found.");
 
                 pair.Value.BaseType = baseType;
-                _targetSchema.RootRecordTypes.Remove(baseType);
+                _targetSchema!.RootRecordTypes.Remove(baseType);
             }
 
             _deferredRecordTypes.Clear();
@@ -334,9 +333,9 @@ public class MidiDeviceSchemaParser
             {
                 if (SetFieldType(pair.Key.Namespace, pair.Key.Name, pair.Value))
                 {
-                    if (pair.Value.RecordType != null)
+                    if (pair.Value.RecordType is not null)
                     {
-                        _targetSchema.RootRecordTypes.Remove(pair.Value.RecordType);
+                        _targetSchema!.RootRecordTypes.Remove(pair.Value.RecordType);
                     }
                 }
                 else
@@ -352,7 +351,7 @@ public class MidiDeviceSchemaParser
 
     private RecordType CreateRecordType(recordType source)
     {
-        var target = new RecordType(_targetSchema, CreateName(source.name))
+        var target = new RecordType(_targetSchema!, CreateName(source.name))
         {
             IsAbstract = source.@abstract
         };
@@ -374,7 +373,7 @@ public class MidiDeviceSchemaParser
         {
             var baseType = _schemas.FindRecordType(extension.@base.Namespace, extension.@base.Name);
 
-            if (baseType != null)
+            if (baseType is not null)
             {
                 target.BaseType = baseType;
             }
@@ -397,7 +396,7 @@ public class MidiDeviceSchemaParser
 
     private void FillFields(fieldSequence source, RecordType target)
     {
-        if (source != null)
+        if (source is not null)
         {
             FillFields(source.field, target);
         }
@@ -405,7 +404,7 @@ public class MidiDeviceSchemaParser
 
     private void FillFields(IEnumerable<localField> source, RecordType recordType)
     {
-        if (source != null)
+        if (source is not null)
         {
             foreach (var field in source)
             {
@@ -419,7 +418,7 @@ public class MidiDeviceSchemaParser
 
     private Field CreateField(localField source)
     {
-        var target = new Field(_targetSchema, CreateName(source.name));
+        var target = new Field(_targetSchema!, CreateName(source.name));
 
         target.Properties.Repeats = Int32.Parse(source.repeats);
         target.Properties.DevicePropertyName = source.property;
@@ -446,16 +445,16 @@ public class MidiDeviceSchemaParser
         {
             var dataType = target.DataType;
 
-            while (dataType != null)
+            while (dataType is not null)
             {
                 target.Constraints.Merge(dataType.Constraints);
 
                 dataType = dataType.BaseType;
             }
 
-            if (target.RecordType != null)
+            if (target.RecordType is not null)
             {
-                _targetSchema.RootRecordTypes.Remove(target.RecordType);
+                _targetSchema!.RootRecordTypes.Remove(target.RecordType);
             }
         }
 
@@ -467,7 +466,7 @@ public class MidiDeviceSchemaParser
         if (!String.IsNullOrEmpty(fixedValue))
         {
             var constraint = Constraint.Create("fixed", fixedValue);
-            target.Add(constraint);
+            target.Add(constraint!);
         }
     }
 
@@ -475,17 +474,17 @@ public class MidiDeviceSchemaParser
     {
         SchemaObjectName fullName = new(schema, name);
         var dataType = _schemas.FindDataType(schema, name)
-            ?? _targetSchema.AllDataTypes.Find(fullName.FullName);
+            ?? _targetSchema!.AllDataTypes.Find(fullName.FullName);
 
-        if (dataType == null)
+        if (dataType is null)
         {
             var recordType = _schemas.FindRecordType(schema, name);
 
-            if (recordType == null)
+            if (recordType is null)
             {
-                recordType = _targetSchema.AllRecordTypes.Find(fullName.FullName);
+                recordType = _targetSchema!.AllRecordTypes.Find(fullName.FullName);
 
-                if (recordType == null)
+                if (recordType is null)
                 {
                     return false;
                 }

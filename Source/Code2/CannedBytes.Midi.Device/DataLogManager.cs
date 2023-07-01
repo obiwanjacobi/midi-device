@@ -25,7 +25,7 @@ public sealed partial class DataLogManager
 
     private readonly Stack<DataLogEntry> _currentEntries = new();
 
-    public DataLogEntry CurrentEntry
+    public DataLogEntry? CurrentEntry
     {
         get
         {
@@ -54,7 +54,7 @@ public sealed partial class DataLogManager
 
     public void SaveCurrentEntry()
     {
-        if (CurrentEntry != null)
+        if (CurrentEntry is not null)
         {
             var entry = _currentEntries.Pop();
 
@@ -72,9 +72,9 @@ public sealed partial class DataLogManager
 
     public void SetError(Exception e)
     {
-        if (CurrentEntry == null)
+        if (CurrentEntry is null)
         {
-            DataLogEntry errEntry = null;
+            DataLogEntry? errEntry = null;
 
             if (_entries.Count > 0)
             {
@@ -94,7 +94,7 @@ public sealed partial class DataLogManager
                 errEntry.AddMessage("Auto-created new entry for Error.");
             }
 
-            if (errEntry != null)
+            if (errEntry is not null)
             {
                 errEntry.Error = e;
                 _entries.Add(errEntry);

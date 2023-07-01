@@ -17,7 +17,7 @@ public sealed class SchemaNodeMap
 
     public SchemaNode LastNode { get; internal set; }
 
-    public SchemaNode AddressMap { get; internal set; }
+    public SchemaNode? AddressMap { get; internal set; }
 
     public override string ToString()
     {
@@ -25,7 +25,7 @@ public sealed class SchemaNodeMap
 
         text.AppendLine(RootNode.ToString());
 
-        foreach (SchemaNode node in RootNode.SelectNodes(node => node.Next))
+        foreach (var node in RootNode.SelectNodes(node => node.Next))
         {
             text.AppendLine(node.ToString());
         }

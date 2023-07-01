@@ -2,8 +2,8 @@
 
 public sealed class LogicalDeviceDataContext : DeviceDataContext
 {
-    public LogicalDeviceDataContext()
-        : base(ConversionDirection.ToLogical)
+    public LogicalDeviceDataContext(SchemaNode rootNode, StreamManager streamManager)
+        : base(ConversionDirection.ToLogical, rootNode, streamManager)
     {
         BitReader = new BitStreamReader();
     }

@@ -16,7 +16,7 @@ partial class ConverterManager
         {
             var converter = GetConverter(field)
                 ?? throw new DeviceSchemaException(
-                    $"No DataConverter could be created for field '{field.Name.FullName}' with dataType '{field.DataType.Name.FullName}'.");
+                    $"No DataConverter could be created for field '{field.Name.FullName}' with dataType '{field.DataType?.Name.FullName}'.");
 
             pair = new FieldConverterPair(field, converter);
             _fieldConverterPairs.Add(BuildFieldTypeKey(field), pair);
@@ -43,12 +43,12 @@ partial class ConverterManager
     // prevents giving out wrong pairs when field names are the same.
     private static string BuildFieldTypeKey(Field field)
     {
-        if (field.DataType != null)
+        if (field.DataType is not null)
         {
             return $"{field.Name.FullName}:{field.DataType.Name.FullName}";
         }
 
-        if (field.RecordType != null)
+        if (field.RecordType is not null)
         {
             return $"{field.Name.FullName}:{field.RecordType.Name.FullName}";
         }

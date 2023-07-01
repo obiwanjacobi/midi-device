@@ -6,9 +6,6 @@ public class ConsoleLogicalWriterStub : IMidiLogicalWriter
 {
     private readonly IMidiLogicalWriter writer;
 
-    public ConsoleLogicalWriterStub()
-    { }
-
     public ConsoleLogicalWriterStub(IMidiLogicalWriter nestedWriter)
     {
         writer = nestedWriter;

@@ -24,12 +24,12 @@ public sealed class ConstraintCollection : Collection<Constraint>
                select constraint;
     }
 
-    public Constraint Find<T>()
+    public Constraint? Find<T>()
     {
         return FindAll<T>().FirstOrDefault();
     }
 
-    public Constraint Find(ConstraintTypes type)
+    public Constraint? Find(ConstraintTypes type)
     {
         return FindAll(type).FirstOrDefault();
     }
@@ -95,7 +95,7 @@ public sealed class ConstraintCollection : Collection<Constraint>
         {
             var currentConstraints = FindAll(constraint.ConstraintType);
 
-            if (currentConstraints == null || currentConstraints.Count() == 0)
+            if (currentConstraints is null || !currentConstraints.Any())
             {
                 newConstraints.Add(constraint);
             }
@@ -103,7 +103,7 @@ public sealed class ConstraintCollection : Collection<Constraint>
             {
                 if (constraint.ConstraintType == ConstraintTypes.Enumeration)
                 {
-                    foreach (Constraint enumConstraint in currentConstraints)
+                    foreach (var enumConstraint in currentConstraints)
                     {
                         // add enums with a value not yet in collection.
                         if (enumConstraint.GetValue<long>() != constraint.GetValue<long>())
@@ -114,7 +114,7 @@ public sealed class ConstraintCollection : Collection<Constraint>
                 }
             }
 
-            foreach (Constraint newConstraint in newConstraints)
+            foreach (var newConstraint in newConstraints)
             {
                 Add(newConstraint);
             }

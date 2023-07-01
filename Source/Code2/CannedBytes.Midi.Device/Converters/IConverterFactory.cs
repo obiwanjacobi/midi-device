@@ -6,7 +6,7 @@ public interface IConverterFactory
 {
     string SchemaName { get; }
 
-    DataConverter Create(DataType matchType, DataType constructType);
+    DataConverter? Create(DataType matchType, DataType constructType);
 
-    StreamConverter Create(RecordType matchType, RecordType constructType);
+    StreamConverter? Create(RecordType matchType, RecordType constructType);
 }

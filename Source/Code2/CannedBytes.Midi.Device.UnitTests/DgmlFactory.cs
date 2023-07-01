@@ -37,7 +37,7 @@ static class DgmlFactory
 
         foreach (var n in schemaNode.SelectNodes(n => n.Next))
         {
-            if (n.Next != null)
+            if (n.Next is not null)
             {
                 links.Add(new DirectedGraphLink()
                 {
@@ -48,7 +48,7 @@ static class DgmlFactory
                 });
             }
 
-            if (n.NextClone != null)
+            if (n.NextClone is not null)
             {
                 links.Add(new DirectedGraphLink()
                 {
@@ -59,7 +59,7 @@ static class DgmlFactory
                 });
             }
 
-            if (n.NextSibling != null)
+            if (n.NextSibling is not null)
             {
                 links.Add(new DirectedGraphLink()
                 {
@@ -70,7 +70,7 @@ static class DgmlFactory
                 });
             }
 
-            if (n.Parent != null)
+            if (n.Parent is not null)
             {
                 links.Add(new DirectedGraphLink()
                 {
@@ -88,7 +88,7 @@ static class DgmlFactory
     // Fails when different nodes have the same name.
     private static string BuildId(SchemaNode schemaNode)
     {
-        if (schemaNode.Field != null)
+        if (schemaNode.Field is not null)
         {
             return schemaNode.Field.Name.Name + " " + schemaNode.Key.ToString();
         }

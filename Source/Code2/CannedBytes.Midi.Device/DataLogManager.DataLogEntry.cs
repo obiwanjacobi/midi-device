@@ -8,16 +8,16 @@ partial class DataLogManager
     public sealed class DataLogEntry
     {
         public bool CarryCleared { get; set; }
-        public object Data { get; set; }
-        public SchemaNode Node { get; set; }
+        public object? Data { get; set; }
+        public SchemaNode? Node { get; set; }
         public long PhysicalStreamPosition { get; set; }
         public long ParentStreamPosition { get; set; }
-        public Exception Error { get; set; }
-        public string Message { get; private set; }
+        public Exception? Error { get; set; }
+        public string? Message { get; private set; }
 
         public DataLogEntry Clone()
         {
-            DataLogEntry clone = new()
+            var clone = new DataLogEntry()
             {
                 CarryCleared = CarryCleared,
                 Data = Data,
@@ -35,7 +35,7 @@ partial class DataLogManager
         {
             get
             {
-                return Data == null && Node == null && Error == null &&
+                return Data is null && Node is null && Error is null &&
                     String.IsNullOrEmpty(Message) &&
                     PhysicalStreamPosition == 0 &&
                     ParentStreamPosition == 0;
@@ -58,7 +58,7 @@ partial class DataLogManager
         {
             var text = new StringBuilder();
 
-            if (Node != null)
+            if (Node is not null)
             {
                 text.Append(Node.ToString());
                 text.Append(" = ");
@@ -72,7 +72,7 @@ partial class DataLogManager
                 text.Append('\'');
             }
 
-            if (Error != null)
+            if (Error is not null)
             {
                 text.Append(Error.ToString());
             }

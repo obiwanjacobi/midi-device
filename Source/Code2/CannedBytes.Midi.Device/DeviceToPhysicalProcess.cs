@@ -19,12 +19,7 @@ public partial class DeviceToPhysicalProcess
 
     protected virtual PhysicalDeviceDataContext CreateContext(Stream physicalStream, SchemaNode rootNode)
     {
-        var ctx = new PhysicalDeviceDataContext()
-        {
-            RootNode = rootNode,
-            StreamManager = new StreamManager(physicalStream)
-        };
-
+        var ctx = new PhysicalDeviceDataContext(rootNode, new StreamManager(physicalStream));
         return ctx;
     }
 }

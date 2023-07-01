@@ -8,13 +8,13 @@ public class FieldValue<T>
     where T : IComparable
 {
     public FieldValue(DeviceDataContext context)
-        : this(context.FieldInfo.CurrentNode.FieldConverterPair.Field)
+        : this(context.FieldInfo.CurrentNode!.FieldConverterPair.Field)
     {
         if (!String.IsNullOrEmpty(Field.Properties.DevicePropertyName))
         {
             var prop = context.DeviceProperties.Find(Field.Properties.DevicePropertyName);
 
-            if (prop != null)
+            if (prop is not null)
             {
                 FixedValue = prop.GetValue<T>();
                 Callback = false;
@@ -36,21 +36,21 @@ public class FieldValue<T>
 
         var minValue = Field.Constraints.Find(ConstraintTypes.MinInclusive);
 
-        if (minValue != null)
+        if (minValue is not null)
         {
             MinValue = minValue.GetValue<T>();
         }
 
         var maxValue = Field.Constraints.Find(ConstraintTypes.MaxInclusive);
 
-        if (maxValue != null)
+        if (maxValue is not null)
         {
             MaxValue = maxValue.GetValue<T>();
         }
 
         var fixValue = Field.Constraints.Find(ConstraintTypes.FixedValue);
 
-        if (fixValue != null)
+        if (fixValue is not null)
         {
             FixedValue = fixValue.GetValue<T>();
             Callback = false;
@@ -64,7 +64,7 @@ public class FieldValue<T>
             Callback = false;
         }
 
-        if (Field.DataType.Name.Name == "midiNull")
+        if (Field.DataType?.Name.Name == "midiNull")
         {
             IsNullType = true;
             Callback = false;
@@ -113,17 +113,17 @@ public class FieldValue<T>
     /// <summary>
     /// Set to the value of the MinInclusive constraint (if available).
     /// </summary>
-    public T MinValue { get; private set; }
+    public T? MinValue { get; private set; }
 
     /// <summary>
     /// Set to the value of the MaxInclusive constraint (if available).
     /// </summary>
-    public T MaxValue { get; private set; }
+    public T? MaxValue { get; private set; }
 
     /// <summary>
     /// Set to the value of the Fixed value or single Enumeration constraint (if available).
     /// </summary>
-    public T FixedValue { get; private set; }
+    public T? FixedValue { get; private set; }
 
     /// <summary>
     /// Indicates if the call to the logic reader/writer should be made.

@@ -2,5 +2,5 @@
 
 public interface IDataConverterExtension
 {
-    DataConverter InnerConverter { get; set; }
+    DataConverter? InnerConverter { get; set; }
 }

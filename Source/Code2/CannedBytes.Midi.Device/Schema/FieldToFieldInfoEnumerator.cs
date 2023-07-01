@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CannedBytes.Midi.Device.Schema;
 
@@ -21,7 +22,13 @@ internal class FieldToFieldInfoEnumerator : IEnumerator<FieldInfo>, IEnumerable<
         get { return new FieldInfo(_enum.Current); }
     }
 
-    public virtual void Dispose()
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool dispose)
     {
         _enum.Dispose();
     }

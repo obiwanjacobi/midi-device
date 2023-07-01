@@ -7,9 +7,9 @@ namespace CannedBytes.Midi.Device.Schema.Xml;
 
 internal class XmlResourceResolver : XmlUrlResolver
 {
-    public override object GetEntity(Uri absoluteUri, string role, Type ofObjectToReturn)
+    public override object GetEntity(Uri absoluteUri, string? role, Type? ofObjectToReturn)
     {
-        object result = null;
+        object? result = null;
 
         try
         {
@@ -20,33 +20,33 @@ internal class XmlResourceResolver : XmlUrlResolver
         catch (FileNotFoundException)
         { }
 
-        if (result == null)
+        if (result is null)
         {
             var fullPath = absoluteUri.LocalPath;
 
             var assemblyName = Path.GetDirectoryName(fullPath);
             var assembly = Assembly.LoadFrom(assemblyName + ".dll");
 
-            if (assembly != null)
+            if (assembly is not null)
             {
                 result = assembly.GetManifestResourceStream(
                         assembly.GetName().Name + "." + Path.GetFileName(fullPath));
             }
         }
 
-        return result;
+        return result!;
     }
 
-    public override Uri ResolveUri(Uri baseUri, string relativeUri)
+    public override Uri ResolveUri(Uri? baseUri, string? relativeUri)
     {
-        if (baseUri.IsAbsoluteUri)
+        if (baseUri?.IsAbsoluteUri == true)
         {
-            string fullPath = baseUri.LocalPath;
+            string? fullPath = baseUri.LocalPath;
 
             if (!Directory.Exists(fullPath))
             {
                 fullPath = Path.GetDirectoryName(fullPath);
-                baseUri = new Uri(fullPath);
+                baseUri = new Uri(fullPath!);
             }
         }
 

@@ -16,7 +16,7 @@ internal sealed class BitConverter : DataConverter
     /// </summary>
     /// <param name="dataType">Must not be null.</param>
     /// <param name="range">Indicates the bits this converter will use out of byte.</param>
-    public BitConverter(DataType dataType, ValueRange range = null)
+    public BitConverter(DataType dataType, ValueRange? range = null)
         : base(dataType)
     {
         if (range is null)
@@ -28,7 +28,7 @@ internal sealed class BitConverter : DataConverter
     /// <summary>
     /// Gets the bits that are used during conversion.
     /// </summary>
-    public ValueRange Range { get; }
+    public ValueRange? Range { get; }
 
     /// <summary>
     /// Returns the number of bytes for the bit data - or zero if the range is not set.
@@ -79,7 +79,7 @@ internal sealed class BitConverter : DataConverter
             if (Range is null)
             {
                 throw new DeviceSchemaException(
-                    $"Expected a bit range to be set either on DataType '{field.DataType.Name.Name}' ({field.DataType.Name.SchemaName}) " +
+                    $"Expected a bit range to be set either on DataType '{field.DataType?.Name.Name}' ({field.DataType?.Name.SchemaName}) " +
                     $"or on Field '{field.Name.Name}' ({field.Name.SchemaName}).");
             }
 

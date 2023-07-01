@@ -28,7 +28,7 @@ public sealed class DataType : AttributedSchemaObject
 
     public BitOrder BitOrder { get; internal set; }
 
-    public ValueRange Range { get; internal set; }
+    public ValueRange? Range { get; internal set; }
 
     /// <summary>
     /// Gets a value indicating if this DataType derives from one or more other DataTypes.
@@ -37,7 +37,7 @@ public sealed class DataType : AttributedSchemaObject
     /// to find out if there are any base DataTypes.</remarks>
     public bool HasBaseTypes
     {
-        get { return baseTypes?.Count > 0; }
+        get { return _baseTypes?.Count > 0; }
     }
 
     /// <summary>
@@ -50,14 +50,14 @@ public sealed class DataType : AttributedSchemaObject
     /// </summary>
     public bool IsExtension { get; internal set; }
 
-    private BaseTypeCollection baseTypes;
+    private BaseTypeCollection? _baseTypes;
     /// <summary>
     /// Gets the collection of <see cref="DataType"/>s this definition is based on.
     /// </summary>
     /// <value>Derived classes can set this property. Must not be null.</value>
     public BaseTypeCollection BaseTypes
     {
-        get { return baseTypes ??= new BaseTypeCollection(Schema); }
+        get { return _baseTypes ??= new BaseTypeCollection(Schema); }
     }
 
     /// <summary>
@@ -65,20 +65,20 @@ public sealed class DataType : AttributedSchemaObject
     /// </summary>
     /// <remarks>If there are no or more than one base DataTypes this property returns null.
     /// Refer to the <see cref="HasBaseTypes"/> and <see cref="BaseTypes"/> property.</remarks>
-    public DataType BaseType
+    public DataType? BaseType
     {
         get
         {
-            if (baseTypes?.Count == 1)
+            if (_baseTypes?.Count == 1)
             {
-                return baseTypes[0];
+                return _baseTypes[0];
             }
 
             return null;
         }
     }
 
-    private ConstraintCollection constraints;
+    private ConstraintCollection? _constraints;
 
     /// <summary>
     /// Gets the collection of <see cref="Constraint"/>s for this <see cref="DataType"/> definition.
@@ -87,7 +87,7 @@ public sealed class DataType : AttributedSchemaObject
     /// <remarks>The collection contains only the Constraints declared in this DataType instance.</remarks>
     public ConstraintCollection Constraints
     {
-        get { return constraints ??= new ConstraintCollection(); }
+        get { return _constraints ??= new ConstraintCollection(); }
     }
 
     /// <summary>
@@ -95,17 +95,17 @@ public sealed class DataType : AttributedSchemaObject
     /// </summary>
     /// <param name="constraintType">The type of constraint to look for.</param>
     /// <returns>Returns null when no suitable constraint could be found.</returns>
-    public Constraint FindConstraint(ConstraintTypes constraintType)
+    public Constraint? FindConstraint(ConstraintTypes constraintType)
     {
         var dataType = this;
 
-        Constraint constraint;
+        Constraint? constraint;
         do
         {
             constraint = dataType.Constraints.Find(constraintType);
             dataType = dataType.BaseType;
         }
-        while (constraint == null && dataType != null);
+        while (constraint is null && dataType is not null);
 
         return constraint;
     }
@@ -137,7 +137,7 @@ public sealed class DataType : AttributedSchemaObject
             }
             else
             {
-                success = BaseTypes.Find(fullDataTypeName) != null;
+                success = BaseTypes.Find(fullDataTypeName) is not null;
             }
         }
 

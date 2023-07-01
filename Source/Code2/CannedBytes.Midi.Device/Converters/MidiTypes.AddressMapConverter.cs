@@ -52,7 +52,7 @@ internal sealed class AddressMapConverter : StreamConverter, INavigationEvents
         var addressProperty = context.DeviceProperties.Find(DeviceProperty.AddressPropertyName);
         var sizeProperty = context.DeviceProperties.Find(DeviceProperty.SizePropertyName);
 
-        if (addressProperty == null)
+        if (addressProperty is null)
         {
             if (context.ConversionDirection == ConversionDirection.ToPhysical)
             {
@@ -68,7 +68,7 @@ internal sealed class AddressMapConverter : StreamConverter, INavigationEvents
 
         address = SevenBitUInt32.FromSevenBitValue(addressProperty.GetValue<uint>());
 
-        if (sizeProperty != null)
+        if (sizeProperty is not null)
         {
             size = SevenBitUInt32.FromSevenBitValue(sizeProperty.GetValue<uint>());
         }

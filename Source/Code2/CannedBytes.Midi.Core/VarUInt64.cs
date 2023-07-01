@@ -83,7 +83,7 @@ public readonly struct VarUInt64
         return _value == value;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj is VarUInt64 var64)
         {
@@ -342,9 +342,9 @@ public readonly struct VarUInt64
     /// </summary>
     /// <param name="typeCode">An indication of the requested size.</param>
     /// <returns>Returns byte, ushort, uint or ulong types.</returns>
-    public static Type GetTypeFor(VarTypeCode typeCode)
+    public static Type? GetTypeFor(VarTypeCode typeCode)
     {
-        Type result = null;
+        Type? result = null;
 
         switch (typeCode)
         {

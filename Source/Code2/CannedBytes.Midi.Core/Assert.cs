@@ -7,11 +7,11 @@ namespace CannedBytes.Midi.Core
     public static class Assert
     {
         [Conditional("DEBUG")]
-        public static void IfArgumentNull<T>(T argument, string argumentName,
-            [CallerMemberName] string caller = null, [CallerLineNumber] int line = default)
+        public static void IfArgumentNull<T>(T? argument, string argumentName,
+            [CallerMemberName] string? caller = null, [CallerLineNumber] int line = default)
             where T : class
         {
-            if (argument == null)
+            if (argument is null)
             {
                 throw new ArgumentNullException(argumentName, 
                     $"Argument '{argumentName}' was null at {caller} ({line}).");
@@ -19,11 +19,11 @@ namespace CannedBytes.Midi.Core
         }
 
         [Conditional("DEBUG")]
-        public static void IfArgumentNull<T>(T argument, string argumentName, string message,
-            [CallerMemberName] string caller = null, [CallerLineNumber] int line = default)
+        public static void IfArgumentNull<T>(T? argument, string argumentName, string message,
+            [CallerMemberName] string? caller = null, [CallerLineNumber] int line = default)
             where T : class
         {
-            if (argument == null)
+            if (argument is null)
             {
                 throw new ArgumentNullException(argumentName, 
                     $"{message} for '{argumentName}' at {caller} ({line}).");
@@ -31,8 +31,8 @@ namespace CannedBytes.Midi.Core
         }
 
         [Conditional("DEBUG")]
-        public static void IfArgumentNullOrEmpty(string argument, string argumentName,
-            [CallerMemberName] string caller = null, [CallerLineNumber] int line = default)
+        public static void IfArgumentNullOrEmpty(string? argument, string argumentName,
+            [CallerMemberName] string? caller = null, [CallerLineNumber] int line = default)
         {
             if (String.IsNullOrEmpty(argument))
             {
@@ -45,7 +45,7 @@ namespace CannedBytes.Midi.Core
 
         [Conditional("DEBUG")]
         public static void IfArgumentOutOfRange<T>(IComparable<T> argument, T minValue, T maxValue, string argumentName,
-            [CallerMemberName] string caller = null, [CallerLineNumber] int line = default)
+            [CallerMemberName] string? caller = null, [CallerLineNumber] int line = default)
             where T : struct
         {
             if (argument.CompareTo(minValue) < 0 || argument.CompareTo(maxValue) > 0)
@@ -57,9 +57,9 @@ namespace CannedBytes.Midi.Core
 
         [Conditional("DEBUG")]
         public static void IfArgumentTooLong(string argument, int maxLength, string argumentName,
-            [CallerMemberName] string caller = null, [CallerLineNumber] int line = default)
+            [CallerMemberName] string? caller = null, [CallerLineNumber] int line = default)
         {
-            if (argument != null && argument.Length > maxLength)
+            if (argument is not null && argument.Length > maxLength)
             {
                 throw new ArgumentException(
                     $"The value '{argument}' for '{argumentName}' exceeds the maximum of {maxLength} at {caller} ({line}).",
@@ -68,8 +68,8 @@ namespace CannedBytes.Midi.Core
         }
 
         [Conditional("DEBUG")]
-        public static void IfArgumentNotOfType<T>(object argument, string argumentName,
-            [CallerMemberName] string caller = null, [CallerLineNumber] int line = default)
+        public static void IfArgumentNotOfType<T>(object? argument, string argumentName,
+            [CallerMemberName] string? caller = null, [CallerLineNumber] int line = default)
         {
             if (!(argument is T))
             {

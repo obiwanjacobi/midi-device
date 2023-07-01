@@ -22,11 +22,13 @@ public static class MidiDeviceSchemaReader
     {
         var reader = XmlReader.Create(stream);
 
+        deviceSchema? deviceSchema = null;
         if (_serializer.CanDeserialize(reader))
         {
-            return (deviceSchema)_serializer.Deserialize(reader);
+            deviceSchema = (deviceSchema?)_serializer.Deserialize(reader);
         }
 
-        return null;
+        return deviceSchema ??
+            throw new DeviceSchemaException("Could not deserialize Schema stream.");
     }
 }

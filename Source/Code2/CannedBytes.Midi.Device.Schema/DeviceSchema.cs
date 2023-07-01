@@ -27,7 +27,7 @@ public sealed class DeviceSchema : AttributedSchemaObject
 
     public string Version { get; internal set; }
 
-    private RecordTypeCollection recordTypes;
+    private RecordTypeCollection? _recordTypes;
 
     /// <summary>
     /// Gets the collection of <see cref="RecordType"/>s contained in this schema.
@@ -35,10 +35,10 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public RecordTypeCollection AllRecordTypes
     {
-        get { return recordTypes ??= new RecordTypeCollection(this); }
+        get { return _recordTypes ??= new RecordTypeCollection(this); }
     }
 
-    private DataTypeCollection dataTypes;
+    private DataTypeCollection? _dataTypes;
 
     /// <summary>
     /// Gets the collection of <see cref="DataType"/>s contained in this schema.
@@ -46,10 +46,10 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public DataTypeCollection AllDataTypes
     {
-        get { return dataTypes ??= new DataTypeCollection(this); }
+        get { return _dataTypes ??= new DataTypeCollection(this); }
     }
 
-    private RecordTypeCollection rootTypes;
+    private RecordTypeCollection? _rootTypes;
 
     /// <summary>
     /// Gets the collection of <see cref="RecordType"/>s that have no parent (roots).
@@ -57,10 +57,10 @@ public sealed class DeviceSchema : AttributedSchemaObject
     /// <remarks>Derived classes can set their own instance of this collection.</remarks>
     public RecordTypeCollection RootRecordTypes
     {
-        get { return rootTypes ??= new RecordTypeCollection(this); }
+        get { return _rootTypes ??= new RecordTypeCollection(this); }
     }
 
-    private FieldCollection _virtualRootFields;
+    private FieldCollection? _virtualRootFields;
 
     /// <summary>
     /// Contains a virtual root <see cref="Field"/> for each <see cref="RecordType"/> in <see cref="RootRecordTypes"/>.
