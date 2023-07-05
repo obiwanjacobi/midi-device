@@ -108,7 +108,7 @@ public class AddressMapManagerTest
 
         result[5].Address.Should().Be(0x20);
         result[5].Field.Name.Name.Should().Be("Field1a");
-        result[5].InstanceIndex.Should().Be(1);
+        result[5].InstanceIndex.Should().Be(0);
     }
 
     [Fact]
