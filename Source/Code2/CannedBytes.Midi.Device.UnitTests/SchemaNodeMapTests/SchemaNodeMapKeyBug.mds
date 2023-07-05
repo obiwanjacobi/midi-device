@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mds:deviceSchema
+    schema="urn:BinaryConverterMapTest"
+    xmlns="urn:BinaryConverterMapTest"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:mds="urn:midi-device-schema:v1.0"
+    xmlns:m="urn:midi-device-schema:midi-types:v1.0"
+>
+  <mds:import schema="urn:midi-device-schema:midi-types:v1.0" assembly="CannedBytes.Midi.Device" name="MidiTypes.mds" />
+
+  <mds:recordType name="AddressMap">
+    <mds:extension base="m:midiAddressMap">
+      <mds:sequence>
+        <mds:field name="Patch" type="Patch" repeats="2" mds:address="03-00-00H"/>
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="Patch" mds:width="4">
+    <mds:extension base="m:midiSplitNibbleLE">
+      <mds:sequence>
+        <mds:field name="Name" type="m:midiString6" />
+        <mds:field name="CtrlParameters" type="CtrlParameter" repeats="3" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+  <mds:recordType name="CtrlParameter" mds:width="4">
+    <mds:extension base="m:midiSplitNibbleLE">
+      <mds:sequence>
+        <mds:field name="Ctrl" type="m:midiData" />
+      </mds:sequence>
+    </mds:extension>
+  </mds:recordType>
+
+</mds:deviceSchema>

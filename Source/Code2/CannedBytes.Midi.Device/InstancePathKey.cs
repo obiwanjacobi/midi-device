@@ -106,6 +106,9 @@ public struct InstancePathKey : IEquatable<InstancePathKey>
 
     public override string ToString()
     {
+        if (_values is null)
+            return "<default>";
+
         StringBuilder text = new();
 
         var indices = new List<int>(_values);
@@ -131,7 +134,7 @@ public struct InstancePathKey : IEquatable<InstancePathKey>
 
         foreach (string value in values)
         {
-            int index = int.Parse(value);
+            int index = Int32.Parse(value);
 
             result.Add(index);
         }

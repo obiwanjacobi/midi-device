@@ -13,6 +13,7 @@ partial class FieldIterator
             : base(fields)
         {
             _repeat = repeat;
+            _instanceIndex = 0;
         }
 
         public override FieldInfo Current

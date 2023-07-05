@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.CompilerServices;
 using CannedBytes.Midi.Device.Schema;
 using CannedBytes.Midi.Device.UnitTests.ConverterTests;
 using FluentAssertions;
@@ -11,22 +12,29 @@ public class SchemaNodeMapTest
 {
     public const string Folder = "SchemaNodeMapTests/";
     public const string SchemaNodeMapTestSchema = "SchemaNodeMapTestSchema.mds";
+    public const string SchemaNodeMapKeyBug = "SchemaNodeMapKeyBug.mds";
 
     private readonly ITestOutputHelper _output;
 
     public SchemaNodeMapTest(ITestOutputHelper output)
         => _output = output;
 
-    private static void SaveSchemaNodeMap(SchemaNodeMap map, string name)
+    private static void SaveSchemaNodeMap(SchemaNodeMap map, [CallerMemberName] string? callerName = null)
+    {
+        string path = Path.Combine(Folder, callerName);
+        DgmlFactory.SaveGraph(map, path);
+    }
+
+    private static DeviceSchema LoadSchema(string name)
     {
         string path = Path.Combine(Folder, name);
-        DgmlFactory.SaveGraph(map, path);
+        var schema = DeviceSchemaHelper.LoadSchemaFile(path);
+        return schema;
     }
 
     private static SchemaNodeMap CreateSchemaNodeMap(string name)
     {
-        string path = Path.Combine(Folder, name);
-        var schema = DeviceSchemaHelper.LoadSchemaFile(path);
+        var schema = LoadSchema(name);
         return CreateSchemaNodeMap(schema);
     }
 
@@ -43,7 +51,7 @@ public class SchemaNodeMapTest
     {
         var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
-        SaveSchemaNodeMap(map, "Create_HierarchicalSchema_IsNotNull");
+        SaveSchemaNodeMap(map);
         _output.WriteLine(map.ToString());
 
         map.Should().NotBeNull();
@@ -54,7 +62,7 @@ public class SchemaNodeMapTest
     {
         var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
-        SaveSchemaNodeMap(map, "Create_HierarchicalSchema_RootIsSet");
+        SaveSchemaNodeMap(map);
         _output.WriteLine(map.ToString());
 
         map.RootNode.Should().NotBeNull();
@@ -67,7 +75,7 @@ public class SchemaNodeMapTest
     {
         var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
-        SaveSchemaNodeMap(map, "Create_HierarchicalSchema_LastNodeIsSet");
+        SaveSchemaNodeMap(map);
         _output.WriteLine(map.ToString());
 
         map.LastNode.Should().NotBeNull();
@@ -79,10 +87,31 @@ public class SchemaNodeMapTest
     {
         var map = CreateSchemaNodeMap(SchemaNodeMapTestSchema);
 
-        SaveSchemaNodeMap(map, "Create_HierarchicalSchema_AddressMapIsSet");
+        SaveSchemaNodeMap(map);
         _output.WriteLine(map.ToString());
 
         map.AddressMap.Should().NotBeNull();
         map.AddressMap!.IsRecord.Should().BeTrue();
+    }
+
+    [Fact]
+    public void InstanceKeyIndexBug_FirstOfSubSubRecordsWrong()
+    {
+        var map = CreateSchemaNodeMap(SchemaNodeMapKeyBug);
+
+        SaveSchemaNodeMap(map);
+        _output.WriteLine(map.ToString());
+
+        map.AddressMap.Should().NotBeNull();
+        map.AddressMap!.IsRecord.Should().BeTrue();
+
+        var patch0 = map.AddressMap;
+        var ctrlParam0_0 = patch0.Children[1];
+        ctrlParam0_0.Key.ToString().Should().Be("0|0");
+        ctrlParam0_0.NextClone!.Key.ToString().Should().Be("1|0");
+        var patch1 = patch0.NextClone!;
+        var ctrlParam1_0 = patch1.Children[1];
+        ctrlParam1_0.Key.ToString().Should().Be("1|0");
+        ctrlParam1_0.NextClone!.Key.ToString().Should().Be("1|1");
     }
 }

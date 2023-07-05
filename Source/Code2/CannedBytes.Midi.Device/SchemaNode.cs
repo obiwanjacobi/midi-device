@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using CannedBytes.Midi.Core;
@@ -7,6 +8,7 @@ using CannedBytes.Midi.Device.Converters;
 
 namespace CannedBytes.Midi.Device;
 
+[DebuggerDisplay("{Field.Name} {Key}")]
 public partial class SchemaNode : ILogicalFieldInfo
 {
     protected SchemaNode()

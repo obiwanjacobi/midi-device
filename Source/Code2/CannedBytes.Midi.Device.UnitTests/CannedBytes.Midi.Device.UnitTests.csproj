@@ -16,6 +16,9 @@
 		<ProjectReference Include="..\CannedBytes.Tools.DgmlBuilder\CannedBytes.Tools.DgmlBuilder.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Update="SchemaNodeMapTests\SchemaNodeMapKeyBug.mds">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="SchemaNodeMapTests\SchemaNodeMapTestSchema.mds">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

@@ -33,11 +33,6 @@ internal class FieldToFieldInfoEnumerator : IEnumerator<FieldInfo>, IEnumerable<
         _enum.Dispose();
     }
 
-    object System.Collections.IEnumerator.Current
-    {
-        get { return Current; }
-    }
-
     public virtual bool MoveNext()
     {
         return _enum.MoveNext();
@@ -53,8 +48,13 @@ internal class FieldToFieldInfoEnumerator : IEnumerator<FieldInfo>, IEnumerable<
         return this;
     }
 
+    object System.Collections.IEnumerator.Current
+    {
+        get { return Current; }
+    }
+
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {
-        return GetEnumerator();
+        return this;
     }
 }

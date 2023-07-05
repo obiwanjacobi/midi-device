@@ -94,7 +94,7 @@ public sealed class SchemaNodeMapFactory
 
     private void InitializeRecord(SchemaNode thisNode)
     {
-        BuildKey(thisNode, thisNode.InstanceIndex);
+        BuildKey(thisNode);
 
         thisNode.DataLength = thisNode.FieldConverterPair.Converter.ByteLength;
 
@@ -172,8 +172,7 @@ public sealed class SchemaNodeMapFactory
 
     private void InitializeData(SchemaNode thisNode)
     {
-        // data fields have always a key of 0.
-        BuildKey(thisNode, 0);
+        BuildKey(thisNode);
 
         thisNode.DataLength = CalculateDataLength(thisNode);
 
@@ -219,11 +218,11 @@ public sealed class SchemaNodeMapFactory
         return byteLength;
     }
 
-    private static void BuildKey(SchemaNode thisNode, int instanceIndex)
+    private static void BuildKey(SchemaNode thisNode)
     {
         if (!thisNode.IsRoot)
         {
-            thisNode.Key = new InstancePathKey(instanceIndex);
+            thisNode.Key = new InstancePathKey(thisNode.InstanceIndex);
 
             foreach (SchemaNode parentNode in thisNode.SelectNodes(node => node.Parent))
             {
@@ -249,11 +248,9 @@ public sealed class SchemaNodeMapFactory
 
             var parentNode = thisNode;
             SchemaNode? lastSibling = null;
-
-            FieldIterator iterator = new(thisNode.FieldConverterPair.Field);
             int lastIndex = 0;
 
-            foreach (FieldInfo fieldInfo in iterator)
+            foreach (FieldInfo fieldInfo in new FieldIterator(thisNode.Field))
             {
                 // insert additional record/parent clones
                 if (lastIndex < fieldInfo.InstanceIndex)
@@ -266,8 +263,8 @@ public sealed class SchemaNodeMapFactory
                     lastSibling = null;
                 }
 
-                var newNode = CreateNewNode(thisNode, parentNode,
-                    fieldInfo.Field, fieldInfo.InstanceIndex);
+                // the first (real/not-clone) node at this level is always index 0
+                var newNode = CreateNewNode(thisNode, parentNode, fieldInfo.Field, 0);
 
                 ManageSiblings(ref lastSibling, newNode);
 
