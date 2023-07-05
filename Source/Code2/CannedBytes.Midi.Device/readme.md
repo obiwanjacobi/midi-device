@@ -2,6 +2,11 @@
 
 [ ] BitConverter: implement bitOrder attribute handling (or create a different converter).
 
+[ ] SchemaNodeMap: InstanceKeyPath gives wrong index value for repeated records with sub-records. Example: D110-PatchParametersPart1. Looks like the repeated index is used for the sub-level: sub-record 0|63|0|0 then field 63|63|0|0.
+
+[ ] 
+
+
 ## Stream Stack
 
 A typical stack looks like this:

@@ -12,7 +12,7 @@
     <mds:extension base="m:midiAddressMap">
       <mds:sequence>
         <mds:field name="Field1" type="Record1" repeats="2" mds:address="10H" mds:size="10H" />
-        <mds:field name="Field2" type="Record2" repeats="2" mds:address="100H" mds:size="10H" />
+        <mds:field name="Field2" type="Record2" repeats="2" mds:address="40H" mds:size="10H" />
       </mds:sequence>
     </mds:extension>
   </mds:recordType>
@@ -28,7 +28,7 @@
   <mds:recordType name="Record2">
     <mds:sequence>
       <mds:field name="Field2a" type="m:midiData" />
-      <mds:field name="Field2b" type="m:midiData" />
+      <mds:field name="Field2b" type="Record1" repeats="3" />
     </mds:sequence>
   </mds:recordType>
   

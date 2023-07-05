@@ -57,7 +57,7 @@ namespace TestApp.DeviceView
                 .Single(vf => vf.Name.Name == value);
 
             var binMap = _deviceProvider.GetBinaryConverterMapFor(virtualField);
-            var nodes = binMap.RootNode.SelectNodes(n => n.Next);
+            var nodes = binMap.RootNode.SelectNodes(n => n.Next).ToList();
             MessageFields = new HierarchicalTreeDataGridSource<SchemaNode>(nodes)
             {
                 Columns =
@@ -66,7 +66,7 @@ namespace TestApp.DeviceView
                         new TextColumn<SchemaNode, string>("Field", n => n.Field.Name.Name), n => Enumerable.Empty<SchemaNode>()),
                     new TextColumn<SchemaNode, string>("Type", n => n.Field.RecordType != null ? n.Field.RecordType.Name.Name : n.Field.DataType.Name.Name),
                     new TextColumn<SchemaNode, string>("Path", n => GetNodeInstancePath(n)),
-                    new TemplateColumn<SchemaNode>("Value", new FuncDataTemplate<SchemaNode>((schemaNode, nameScope) => new TextBox()))
+                    new TemplateColumn<SchemaNode>("Value", new FuncDataTemplate<SchemaNode>((schemaNode, nameScope) => schemaNode?.IsRecord == false && schemaNode?.Field.IsAbstract == false ? new TextBox() : new Label() { Content = "-" } ))
                 }
             };
         }

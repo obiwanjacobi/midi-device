@@ -4,11 +4,16 @@ using CannedBytes.Tools.DgmlBuilder;
 
 namespace CannedBytes.Midi.Device.UnitTests;
 
-static class DgmlFactory
+public static class DgmlFactory
 {
     public static void SaveGraph(SchemaNodeMap map, string targetPath)
+    { 
+        SaveGraph(map.RootNode, targetPath);
+    }
+
+    public static void SaveGraph(SchemaNode node, string targetPath)
     {
-        var graph = CreateGraph(map);
+        var graph = CreateGraph(node);
 
         string fileName = targetPath + ".dgml";
 
@@ -16,16 +21,16 @@ static class DgmlFactory
         DgmlSerializer.Serialize(stream, graph);
     }
 
-    public static DirectedGraph CreateGraph(SchemaNodeMap map)
+    public static DirectedGraph CreateGraph(SchemaNode node)
     {
-        string name = map.RootNode.Field.Schema.Name.FullName;
+        string name = node.Field.Schema.Name.FullName;
 
         DirectedGraph graph = new()
         {
             Title = name,
             Categories = CreateCategories(),
-            Nodes = CreateNodes(map.RootNode),
-            Links = CreateLinks(map.RootNode),
+            Nodes = CreateNodes(node),
+            Links = CreateLinks(node),
         };
 
         return graph;

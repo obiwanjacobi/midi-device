@@ -10,15 +10,15 @@
 
   <mds:recordType name="rootRecord">
     <mds:sequence>
-      <mds:field name="Field1" type="m:midiData" />
-      <mds:field name="Field2" type="subRecord" />
+      <mds:field name="RootField1" type="m:midiData" />
+      <mds:field name="RootField2" type="subRecord" />
     </mds:sequence>
   </mds:recordType>
 
   <mds:recordType name="subRecord">
     <mds:sequence>
-      <mds:field name="Field1" type="m:midiData" mds:property="address" />
-      <mds:field name="Field2" type="AdressMap" />
+      <mds:field name="SubField1" type="m:midiData" mds:property="address" />
+      <mds:field name="SubField2" type="AdressMap" />
     </mds:sequence>
   </mds:recordType>
 
@@ -33,19 +33,19 @@
 
   <mds:recordType name="Patch">
     <mds:sequence>
-      <mds:field name="Name" type="m:midiData" />
-      <mds:field name="Field1" type="m:midiBit0-3" />
-      <mds:field name="Field2" type="m:midiBit4-6" />
-      <mds:field name="Field3" type="m:midiBit7-13" />
+      <mds:field name="PName" type="m:midiData" />
+      <mds:field name="PField1" type="m:midiBit0-3" />
+      <mds:field name="PField2" type="m:midiBit4-6" />
+      <mds:field name="PField3" type="m:midiBit7-13" />
     </mds:sequence>
   </mds:recordType>
 
   <mds:recordType name="Timbre">
     <mds:sequence>
-      <mds:field name="Name" type="m:midiData" />
-      <mds:field name="Field1" type="m:midiBit0-6" />
-      <mds:field name="Field2" type="m:midiBit7-11" />
-      <mds:field name="Field3" type="m:midiBit12-14" />
+      <mds:field name="TName" type="m:midiData" />
+      <mds:field name="TField1" type="m:midiBit0-6" />
+      <mds:field name="TField2" type="m:midiBit7-11" />
+      <mds:field name="TField3" type="m:midiBit12-14" />
     </mds:sequence>
   </mds:recordType>
 </mds:deviceSchema>

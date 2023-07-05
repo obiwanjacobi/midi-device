@@ -108,7 +108,10 @@ public struct InstancePathKey : IEquatable<InstancePathKey>
     {
         StringBuilder text = new();
 
-        foreach (int index in _values)
+        var indices = new List<int>(_values);
+        indices.Reverse();
+
+        foreach (int index in indices)
         {
             if (text.Length > 0)
             {

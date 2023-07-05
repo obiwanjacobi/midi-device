@@ -1,22 +1,28 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device.Schema;
+using CannedBytes.Midi.Device.UnitTests;
 using CannedBytes.Midi.Device.UnitTests.SchemaNodeMapTests;
 using FluentAssertions;
 using Xunit;
 
-namespace CannedBytes.Midi.Device.UnitTests.AddressMapTests;
+namespace CannedBytes.Midi.Device.IntegrationTests.AddressMapTests;
 
 public class AddressMapManagerTest
 {
     public const string Folder = "AddressMapTests/";
     public const string AddressMapManagerTestSchema = "AddressMapTestSchema.mds";
 
+    private static void SaveGraph(SchemaNode node, [CallerMemberName] string? callerName = null)
+    {
+        DgmlFactory.SaveGraph(node, Path.Combine(Folder, callerName));
+    }
+
     private static AddressMapManager CreateAddressMapManager(DeviceSchema schema)
     {
         var map = SchemaNodeMapTest.CreateSchemaNodeMap(schema);
-
         return new AddressMapManager(map.RootNode);
     }
 
@@ -40,8 +46,8 @@ public class AddressMapManagerTest
         var size = SevenBitUInt32.FromSevenBitValue(5);
 
         var result = mgr.CreateSchemaNodes(address, size).ToList();
-
         result.Should().HaveCount(4);
+        //SaveGraph(result[0]);
 
         result[0].Address.Should().Be(0x10);
         result[0].Field.Name.Name.Should().Be("Field1");
@@ -73,8 +79,8 @@ public class AddressMapManagerTest
         var size = SevenBitUInt32.FromSevenBitValue(0x11);
 
         var result = mgr.CreateSchemaNodes(address, size).ToList();
-
         result.Should().HaveCount(6);
+        //SaveGraph(result[0]);
 
         result[0].Address.Should().Be(0x10);
         result[0].Field.Name.Name.Should().Be("Field1");
@@ -120,6 +126,7 @@ public class AddressMapManagerTest
 
         // two nodes: includes parent record and field itself
         result.Should().HaveCount(2);
+        //SaveGraph(result[0]);
 
         result[0].Address.Should().Be(0x10);
         result[0].Field.Name.Name.Should().Be("Field1");
@@ -136,12 +143,11 @@ public class AddressMapManagerTest
     {
         var mgr = CreateAddressMapManager();
 
-        var address = SevenBitUInt32.FromSevenBitValue(0x0);
-        var size = SevenBitUInt32.FromSevenBitValue(0x0);
+        var address = SevenBitUInt32.Zero;
+        var size = SevenBitUInt32.Zero;
 
-        var result = mgr.CreateSchemaNodes(address, size);
-
-        result.Should().NotBeNull();
-        result.Should().HaveCount(15);
+        var result = mgr.CreateSchemaNodes(address, size).ToList();
+        result.Should().HaveCount(37);
+        SaveGraph(result[0]);
     }
 }

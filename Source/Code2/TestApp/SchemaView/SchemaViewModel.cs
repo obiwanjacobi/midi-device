@@ -103,10 +103,14 @@ internal partial class SchemaViewModel : ViewModel
                     new TextColumn<Field, string>("Field", f => f.Name.Name), f => f.RecordType?.Fields ?? Enumerable.Empty<Field>()),
                 new TextColumn<Field, string>("Type", f => f.RecordType != null ? f.RecordType.Name.Name : f.DataType.Name.Name),
                 new TextColumn<Field, string>("Kind", f => f.RecordType != null ? "Record" : "Data"),
+                new TextColumn<Field, string>("Address", f => FormatAddress(f)),
                 new TextColumn<Field, string>("Schema", f => f.Name.SchemaName)
             }
         };
 
         return tree;
     }
+
+    private static string FormatAddress(Field f)
+        => f.Properties.Address.ToInt32() == 0 ? "" : $"{f.Properties.Address.ToString("X")}H ({f.Properties.Repeats})";
 }
