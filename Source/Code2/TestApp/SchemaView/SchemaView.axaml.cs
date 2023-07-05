@@ -10,9 +10,9 @@ public partial class SchemaView : UserControl
         InitializeComponent();
     }
 
-    protected override void OnLoaded()
+    protected override void OnInitialized()
     {
-        base.OnLoaded();
+        base.OnInitialized();
 
         var mainModel = DataContext as MainViewModel;
         if (mainModel is not null)

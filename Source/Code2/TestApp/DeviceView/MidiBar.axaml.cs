@@ -9,9 +9,9 @@ public partial class MidiBar : UserControl
         InitializeComponent();
     }
 
-    protected override void OnLoaded()
+    protected override void OnInitialized()
     {
-        base.OnLoaded();
+        base.OnInitialized();
 
         var deviceModel = DataContext as DeviceViewModel;
         if (deviceModel is not null)
