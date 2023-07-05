@@ -4,7 +4,9 @@
 
 [ ] `SchemaNodeMap`: There is an inconsistency in the node the `NextClone` property points to. At the first (real) repeated node the `NextClone` points to the next node at the same parent-level. However clones of that node point the `NextClone` to the next clone node at the sibling-level. Perhaps create individual properties to hook up clones at the same parent-level and one at the same sibling-level. `NextClone` would point at sibling-level clones while `` would point at parent-level clones.
 
-[ ] Allow some parts (RecordType) of an address map to be readonly, writeonly or read/write (See Roland FC-300 manual).
+[ ] `DeviceSchema`: Allow some parts (RecordType) of an address map to be readonly, writeonly or read/write (See Roland FC-300 manual).
+
+[ ] `DeviceSchema`: Overwrite inherited constraints (from the base type) of the same type with constraint defined at the current type.
 
 
 ## Done

@@ -89,35 +89,33 @@ public sealed class ConstraintCollection : Collection<Constraint>
 
     public void Merge(ConstraintCollection constraints)
     {
-        ConstraintCollection newConstraints = new();
+        var newConstraints = new ConstraintCollection();
 
         foreach (var constraint in constraints)
         {
             var currentConstraints = FindAll(constraint.ConstraintType);
 
-            if (currentConstraints is null || !currentConstraints.Any())
+            if (currentConstraints?.Any() != true)
             {
                 newConstraints.Add(constraint);
             }
-            else
+            else if (constraint.ConstraintType == ConstraintTypes.Enumeration)
             {
-                if (constraint.ConstraintType == ConstraintTypes.Enumeration)
+                foreach (var enumConstraint in currentConstraints)
                 {
-                    foreach (var enumConstraint in currentConstraints)
+                    // add enums with a value not yet in collection.
+                    if (enumConstraint.GetValue<long>() != constraint.GetValue<long>())
                     {
-                        // add enums with a value not yet in collection.
-                        if (enumConstraint.GetValue<long>() != constraint.GetValue<long>())
-                        {
-                            newConstraints.Add(constraint);
-                        }
+                        newConstraints.Add(constraint);
                     }
                 }
             }
+            // else: constraint not copied
+        }
 
-            foreach (var newConstraint in newConstraints)
-            {
-                Add(newConstraint);
-            }
+        foreach (var newConstraint in newConstraints)
+        {
+            Add(newConstraint);
         }
     }
 }

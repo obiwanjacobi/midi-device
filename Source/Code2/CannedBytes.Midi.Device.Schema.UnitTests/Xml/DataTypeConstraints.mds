@@ -5,7 +5,6 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
 
-
   <mds:dataType name="midiByte">
     <mds:restriction base="xs:unsignedByte" />
   </mds:dataType>
@@ -39,7 +38,7 @@
   </mds:dataType>
 
   <mds:dataType name="modelId">
-    <mds:restriction base="xs:string">
+    <mds:restriction base="midiData">
       <mds:fixed value="16" />
     </mds:restriction>
   </mds:dataType>
