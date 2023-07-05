@@ -261,7 +261,7 @@
 
   <!-- TODO: value 0 means NoSignal (now -51) -->
   <mds:dataType name="TunerCentStatus" valueOffset="-51" >
-    <mds:restriction base="m:midiSigned8">
+    <mds:restriction base="m:midiData">
       <!--<mds:enumeration name="NoSignal" value="0" />
       <mds:enumeration name="Value" value="*" />-->
     </mds:restriction>
