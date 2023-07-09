@@ -105,21 +105,9 @@ public sealed class Field : AttributedSchemaObject
     /// <summary>
     /// Gets the collection of all <see cref="Constraint"/>s relevant for this field.
     /// </summary>
-    /// <value>Derived classes can set this property. Must not be null.</value>
     /// <remarks>The collection will be empty if this Field is based on a <see cref="RecordType"/>.</remarks>
     public ConstraintCollection Constraints
-    {
-        get
-        {
-            return _constraints ??= new ConstraintCollection();
-        }
-        internal set
-        {
-            Assert.IfArgumentNull(value, nameof(Constraints));
-
-            _constraints = value;
-        }
-    }
+        => _constraints ??= new ConstraintCollection();
 
     public override string ToString()
     {
@@ -153,7 +141,7 @@ public sealed class Field : AttributedSchemaObject
     /// <summary>
     /// Contains the values of the extended schema attributes.
     /// </summary>
-    public class FieldProperties
+    public sealed class FieldProperties
     {
         public string? DevicePropertyName { get; set; }
 

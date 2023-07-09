@@ -8,6 +8,7 @@
     <Copyright>Copyright © CannedBytes 2014</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <Nullable>Enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CannedBytes" Version="2.0.1" />

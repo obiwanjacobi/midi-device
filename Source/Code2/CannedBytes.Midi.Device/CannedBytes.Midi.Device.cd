@@ -67,12 +67,13 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AQQQDKAAAAABAAAAAAgAAAgAAAAAAAAAAACQAAAgAAA=</HashCode>
+      <HashCode>AAAQAKAAAAABAAAAAAgAAAAAAAAAAAAAAACQAAAgAAA=</HashCode>
       <FileName>DeviceDataContext.ConverterState.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="StreamManager" />
       <Property Name="RootNode" />
+      <Property Name="LogManager" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="DeviceProperties" />
@@ -103,7 +104,7 @@
       </Struct>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAECAAAQAAAAAQAIAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAAAACAAAAAAAAAAAECAAAQAAAAAQAIAACAAAAgAE=</HashCode>
       <FileName>StreamManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -114,7 +115,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAQAAAAAAAAAAAEgAAAAQEA=</HashCode>
+      <HashCode>AAAAAAAAIAAAAAAEAAAAAAQAAAAAAAAAAAEgAAAAQEA=</HashCode>
       <FileName>DeviceProperty.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -144,7 +145,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CannedBytes.Midi.Device.LogicalFieldNode">
-    <Position X="9.25" Y="0.5" Width="2" />
+    <Position X="10" Y="0.5" Width="2" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -159,6 +160,9 @@
       <HashCode>AgAAAAAAAgAAAxQAAAAAQAABAAAAAAAAAAAgYAAQgAA=</HashCode>
       <FileName>LogicalFieldNode.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SchemaNode" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />

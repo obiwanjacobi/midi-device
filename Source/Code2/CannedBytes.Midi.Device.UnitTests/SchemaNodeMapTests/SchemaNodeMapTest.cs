@@ -21,7 +21,7 @@ public class SchemaNodeMapTest
 
     private static void SaveSchemaNodeMap(SchemaNodeMap map, [CallerMemberName] string? callerName = null)
     {
-        string path = Path.Combine(Folder, callerName);
+        string path = Path.Combine(Folder, callerName!);
         DgmlFactory.SaveGraph(map, path);
     }
 

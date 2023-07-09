@@ -17,7 +17,7 @@ public class AddressMapManagerTest
 
     private static void SaveGraph(SchemaNode node, [CallerMemberName] string? callerName = null)
     {
-        DgmlFactory.SaveGraph(node, Path.Combine(Folder, callerName));
+        DgmlFactory.SaveGraph(node, Path.Combine(Folder, callerName!));
     }
 
     private static AddressMapManager CreateAddressMapManager(DeviceSchema schema)

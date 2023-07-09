@@ -8,7 +8,6 @@
 
 [ ] `DeviceSchema`: Overwrite inherited constraints (from the base type) of the same type with constraint defined at the current type.
 
-
 ## Done
 
 [x] SchemaNodeMap: InstanceKeyPath gives wrong index value for repeated records with sub-records. Example: D110-PatchParametersPart1. Looks like the repeated index is used for the sub-level: sub-record 0|63|0|0 then field 63|63|0|0.
@@ -34,3 +33,32 @@ When a device presents its multi-bit/byte values in Little Endian, the Device Sc
 When a device presents its data values in Big Endian, the Device Schema should use data converters that read in big endian format.
 
 A Device Schema could have an attribute that defines the endian-ness globally for the entire model. The DeviceDataContext could have a central BitOrder field that Stream/Data-Converters can use to perform their read and write operations or that Stream/Data-Converters can manipulate (stack function) to temporarily change the endian-ness of the data operations.
+
+## Logical Data Representation
+
+The following scenario's:
+
+1) Create a logical message from scratch. Using the address-map to pinpoint the instance (index).
+1) Have all the logical information that was captured in the DeviceSchema available to the application during ToLogical/ToPhysical processes.
+
+Logical DeviceSchema information consists of:
+
+- Constraints: Enumerated (with name) and min/max and fixed value, length
+- valueOffset: a shift of the logical value from its physical value.
+- range: a physical value range.
+- Field: Field attributes incl. RecordType/DataType attributes. DeviceProperty.
+- address, size and repeats.
+- DeviceSchema documentation: possibly in multiple languages.
+
+DeviceSchema => SchemaNodeMap => LogicalFieldNode + LogicalFieldValue
+
+It should be clear what fields require a (logical) value and which fields do not - because they're fixed or dummy fields.
+
+## Application Perspective
+
+For the applications point of view some facilities need to be in place to work efficiently with the Midi Device Schema mechanism.
+
+The Device Schema has to be available and searchable. It should be easy to find a specific field.
+
+When using an address map the application needs to be able to find the address (and size) for the n-th instance of a field or a (partial) set of fields. Imagine the logical fields displayed as editable controls on the screen and the user changing one of its values. That change (and only that change) should be passed onto the device using the address map.
+

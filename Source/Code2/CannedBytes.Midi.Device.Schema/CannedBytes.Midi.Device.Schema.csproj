@@ -8,6 +8,7 @@
     <Copyright>Copyright ©  2014</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <Nullable>Enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="Xml\Model1\MidiDeviceSchema.cs">
