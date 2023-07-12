@@ -4,6 +4,7 @@ using CannedBytes.Midi.Core;
 using CannedBytes.Midi.Device;
 using CannedBytes.Midi.Device.Converters;
 using CannedBytes.Midi.Device.Schema;
+using Microsoft.Devices.Midi2;
 using Microsoft.Extensions.DependencyInjection;
 using TestApp.Services;
 
@@ -17,6 +18,9 @@ internal class MainViewModel : ViewModel
     public MainViewModel()
     {
         Services = ConfigureServices();
+
+        // MIDI2 experiment
+        //Console.WriteLine($"MIDI2 SDK Version: {MidiServices.SdkVersion}");
     }
 
     private static IServiceProvider ConfigureServices()

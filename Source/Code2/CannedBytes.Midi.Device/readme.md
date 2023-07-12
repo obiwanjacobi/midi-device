@@ -62,3 +62,23 @@ The Device Schema has to be available and searchable. It should be easy to find 
 
 When using an address map the application needs to be able to find the address (and size) for the n-th instance of a field or a (partial) set of fields. Imagine the logical fields displayed as editable controls on the screen and the user changing one of its values. That change (and only that change) should be passed onto the device using the address map.
 
+Ideally this code should be encapsulated in a simple to use API:
+
+```csharp
+  var deviceSchema = /* Open a Device Schema that represents the midi device */;
+
+  // create a device provider for a specific midi device (schema)
+  var deviceProvider = DeviceProvider.Create(Services, deviceSchema);
+
+  var recordType = deviceProvider.Schema.RootRecordTypes.Find("SendDataRecord");
+  var binMap = deviceProvider.GetBinaryMap(recordType);
+
+  // instance index key determines the exact location in the address map.
+  var instanceIndexKey = new InstanceIndexKey(0, 1, 4, 0);
+  var addressMapNodes = binMap.GetSchemaNodes(instanceIndexKey);
+```
+
+```csharp
+  var midiDevice = MidiDevice.Create(Services, deviceSchema);
+  var addressMapNodes = midiDevice.GetAddressMapNodes("SendDataRecords, new InstanceIndexKey(0, 1, 4, 0));
+```

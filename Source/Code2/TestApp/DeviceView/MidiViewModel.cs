@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.DependencyInjection;
 using TestApp.Services;
@@ -10,7 +11,6 @@ namespace TestApp.DeviceView
         // designer support
         public MidiViewModel()
         {
-
         }
 
         private readonly MidiService _midiService;
