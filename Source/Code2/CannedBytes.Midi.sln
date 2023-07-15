@@ -25,13 +25,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CannedBytes.Midi.Device Package\CannedBytes.Midi.Device.nuspec = CannedBytes.Midi.Device Package\CannedBytes.Midi.Device.nuspec
 		CannedBytes.Midi.Device Package\pack.cmd = CannedBytes.Midi.Device Package\pack.cmd
 		CannedBytes.Midi.Device Package\push-test.cmd = CannedBytes.Midi.Device Package\push-test.cmd
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{8F20348A-A887-4A27-8689-D7C2C49DD3B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp.Desktop", "TestApp.Desktop\TestApp.Desktop.csproj", "{E4216E62-B606-459E-9130-ECECB41D6CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CannedBytes.Midi.Device.Yamaha", "CannedBytes.Midi.Device.Yamaha\CannedBytes.Midi.Device.Yamaha.csproj", "{CEDF8AD7-E592-489D-A7AD-3DD836D5658A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CannedBytes.Midi.Device.Yamaha", "CannedBytes.Midi.Device.Yamaha\CannedBytes.Midi.Device.Yamaha.csproj", "{CEDF8AD7-E592-489D-A7AD-3DD836D5658A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manufacurers", "Manufacurers", "{27B82DF0-2B39-42E7-8554-868A374856AA}"
 EndProject
