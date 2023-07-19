@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CannedBytes.Midi.Console.De
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{9651020C-2757-401B-B7E0-926A87D0413B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Midi2LibTest", "Midi2LibTest\Midi2LibTest.csproj", "{1BEEA611-793A-47B8-B22F-73FC685B3748}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{D5116047-2E40-46CF-8512-BAB02482EC30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5116047-2E40-46CF-8512-BAB02482EC30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5116047-2E40-46CF-8512-BAB02482EC30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BEEA611-793A-47B8-B22F-73FC685B3748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BEEA611-793A-47B8-B22F-73FC685B3748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BEEA611-793A-47B8-B22F-73FC685B3748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BEEA611-793A-47B8-B22F-73FC685B3748}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{CEDF8AD7-E592-489D-A7AD-3DD836D5658A} = {27B82DF0-2B39-42E7-8554-868A374856AA}
 		{EDB5234F-D87E-40FB-B547-7E9BEAA0C9F1} = {9651020C-2757-401B-B7E0-926A87D0413B}
 		{D5116047-2E40-46CF-8512-BAB02482EC30} = {9651020C-2757-401B-B7E0-926A87D0413B}
+		{1BEEA611-793A-47B8-B22F-73FC685B3748} = {9651020C-2757-401B-B7E0-926A87D0413B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {541AD76E-CF0B-44F5-990A-C0F40C134567}
