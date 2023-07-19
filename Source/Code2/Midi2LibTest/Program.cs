@@ -133,11 +133,6 @@ internal static class Program
             {
                 Console.WriteLine("No MIDI Endpoints were found.");
             }
-
-            // close the session, detaching all Windows MIDI Services resources and closing all connections
-            // You can also disconnect individual Endpoint Connections when you are done with them
-            
-            // using calls => session.Dispose();
         }
         else
         {
@@ -151,5 +146,10 @@ internal static class Program
                 Console.WriteLine("Here you would prompt the user to install the latest version from " + MidiServices.LatestMidiServicesInstallUri.ToString());
             }
         }
+
+        // close the session, detaching all Windows MIDI Services resources and closing all connections
+        // You can also disconnect individual Endpoint Connections when you are done with them
+
+        // using calls => session.Dispose();
     }
 }
