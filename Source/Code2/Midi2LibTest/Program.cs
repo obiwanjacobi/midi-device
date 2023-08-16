@@ -103,16 +103,18 @@ internal static class Program
 
                 endpoint.MessageReceived += (_, args) =>
                 {
+                    var ump = args.GetUmp();
+
                     Console.WriteLine();
                     Console.WriteLine("Received UMP");
                     Console.WriteLine("- Current Timestamp: " + MidiClock.GetMidiTimestamp());
-                    Console.WriteLine("- UMP Timestamp: " + args.Ump.Timestamp);
-                    Console.WriteLine("- UMP Type: " + args.Ump.MessageType);
+                    Console.WriteLine("- UMP Timestamp: " + ump.Timestamp);
+                    Console.WriteLine("- UMP Type: " + ump.MessageType);
 
                     // if you wish to cast the IMidiUmp to a specific Ump Type, you can do so using .as<T>.
-                    if (args.Ump is MidiUmp32 ump)
+                    if (ump is MidiUmp32 ump32)
                     {
-                        Console.WriteLine("Word 0: {0:X}", ump.Word0);
+                        Console.WriteLine("Word 0: {0:X}", ump32.Word0);
                     }
                 };
 
